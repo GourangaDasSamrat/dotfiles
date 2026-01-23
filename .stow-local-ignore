@@ -3,4 +3,5 @@
 \.git/
 .*~
 \.gitignore
+\LICENSE
 ^/docs
