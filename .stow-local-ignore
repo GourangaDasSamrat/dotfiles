@@ -1,0 +1,6 @@
+^/README\.md
+^/\.git
+\.git/
+.*~
+\.gitignore
+^/docs
