@@ -1,0 +1,368 @@
+{
+  // fonts
+  "editor.fontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono'",
+  "editor.inlineSuggest.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
+  "editor.inlayHints.fontFamily": "'Cartograph CF','MonoLisa', 'JetBrainsMono Nerd Font'",
+  "editor.codeLensFontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
+  "debug.console.fontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
+  "scm.inputFontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
+  "errorLens.fontFamily": "'Cartograph CF', 'Operator Mono Lig', 'MonoLisa','JetBrainsMono Nerd Font'",
+  "gitlens.currentLine.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
+  "gitlens.blame.fontFamily": "'Operator Mono Lig', 'Cartograph CF','MonoLisa','JetBrainsMono Nerd Font'",
+  "markdown.preview.fontFamily": "'Founders Grotesk', 'MonoLisa', -apple-system, system-ui",
+
+  // font styling (italic)
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "comment.line",
+          "comment.block",
+          "keyword",
+          "keyword.operator",
+          "keyword.control",
+          "keyword.other",
+          "storage.type",
+          "storage.modifier",
+          "entity.other.attribute-name",
+          "meta.tag.attribute",
+          "entity.other.attribute-name.html",
+          "meta.import",
+          "meta.export",
+          "meta.module",
+          "meta.decorator",
+          "variable.language"
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      }
+    ]
+  },
+
+  // font ligatures
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontLigatures.featureSettings": "\"calt\" on",
+  "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.fontLigatures.fallbackLigatures": [
+    "<--",
+    "<---",
+    "<<-",
+    "<-",
+    "->",
+    "->>",
+    "-->",
+    "--->",
+    "<==",
+    "<===",
+    "<<=",
+    "<=",
+    "=>",
+    "=>>",
+    "==>",
+    "===>",
+    ">=",
+    ">>=",
+    "<->",
+    "<-->",
+    "<--->",
+    "<---->",
+    "<=>",
+    "<==>",
+    "<===>",
+    "<====>",
+    "::",
+    ":::",
+    "<~~",
+    "</",
+    "</>",
+    "/>",
+    "~~>",
+    "==",
+    "!=",
+    "/=",
+    "~=",
+    "<>",
+    "===",
+    "!==",
+    "!===",
+    "<:",
+    ":=",
+    "*=",
+    "*+",
+    "<*",
+    "<*>",
+    "*>",
+    "<|",
+    "<|>",
+    "|>",
+    "+*",
+    "=*",
+    "=:",
+    ":>",
+    "/*",
+    "*/",
+    "+++",
+    "<!--",
+    "<!---"
+  ],
+
+  // security
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // editor ui
+  "editor.fontSize": 22,
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorWidth": 5,
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.mouseWheelZoom": true,
+
+  "breadcrumbs.filePath": "last",
+  "editor.accessibilitySupport": "off",
+  "editor.hover.delay": 0,
+  "editor.autoIndentOnPaste": true,
+  "editor.stickyScroll.enabled": true,
+
+  // minimap
+  "editor.minimap.autohide": "mouseover",
+  "editor.minimap.scale": 2,
+  "editor.minimap.renderCharacters": false,
+
+  // window ui
+  "window.title": "${dirty}${activeEditorShort}${separator}${appName} with Gouranga",
+  "window.titleBarStyle": "custom",
+  "window.confirmBeforeClose": "always",
+  "window.commandCenter": false,
+  "window.newWindowProfile": "Default",
+
+  // workbench ui
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
+  "workbench.panel.defaultLocation": "left",
+  "workbench.tree.indent": 20,
+  "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "maximize",
+  "workbench.editor.enablePreview": false,
+  "workbench.startupEditor": "none",
+  "workbench.panel.showLabels": false,
+
+  // terminal ui
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.mouseWheelZoom": true,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.smoothScrolling": true,
+
+  // suggestions
+  "editor.quickSuggestions": {
+    "strings": "on",
+    "comments": "on",
+    "other": "on"
+  },
+  "editor.quickSuggestionsDelay": 0,
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.inlineSuggest.edits.showCollapsed": true,
+  "editor.snippetSuggestions": "top",
+  "terminal.integrated.suggest.enabled": true,
+  "terminal.integrated.suggest.quickSuggestions": {
+    "commands": "on",
+    "arguments": "on",
+    "unknown": "on"
+  },
+
+  // auto rename / closing tags and comments
+  "editor.linkedEditing": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoClosingOvertype": "always",
+  "html.autoClosingTags": true,
+  "javascript.autoClosingTags": true,
+  "typescript.autoClosingTags": true,
+  "editor.autoClosingComments": "always",
+
+  // formatting & linting
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[cpp]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.suggest.insertMode": "replace"
+  },
+  "[c]": {
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
+  },
+
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  "eslint.run": "onSave",
+  "eslint.format.enable": true,
+
+  // typescript / javascript
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterNames.enabled": "all",
+
+  // clangd
+  "clangd.arguments": [
+    "--background-index",
+    "--clang-tidy",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu",
+    "--header-insertion-decorators",
+    "--all-scopes-completion",
+    "--function-arg-placeholders",
+    "--log=verbose",
+    "--pretty",
+    "--fallback-style=Google",
+    "--pch-storage=memory",
+    "--limit-results=0"
+  ],
+  "clangd.onConfigChanged": "restart",
+
+  // files
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 500,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/.git": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/dist/**": true,
+    "**/.next/**": true,
+    "**/build/**": true,
+    "**/.cache/**": true,
+    "**/coverage/**": true,
+    "**/.vscode/**": true,
+    "**/.turbo/**": true,
+    "**/out/**": true,
+    "**/*.o": true,
+    "**/*.a": true,
+    "**/*.so": true,
+    "**/compile_commands.json": false
+  },
+  "files.associations": {
+    "*.h": "c",
+    "*.hpp": "cpp",
+    "*.tcc": "cpp",
+    "*.ipp": "cpp"
+  },
+
+  // search
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/.git": true,
+    "**/coverage": true,
+    "**/.turbo": true,
+    "**/yarn.lock": true,
+    "**/package-lock.json": true,
+    "**/pnpm-lock.yaml": true
+  },
+  "search.smartCase": true,
+
+  // explorer
+  "explorer.compactFolders": false,
+
+  // diff editor
+  "diffEditor.codeLens": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // extensions
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "extensions.experimental.affinity": {
+    "eamodio.gitlens": 1,
+    "dbaeumer.vscode-eslint": 1,
+    "esbenp.prettier-vscode": 1
+  },
+
+  // git, gitlens & commitSage
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "git.openRepositoryInParentFolders": "always",
+  "scm.repositories.explorer": true,
+  "scm.repositories.selectionMode": "single",
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.defaultGravatarsStyle": "monsterid",
+  "gitlens.graph.layout": "editor",
+  "commitSage.provider.type": "gemini",
+  "commitSage.gemini.model": "gemini-2.5-flash",
+  "commitSage.commit.commitFormat": "conventional",
+  "commitSage.commit.promptForRefs": true,
+
+  // tailwind css
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "javascriptreact": "javascript",
+    "typescriptreact": "typescript"
+  },
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.hg/**",
+    "**/.svn/**",
+    "**/.next/**"
+  ],
+
+  // spell checker
+  "cSpell.words": ["Gouranga", "Samrat"],
+  "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
+  "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+  "cSpell.caseSensitive": true,
+
+  // emmet
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "vue-html": "html"
+  },
+
+  // live server
+  "liveServer.settings.CustomBrowser": "firefox:PrivateMode",
+  "liveServer.settings.root": "/",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.wait": 10,
+
+  // error lens
+  "errorLens.delay": 0,
+  "errorLens.enabledDiagnosticLevels": ["hint", "error", "info", "warning"],
+  "errorLens.enableOnDiffView": true,
+  "errorLens.fontStyleItalic": true,
+
+  // code runner
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.clearPreviousOutput": true,
+
+  // disable unused things
+  "telemetry.telemetryLevel": "off",
+  "gitlens.telemetry.enabled": false,
+  "update.mode": "manual",
+  "update.showReleaseNotes": false,
+
+  // themes
+  "workbench.colorTheme": "Dracula Theme",
+  "workbench.iconTheme": "material-icon-theme",
+  "material-icon-theme.activeIconPack": "react_redux",
+  "material-icon-theme.hidesExplorerArrows": true,
+}
