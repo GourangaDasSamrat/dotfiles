@@ -1,0 +1,19 @@
+[user]
+	name = Gouranga Das Samrat
+	email = gouranga.das.khulna@gmail.com
+
+[init]
+	defaultBranch = main
+
+[alias]
+       lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+       lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+       today = log --since=midnight --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
+       yesterday = log --since='yesterday.midnight' --until='midnight' --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
+       mine = "!git log --author=\"$(git config user.name)\" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit"
+       last = show --no-patch --format='%C(yellow)Commit: %h%Creset%n%C(magenta)Author: %an%Creset%n%C(cyan)Date:   %ad %Cgreen(%cr)%Creset%n%n    %B%n' --date=format:'%Y-%m-%d %I:%M %p'
+       el = "!sh -c 'git log > git_history.txt'"
+
+# include local git config file(where gh save credential)
+[include]
+    path = ~/.gitconfig.local
