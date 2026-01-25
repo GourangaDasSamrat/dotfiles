@@ -33,13 +33,13 @@
           "meta.export",
           "meta.module",
           "meta.decorator",
-          "variable.language"
+          "variable.language",
         ],
         "settings": {
-          "fontStyle": "italic"
-        }
-      }
-    ]
+          "fontStyle": "italic",
+        },
+      },
+    ],
   },
 
   // font ligatures
@@ -106,7 +106,7 @@
     "*/",
     "+++",
     "<!--",
-    "<!---"
+    "<!---",
   ],
 
   // security
@@ -161,7 +161,7 @@
   "editor.quickSuggestions": {
     "strings": "on",
     "comments": "on",
-    "other": "on"
+    "other": "on",
   },
   "editor.quickSuggestionsDelay": 0,
   "editor.suggestOnTriggerCharacters": true,
@@ -171,7 +171,7 @@
   "terminal.integrated.suggest.quickSuggestions": {
     "commands": "on",
     "arguments": "on",
-    "unknown": "on"
+    "unknown": "on",
   },
 
   // auto rename / closing tags and comments
@@ -191,18 +191,24 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.suggest.insertMode": "replace"
+    "editor.suggest.insertMode": "replace",
   },
   "[c]": {
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "mkhl.shfmt"
+    "editor.defaultFormatter": "mkhl.shfmt",
   },
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
+    "source.organizeImports": "explicit",
   },
 
   "eslint.run": "onSave",
@@ -213,6 +219,18 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.inlayHints.parameterNames.enabled": "all",
   "javascript.inlayHints.parameterNames.enabled": "all",
+
+  // Golang
+  "go.useLanguageServer": true,
+  "go.formatTool": "goimports",
+  "go.lintTool": "golangci-lint",
+  "go.inlayHints.assignVariableTypes": true,
+  "go.inlayHints.parameterNames": true,
+  "go.inlayHints.compositeLiteralTypes": true,
+  "gopls": {
+    "ui.semanticTokens": true,
+    "ui.completion.usePlaceholders": true
+  },
 
   // clangd
   "clangd.arguments": [
@@ -227,7 +245,7 @@
     "--pretty",
     "--fallback-style=Google",
     "--pch-storage=memory",
-    "--limit-results=0"
+    "--limit-results=0",
   ],
   "clangd.onConfigChanged": "restart",
 
@@ -239,7 +257,7 @@
   "files.exclude": {
     "**/node_modules": true,
     "**/.next": true,
-    "**/.git": true
+    "**/.git": true,
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -256,13 +274,13 @@
     "**/*.o": true,
     "**/*.a": true,
     "**/*.so": true,
-    "**/compile_commands.json": false
+    "**/compile_commands.json": false,
   },
   "files.associations": {
     "*.h": "c",
     "*.hpp": "cpp",
     "*.tcc": "cpp",
-    "*.ipp": "cpp"
+    "*.ipp": "cpp",
   },
 
   // search
@@ -276,7 +294,7 @@
     "**/.turbo": true,
     "**/yarn.lock": true,
     "**/package-lock.json": true,
-    "**/pnpm-lock.yaml": true
+    "**/pnpm-lock.yaml": true,
   },
   "search.smartCase": true,
 
@@ -293,7 +311,7 @@
   "extensions.experimental.affinity": {
     "eamodio.gitlens": 1,
     "dbaeumer.vscode-eslint": 1,
-    "esbenp.prettier-vscode": 1
+    "esbenp.prettier-vscode": 1,
   },
 
   // git, gitlens & commitSage
@@ -314,14 +332,14 @@
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.includeLanguages": {
     "javascriptreact": "javascript",
-    "typescriptreact": "typescript"
+    "typescriptreact": "typescript",
   },
   "tailwindCSS.files.exclude": [
     "**/.git/**",
     "**/node_modules/**",
     "**/.hg/**",
     "**/.svn/**",
-    "**/.next/**"
+    "**/.next/**",
   ],
 
   // spell checker
@@ -334,7 +352,7 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact",
-    "vue-html": "html"
+    "vue-html": "html",
   },
 
   // live server
