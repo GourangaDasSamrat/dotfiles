@@ -30,3 +30,8 @@
 
 - clangd
 - Code Runner
+
+## Go Dev profile (for go development)
+
+- Go
+- Code Runner
