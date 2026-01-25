@@ -32,7 +32,7 @@ alias code=code-oss
 alias code-c='code --profile "C/C++ Dev"'
 alias code-f='code --profile "Frontend Dev"'
 alias code-b='code --profile "Backend Dev"'
-alias code-p='code --profile "Python Dev"'
+alias code-g='code --profile "Go Dev"'
 
 # Load colors
 source ~/.config/zsh/colors.zsh
