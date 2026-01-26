@@ -1,0 +1,39 @@
+{
+  "Clang Format Config": {
+    "prefix": "clang-format",
+    "scope": "yaml,plaintext",
+    "body": [
+      "BasedOnStyle: Google",
+      "",
+      "IndentWidth: 2",
+      "ContinuationIndentWidth: 2",
+      "TabWidth: 2",
+      "UseTab: Never",
+      "",
+      "ColumnLimit: 80",
+      "",
+      "Cpp11BracedListStyle: true",
+      "AlignAfterOpenBracket: AlwaysBreak",
+      "AllowAllConstructorInitializersOnNextLine: true",
+      "",
+      "BreakBeforeBraces: Attach",
+      "",
+      "BraceWrapping:",
+      "  AfterFunction: true",
+      "  AfterClass: true",
+      "  AfterStruct: true",
+      "  AfterEnum: true",
+      "  AfterControlStatement: false",
+      "",
+      "BinPackArguments: false",
+      "BinPackParameters: false",
+      "",
+      "AllowShortIfStatementsOnASingleLine: false",
+      "AllowShortLoopsOnASingleLine: false",
+      "AllowShortFunctionsOnASingleLine: Empty",
+      "",
+      "BreakStringLiterals: false"
+    ],
+    "description": "Standard clang-format configuration based on Google style"
+  }
+}
