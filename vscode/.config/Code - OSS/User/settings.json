@@ -220,7 +220,7 @@
   "typescript.inlayHints.parameterNames.enabled": "all",
   "javascript.inlayHints.parameterNames.enabled": "all",
 
-  // Golang
+  // Go
   "go.useLanguageServer": true,
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint",
@@ -343,7 +343,7 @@
   ],
 
   // spell checker
-  "cSpell.words": ["Gouranga", "Samrat"],
+  "cSpell.words": ["Gouranga", "gouranga", "Samrat", "samrat"],
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
   "cSpell.caseSensitive": true,
@@ -382,5 +382,5 @@
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
-  "material-icon-theme.hidesExplorerArrows": true,
+  "material-icon-theme.hidesExplorerArrows": true
 }
