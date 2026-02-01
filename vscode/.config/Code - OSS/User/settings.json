@@ -229,7 +229,7 @@
   "go.inlayHints.compositeLiteralTypes": true,
   "gopls": {
     "ui.semanticTokens": true,
-    "ui.completion.usePlaceholders": true
+    "ui.completion.usePlaceholders": true,
   },
 
   // clangd
@@ -382,5 +382,5 @@
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
-  "material-icon-theme.hidesExplorerArrows": true
+  "material-icon-theme.hidesExplorerArrows": true,
 }

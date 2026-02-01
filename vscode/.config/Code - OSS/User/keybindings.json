@@ -153,4 +153,8 @@
     "command": "-editor.action.marker.prevInFiles",
     "when": "editorFocus",
   },
+  {
+    "key": "alt+left",
+    "command": "workbench.action.navigateBack",
+  },
 ]

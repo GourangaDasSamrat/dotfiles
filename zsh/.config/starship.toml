@@ -201,15 +201,11 @@ detect_files = ["package.json", ".node-version"]
 detect_folders = ["node_modules"]
 
 # Other languages configurations:
-c.disabled = true
-cmake.disabled = true
 haskell.disabled = true
-python.disabled = true
 ruby.disabled = true
 rust.disabled = true
 perl.disabled = true
 package.disabled = true
 lua.disabled = true
-nodejs.disabled = true
 java.disabled = true
-golang.disabled = true
+
