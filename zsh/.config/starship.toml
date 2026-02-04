@@ -48,7 +48,7 @@ disabled = false
 
 # Third param
 [directory]
-format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#232526 bg:#232526)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none)"
+format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#232526 bg:#232526)[](fg:#d269ff bg:#252525)[ ](fg:#252525 bg:#d269ff)[](fg:#d269ff bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 truncation_length = 1
 truncate_to_repo=false
@@ -57,7 +57,7 @@ read_only = " "
 ## SECOND LINE/ROW: Prompt
 # Prompt: param 2 └─
 [character]
-success_symbol = "[ ](#6791C9 bold)"
+success_symbol = "[ ](#d269ff bold)"
 error_symbol = "[ ](#B66467 bold)"
 
 [line_break]
@@ -80,7 +80,7 @@ style = "fg:#E8E3E3 bg:#252525"
 symbol = " "
 
 [git_status]
-format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#6791C9 bg:#252525)[ ](fg:#252525 bg:#6791C9)[](fg:#6791C9 bg:none) "
+format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#d269ff bg:#252525)[ ](fg:#252525 bg:#d269ff)[](fg:#d269ff bg:none) "
 style = "fg:#E8E3E3 bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
