@@ -157,4 +157,8 @@
     "key": "alt+left",
     "command": "workbench.action.navigateBack",
   },
+  {
+    "key": "alt+m",
+    "command": "workbench.action.toggleMaximizedPanel"
+  },
 ]
