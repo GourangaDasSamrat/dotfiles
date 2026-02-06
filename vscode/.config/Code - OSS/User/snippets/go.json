@@ -1,0 +1,44 @@
+{
+  "Go Main Package": {
+    "prefix": "main",
+    "body": [
+      "package main",
+      "",
+      "import (",
+      "\t\"fmt\"",
+      ")",
+      "",
+      "func main() {",
+      "\tfmt.Println($1)$0",
+      "}"
+    ],
+    "description": "Go main package boilerplate"
+  },
+  "Go Package": {
+    "prefix": "pkg",
+    "body": [
+      "package ${1:${TM_FILENAME_BASE}}",
+      "",
+      "$0"
+    ],
+    "description": "Go package declaration"
+  },
+  "Go If Error": {
+    "prefix": "iferr",
+    "body": [
+      "if err != nil {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Go if error check"
+  },
+  "Go Interface": {
+    "prefix": "interface",
+    "body": [
+      "type ${1:InterfaceName} interface {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Go interface"
+  }
+}
