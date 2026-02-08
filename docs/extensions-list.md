@@ -19,12 +19,18 @@
 - Prettier - Code formatter
 - ESLint
 - Live Server
-- ES7+ React/Redux/React-Native snippets
-- Tailwind CSS IntelliSense
 
-## Optional (for ts development)
+## Optional
 
 - Pretty TypeScript Errors
+- Tailwind CSS IntelliSense
+- ES7+ React/Redux/React-Native snippets
+
+## Backend Dev Profile (for backend web development)
+
+- Prettier - Code formatter
+- ESLint
+- Thunder Client
 
 ## C/C++ Dev profile (for c/c++ development)
 
