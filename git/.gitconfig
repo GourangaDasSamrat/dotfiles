@@ -5,6 +5,10 @@
 [init]
 	defaultBranch = main
 
+[core]
+	hooksPath = /data/data/com.termux/files/home/.git-hooks
+	editor = nvim
+
 [color]
         ui = auto
 

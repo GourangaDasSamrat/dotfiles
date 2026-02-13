@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Conventional Commit Hook
+# This hook validates that commit messages follow the Conventional Commits specification
+# Format: <type>(<scope>): <subject>
+# Where type must be one of: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert
+
+commit_msg_file=$1
+
+# Get only the first line of the commit message
+first_line=$(head -n 1 "$commit_msg_file")
+
+# Skip merge commits
+if echo "$first_line" | grep -qE "^Merge "; then
+    exit 0
+fi
+
+# Skip revert commits (they have their own format)
+if echo "$first_line" | grep -qE "^Revert "; then
+    exit 0
+fi
+
+# Conventional commit pattern
+# Matches: type(optional-scope): description
+# or: type: description
+conventional_pattern='^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .{1,}'
+
+if ! echo "$first_line" | grep -qE "$conventional_pattern"; then
+    echo ""
+    echo "❌ ERROR: Commit message does not follow Conventional Commits format!"
+    echo ""
+    echo "Your commit message (first line):"
+    echo "  $first_line"
+    echo ""
+    echo "Expected format:"
+    echo "  <type>(<scope>): <subject>"
+    echo ""
+    echo "Valid types:"
+    echo "  feat:     A new feature"
+    echo "  fix:      A bug fix"
+    echo "  docs:     Documentation changes"
+    echo "  style:    Code style changes (formatting, missing semicolons, etc.)"
+    echo "  refactor: Code refactoring"
+    echo "  test:     Adding or updating tests"
+    echo "  chore:    Maintenance tasks"
+    echo "  perf:     Performance improvements"
+    echo "  ci:       CI/CD changes"
+    echo "  build:    Build system changes"
+    echo "  revert:   Revert a previous commit"
+    echo ""
+    echo "Examples:"
+    echo "  feat(auth): add login functionality"
+    echo "  fix: resolve memory leak in parser"
+    echo "  docs(readme): update installation instructions"
+    echo ""
+    echo "Note: Only the first line needs to follow this format."
+    echo "      Additional lines can contain any details you want."
+    echo ""
+    exit 1
+fi
+
+# Check that the subject line is not too long (max 72 characters for the header)
+if [ ${#first_line} -gt 72 ]; then
+    echo ""
+    echo "⚠️  WARNING: Commit message header is longer than 72 characters"
+    echo "  Current length: ${#first_line}"
+    echo "  Consider shortening your commit message"
+    echo ""
+fi
+
+exit 0
