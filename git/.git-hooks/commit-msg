@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Conventional Commit Hook
 # This hook validates that commit messages follow the Conventional Commits specification

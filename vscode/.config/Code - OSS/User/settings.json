@@ -227,6 +227,7 @@
   "go.inlayHints.assignVariableTypes": true,
   "go.inlayHints.parameterNames": true,
   "go.inlayHints.compositeLiteralTypes": true,
+  "go.toolsManagement.autoUpdate": true,
   "gopls": {
     "ui.semanticTokens": true,
     "ui.completion.usePlaceholders": true,
