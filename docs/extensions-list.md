@@ -30,7 +30,7 @@
 
 - Prettier - Code formatter
 - ESLint
-- Thunder Client
+- Rapid Api Client
 
 ## C/C++ Dev profile (for c/c++ development)
 
