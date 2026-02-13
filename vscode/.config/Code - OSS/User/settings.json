@@ -124,7 +124,7 @@
 
   "breadcrumbs.filePath": "last",
   "editor.accessibilitySupport": "off",
-  "editor.hover.delay": 0,
+  "editor.hover.delay": 250,
   "editor.autoIndentOnPaste": true,
   "editor.stickyScroll.enabled": true,
 
@@ -163,7 +163,7 @@
     "comments": "on",
     "other": "on",
   },
-  "editor.quickSuggestionsDelay": 0,
+  "editor.quickSuggestionsDelay": 5,
   "editor.suggestOnTriggerCharacters": true,
   "editor.inlineSuggest.edits.showCollapsed": true,
   "editor.snippetSuggestions": "top",
@@ -212,7 +212,7 @@
   },
 
   "eslint.run": "onSave",
-  "eslint.format.enable": true,
+  "eslint.format.enable": false,
 
   // typescript / javascript
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -251,7 +251,7 @@
 
   // files
   "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 500,
+  "files.autoSaveDelay": 1000,
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
   "files.exclude": {
@@ -323,7 +323,7 @@
   "gitlens.defaultGravatarsStyle": "monsterid",
   "gitlens.graph.layout": "editor",
   "commitSage.provider.type": "gemini",
-  "commitSage.gemini.model": "gemini-2.5-flash",
+  "commitSage.gemini.model": "gemini-2.5-flash-lite",
   "commitSage.commit.commitFormat": "conventional",
   "commitSage.commit.promptForRefs": true,
 
