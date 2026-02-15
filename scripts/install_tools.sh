@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Define list of tools
 TOOLS=("eza" "tmux" "bat" "stow" "starship" "alacritty")
 
@@ -19,7 +18,6 @@ if [ "$OS" = "Darwin" ]; then
             brew install "$tool"
         fi
     done
-
 elif [ "$OS" = "Linux" ]; then
     # Add zsh to the tools list for Linux
     TOOLS+=("zsh")
@@ -87,7 +85,6 @@ elif [ "$OS" = "Linux" ]; then
         echo "Installing zsh-syntax-highlighting..."
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     fi
-
 else
     echo "Unsupported operating system: $OS"
     exit 1
@@ -97,8 +94,22 @@ fi
 if [ -d "$HOME/dotfiles" ]; then
     echo "Running stow to symlink dotfiles..."
     cd "$HOME/dotfiles" || exit 1
-    stow tmux vscode zsh wallpapers git alacritty
-    echo "Stow completed successfully!"
+    
+    if stow tmux vscode zsh wallpapers git alacritty; then
+        echo "Stow completed successfully!"
+        
+        # Make git hooks executable if the directory exists
+        if [ -d "$HOME/git-hooks" ]; then
+            echo "Setting execute permissions for git hooks..."
+            chmod +x "$HOME/git-hooks"/*
+            echo "Git hooks permissions updated!"
+        else
+            echo "Note: ~/git-hooks directory not found. Skipping chmod."
+        fi
+    else
+        echo "Error: Stow command failed. Skipping git-hooks chmod."
+        exit 1
+    fi
 else
     echo "Warning: ~/dotfiles directory not found. Skipping stow command."
 fi
