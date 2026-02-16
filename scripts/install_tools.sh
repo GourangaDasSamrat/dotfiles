@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Define list of tools
-TOOLS=("alacritty" "bat" "eza" "starship" "stow" "tmux")
+# Define common tools for both OS
+COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "tmux")
+
+# Define OS-specific tools
+LINUX_TOOLS=("zsh")
+MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
 
 # Check operating system
 OS=$(uname -s)
@@ -10,6 +14,9 @@ if [ "$OS" = "Darwin" ]; then
 	# macOS
 	echo "Updating Homebrew..."
 	brew update && brew upgrade
+
+	# Merge common and macOS-specific tools
+	TOOLS=("${COMMON_TOOLS[@]}" "${MACOS_TOOLS[@]}")
 
 	for tool in "${TOOLS[@]}"; do
 		if brew list "$tool" &>/dev/null; then
@@ -21,8 +28,8 @@ if [ "$OS" = "Darwin" ]; then
 	done
 
 elif [ "$OS" = "Linux" ]; then
-	# Add zsh to the tools list for Linux
-	TOOLS+=("zsh")
+	# Merge common and Linux-specific tools
+	TOOLS=("${COMMON_TOOLS[@]}" "${LINUX_TOOLS[@]}")
 
 	# Set SUDO_CMD based on sudo availability
 	if command -v sudo &>/dev/null; then
