@@ -10,7 +10,8 @@ MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
 # Check operating system
 OS=$(uname -s)
 
-if [ "$OS" = "Darwin" ]; then
+case "$OS" in
+Darwin)
 	# macOS
 	echo "Updating Homebrew..."
 	brew update && brew upgrade
@@ -26,8 +27,9 @@ if [ "$OS" = "Darwin" ]; then
 			brew install "$tool"
 		fi
 	done
+	;;
 
-elif [ "$OS" = "Linux" ]; then
+Linux)
 	# Merge common and Linux-specific tools
 	TOOLS=("${COMMON_TOOLS[@]}" "${LINUX_TOOLS[@]}")
 
@@ -65,11 +67,13 @@ elif [ "$OS" = "Linux" ]; then
 			fi
 		done
 	fi
+	;;
 
-else
+*)
 	echo "Unsupported operating system: $OS"
 	exit 1
-fi
+	;;
+esac
 
 # Post-installation setup (common for both macOS and Linux)
 echo "Running post-installation setup..."
