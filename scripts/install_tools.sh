@@ -4,7 +4,7 @@
 COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "tmux")
 
 # Define OS-specific tools
-LINUX_TOOLS=("zsh" "build-essential")
+LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
 
 # Check operating system
