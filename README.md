@@ -2,21 +2,6 @@
 
 Personal configuration files managed with GNU Stow for easy deployment and version control across Linux and macOS systems.
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Quick Start](#quick-start)
-- [Installation Methods](#installation-methods)
-- [Script Architecture](#script-architecture)
-- [What's Included](#whats-included)
-- [Directory Structure](#directory-structure)
-- [Advanced Usage](#advanced-usage)
-- [Customization](#customization)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## ✨ Features
 
 - 🚀 **Automated Installation** - Single script deployment with automatic OS detection
