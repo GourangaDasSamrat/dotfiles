@@ -212,7 +212,7 @@
   },
 
   "eslint.run": "onSave",
-  "eslint.format.enable": false,
+  "eslint.format.enable": true,
 
   // typescript / javascript
   "typescript.updateImportsOnFileMove.enabled": "always",
