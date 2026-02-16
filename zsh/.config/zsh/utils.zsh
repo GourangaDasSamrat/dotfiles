@@ -1,44 +1,44 @@
 # Start python server with validation
 serve() {
-    local port=${1:-}
-    
-    # If no port provided, ask user
-    while true; do
-        if [ -z "$port" ]; then
-            echo -e "${COLOR_HEADER}Enter port number (default: 8000):${COLOR_RESET} "
-            read port
-            # Use default if empty
-            port=${port:-8000}
-        fi
-        
-        # Validate if port is a number
-        if ! [[ "$port" =~ ^[0-9]+$ ]]; then
-            echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Error: Port must be a number!"
-            port=""  # Reset to ask again
-            continue
-        fi
-        
-        # Validate port range (1-65535)
-        if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
-            echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Error: Port must be between 1 and 65535!"
-            port=""
-            continue
-        fi
-        
-        # Check if port is already in use
-        if lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1 ; then
-            echo -e "${COLOR_WARNING}  ⚠${COLOR_RESET} Warning: Port $port is already in use!"
-            echo -e "${COLOR_HEADER}Try another port?${COLOR_RESET} "
-            port=""
-            continue
-        fi
-        
-        # All validations passed
-        break
-    done
-    
-    echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
-    python3 -m http.server "$port"
+	local port=${1:-}
+
+	# If no port provided, ask user
+	while true; do
+		if [ -z "$port" ]; then
+			echo -e "${COLOR_HEADER}Enter port number (default: 8000):${COLOR_RESET} "
+			read port
+			# Use default if empty
+			port=${port:-8000}
+		fi
+
+		# Validate if port is a number
+		if ! [[ "$port" =~ ^[0-9]+$ ]]; then
+			echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Error: Port must be a number!"
+			port="" # Reset to ask again
+			continue
+		fi
+
+		# Validate port range (1-65535)
+		if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
+			echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Error: Port must be between 1 and 65535!"
+			port=""
+			continue
+		fi
+
+		# Check if port is already in use
+		if lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+			echo -e "${COLOR_WARNING}  ⚠${COLOR_RESET} Warning: Port $port is already in use!"
+			echo -e "${COLOR_HEADER}Try another port?${COLOR_RESET} "
+			port=""
+			continue
+		fi
+
+		# All validations passed
+		break
+	done
+
+	echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
+	python3 -m http.server "$port"
 }
 
 # File finder with preview
@@ -204,20 +204,19 @@ timer() {
 
 # Backup file/folder with timestamp
 backup() {
-    if [ -z "$1" ]; then
-        echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Usage: backup <file/folder>"
-        return 1
-    fi
-    
-    local timestamp=$(date +%Y%m%d_%H%M%S)
-    local backup_name="${1}_backup_${timestamp}.tar.gz"
-    
-    tar -czf "$backup_name" "$1" 2>/dev/null
-    
-    if [ $? -eq 0 ]; then
-        echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Backup created: ${COLOR_CURSOR}$backup_name${COLOR_RESET}"
-    else
-        echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Backup failed!"
-    fi
-}
+	if [ -z "$1" ]; then
+		echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Usage: backup <file/folder>"
+		return 1
+	fi
 
+	local timestamp=$(date +%Y%m%d_%H%M%S)
+	local backup_name="${1}_backup_${timestamp}.tar.gz"
+
+	tar -czf "$backup_name" "$1" 2>/dev/null
+
+	if [ $? -eq 0 ]; then
+		echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Backup created: ${COLOR_CURSOR}$backup_name${COLOR_RESET}"
+	else
+		echo -e "${COLOR_ERROR}  ✗${COLOR_RESET} Backup failed!"
+	fi
+}
