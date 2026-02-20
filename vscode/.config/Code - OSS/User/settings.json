@@ -149,6 +149,7 @@
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
   "workbench.panel.showLabels": false,
+  "workbench.editor.empty.hint": "hidden",
 
   // terminal ui
   "terminal.integrated.fontSize": 15,
@@ -343,7 +344,7 @@
   ],
 
   // spell checker
-  "cSpell.words": ["Gouranga", "gouranga", "Samrat", "samrat"],
+  "cSpell.words": ["Gouranga", "gouranga", "Samrat", "samrat", "cloudinary"],
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
   "cSpell.caseSensitive": true,
