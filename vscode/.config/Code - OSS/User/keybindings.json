@@ -159,6 +159,10 @@
   },
   {
     "key": "alt+m",
-    "command": "workbench.action.toggleMaximizedPanel"
+    "command": "workbench.action.toggleMaximizedPanel",
+  },
+  {
+    "key": "ctrl+shift+a",
+    "command": "myView.focus",
   },
 ]
