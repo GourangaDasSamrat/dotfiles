@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define common tools for both OS
-COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "jq" "tmux")
+COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "jq" "tmux" "git-lfs")
 
 # Define OS-specific tools
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
