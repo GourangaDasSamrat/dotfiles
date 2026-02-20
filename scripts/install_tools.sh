@@ -106,12 +106,23 @@ else
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
+# Clone wallpapers repository
+WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
+if [ -d "$WALLPAPERS_DIR" ]; then
+	echo "Wallpapers directory already exists, skipping clone..."
+else
+	echo "Cloning wallpapers repository..."
+	mkdir -p "$HOME/Pictures"
+	git clone --depth 1 https://github.com/blueisharch/wallpapers.git "$WALLPAPERS_DIR"
+	echo "Wallpapers cloned successfully!"
+fi
+
 # Run stow command in ~/dotfiles directory
 if [ -d "$HOME/dotfiles" ]; then
 	echo "Running stow to symlink dotfiles..."
 	cd "$HOME/dotfiles" || exit 1
 
-	if stow tmux vscode zsh wallpapers git alacritty; then
+	if stow tmux vscode zsh git alacritty; then
 		echo "Stow completed successfully!"
 
 		# Make git hooks executable if the directory exists
