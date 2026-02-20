@@ -30,7 +30,7 @@
 
 - Prettier - Code formatter
 - ESLint
-- Rapid Api Client
+- EchoAPI for VS Code
 
 ## C/C++ Dev profile (for c/c++ development)
 
