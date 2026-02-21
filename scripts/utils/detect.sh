@@ -4,29 +4,38 @@
 # Usage: source this file to get OS, PKG_MANAGER, SUDO_CMD variables
 
 detect_os() {
-    OS=$(uname -s)
-    case "$OS" in
-        Darwin) echo "macos" ;;
-        Linux)  echo "linux" ;;
-        *)
-            echo "unsupported"
-            ;;
-    esac
+	OS=$(uname -s)
+	case "$OS" in
+	Darwin) echo "macos" ;;
+	Linux) echo "linux" ;;
+	*)
+		echo "unsupported"
+		;;
+	esac
 }
 
 detect_package_manager() {
-    if command -v brew &>/dev/null;   then echo "brew";   return; fi
-    if command -v apt &>/dev/null;    then echo "apt";    return; fi
-    if command -v pacman &>/dev/null; then echo "pacman"; return; fi
-    echo "unsupported"
+	if command -v brew &>/dev/null; then
+		echo "brew"
+		return
+	fi
+	if command -v apt &>/dev/null; then
+		echo "apt"
+		return
+	fi
+	if command -v pacman &>/dev/null; then
+		echo "pacman"
+		return
+	fi
+	echo "unsupported"
 }
 
 detect_sudo() {
-    if command -v sudo &>/dev/null; then
-        echo "sudo"
-    else
-        echo ""
-    fi
+	if command -v sudo &>/dev/null; then
+		echo "sudo"
+	else
+		echo ""
+	fi
 }
 
 # Export variables for use in other scripts
