@@ -1,7 +1,0 @@
-^/README\.md
-^/\.git
-\.git/
-.*~
-\.gitignore
-\LICENSE
-^/docs
