@@ -14,3 +14,25 @@ _init_colors() {
 
 # Initialize colors once
 _init_colors
+
+# fzf theme
+_fzf_theme_dracula() {
+	export FZF_DEFAULT_OPTS='
+      --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
+      --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+      --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+      --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+      --color=border:#6272a4'
+}
+
+_fzf_theme_catppuccin() {
+	export FZF_DEFAULT_OPTS='
+      --color=fg:#cdd6f4,bg:#1e1e2e,hl:#cba6f7
+      --color=fg+:#cdd6f4,bg+:#313244,hl+:#cba6f7
+      --color=info:#f38ba8,prompt:#cba6f7,pointer:#f5c2e7
+      --color=marker:#a6e3a1,spinner:#f5c2e7,header:#f38ba8
+      --color=border:#45475a'
+}
+
+# fzf active theme
+_fzf_theme_dracula
