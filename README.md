@@ -88,7 +88,8 @@ dotfiles/
         ├── starship.toml             # Starship prompt config
         └── zsh/
             ├── archive.zsh           # Archive helper functions
-            ├── colors.zsh            # Terminal color aliases
+            ├── apireq.zsh           # Api request client using curl
+            ├── colors.zsh            # Terminal color aliases and fzf themes
             ├── overrides.zsh         # Custom overrides
             ├── utils.zsh             # General utility functions
             └── weather.zsh           # Weather in terminal
@@ -161,23 +162,24 @@ setup.sh          → interactive menu, discovers scripts in subdirs (utils/ exc
 
 ### Common (Linux + macOS)
 
-| Tool | Description |
-|------|-------------|
+| Tool          | Description                       |
+| ------------- | --------------------------------- |
 | **Alacritty** | GPU-accelerated terminal emulator |
-| **Bat** | `cat` with syntax highlighting |
-| **Eza** | Modern `ls` replacement |
-| **Starship** | Cross-shell prompt |
-| **Stow** | Symlink farm manager |
-| **Tmux** | Terminal multiplexer |
-| **jq** | JSON processor |
+| **Bat**       | `cat` with syntax highlighting    |
+| **Eza**       | Modern `ls` replacement           |
+| **Starship**  | Cross-shell prompt                |
+| **Stow**      | Symlink farm manager              |
+| **Tmux**      | Terminal multiplexer              |
+| **jq**        | JSON processor                    |
+| **fzf**       | Fuzzy finder                      |
 
 ### Linux-Only
 
-| Tool | Reason |
-|------|--------|
-| **Zsh** | macOS ships with it by default |
-| **Rofi** | macOS has Spotlight |
-| **build-essential** | macOS uses Xcode tools |
+| Tool                | Reason                         |
+| ------------------- | ------------------------------ |
+| **Zsh**             | macOS ships with it by default |
+| **Rofi**            | macOS has Spotlight            |
+| **build-essential** | macOS uses Xcode tools         |
 
 ### Post-Install (Automatic)
 
