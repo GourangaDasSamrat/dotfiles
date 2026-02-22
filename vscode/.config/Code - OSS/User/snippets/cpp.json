@@ -12,5 +12,49 @@
       "}"
     ],
     "description": "Standard C++ program entry point with iostream"
+  },
+  "CP Template": {
+    "prefix": "cp",
+    "body": [
+      "#include <bits/stdc++.h>",
+      "using namespace std;",
+      "",
+      "void solve() {",
+      "    $0",
+      "}",
+      "",
+      "int main() {",
+      "    ios_base::sync_with_stdio(false);",
+      "    cin.tie(NULL);",
+      "",
+      "    int t = 1;",
+      "    // cin >> t;",
+      "    while (t--) {",
+      "        solve();",
+      "    }",
+      "    return 0;",
+      "}"
+    ],
+    "description": "Competitive Programming Template with Fast I/O"
+  },
+  "LeetCode Template": {
+    "prefix": "lc",
+    "body": [
+      "class Solution {",
+      "public:",
+      "    /**",
+      "     * Fast I/O for LeetCode",
+      "     * This block executes before the main test cases run",
+      "     */",
+      "    static const int speedup = []() {",
+      "        ios_base::sync_with_stdio(false);",
+      "        cin.tie(NULL);",
+      "        return 0;",
+      "    }();",
+      "",
+      "    $1",
+      "};"
+    ],
+    "description": "Standard LeetCode Template with Static Fast I/O Optimization"
   }
 }
