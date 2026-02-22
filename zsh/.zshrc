@@ -1,15 +1,28 @@
 # Oh My Zsh path
 export ZSH="$HOME/.oh-my-zsh"
 
+# Fzf preview
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window rounded:right:60%"
+
 # Disable Theme
 ZSH_THEME=""
 
 # Oh My Zsh Plugins
 plugins=(
 	git
+	fzf
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
+
+# history setup
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history 
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
@@ -20,36 +33,9 @@ export BAT_THEME="Dracula"
 # Starship
 eval "$(starship init zsh)"
 
-# Custom alias
-alias debian=TERM='xterm-256color proot-distro login debian --user gouranga'
-alias df='cd ~/../usr/var/lib/proot-distro/installed-rootfs/debian/home/gouranga/'
-alias af='cd ~/storage/shared'
-
-alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-alias lt='eza --tree -a -I "node_modules|.git"'
-alias la='ls -A'
-
-alias code=code-oss
-alias code-b='code --profile "Backend Dev"'
-alias code-c='code --profile "C/C++ Dev"'
-alias code-f='code --profile "Frontend Dev"'
-alias code-g='code --profile "Go Dev"'
-
-# Load colors
-source ~/.config/zsh/colors.zsh
-
-# Core overrides
-source ~/.config/zsh/overrides.zsh
-
-# Archive tools
-source ~/.config/zsh/archive.zsh
-
-# Utilities
-source ~/.config/zsh/utils.zsh
-
-# Weather
-source ~/.config/zsh/weather.zsh
-
-# Api request
-source ~/.config/zsh/apireq.zsh
-
+# Load all zsh modules
+for file in ~/.config/zsh/{colors,overrides,utils,aliases,archive,weather,apireq}.zsh; do
+    [[ -f "$file" ]] && {
+        source "$file"
+    }
+done
