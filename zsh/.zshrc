@@ -49,3 +49,7 @@ source ~/.config/zsh/utils.zsh
 
 # Weather
 source ~/.config/zsh/weather.zsh
+
+# Api request
+source ~/.config/zsh/apireq.zsh
+
