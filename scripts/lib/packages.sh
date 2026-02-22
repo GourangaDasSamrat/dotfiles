@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/detect.sh"
 
-COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "jq" "tmux")
+COMMON_TOOLS=("alacritty" "bat" "eza" "fzf" "starship" "stow" "jq" "tmux")
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
 
