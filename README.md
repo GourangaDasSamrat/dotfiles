@@ -172,6 +172,7 @@ setup.sh          → interactive menu, discovers scripts in subdirs (utils/ exc
 | **Tmux**      | Terminal multiplexer              |
 | **jq**        | JSON processor                    |
 | **fzf**       | Fuzzy finder                      |
+| **fd**        | `find` with extra speed           |
 
 ### Linux-Only
 
