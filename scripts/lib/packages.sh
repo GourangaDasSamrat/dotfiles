@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/detect.sh"
 
-COMMON_TOOLS=("alacritty" "bat" "eza" "fzf" "starship" "stow" "jq" "tmux")
+COMMON_TOOLS=("alacritty" "bat|batcat" "eza" "fzf" "starship" "stow" "jq" "tmux" "fd|fd-find")
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
 
@@ -18,6 +18,34 @@ _is_installed() {
 
 _install_tool() {
 	local tool="$1"
+
+	# Handle "pkg1|pkg2" OR logic — try each name, install whichever exists in repo
+	if [[ "$tool" == *"|"* ]]; then
+		local candidates
+		IFS='|' read -ra candidates <<<"$tool"
+
+		for candidate in "${candidates[@]}"; do
+			if _is_installed "$candidate"; then
+				echo "$candidate is already installed, skipping..."
+				return
+			fi
+		done
+
+		# Try installing each candidate until one succeeds
+		for candidate in "${candidates[@]}"; do
+			echo "Trying to install $candidate..."
+			case "$PKG_MANAGER" in
+			brew) brew install "$candidate" && return ;;
+			apt) $SUDO_CMD apt install -y "$candidate" && return ;;
+			pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
+			esac
+		done
+
+		echo "Warning: Could not install any of: $tool"
+		return 1
+	fi
+
+	# Normal single-tool logic
 	if _is_installed "$tool"; then
 		echo "$tool is already installed, skipping..."
 		return
