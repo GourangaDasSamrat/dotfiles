@@ -36,6 +36,15 @@ install_plugins() {
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 			"$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 	fi
+
+	# fzf-tab
+	if [ -d "$ZSH_CUSTOM/plugins/fzf-tab" ]; then
+		echo "fzf-tab is already installed, skipping..."
+	else
+		echo "Installing fzf-tab..."
+		git clone https://github.com/Aloxaf/fzf-tab.git \
+			"$ZSH_CUSTOM/plugins/fzf-tab"
+	fi
 }
 
 # ── Run if executed directly ──────────────────────────────────────────────────
