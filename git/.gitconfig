@@ -23,6 +23,8 @@
        lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
        today = log --since=midnight --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
        yesterday = log --since='yesterday.midnight' --until='midnight' --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
+       lastmonth = log --since='1 month ago' --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset %C(bold blue)<%an>%Creset' --date=format:'%Y-%m-%d'
+       monthstat = shortlog --since='1 month ago' --summary --numbered
        mine = "!git log --author=\"$(git config user.name)\" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit"
        last = show --no-patch --format='%C(yellow)Commit: %h%Creset%n%C(magenta)Author: %an%Creset%n%C(cyan)Date:   %ad %Cgreen(%cr)%Creset%n%n    %B%n' --date=format:'%Y-%m-%d %I:%M %p'
        el = "!sh -c 'git log > git_history.txt'"
