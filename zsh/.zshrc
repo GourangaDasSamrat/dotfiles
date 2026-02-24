@@ -10,6 +10,7 @@ plugins=(
 	fzf
 	zsh-autosuggestions
 	zsh-syntax-highlighting
+	fzf-tab
 )
 
 # history setup

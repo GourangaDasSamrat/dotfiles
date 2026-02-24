@@ -1,10 +1,4 @@
-# ==============================================================================
-# FZF Configuration
-# ==============================================================================
-
-# ------------------------------------------------------------------------------
 # Theme Definitions
-# ------------------------------------------------------------------------------
 
 _fzf_theme_dracula() {
 	export FZF_DEFAULT_OPTS='
@@ -24,29 +18,21 @@ _fzf_theme_catppuccin() {
     --color=border:#45475a'
 }
 
-# ------------------------------------------------------------------------------
 # Active Theme (switch between _fzf_theme_dracula / _fzf_theme_catppuccin)
-# ------------------------------------------------------------------------------
 
 _fzf_theme_dracula
 
-# ------------------------------------------------------------------------------
 # Initialize fzf key bindings and fuzzy completion
-# ------------------------------------------------------------------------------
 
 eval "$(fzf --zsh)"
 
-# ------------------------------------------------------------------------------
 # Search Command (fd: faster, includes hidden, excludes .git)
-# ------------------------------------------------------------------------------
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
-# ------------------------------------------------------------------------------
 # Completion Generators (fd-based)
-# ------------------------------------------------------------------------------
 
 # Path completion candidates
 _fzf_compgen_path() {
@@ -58,18 +44,14 @@ _fzf_compgen_dir() {
 	fd --type=d --hidden --exclude .git . "$1"
 }
 
-# ------------------------------------------------------------------------------
 # Preview Settings (requires: eza, bat)
-# ------------------------------------------------------------------------------
 
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
-# ------------------------------------------------------------------------------
 # Context-aware Preview (comprun)
-# ------------------------------------------------------------------------------
 
 _fzf_comprun() {
 	local command=$1
@@ -81,3 +63,30 @@ _fzf_comprun() {
 	*) fzf --preview "$show_file_or_dir_preview" "$@" ;;
 	esac
 }
+
+# FZF-TAB Configuration (Improved Preview Logic)
+
+# Use your theme colors and flags
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS) --inline-info
+
+# Enhanced Preview: handling both files and directories specifically for fzf-tab
+# Note: $realpath is a special variable used by fzf-tab to point to the selected item
+zstyle ':fzf-tab:complete:*:*' fzf-preview '
+  if [ -d $realpath ]; then
+    eza --tree --color=always $realpath | head -200
+  else
+    bat -n --color=always --line-range :500 $realpath
+  fi'
+
+# Specific preview for 'cd' command
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath | head -200'
+
+# Layout and group styling
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+
+# Load fzf-tab plugin
+[[ -f ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh ]] && \
+    source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
