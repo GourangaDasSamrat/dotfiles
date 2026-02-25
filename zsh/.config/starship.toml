@@ -2,12 +2,11 @@
 ## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
 ## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
 ## CROSS-SHELL PROMPT
-## The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+## The minimal, blazing-fast, and infinitely customizable prompt for anyshell!
 
 format = """
 $hostname\
 $directory\
-
 $localip\
 $shlvl\
 $singularity\
@@ -16,10 +15,49 @@ $vcsh\
 $hg_branch\
 $docker_context\
 $package\
+$nodejs\
+$python\
+$golang\
+$rust\
+$java\
+$julia\
+$elixir\
+$elm\
+$haskell\
+$nim\
+$nix_shell\
+$perl\
+$php\
+$ruby\
+$scala\
+$swift\
+$dart\
+$conda\
+$aws\
+$c\
+$cpp\
+$lua\
+$kotlin\
+$ocaml\
+$zig\
+$deno\
+$bun\
+$crystal\
+$fennel\
+$fortran\
+$gradle\
+$guix_shell\
+$haxe\
+$meson\
+$pixi\
+$rlang\
+$xmake\
+$buf\
+$cmake\
+$gcloud\
+$memory_usage\
 $custom\
-
 $sudo\
-
 $fill\
 $git_branch\
 $git_status\
@@ -35,29 +73,27 @@ $shell\
 $line_break\
 $character"""
 
-
 # Disable the blank line at the start of the prompt
 add_newline = true
 
-
 # Second param
 [hostname]
-ssh_only = true 
+ssh_only = true
 format = "[](fg:#252525 bg:none)[█](fg:#E8E3E3 bg:#252525)[$ssh_symbol$hostname](bold bg:#E8E3E3)[](fg:#E8E3E3 bg:none) "
 disabled = false
 
 # Third param
 [directory]
-format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#232526 bg:#232526)[](fg:#d269ff bg:#252525)[ ](fg:#252525 bg:#d269ff)[](fg:#d269ff bg:none)"
+format = "[](fg:#252525 bg:none)[$path]($style)[█](fg:#232526 bg:#232526)[](fg:#68f7d8 bg:#252525)[ ](fg:#252525 bg:#68f7d8)[](fg:#68f7d8 bg:none)"
 style = "fg:#E8E3E3 bg:#252525 bold"
 truncation_length = 1
 truncate_to_repo=false
-read_only = " "
+read_only = " 󰌾"
 
 ## SECOND LINE/ROW: Prompt
 # Prompt: param 2 └─
 [character]
-success_symbol = "[ ](#d269ff bold)"
+success_symbol = "[ ](#68f7d8 bold)"
 error_symbol = "[ ](#B66467 bold)"
 
 [line_break]
@@ -80,7 +116,7 @@ style = "fg:#E8E3E3 bg:#252525"
 symbol = " "
 
 [git_status]
-format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#d269ff bg:#252525)[ ](fg:#252525 bg:#d269ff)[](fg:#d269ff bg:none) "
+format="[](fg:#252525 bg:none)[$all_status$ahead_behind]($style)[](fg:#252525 bg:#252525)[](fg:#68f7d8 bg:#252525)[ ](fg:#252525 bg:#68f7d8)[](fg:#68f7d8 bg:none) "
 style = "fg:#E8E3E3 bg:#252525"
 conflicted = "="
 ahead =	"⇡${count}"
@@ -109,16 +145,38 @@ am_or_rebase = "AM/REBASE"
 style =	"yellow"
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 
+
 # # SYMBOLS
 
 [aws]
-symbol = "  "
+symbol = " "
+
+[buf]
+symbol = " "
+
+[bun]
+symbol = " "
+
+[c]
+symbol = " "
+
+[cpp]
+symbol = " "
+
+[cmake]
+symbol = " "
 
 [conda]
 symbol = " "
 
+[crystal]
+symbol = " "
+
 [dart]
 symbol = " "
+
+[deno]
+symbol = " "
 
 # [directory]
 
@@ -131,45 +189,6 @@ detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 detect_folders = []
 disabled = false
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
-[golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[haskell]
-symbol = "λ "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[package]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
 [python]
 symbol = " "
 #pyenv_version_name = true
@@ -180,32 +199,107 @@ python_binary = ["./venv/bin/python", "python", "python3", "python2"]
 detect_extensions = ["py"]
 version_format = "v${raw}"
 
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fortran]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[gcloud]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[gradle]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+symbol = " "
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[package]
+symbol = "󰏗 "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[pixi]
+symbol = "󰏗 "
+
+[rlang]
+symbol = "󰟔 "
+
 [ruby]
-symbol = " "
+symbol = " "
 
 [rust]
-symbol = " "
+symbol = "󱘗 "
 
 [scala]
 symbol = " "
 
-[shlvl]
-symbol = " "
+[status]
+symbol = " "
 
 [swift]
-symbol = "ﯣ "
+symbol = " "
 
-[nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
+[xmake]
+symbol = " "
 
-# Other languages configurations:
-haskell.disabled = true
-ruby.disabled = true
-rust.disabled = true
-perl.disabled = true
-package.disabled = true
-lua.disabled = true
-java.disabled = true
-
+[zig]
+symbol = " "
