@@ -16,10 +16,9 @@ fi
 if (( $+commands[eza] )); then
     alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
     alias lt='eza --tree -a -I "node_modules|.git"'
-    alias la='eza -la --icons=always'
-else
-    alias la='ls -A'
 fi
+    alias la='ls -A'
+
 
 # Vscode's Aliases
 if (( $+commands[code] )) || alias code >/dev/null 2>&1; then
