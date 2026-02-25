@@ -71,7 +71,6 @@ zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS) --inline-info
 
 # Enhanced Preview: handling both files and directories specifically for fzf-tab
-# Note: $realpath is a special variable used by fzf-tab to point to the selected item
 zstyle ':fzf-tab:complete:*:*' fzf-preview '
   if [ -d $realpath ]; then
     eza --tree --color=always $realpath | head -200
