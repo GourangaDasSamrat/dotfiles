@@ -316,14 +316,24 @@
   },
 
   // git, gitlens & commitSage
+  "git.defaultCloneDirectory": "~/Code-Play-Ground/",
+  "git.openRepositoryInParentFolders": "always",
   "git.enableSmartCommit": true,
   "git.autofetch": true,
-  "git.openRepositoryInParentFolders": "always",
+  "git.branchRandomName.enable": true,
+  "git.branchRandomName.dictionary": ["adjectives", "animals"],
   "scm.repositories.explorer": true,
   "scm.repositories.selectionMode": "single",
-  "gitlens.hovers.currentLine.over": "line",
   "gitlens.defaultGravatarsStyle": "monsterid",
+  "gitlens.hovers.currentLine.over": "line",
   "gitlens.graph.layout": "editor",
+  "gitlens.graph.minimap.additionalTypes": [
+    "localBranches",
+    "stashes",
+    "remoteBranches",
+    "pullRequests",
+    "tags",
+  ],
   "commitSage.provider.type": "gemini",
   "commitSage.gemini.model": "gemini-2.5-flash-lite",
   "commitSage.commit.commitFormat": "conventional",
@@ -376,6 +386,7 @@
   // disable unused things
   "telemetry.telemetryLevel": "off",
   "gitlens.telemetry.enabled": false,
+  "commitSage.telemetry.enabled": false,
   "update.mode": "manual",
   "update.showReleaseNotes": false,
 
@@ -384,4 +395,5 @@
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.hidesExplorerArrows": true,
+  "workbench.externalBrowser": "firefox",
 }
