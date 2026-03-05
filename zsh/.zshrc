@@ -31,7 +31,7 @@ export BAT_THEME="Dracula"
 eval "$(starship init zsh)"
 
 # Load all zsh modules
-for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,archive,weather,apireq}.zsh; do
+for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,archive}.zsh; do
     [[ -f "$file" ]] && {
         source "$file"
     }
