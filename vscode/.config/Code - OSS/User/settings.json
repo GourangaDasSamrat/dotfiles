@@ -131,6 +131,7 @@
   // minimap
   "editor.minimap.autohide": "mouseover",
   "editor.minimap.scale": 2,
+  "editor.minimap.size": "fill",
   "editor.minimap.renderCharacters": false,
 
   // window ui
@@ -140,16 +141,16 @@
   "window.commandCenter": false,
   "window.newWindowProfile": "Default",
 
-  // workbench ui
+  // workbench
   "workbench.sideBar.location": "right",
   "workbench.activityBar.location": "top",
   "workbench.panel.defaultLocation": "left",
   "workbench.tree.indent": 20,
   "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "maximize",
-  "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
   "workbench.panel.showLabels": false,
   "workbench.editor.empty.hint": "hidden",
+  "workbench.externalBrowser": "firefox",
 
   // terminal ui
   "terminal.integrated.fontSize": 15,
@@ -190,6 +191,7 @@
   "editor.formatOnPaste": true,
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.suggest.insertMode": "replace",
@@ -206,6 +208,21 @@
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt",
   },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+  },
+  "[postgres]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+  },
+  "[mysql]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+  },
+  "[sqlite]": {
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+  },
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
@@ -214,6 +231,21 @@
 
   "eslint.run": "onSave",
   "eslint.format.enable": true,
+
+  // prettier sql
+  "Prettier-SQL.SQLFlavourOverride": "sql",
+  "Prettier-SQL.ignoreTabSettings": false,
+  "Prettier-SQL.tabSizeOverride": 2,
+  "Prettier-SQL.insertSpacesOverride": true,
+  "Prettier-SQL.keywordCase": "upper",
+  "Prettier-SQL.indentStyle": "standard",
+  "Prettier-SQL.logicalOperatorNewline": "before",
+  "Prettier-SQL.tabulateAlias": false,
+  "Prettier-SQL.commaPosition": "after",
+  "Prettier-SQL.expressionWidth": 50,
+  "Prettier-SQL.linesBetweenQueries": 1,
+  "Prettier-SQL.denseOperators": false,
+  "Prettier-SQL.newlineBeforeSemicolon": false,
 
   // typescript / javascript
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -282,6 +314,8 @@
     "*.hpp": "cpp",
     "*.tcc": "cpp",
     "*.ipp": "cpp",
+    "*.myquery": "sql",
+    "*.db": "sqlite",
   },
 
   // search
@@ -354,7 +388,18 @@
   ],
 
   // spell checker
-  "cSpell.words": ["Gouranga", "gouranga", "Samrat", "samrat", "cloudinary"],
+  "cSpell.userWords": [
+    "Aryna",
+    "cloudinary",
+    "Cortado",
+    "gouranga",
+    "Gouranga",
+    "Macchiato",
+    "Rybakina",
+    "Sabalenka",
+    "samrat",
+    "Samrat",
+  ],
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
   "cSpell.caseSensitive": true,
@@ -395,5 +440,4 @@
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.hidesExplorerArrows": true,
-  "workbench.externalBrowser": "firefox",
 }
