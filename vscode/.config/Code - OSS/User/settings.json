@@ -139,6 +139,7 @@
   "window.titleBarStyle": "custom",
   "window.confirmBeforeClose": "always",
   "window.commandCenter": false,
+  "window.menuBarVisibility": "toggle",
   "window.newWindowProfile": "Default",
 
   // workbench
@@ -152,7 +153,8 @@
   "workbench.editor.empty.hint": "hidden",
   "workbench.externalBrowser": "firefox",
 
-  // terminal ui
+  // terminal
+  "terminal.external.linuxExec": "xfce4-terminal",
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.cursorBlinking": true,
