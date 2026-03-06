@@ -27,6 +27,7 @@
        monthstat = shortlog --since='1 month ago' --summary --numbered
        mine = "!git log --author=\"$(git config user.name)\" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit"
        last = show --no-patch --format='%C(yellow)Commit: %h%Creset%n%C(magenta)Author: %an%Creset%n%C(cyan)Date:   %ad %Cgreen(%cr)%Creset%n%n    %B%n' --date=format:'%Y-%m-%d %I:%M %p'
+       undo = reset --soft HEAD~1
        el = "!sh -c 'git log > git_history.txt'"
 
 # include local git config file(where gh save credential)
