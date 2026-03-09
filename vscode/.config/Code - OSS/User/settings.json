@@ -401,6 +401,7 @@
     "Sabalenka",
     "samrat",
     "Samrat",
+    "redis",
   ],
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
