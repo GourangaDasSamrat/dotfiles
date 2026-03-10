@@ -34,7 +34,7 @@
 
 <div align="center">
 
-## ` ⚡ one command. everything. `
+## `⚡ one command. everything.`
 
 </div>
 
@@ -61,7 +61,7 @@ cd ~/dotfiles/scripts && ./install.sh
 
 <div align="center">
 
-## `  shell `
+## `🐚 shell`
 
 *built around fzf. everything has a live preview.*
 *every command feels intentional.*
@@ -72,7 +72,7 @@ cd ~/dotfiles/scripts && ./install.sh
 
 <div align="center">
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | what it does |
+| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does |
 |:---:|:---|
 | `ls` | eza — icons, git status, long format. no flags needed |
 | `tab` | fzf-tab — fuzzy search with live previews while you type |
@@ -96,7 +96,7 @@ cd ~/dotfiles/scripts && ./install.sh
 
 <div align="center">
 
-## `  tmux `
+## `🪟 tmux`
 
 *catppuccin macchiato · live weather in the status bar*
 *sessions that survive reboots*
@@ -126,7 +126,7 @@ panes, and working directories after every reboot.
 
 <div align="center">
 
-## ` 󰨞 vs code `
+## `🖥️ vs code`
 
 *six language profiles · italic keywords · ligatures · snippets*
 
@@ -159,7 +159,7 @@ snippets for **C++** (main, competitive programming, leetcode template) and **Go
 
 <div align="center">
 
-## `  git `
+## `🔧 git`
 
 *conventional commits enforced · clean aliases · nothing slips through*
 
@@ -187,7 +187,7 @@ git last         # full detail of the last commit
 
 <div align="center">
 
-## `  terminal & prompt `
+## `🎨 terminal & prompt`
 
 *alacritty · starship*
 
@@ -205,7 +205,7 @@ git last         # full detail of the last commit
 
 <div align="center">
 
-## `  what gets installed `
+## `📦 what gets installed`
 
 </div>
 
@@ -231,7 +231,7 @@ git last         # full detail of the last commit
 
 <div align="center">
 
-## `  architecture `
+## `🏗️ architecture`
 
 </div>
 
@@ -262,7 +262,7 @@ setup.sh             interactive — run only what you want
 
 <div align="center">
 
-## `  prerequisites `
+## `🔩 prerequisites`
 
 **git** &nbsp;·&nbsp; **homebrew** *(macOS only)* — [brew.sh](https://brew.sh)
 
@@ -276,7 +276,7 @@ setup.sh             interactive — run only what you want
 
 <div align="center">
 
-<img src="https://avatars.githubusercontent.com/GourangaDasSamrat" width="80" style="border-radius: 50%;"/>
+<img src="https://avatars.githubusercontent.com/GourangaDasSamrat" width="80" style="border-radius:50%"/>
 
 <br/>
 
