@@ -1,242 +1,297 @@
-# Dotfiles
+<div align="center">
 
-Personal configuration files managed with GNU Stow for easy deployment and version control across Linux and macOS systems.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:bd93f9,50:ff79c6,100:8be9fd&height=220&section=header&text=.dotfiles&fontSize=90&fontAlignY=38&fontColor=ffffff&desc=a%20love%20letter%20to%20the%20terminal&descSize=16&descAlignY=60&descColor=ffffff&animation=fadeIn" width="100%"/>
 
-## ✨ Features
+<br/>
 
-- 🚀 **Automated Installation** — Single script deployment with automatic OS detection
-- 🔧 **Smart Package Management** — Auto-detects `apt`, `pacman`, or `brew`
-- 📦 **GNU Stow Integration** — Symlink-based configuration management
-- 🔌 **Modular Setup Scripts** — Install only what you need via interactive selector
-- 🍎 **Cross-Platform** — Linux (Arch, Ubuntu, Debian) and macOS
-- ⚡ **Go Tools Support** — Optional Go development environment setup
-- 🎯 **Standalone Scripts** — Every lib script runs independently or as part of full install
+<a href="https://github.com/GourangaDasSamrat/dotfiles"><img src="https://img.shields.io/github/stars/GourangaDasSamrat/dotfiles?style=for-the-badge&logo=starship&color=bd93f9&logoColor=white&labelColor=1a1a2e" alt="stars"/></a>&nbsp;
+<img src="https://img.shields.io/badge/shell-zsh-50fa7b?style=for-the-badge&logo=gnu-bash&logoColor=white&labelColor=1a1a2e"/>&nbsp;
+<img src="https://img.shields.io/badge/managed%20with-stow-ff79c6?style=for-the-badge&logoColor=white&labelColor=1a1a2e"/>&nbsp;
+<img src="https://img.shields.io/badge/platform-linux%20%7C%20macos-8be9fd?style=for-the-badge&logo=linux&logoColor=white&labelColor=1a1a2e"/>&nbsp;
+<img src="https://img.shields.io/badge/license-MIT-ffb86c?style=for-the-badge&logoColor=white&labelColor=1a1a2e"/>
 
-## 📚 Prerequisites
+<br/><br/>
 
-### Required
+> *"your terminal is where you live. make it beautiful."*
 
-- **Git** — Version control system
-- **Homebrew** (macOS only) — [Installation Guide](https://brew.sh/)
+<br/>
 
-### Auto-Detected
+</div>
 
-- **Package Managers**: `apt`, `pacman`, or `brew`
-- **Operating Systems**: macOS (Darwin), Linux (Debian/Ubuntu/Arch)
+---
 
-## 🚀 Quick Start
+<div align="center">
 
-### Complete Setup
+```
+          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git
+```
+
+</div>
+
+---
+
+<br/>
+
+<div align="center">
+
+## ` ⚡ one command. everything. `
+
+</div>
+
+<br/>
 
 ```bash
 git clone https://github.com/GourangaDasSamrat/dotfiles.git ~/dotfiles
-cd ~/dotfiles/scripts
-
-chmod +x install.sh
-./install.sh
+cd ~/dotfiles/scripts && ./install.sh
 ```
 
-### Selective Installation
+<div align="center">
+
+*detects your os · installs every tool · symlinks every config · done*
+
+</div>
+
+<br/>
+
+> want control? `./setup.sh` lets you pick exactly what to run.
+
+---
+
+<br/>
+
+<div align="center">
+
+## `  shell `
+
+*built around fzf. everything has a live preview.*
+*every command feels intentional.*
+
+</div>
+
+<br/>
+
+<div align="center">
+
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | what it does |
+|:---:|:---|
+| `ls` | eza — icons, git status, long format. no flags needed |
+| `tab` | fzf-tab — fuzzy search with live previews while you type |
+| `mkdir` | asks to `git init`, creates README, makes the first commit |
+| `rm` | shows what dies. asks before it runs |
+| `extract` | detects and unpacks any archive format. just point at it |
+| `compress` | fzf menu picks the format. then it compresses |
+| `weather` | temperature bar · humidity · 3-day forecast in your terminal |
+| `apireq` | full API client via fzf. saves requests as `.http` files |
+| `serve` | python http server with port conflict detection |
+| `timer` | `timer 1h30m` — color-coded countdown + desktop notification |
+| `backup` | timestamped `.tar.gz` of anything. one command |
+| `cleanup` | deep-cleans npm, pip, cargo, go, docker, apt, brew and more |
+| `ff` | fuzzy file finder from current directory |
+
+</div>
+
+---
+
+<br/>
+
+<div align="center">
+
+## `  tmux `
+
+*catppuccin macchiato · live weather in the status bar*
+*sessions that survive reboots*
+
+</div>
+
+<br/>
+
+```
+  prefix      ctrl+a            splits        |  and  -
+  navigate    h · j · k · l     windows       alt + 1–5
+  mouse       on                persist       auto-save every 5 min
+```
+
+<br/>
+
+<div align="center">
+
+tmux-resurrect + tmux-continuum restore your exact layout,
+panes, and working directories after every reboot.
+
+</div>
+
+---
+
+<br/>
+
+<div align="center">
+
+## ` 󰨞 vs code `
+
+*six language profiles · italic keywords · ligatures · snippets*
+
+</div>
+
+<br/>
+
+<div align="center">
+
+| profile | formatter |
+|:---:|:---:|
+| frontend | prettier + eslint |
+| backend | prettier + eslint |
+| c / c++ | clangd |
+| go | gopls + goimports |
+| database | prettier-sql |
+| default | prettier |
+
+</div>
+
+<br/>
+
+font stack → **Operator Mono** · Cartograph CF · JetBrains Mono — with italic keywords and full ligatures.
+
+snippets for **C++** (main, competitive programming, leetcode template) and **Go** (main, package, `iferr`, interface).
+
+---
+
+<br/>
+
+<div align="center">
+
+## `  git `
+
+*conventional commits enforced · clean aliases · nothing slips through*
+
+</div>
+
+<br/>
+
+a `commit-msg` hook blocks any message that doesn't match `type(scope): subject`.
+you get a clear error, valid types, and examples — every time.
+
+<br/>
 
 ```bash
-cd ~/dotfiles/scripts
-
-chmod +x setup.sh
-./setup.sh
+git lg           # pretty graph log
+git today        # commits since midnight
+git yesterday    # yesterday's commits
+git mine         # your commits only
+git undo         # soft reset the last commit
+git last         # full detail of the last commit
 ```
 
-## 📂 Repository Structure
+---
+
+<br/>
+
+<div align="center">
+
+## `  terminal & prompt `
+
+*alacritty · starship*
+
+</div>
+
+<br/>
+
+**Alacritty** — dracula theme · JetBrainsMono Nerd Font · 95% opacity + blur · `option_as_alt` for macOS
+
+**Starship** — two-line prompt. directory + git on line one. language modules inline — node, go, python, rust, java, and more. shows vs code version in any directory.
+
+---
+
+<br/>
+
+<div align="center">
+
+## `  what gets installed `
+
+</div>
+
+<br/>
+
+<div align="center">
+
+| | |
+|:---|:---|
+| **terminal** | alacritty · tmux · starship |
+| **shell utils** | eza · bat · fzf · fd · jq · shfmt · stow |
+| **network** | curl · wget · gh |
+| **linux only** | zsh · build-essential · rofi |
+| **zsh plugins** | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
+| **tmux plugins** | tpm · catppuccin · resurrect · continuum |
+| **go tools** *(opt)* | gopls · goimports · golangci-lint |
+
+</div>
+
+---
+
+<br/>
+
+<div align="center">
+
+## `  architecture `
+
+</div>
+
+<br/>
 
 ```
-dotfiles/
-├── alacritty/                        # Terminal emulator config
-│   └── .config/alacritty/
-│       ├── alacritty.toml
-│       └── themes/dracula.toml
-├── docs/
-│   └── vscode-extensions.md          # Recommended VS Code extensions
-├── git/                              # Git config + custom hooks
-│   ├── .git-hooks/commit-msg
-│   └── .gitconfig
-├── rofi/                             # Application launcher config
-│   └── .config/rofi/config.rasi
-├── scripts/
-│   ├── install.sh                    # Full automated setup
-│   ├── setup.sh                      # Interactive script selector
-│   ├── lib/
-│   │   ├── packages.sh               # Tool installation (sources detect.sh internally)
-│   │   ├── plugins.sh                # Oh My Zsh, TPM, Zsh plugins
-│   │   ├── wallpapers.sh             # Clone + rename wallpapers
-│   │   ├── dotfiles.sh               # Stow symlinks + git hooks
-│   │   └── go_tools.sh               # Optional Go dev tools
-│   └── utils/
-│       └── detect.sh                 # OS, package manager, sudo detection
-├── tmux/
-│   └── .tmux.conf                    # Tmux config + TPM plugins
-├── vscode/
-│   └── .config/Code - OSS/User/
-│       ├── settings.json
-│       ├── keybindings.json
-│       └── snippets/
-│           ├── cpp.json
-│           ├── go.json
-│           ├── clang-format.code-snippets
-│           └── react-components.code-snippets
-└── zsh/
-    ├── .zshrc
-    └── .config/
-        ├── starship.toml             # Starship prompt config
-        └── zsh/
-            ├── archive.zsh           # Archive helper functions
-            ├── apireq.zsh           # Api request client using curl
-            ├── colors.zsh            # Terminal color aliases and fzf themes
-            ├── overrides.zsh         # Custom overrides
-            ├── utils.zsh             # General utility functions
-            └── weather.zsh           # Weather in terminal
+utils/detect.sh      os · package manager · sudo detection
+
+lib/packages.sh      installs every tool
+lib/plugins.sh       oh my zsh · tpm · zsh plugins
+lib/wallpapers.sh    clones wallpapers repo
+lib/dotfiles.sh      gnu stow · git hook permissions
+lib/go_tools.sh      optional go dev tools
+
+install.sh           runs everything above in order
+setup.sh             interactive — run only what you want
 ```
 
-## 📦 Installation Methods
+<div align="center">
 
-### Method 1: Full Install (`install.sh`)
+*every script in `lib/` runs standalone. use only what you need.*
 
-Runs all lib scripts in sequence — packages, plugins, wallpapers, dotfiles.
+</div>
 
-```bash
-cd ~/dotfiles/scripts
-./install.sh
-```
+---
 
-### Method 2: Interactive Selector (`setup.sh`)
+<br/>
 
-Scans all `.sh` files across subdirectories (excluding `utils/`) and lets you pick what to run.
+<div align="center">
 
-```bash
-cd ~/dotfiles/scripts
-./setup.sh
+## `  prerequisites `
 
-# Enter "1" for a single script
-# Enter "1 3 5" for multiple scripts
-# Enter "all" to run everything
-```
+**git** &nbsp;·&nbsp; **homebrew** *(macOS only)* — [brew.sh](https://brew.sh)
 
-### Method 3: Run Any Script Standalone
+</div>
 
-Every script in `lib/` is self-contained and can be run independently.
+---
 
-```bash
-# Install packages only
-bash scripts/lib/packages.sh
+<br/>
+<br/>
 
-# Set up Zsh plugins only
-bash scripts/lib/plugins.sh
 
-# Clone and rename wallpapers only
-bash scripts/lib/wallpapers.sh
+<div align="center">
 
-# Run stow only
-bash scripts/lib/dotfiles.sh
+<img src="https://avatars.githubusercontent.com/GourangaDasSamrat" width="80" style="border-radius: 50%;"/>
 
-# Install Go tools only
-bash scripts/lib/go_tools.sh
-```
+<br/>
 
-## 🔧 Script Architecture
+**Gouranga Das Samrat**
+<br/>
+*Software Engineer*
 
-```
-utils/detect.sh
-    └── sourced by → lib/packages.sh (and any future script that needs it)
+<br/>
 
-lib/packages.sh   → installs core tools
-lib/plugins.sh    → Oh My Zsh, TPM, zsh-autosuggestions, zsh-syntax-highlighting
-lib/wallpapers.sh → clones ~/Pictures/wallpapers
-lib/dotfiles.sh   → runs stow, sets git hook permissions
-lib/go_tools.sh   → optional: goimports, golangci-lint, gopls
+[![GitHub](https://img.shields.io/badge/@GourangaDasSamrat-1a1a2e?style=for-the-badge&logo=github&logoColor=bd93f9)](https://github.com/GourangaDasSamrat)&nbsp;
+[![Email](https://img.shields.io/badge/gouranga.samrat@gmail.com-1a1a2e?style=for-the-badge&logo=gmail&logoColor=ff79c6)](mailto:gouranga.samrat@gmail.com)&nbsp;
+[![Issues](https://img.shields.io/badge/report%20a%20bug-1a1a2e?style=for-the-badge&logo=github&logoColor=50fa7b)](https://github.com/GourangaDasSamrat/dotfiles/issues)
 
-install.sh        → sources and runs all of the above in order
-setup.sh          → interactive menu, discovers scripts in subdirs (utils/ excluded)
-```
+<br/>
 
-`detect.sh` exports `$OS`, `$PKG_MANAGER`, and `$SUDO_CMD`. Any script can `source utils/detect.sh` to use these variables without duplicating detection logic.
+*if this made your terminal feel like home — drop a* ⭐
 
-## 🛠️ Core Tools Installed
-
-### Common (Linux + macOS)
-
-| Tool          | Description                       |
-| ------------- | --------------------------------- |
-| **Alacritty** | GPU-accelerated terminal emulator |
-| **Bat**       | `cat` with syntax highlighting    |
-| **Eza**       | Modern `ls` replacement           |
-| **Starship**  | Cross-shell prompt                |
-| **Stow**      | Symlink farm manager              |
-| **Tmux**      | Terminal multiplexer              |
-| **jq**        | JSON processor                    |
-| **fzf**       | Fuzzy finder                      |
-| **fd**        | `find` with extra speed           |
-
-### Linux-Only
-
-| Tool                | Reason                         |
-| ------------------- | ------------------------------ |
-| **Zsh**             | macOS ships with it by default |
-| **Rofi**            | macOS has Spotlight            |
-| **build-essential** | macOS uses Xcode tools         |
-
-### Post-Install (Automatic)
-
-- **Oh My Zsh** — Zsh framework
-- **TPM** — Tmux Plugin Manager
-- **zsh-autosuggestions** — Fish-like autosuggestions
-- **zsh-syntax-highlighting** — Command syntax validation
-
-### Optional (via `go_tools.sh`)
-
-- `goimports`, `golangci-lint`, `gopls`
-
-## 🎯 Manual Stow Operations
-
-```bash
-cd ~/dotfiles
-
-# Symlink all configs
-stow */
-
-# Symlink specific packages
-stow zsh tmux vscode alacritty
-
-# Re-apply after changes
-stow -R zsh
-
-# Remove symlinks
-stow -D tmux
-
-# Dry run
-stow -n zsh
-```
-
-## ➕ Adding New Tools
-
-```bash
-# Add to both OS
-COMMON_TOOLS=("alacritty" "bat" "eza" "starship" "stow" "tmux" "new-tool")
-
-# Linux only
-LINUX_TOOLS=("zsh" "build-essential" "rofi" "new-tool")
-
-# macOS only
-MACOS_TOOLS=("iterm2")
-```
-
-## 🙏 Acknowledgments
-
-- [GNU Stow](https://www.gnu.org/software/stow/) — Symlink farm manager
-- [Oh My Zsh](https://ohmyz.sh/) — Zsh framework
-- [Starship](https://starship.rs/) — Cross-shell prompt
-- [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) — TPM
-- [Alacritty](https://alacritty.org/) — GPU-accelerated terminal
-
-## 📞 Support
-
-- 📧 **Email**: [gouranga.samrat@gmail.com](mailto:gouranga.samrat@gmail.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/GourangaDasSamrat/dotfiles/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/GourangaDasSamrat/dotfiles/discussions)
+</div>
