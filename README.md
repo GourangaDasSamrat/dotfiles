@@ -80,7 +80,6 @@ cd ~/dotfiles/scripts && ./install.sh
 | `rm` | shows what dies. asks before it runs |
 | `extract` | detects and unpacks any archive format. just point at it |
 | `compress` | fzf menu picks the format. then it compresses |
-| `weather` | temperature bar · humidity · 3-day forecast in your terminal |
 | `apireq` | full API client via fzf. saves requests as `.http` files |
 | `serve` | python http server with port conflict detection |
 | `timer` | `timer 1h30m` — color-coded countdown + desktop notification |
