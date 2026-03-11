@@ -23,7 +23,7 @@
 <div align="center">
 
 ```
-          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git
+          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git  ·  uSql
 ```
 
 </div>
@@ -221,6 +221,7 @@ git last         # full detail of the last commit
 | **linux only** | zsh · build-essential · rofi |
 | **zsh plugins** | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
 | **tmux plugins** | tpm · catppuccin · resurrect · continuum |
+| **programming tools**  | uSql |
 | **go tools** *(opt)* | gopls · goimports · golangci-lint |
 
 </div>
