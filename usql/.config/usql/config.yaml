@@ -1,0 +1,20 @@
+# usql configuration file
+# Place this at: $HOME/.config/usql/config.yaml
+
+init: |
+  \set SYNTAX_HL true
+  \set SYNTAX_HL_STYLE dracula
+  \set SYNTAX_HL_FORMAT terminal256
+  \set SYNTAX_HL_OVERRIDE_BG true
+  \set SHOW_HOST_INFORMATION true
+
+  \pset format aligned
+  \pset linestyle unicode
+  \pset border 2
+  \pset null 'NULL'
+  \pset time RFC3339
+
+  \set PROMPT1 "\033[1;35m%S\033[0m:\033[33m%n\033[0m@\033[32m%/\033[0m%R%# "
+  \set PROMPT2 "\033[90m%R\033[0m> "
+ 
+  \i ~/.connections.usql
