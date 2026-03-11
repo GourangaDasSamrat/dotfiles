@@ -85,8 +85,6 @@ cd ~/dotfiles/scripts && ./install.sh
 | `serve` | python http server with port conflict detection |
 | `timer` | `timer 1h30m` — color-coded countdown + desktop notification |
 | `backup` | timestamped `.tar.gz` of anything. one command |
-| `cleanup` | deep-cleans npm, pip, cargo, go, docker, apt, brew and more |
-| `ff` | fuzzy file finder from current directory |
 
 </div>
 
