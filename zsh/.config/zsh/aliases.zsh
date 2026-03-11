@@ -28,3 +28,6 @@ if (( $+commands[code] )) || alias code >/dev/null 2>&1; then
     alias code-f='code --profile "Frontend Dev"'
     alias code-g='code --profile "Go Dev"'
 fi
+
+# usql's Aliases
+alias usql='usql -q'
