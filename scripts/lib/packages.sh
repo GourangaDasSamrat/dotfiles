@@ -17,6 +17,7 @@ COMMON_TOOLS=(
 	"jq"
 	"shfmt"
 	"gh"
+        "usql"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
