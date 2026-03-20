@@ -59,6 +59,7 @@
 | ----------- | ----------------- | ---------------------------------------------------------------------------------------- |
 | Prettier SQL VSCode      | inferrinizzard | [  Link](https://marketplace.visualstudio.com/items?itemName=inferrinizzard.prettier-sql-vscode) |
 | SQLTools      | Matheus Teixeira | [  Link](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools) |
+| dbdiagram      | dbdiagram.io | [  Link]() |
 
 ## C/C++ Dev Profile
 
