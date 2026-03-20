@@ -36,3 +36,8 @@ for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,archive}.zsh; do
         source "$file"
     }
 done
+
+# Load local secrets if they exist
+if [[ -f "$HOME/.zsh_secrets" ]]; then
+    source "$HOME/.zsh_secrets"
+fi
