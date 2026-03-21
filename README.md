@@ -280,7 +280,7 @@ setup.sh             interactive — run only what you want
 
 **Gouranga Das Samrat**
 <br/>
-*Software Engineer*
+*Software Developer*
 
 <br/>
 
