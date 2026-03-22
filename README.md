@@ -23,7 +23,7 @@
 <div align="center">
 
 ```
-          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git  ·  uSql
+          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git  · gh · uSql
 ```
 
 </div>
@@ -176,6 +176,23 @@ git yesterday    # yesterday's commits
 git mine         # your commits only
 git undo         # soft reset the last commit
 git last         # full detail of the last commit
+```
+
+<div align="center">
+
+## `🔧 github cli`
+
+*clean aliases · nothing slips through*
+
+</div>
+
+<br/>
+
+```bash
+gh today        # commits since midnight throw all repo
+gh yesterday    # yesterday's commits throw all repo
+gh prs          # your pr's in a repo
+gh open         # open the repo in default browser
 ```
 
 ---
