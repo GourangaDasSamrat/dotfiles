@@ -1,20 +1,31 @@
-# usql configuration file
-# Place this at: $HOME/.config/usql/config.yaml
+# $HOME/.config/usql/config.yaml
 
 init: |
+  \set QUIET on
   \set SYNTAX_HL true
   \set SYNTAX_HL_STYLE dracula
   \set SYNTAX_HL_FORMAT terminal256
   \set SYNTAX_HL_OVERRIDE_BG true
-  \set SHOW_HOST_INFORMATION true
-
+  \set ON_ERROR_STOP off
+  \set ECHO_HIDDEN off
   \pset format aligned
   \pset linestyle unicode
   \pset border 2
-  \pset null 'NULL'
-  \pset time RFC3339
-
-  \set PROMPT1 "\033[1;35m%S\033[0m:\033[33m%n\033[0m@\033[32m%/\033[0m%R%# "
-  \set PROMPT2 "\033[90m%R\033[0m> "
- 
+  \pset unicode_border_linestyle double
+  \pset unicode_column_linestyle single
+  \pset unicode_header_linestyle double
+  \pset null NULL
+  \pset time RFC3339Nano
+  \pset pager_min_lines 10
+  \timing
+  \echo "\033[38;5;212mWelcome,\033[0m" "\033[38;5;228m"`whoami`"\033[0m" "\033[38;5;242m--\033[0m" "\033[38;5;117m"`date '+%a %d %b %Y, %H:%M'`"\033[0m"
+  \echo "\033[38;5;242mType \033[38;5;141m\\?\033[38;5;242m for help, \033[38;5;141m\\q\033[38;5;242m to quit.\033[0m"
+  \echo ""
+  \set QUIET off
+  \set SHOW_HOST_INFORMATION true
+  \set PROMPT1 "\033[38;5;61m[\033[0m\033[38;5;141m%S\033[38;5;212m%N\033[38;5;117m%m\033[38;5;228m%/\033[38;5;61m]\033[38;5;141m%R\033[38;5;196m%#\033[0m "
+  \set PROMPT2 "\033[38;5;61m[\033[38;5;242m%R\033[38;5;61m]\033[0m "
+  \set PROMPT3 "\033[38;5;212mpassword:\033[0m "
+  \setenv PAGER 'less -SRXF'
+  \setenv EDITOR 'nvim'
   \i ~/.connections.usql
