@@ -18,6 +18,7 @@ COMMON_TOOLS=(
 	"shfmt"
 	"gh"
         "usql"
+	"neovim"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
