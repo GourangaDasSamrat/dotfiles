@@ -1,0 +1,18 @@
+version: 1
+git_protocol: https
+editor:
+prompt: enabled
+prefer_editor_prompt: disabled
+pager:
+aliases:
+    co: pr checkout
+    today: '!gh search commits --author="@me" --committer-date=">=$(date +%Y-%m-%d)" --json "repository,commit" --jq ".[] | \"\u001b[38;5;141m\(.repository.fullName)\u001b[0m \u001b[38;5;117m➜\u001b[0m \u001b[38;5;84m\(.commit.message)\u001b[0m\""'
+    yesterday: '!if [[ "$OSTYPE" == "darwin"* ]]; then YD=$(date -v-1d +%Y-%m-%d); else YD=$(date -d "yesterday" +%Y-%m-%d); fi; gh search commits --author="@me" --committer-date="$YD..$(date +%Y-%m-%d)" --json "repository,commit" --jq ".[] | \"\u001b[38;5;141m\(.repository.fullName)\u001b[0m \u001b[38;5;117m➜\u001b[0m \u001b[38;5;84m\(.commit.message)\u001b[0m\""'
+    prs: '!gh pr list --author "@me" --state all --json "title,url,updatedAt" --jq ".[] | \"\u001b[38;5;84m\(.title)\u001b[0m \u001b[38;5;117m➜\u001b[0m \u001b[38;5;242m\(.url)\u001b[0m\""'
+    open: repo view --web
+http_unix_socket:
+browser:
+color_labels: enabled
+accessible_colors: disabled
+accessible_prompter: disabled
+spinner: enabled
