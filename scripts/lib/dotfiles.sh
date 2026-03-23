@@ -9,7 +9,7 @@ setup_dotfiles() {
 	echo "Running stow to symlink dotfiles..."
 	cd "$HOME/dotfiles" || return 1
 
-	if stow tmux vscode zsh git alacritty usql; then
+	if stow tmux vscode zsh git gh  alacritty usql; then
 		echo "Stow completed successfully!"
 
 		if [ -d "$HOME/git-hooks" ]; then
