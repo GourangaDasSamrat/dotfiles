@@ -189,10 +189,15 @@ git last         # full detail of the last commit
 <br/>
 
 ```bash
-gh today        # commits since midnight throw all repo
-gh yesterday    # yesterday's commits throw all repo
-gh prs          # your pr's in a repo
-gh open         # open the repo in default browser
+gh today              # Every commit with timestamps since midnight (all repos)
+gh yesterday          # Every commit with timestamps from yesterday (all repos)
+gh today-summary      # Repo-wise summary + total commit count for today
+gh yesterday-summary  # Repo-wise summary + total commit count for yesterday
+gh last-month-summary # Detailed monthly report sorted by activity
+gh streak             # Calculate your current and longest commit streak
+gh prs                # Your PRs in the current repo with status
+gh open               # Open the current repo in your default browser
+gh co                 # Interactive PR checkout
 ```
 
 ---
