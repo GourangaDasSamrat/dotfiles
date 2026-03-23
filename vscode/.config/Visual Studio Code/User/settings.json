@@ -352,7 +352,7 @@
   },
 
   // git, gitlens & commitSage
-  "git.defaultCloneDirectory": "~/Code-Play-Ground/",
+  "git.defaultCloneDirectory": "~/Developer/",
   "git.openRepositoryInParentFolders": "always",
   "git.enableSmartCommit": true,
   "git.autofetch": true,
