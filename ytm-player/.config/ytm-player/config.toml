@@ -1,0 +1,45 @@
+[general]
+startup_page = "library"
+
+[playback]
+audio_quality = "high"
+default_volume = 80
+autoplay = true
+seek_step = 5
+
+[cache]
+enabled = true
+max_size_mb = 1024
+prefetch_next = true
+
+[yt_dlp]
+cookies_file = ""
+remote_components = ""
+js_runtimes = ""
+
+[ui]
+album_art = true
+progress_style = "block"
+sidebar_width = 30
+col_index = 4
+col_title = 0
+col_artist = 30
+col_album = 25
+col_duration = 8
+
+[notifications]
+enabled = true
+timeout_seconds = 5
+
+[mpris]
+enabled = true   # Linux only — remove or set false on macOS
+
+[discord]
+enabled = false
+
+[lastfm]
+enabled = false
+api_key = ""
+api_secret = ""
+session_key = ""
+username = ""
