@@ -1,6 +1,12 @@
 [user]
 	name = Gouranga Das Samrat
 	email = gouranga.das.khulna@gmail.com
+	signingkey = A72744D62F95F2DB61C5161B9BEEA05E7FA01166
+
+[commit]
+        gpgsign = true
+[gpg]
+        program = gpg
 
 [init]
 	defaultBranch = main
