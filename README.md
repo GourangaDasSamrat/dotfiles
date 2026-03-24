@@ -166,6 +166,7 @@ snippets for **C++** (main, competitive programming, leetcode template) and **Go
 
 a `commit-msg` hook blocks any message that doesn't match `type(scope): subject`.
 you get a clear error, valid types, and examples — every time.
+a `pre-push` hook blocks push without password, you can expose the password on you shell script nameed with ,`GIT_PUSH_PASS`.
 
 <br/>
 
