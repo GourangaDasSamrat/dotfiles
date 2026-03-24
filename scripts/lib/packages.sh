@@ -20,6 +20,7 @@ COMMON_TOOLS=(
     "usql"
 	"neovim"
 	"mpv"
+    "pass"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
