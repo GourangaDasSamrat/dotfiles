@@ -26,6 +26,10 @@ alias reload="source ~/.zshrc && echo 'ZSH Config Reloaded!'"
 alias cp='cp -iv'
 alias mv='mv -iv'
 
+
+# --- Gpg's Aliases ---
+alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
+
 # --- Eza's Aliases ---
 if (( $+commands[eza] )); then
     alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
