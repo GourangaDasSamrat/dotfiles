@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Load environment variables from secrets file
+if [ -f "$HOME/.zsh_secrets" ]; then
+    . "$HOME/.zsh_secrets"
+fi
+
+# Verify if the required security variable is initialized
+if [ -z "$GIT_PUSH_PASS" ]; then
+    printf "Error: GIT_PUSH_PASS environment variable is not defined.\n" > /dev/tty
+    exit 1
+fi
+
+# Initialize interactive terminal session for secure input
+printf "Enter Passphrase: " > /dev/tty
+stty -echo < /dev/tty
+read -r entered_pass < /dev/tty
+stty echo < /dev/tty
+printf "\n" > /dev/tty
+
+# Validate passphrase against the secure environment variable
+if [ "$entered_pass" = "$GIT_PUSH_PASS" ]; then
+    printf "Verification Successful. Proceeding with push.\n" > /dev/tty
+    exit 0
+else
+    printf "Verification Failed. Remote push operation aborted.\n" > /dev/tty
+    exit 1
+fi
