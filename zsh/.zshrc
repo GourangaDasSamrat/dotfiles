@@ -1,3 +1,6 @@
+# GPG setup for terminal prompts
+export GPG_TTY=$(tty)
+
 # Dotfiles
 export DOTFILES="$HOME/dotfiles"
 
