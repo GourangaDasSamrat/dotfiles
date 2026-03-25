@@ -259,8 +259,7 @@ if ! pgrep -f "gpg-auto-lock-loop" >/dev/null; then
       trap "exit" SIGTERM
       while true; do
         sleep 900
-        # only lock if idle
-        if [[ -z "$(pgrep -f gpg-agent.*tty)" ]]; then
+        if [[ -z "$(pgrep -f "gpg-agent.*$GPG_TTY")" ]]; then
           gpg-connect-agent reloadagent /bye > /dev/null 2>&1
         fi
       done
