@@ -1,0 +1,16 @@
+-- =============================================================================
+-- .connections.usql — usql Connection Aliases
+-- Template location: ~/dotfiles/docs/.connections.usql.templat3
+-- Real file location: ~/.connections.usql
+-- Safe to commit — no raw credentials, values come from env vars set by
+-- ~/.zsh_secrets at shell startup.
+-- =============================================================================
+-- HOW TO USE:
+--   cp -r ~/dotfiles/docs/.connections.usql.template ~/.connections.usql
+--   # Ensure ~/.zsh_secrets is sourced before launching usql.
+-- =============================================================================
+
+-- <Service Name> — <Provider>
+-- \cset <alias>  `echo $ENV_VAR_NAME`
+
+-- Add more \cset blocks following the same pattern above.
