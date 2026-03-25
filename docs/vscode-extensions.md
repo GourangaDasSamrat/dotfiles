@@ -41,7 +41,7 @@
 | ------------------------- | --------- | ----------------------------------------------------------------------------------------- |
 | Prettier - Code formatter | Prettier  | [  Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)     |
 | ESLint                    | Microsoft | [  Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)     |
-| EchoAPI for VS Code       | EchoAPI   | [  Link](https://marketplace.visualstudio.com/items?itemName=EchoAPI.echoapi-for-vscode) |
+| Thunder Client       | Thunder Client   | [  Link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) |
 
 ### Optional (Backend Dev Profile)
 
