@@ -160,6 +160,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.smoothScrolling": true,
+  "terminal.integrated.cursorStyleInactive": "block",
 
   // suggestions
   "editor.quickSuggestions": {
@@ -184,8 +185,7 @@
   "editor.autoClosingQuotes": "always",
   "editor.autoClosingOvertype": "always",
   "html.autoClosingTags": true,
-  "javascript.autoClosingTags": true,
-  "typescript.autoClosingTags": true,
+  "js/ts.autoClosingTags.enabled": true,
   "editor.autoClosingComments": "always",
 
   // formatting & linting
@@ -216,12 +216,6 @@
   "[sql]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
   },
-  "[postgres]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
-  },
-  "[mysql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
-  },
   "[sqlite]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
   },
@@ -235,7 +229,7 @@
   "eslint.format.enable": true,
 
   // prettier sql
-  "Prettier-SQL.SQLFlavourOverride": "sql",
+  "Prettier-SQL.SQLFlavourOverride": "postgresql",
   "Prettier-SQL.ignoreTabSettings": false,
   "Prettier-SQL.tabSizeOverride": 2,
   "Prettier-SQL.insertSpacesOverride": true,
@@ -250,10 +244,21 @@
   "Prettier-SQL.newlineBeforeSemicolon": false,
 
   // typescript / javascript
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  "javascript.inlayHints.parameterNames.enabled": "all",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.inlayHints.parameterNames.enabled": "all",
+  "js/ts.preferences.quoteStyle": "double",
+  "js/ts.format.insertSpaceAfterConstructor": true,
+  "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+  "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
+  "js/ts.suggest.completeFunctionCalls": true,
+  "js/ts.implementationsCodeLens.enabled": true,
+  "js/ts.implementationsCodeLens.showOnInterfaceMethods": true,
+  "js/ts.implementationsCodeLens.showOnAllClassMethods": true,
+  "js/ts.referencesCodeLens.enabled": true,
+  "js/ts.referencesCodeLens.showOnAllFunctions": true,
+  "js/ts.tsserver.useSyntaxServer": "always",
 
   // Go
   "go.useLanguageServer": true,
@@ -267,6 +272,10 @@
     "ui.semanticTokens": true,
     "ui.completion.usePlaceholders": true,
   },
+
+  // Markdown
+  "markdown.validate.enabled": true,
+  "markdown.occurrencesHighlight.enabled": true,
 
   // clangd
   "clangd.arguments": [
