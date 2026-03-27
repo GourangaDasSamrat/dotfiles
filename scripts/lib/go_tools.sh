@@ -14,6 +14,7 @@ declare -A GO_TOOLS=(
 	["goimports"]="golang.org/x/tools/cmd/goimports@latest"
 	["golangci-lint"]="github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
 	["gopls"]="golang.org/x/tools/gopls@latest"
+	["air"]="github.com/air-verse/air@latest"
 )
 
 # Counter for tracking failures
