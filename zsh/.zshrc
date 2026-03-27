@@ -4,6 +4,9 @@ export GPG_TTY=$(tty)
 # Dotfiles
 export DOTFILES="$HOME/dotfiles"
 
+# Go bin path
+export PATH="$HOME/go/bin:$PATH"
+
 # Oh My Zsh path
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -37,7 +40,7 @@ export BAT_THEME="Dracula"
 eval "$(starship init zsh)"
 
 # Load all zsh modules
-for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,archive}.zsh; do
+for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,chpwd,archive}.zsh; do
     [[ -f "$file" ]] && {
         source "$file"
     }
