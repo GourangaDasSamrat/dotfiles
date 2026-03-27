@@ -12,7 +12,7 @@
 
 <br/><br/>
 
-> *"your terminal is where you live. make it beautiful."*
+> _"your terminal is where you live. make it beautiful."_
 
 <br/>
 
@@ -47,7 +47,7 @@ cd ~/dotfiles/scripts && ./install.sh
 
 <div align="center">
 
-*detects your os · installs every tool · symlinks every config · done*
+_detects your os · installs every tool · symlinks every config · done_
 
 </div>
 
@@ -63,8 +63,8 @@ cd ~/dotfiles/scripts && ./install.sh
 
 ## `🐚 shell`
 
-*built around fzf. everything has a live preview.*
-*every command feels intentional.*
+_built around fzf. everything has a live preview._
+_every command feels intentional._
 
 </div>
 
@@ -72,18 +72,18 @@ cd ~/dotfiles/scripts && ./install.sh
 
 <div align="center">
 
-| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does |
-|:---:|:---|
-| `ls` | eza — icons, git status, long format. no flags needed |
-| `tab` | fzf-tab — fuzzy search with live previews while you type |
-| `mkdir` | asks to `git init`, creates README, makes the first commit |
-| `rm` | shows what dies. asks before it runs |
-| `extract` | detects and unpacks any archive format. just point at it |
-| `compress` | fzf menu picks the format. then it compresses |
-| `apireq` | full API client via fzf. saves requests as `.http` files |
-| `serve` | python http server with port conflict detection |
-| `timer` | `timer 1h30m` — color-coded countdown + desktop notification |
-| `backup` | timestamped `.tar.gz` of anything. one command |
+| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does                                                 |
+| :-----------------------------------------: | :----------------------------------------------------------- |
+|                    `ls`                     | eza — icons, git status, long format. no flags needed        |
+|                    `tab`                    | fzf-tab — fuzzy search with live previews while you type     |
+|                   `mkdir`                   | asks to `git init`, creates README, makes the first commit   |
+|                    `rm`                     | shows what dies. asks before it runs                         |
+|                  `extract`                  | detects and unpacks any archive format. just point at it     |
+|                 `compress`                  | fzf menu picks the format. then it compresses                |
+|                  `apireq`                   | full API client via fzf. saves requests as `.http` files     |
+|                   `serve`                   | python http server with port conflict detection              |
+|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification |
+|                  `backup`                   | timestamped `.tar.gz` of anything. one command               |
 
 </div>
 
@@ -95,8 +95,8 @@ cd ~/dotfiles/scripts && ./install.sh
 
 ## `🪟 tmux`
 
-*catppuccin macchiato · live weather in the status bar*
-*sessions that survive reboots*
+_catppuccin macchiato · live weather in the status bar_
+_sessions that survive reboots_
 
 </div>
 
@@ -125,7 +125,7 @@ panes, and working directories after every reboot.
 
 ## `🖥️ vs code`
 
-*six language profiles · italic keywords · ligatures · snippets*
+_six language profiles · italic keywords · ligatures · snippets_
 
 </div>
 
@@ -133,14 +133,13 @@ panes, and working directories after every reboot.
 
 <div align="center">
 
-| profile | formatter |
-|:---:|:---:|
+| profile  |     formatter     |
+| :------: | :---------------: |
 | frontend | prettier + eslint |
-| backend | prettier + eslint |
-| c / c++ | clangd |
-| go | gopls + goimports |
-| database | prettier-sql |
-| default | prettier |
+| backend  | prettier + eslint |
+| c / c++  |      clangd       |
+|    go    | gopls + goimports |
+| database |   prettier-sql    |
 
 </div>
 
@@ -158,7 +157,7 @@ snippets for **C++** (main, competitive programming, leetcode template) and **Go
 
 ## `🔧 git`
 
-*conventional commits enforced · clean aliases · nothing slips through*
+_conventional commits enforced · clean aliases · nothing slips through_
 
 </div>
 
@@ -183,7 +182,7 @@ git last         # full detail of the last commit
 
 ## `🔧 github cli`
 
-*clean aliases · nothing slips through*
+_clean aliases · nothing slips through_
 
 </div>
 
@@ -217,6 +216,7 @@ gh open               # Open the current repo in your default browser
 gh co                 # Interactive PR checkout
 
 ```
+
 ---
 
 <br/>
@@ -225,7 +225,7 @@ gh co                 # Interactive PR checkout
 
 ## `🎨 terminal & prompt`
 
-*alacritty · starship*
+_alacritty · starship_
 
 </div>
 
@@ -249,16 +249,16 @@ gh co                 # Interactive PR checkout
 
 <div align="center">
 
-| | |
-|:---|:---|
-| **terminal** | alacritty · tmux · starship |
-| **shell utils** | eza · bat · fzf · fd · jq · shfmt · stow |
-| **network** | curl · wget · gh |
-| **linux only** | zsh · build-essential · rofi |
-| **zsh plugins** | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
-| **tmux plugins** | tpm · catppuccin · resurrect · continuum |
-| **programming tools**  | uSql |
-| **go tools** *(opt)* | gopls · goimports · golangci-lint |
+|                       |                                                             |
+| :-------------------- | :---------------------------------------------------------- |
+| **terminal**          | alacritty · tmux · starship                                 |
+| **shell utils**       | eza · bat · fzf · fd · jq · shfmt · stow                    |
+| **network**           | curl · wget · gh                                            |
+| **linux only**        | zsh · build-essential · rofi                                |
+| **zsh plugins**       | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
+| **tmux plugins**      | tpm · catppuccin · resurrect · continuum                    |
+| **programming tools** | uSql                                                        |
+| **go tools** _(opt)_  | gopls · goimports · golangci-lint · air                     |
 
 </div>
 
@@ -289,7 +289,7 @@ setup.sh             interactive — run only what you want
 
 <div align="center">
 
-*every script in `lib/` runs standalone. use only what you need.*
+_every script in `lib/` runs standalone. use only what you need._
 
 </div>
 
@@ -301,7 +301,7 @@ setup.sh             interactive — run only what you want
 
 ## `🔩 prerequisites`
 
-**git** &nbsp;·&nbsp; **homebrew** *(macOS only)* — [brew.sh](https://brew.sh)
+**git** &nbsp;·&nbsp; **homebrew** _(macOS only)_ — [brew.sh](https://brew.sh)
 
 </div>
 
@@ -309,7 +309,6 @@ setup.sh             interactive — run only what you want
 
 <br/>
 <br/>
-
 
 <div align="center">
 
@@ -319,7 +318,7 @@ setup.sh             interactive — run only what you want
 
 **Gouranga Das Samrat**
 <br/>
-*Software Developer*
+_Software Developer_
 
 <br/>
 
@@ -329,6 +328,6 @@ setup.sh             interactive — run only what you want
 
 <br/>
 
-*if this made your terminal feel like home — drop a* ⭐
+_if this made your terminal feel like home — drop a_ ⭐
 
 </div>
