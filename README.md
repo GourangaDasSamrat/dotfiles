@@ -84,6 +84,9 @@ _every command feels intentional._
 |                   `serve`                   | python http server with port conflict detection              |
 |                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification |
 |                  `backup`                   | timestamped `.tar.gz` of anything. one command               |
+|                `env-save`                   | encrypts `.env` into `pass` at any custom path. multi-line safe |
+|                `env-load`                   | pulls secrets from `pass` into `.env` or any custom filename |
+|               `lock-vault`                  | clears GPG agent cache immediately. locks your secret store  |
 
 </div>
 
