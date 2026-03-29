@@ -2,67 +2,76 @@
 
 # Check if Go is installed
 if ! command -v go &>/dev/null; then
-	echo "Error: Go is not installed on this system."
-	echo "Please install Go first: https://go.dev/doc/install"
-	exit 1
+    echo "Error: Go is not installed on this system."
+    echo "Please install Go first: https://go.dev/doc/install"
+    exit 1
 fi
 
 echo "Go is installed: $(go version)"
 
 # Define Go tools to install/update
 declare -A GO_TOOLS=(
-	["goimports"]="golang.org/x/tools/cmd/goimports@latest"
-	["golangci-lint"]="github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
-	["gopls"]="golang.org/x/tools/gopls@latest"
-	["air"]="github.com/air-verse/air@latest"
+    ["goimports"]="golang.org/x/tools/cmd/goimports@latest"
+    ["golangci-lint"]="github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
+    ["gopls"]="golang.org/x/tools/gopls@latest"
+    ["air"]="github.com/air-verse/air@latest"
+    ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
+    ["usql"]="github.com/xo/usql@latest"
 )
 
-# Counter for tracking failures
+# Custom tags for usql to include specific database drivers
+USQL_TAGS="mysql postgres sqlite3 moderncsqlite"
+
+# Counters for tracking status
 FAILED_TOOLS=0
 SUCCESS_TOOLS=0
 
-# Function to check if a command exists and get its version
+# Function to handle installation/update logic
 check_and_install_tool() {
-	local tool_name=$1
-	local tool_package=$2
+    local tool_name=$1
+    local tool_package=$2
+    local base_cmd="go install"
 
-	if command -v "$tool_name" &>/dev/null; then
-		echo "$tool_name is installed, checking for updates..."
-		echo "Installing/updating $tool_name..."
-		go install "$tool_package"
+    echo "----------------------------------------"
+    
+    # Check if tool is already installed to provide better feedback
+    if command -v "$tool_name" &>/dev/null; then
+        echo "Updating $tool_name..."
+    else
+        echo "Installing $tool_name..."
+    fi
 
-		if [ $? -ne 0 ]; then
-			echo "Error: Failed to update $tool_name"
-			echo "Possible causes: internet connection, permissions, or package issues"
-			((FAILED_TOOLS++))
-			return 1
-		else
-			echo "$tool_name updated successfully!"
-			((SUCCESS_TOOLS++))
-			return 0
-		fi
-	else
-		echo "$tool_name is not installed, installing..."
-		go install "$tool_package"
+    # Apply custom build tags specifically for usql
+    if [ "$tool_name" == "usql" ]; then
+        echo "Applying custom build tags for $tool_name: [$USQL_TAGS]"
+        # Using eval to correctly handle nested quotes in the command
+        eval "$base_cmd -tags '$USQL_TAGS' $tool_package"
+    else
+        # Standard installation for other tools
+        $base_cmd "$tool_package"
+    fi
 
-		if [ $? -ne 0 ]; then
-			echo "Error: Failed to install $tool_name"
-			echo "Possible causes: internet connection, permissions, or package issues"
-			((FAILED_TOOLS++))
-			return 1
-		else
-			echo "$tool_name installed successfully!"
-			((SUCCESS_TOOLS++))
-			return 0
-		fi
-	fi
+    # Check the exit status of the go install command
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to process $tool_name"
+        ((FAILED_TOOLS++))
+        return 1
+    else
+        echo "$tool_name processed successfully!"
+        ((SUCCESS_TOOLS++))
+        return 0
+    fi
 }
 
-# Install/update each tool
+# Iterate through the defined tools and process them
 for tool in "${!GO_TOOLS[@]}"; do
-	echo "----------------------------------------"
-	check_and_install_tool "$tool" "${GO_TOOLS[$tool]}"
+    check_and_install_tool "$tool" "${GO_TOOLS[$tool]}"
 done
+
+# Cleanup Go module cache to free up disk space (preventing that 1.5GB bloat)
+echo "----------------------------------------"
+echo "Cleaning Go module cache to save storage..."
+go clean -modcache
 
 echo "----------------------------------------"
 echo "Installation Summary:"
@@ -70,18 +79,9 @@ echo "  Successful: $SUCCESS_TOOLS"
 echo "  Failed: $FAILED_TOOLS"
 
 if [ $FAILED_TOOLS -eq 0 ]; then
-	echo ""
-	echo "All Go tools have been installed/updated successfully!"
-	echo ""
-	echo "Note: Make sure your GOPATH/bin is in your PATH:"
-	echo "export PATH=\$PATH:\$(go env GOPATH)/bin"
-	exit 0
+    echo -e "\nAll tools updated successfully! Your GOPATH/bin is ready to use."
+    exit 0
 else
-	echo ""
-	echo "Some tools failed to install. Please check the errors above."
-	echo "Common issues:"
-	echo "  - No internet connection"
-	echo "  - Permission issues (check GOPATH permissions)"
-	echo "  - Network firewall blocking Go module downloads"
-	exit 1
+    echo -e "\nSome tools encountered issues. Please check the logs above."
+    exit 1
 fi
