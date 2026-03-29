@@ -1,6 +1,9 @@
 # GPG setup for terminal prompts
 export GPG_TTY=$(tty)
 
+# UV
+export UV_LINK_MODE=copy
+
 # Dotfiles
 export DOTFILES="$HOME/dotfiles"
 

@@ -13,18 +13,16 @@ COMMON_TOOLS=(
 	"stow"
 	"neovim"
 	"jq"
-	"shfmt"
-    "just"
+	"just"
 	"alacritty"
 	"tmux"
 	"starship"
 	"gh"
     "pass"
 	"mpv"
-    "usql"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
-MACOS_TOOLS=("httpie") # Add macOS-specific tools here if needed in future
+MACOS_TOOLS=("uv")
 
 _is_installed() {
 	local tool="$1"
