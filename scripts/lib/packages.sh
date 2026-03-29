@@ -24,7 +24,7 @@ COMMON_TOOLS=(
     "usql"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
-MACOS_TOOLS=() # Add macOS-specific tools here if needed in future
+MACOS_TOOLS=("httpie") # Add macOS-specific tools here if needed in future
 
 _is_installed() {
 	local tool="$1"
