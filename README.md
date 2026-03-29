@@ -72,21 +72,21 @@ _every command feels intentional._
 
 <div align="center">
 
-| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does                                                 |
-| :-----------------------------------------: | :----------------------------------------------------------- |
-|                    `ls`                     | eza — icons, git status, long format. no flags needed        |
-|                    `tab`                    | fzf-tab — fuzzy search with live previews while you type     |
-|                   `mkdir`                   | asks to `git init`, creates README, makes the first commit   |
-|                    `rm`                     | shows what dies. asks before it runs                         |
-|                  `extract`                  | detects and unpacks any archive format. just point at it     |
-|                 `compress`                  | fzf menu picks the format. then it compresses                |
-|                  `apireq`                   | full API client via fzf. saves requests as `.http` files     |
-|                   `serve`                   | python http server with port conflict detection              |
-|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification |
-|                  `backup`                   | timestamped `.tar.gz` of anything. one command               |
-|                `env-save`                   | encrypts `.env` into `pass` at any custom path. multi-line safe |
-|                `env-load`                   | pulls secrets from `pass` into `.env` or any custom filename |
-|               `lock-vault`                  | clears GPG agent cache immediately. locks your secret store  |
+| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does                                                    |
+| :-----------------------------------------: | :-------------------------------------------------------------- |
+|                    `ls`                     | eza — icons, git status, long format. no flags needed           |
+|                    `tab`                    | fzf-tab — fuzzy search with live previews while you type        |
+|                   `mkdir`                   | asks to `git init`, creates README, makes the first commit      |
+|                    `rm`                     | shows what dies. asks before it runs                            |
+|                  `extract`                  | detects and unpacks any archive format. just point at it        |
+|                 `compress`                  | fzf menu picks the format. then it compresses                   |
+|                  `apireq`                   | full API client via fzf. saves requests as `.http` files        |
+|                   `serve`                   | python http server with port conflict detection                 |
+|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification    |
+|                  `backup`                   | timestamped `.tar.gz` of anything. one command                  |
+|                 `env-save`                  | encrypts `.env` into `pass` at any custom path. multi-line safe |
+|                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename    |
+|                `lock-vault`                 | clears GPG agent cache immediately. locks your secret store     |
 
 </div>
 
@@ -252,16 +252,18 @@ _alacritty · starship_
 
 <div align="center">
 
-|                       |                                                             |
-| :-------------------- | :---------------------------------------------------------- |
-| **terminal**          | alacritty · tmux · starship                                 |
-| **shell utils**       | eza · bat · fzf · fd · jq · shfmt · stow                    |
-| **network**           | curl · wget · gh                                            |
-| **linux only**        | zsh · build-essential · rofi                                |
-| **zsh plugins**       | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
-| **tmux plugins**      | tpm · catppuccin · resurrect · continuum                    |
-| **programming tools** | uSql                                                        |
-| **go tools** _(opt)_  | gopls · goimports · golangci-lint · air                     |
+|                          |                                                             |
+| :----------------------- | :---------------------------------------------------------- |
+| **terminal**             | alacritty · tmux · starship                                 |
+| **shell utils**          | eza · bat · fzf · fd · jq · shfmt · stow                    |
+| **network**              | curl · wget · gh                                            |
+| **linux only**           | zsh · build-essential · rofi                                |
+| **mac only**             | httpie                                                      |
+| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
+| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                    |
+| **programming tools**    | uSql                                                        |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air                     |
+| **python tools** _(opt)_ | httpie · ytm-player                                         |
 
 </div>
 
