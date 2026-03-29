@@ -255,14 +255,13 @@ _alacritty · starship_
 |                          |                                                             |
 | :----------------------- | :---------------------------------------------------------- |
 | **terminal**             | alacritty · tmux · starship                                 |
-| **shell utils**          | eza · bat · fzf · fd · jq · shfmt · stow                    |
+| **shell utils**          | eza · bat · fzf · fd · jq · stow                    |
 | **network**              | curl · wget · gh                                            |
 | **linux only**           | zsh · build-essential · rofi                                |
-| **mac only**             | httpie                                                      |
+| **mac only**             | uv                                                          |
 | **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                    |
-| **programming tools**    | uSql                                                        |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air                     |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air · usql · shfmt      |
 | **python tools** _(opt)_ | httpie · ytm-player                                         |
 
 </div>
@@ -287,6 +286,7 @@ lib/plugins.sh       oh my zsh · tpm · zsh plugins
 lib/wallpapers.sh    clones wallpapers repo
 lib/dotfiles.sh      gnu stow · git hook permissions
 lib/go_tools.sh      optional go dev tools
+lib/python_tools.sh  optional python cli tools (but highly recomended)
 
 install.sh           runs everything above in order
 setup.sh             interactive — run only what you want
