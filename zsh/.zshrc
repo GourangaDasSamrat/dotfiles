@@ -23,12 +23,25 @@ plugins=(
 )
 
 # history setup
-SAVEHIST=1000
-HISTSIZE=999
+HISTSIZE=10000
+SAVEHIST=10000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+
+zshaddhistory() {
+  local cmd="$1"
+  # Skip if matches any sensitive pattern
+  [[ $cmd != pass\ *        ]] &&  # password manager
+  [[ $cmd != *password*     ]] &&  # inline passwords
+  [[ $cmd != *passwd*       ]] &&  # passwd variants
+  [[ $cmd != *secret*       ]] &&  # secrets
+  [[ $cmd != *api_key*      ]] &&  # API keys
+  [[ $cmd != *token*        ]] &&  # tokens
+  [[ $cmd != export\ *=*    ]] &&  # env var exports
+  [[ $cmd != *Authorization* ]]    # auth headers
+}
 
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
