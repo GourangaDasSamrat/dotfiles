@@ -206,7 +206,7 @@
     "editor.defaultFormatter": "golang.go",
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
   },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt",
@@ -449,6 +449,64 @@
   // code runner
   "code-runner.saveFileBeforeRun": true,
   "code-runner.clearPreviousOutput": true,
+
+  // todo tree
+  "todo-tree.general.tags": [
+    "TODO",
+    "FIXME",
+    "BUG",
+    "HACK",
+    "NOTE",
+    "REVIEW",
+    "OPTIMIZE",
+  ],
+  "todo-tree.highlights.defaultHighlight": {
+    "type": "tag",
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "foreground": "#f1fa8c",
+      "background": "#44475a",
+      "icon": "check",
+      "gutterIcon": true,
+    },
+    "FIXME": {
+      "foreground": "#ff5555",
+      "background": "#44475a",
+      "icon": "flame",
+      "gutterIcon": true,
+    },
+    "BUG": {
+      "foreground": "#ff5555",
+      "background": "#282a36",
+      "icon": "bug",
+      "gutterIcon": true,
+    },
+    "HACK": {
+      "foreground": "#ffb86c",
+      "background": "#44475a",
+      "icon": "tools",
+    },
+    "NOTE": {
+      "foreground": "#8be9fd",
+      "background": "#44475a",
+      "icon": "note",
+    },
+    "REVIEW": {
+      "foreground": "#bd93f9",
+      "background": "#44475a",
+      "icon": "eye",
+    },
+    "OPTIMIZE": {
+      "foreground": "#50fa7b",
+      "background": "#44475a",
+      "icon": "rocket",
+    },
+  },
+  "todo-tree.highlights.useColourScheme": false,
+  "todo-tree.tree.scanMode": "open files",
+  "todo-tree.general.showActivityBarBadge": false,
+  "todo-tree.general.statusBar": "none",
 
   // disable unused things
   "telemetry.telemetryLevel": "off",
