@@ -1,7 +1,7 @@
 # Theme Definitions
 
 _fzf_theme_dracula() {
-	export FZF_DEFAULT_OPTS='
+  export FZF_DEFAULT_OPTS='
     --color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
     --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
     --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
@@ -10,7 +10,7 @@ _fzf_theme_dracula() {
 }
 
 _fzf_theme_catppuccin() {
-	export FZF_DEFAULT_OPTS='
+  export FZF_DEFAULT_OPTS='
     --color=fg:#cdd6f4,bg:#1e1e2e,hl:#cba6f7
     --color=fg+:#cdd6f4,bg+:#313244,hl+:#cba6f7
     --color=info:#f38ba8,prompt:#cba6f7,pointer:#f5c2e7
@@ -36,12 +36,12 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 
 # Path completion candidates
 _fzf_compgen_path() {
-	fd --hidden --exclude .git . "$1"
+  fd --hidden --exclude .git . "$1"
 }
 
 # Directory completion candidates
 _fzf_compgen_dir() {
-	fd --type=d --hidden --exclude .git . "$1"
+  fd --type=d --hidden --exclude .git . "$1"
 }
 
 # Preview Settings (requires: eza, bat)
@@ -54,14 +54,14 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 # Context-aware Preview (comprun)
 
 _fzf_comprun() {
-	local command=$1
-	shift
-	case "$command" in
-	cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-	export | unset) fzf --preview "eval 'echo \${}'" "$@" ;;
-	ssh) fzf --preview 'dig {}' "$@" ;;
-	*) fzf --preview "$show_file_or_dir_preview" "$@" ;;
-	esac
+  local command=$1
+  shift
+  case "$command" in
+    cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export | unset) fzf --preview "eval 'echo \${}'" "$@" ;;
+    ssh) fzf --preview 'dig {}' "$@" ;;
+    *) fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
 }
 
 # FZF-TAB Configuration (Improved Preview Logic)
@@ -85,7 +85,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-
 # Load fzf-tab plugin
-[[ -f ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh ]] && \
-    source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
+[[ -f ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh ]] \
+  && source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
