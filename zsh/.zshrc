@@ -1,68 +1,34 @@
-# GPG setup for terminal prompts
+# GPG
 export GPG_TTY=$(tty)
 
-# UV
-export UV_LINK_MODE=copy
-
-# Dotfiles
-export DOTFILES="$HOME/dotfiles"
-
-# Go bin path
-export PATH="$HOME/go/bin:$PATH"
-
-# Oh My Zsh path
+# ZSH
+export ZDOTDIR="$HOME/.config/zsh"
 export ZSH="$HOME/.oh-my-zsh"
 
-# Disable Theme
 ZSH_THEME=""
-
-# Oh My Zsh Plugins
-plugins=(
-	git
-	fzf
-	zsh-autosuggestions
-	zsh-syntax-highlighting
-	fzf-tab
-)
-
-# history setup
-HISTSIZE=10000
-SAVEHIST=10000
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_verify
-
-zshaddhistory() {
-  local cmd="$1"
-  # Skip if matches any sensitive pattern
-  [[ $cmd != pass\ *        ]] &&  # password manager
-  [[ $cmd != *password*     ]] &&  # inline passwords
-  [[ $cmd != *passwd*       ]] &&  # passwd variants
-  [[ $cmd != *secret*       ]] &&  # secrets
-  [[ $cmd != *api_key*      ]] &&  # API keys
-  [[ $cmd != *token*        ]] &&  # tokens
-  [[ $cmd != export\ *=*    ]] &&  # env var exports
-  [[ $cmd != *Authorization* ]]    # auth headers
-}
-
-# Load Oh My Zsh
-source $ZSH/oh-my-zsh.sh
-
-# BAT theme
-export BAT_THEME="Dracula"
+plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
+[[ -d "$ZSH" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # Starship
 eval "$(starship init zsh)"
 
-# Load all zsh modules
-for file in ~/.config/zsh/{colors,aliases,overrides,fzf,utils,chpwd,archive,pass}.zsh; do
-    [[ -f "$file" ]] && {
-        source "$file"
-    }
+# Load modules
+zsh_modules=(
+  env colors
+  aliases overrides
+  fzf utils
+  chpwd archive pass
+  history
+)
+for mod in "${zsh_modules[@]}"; do
+  file="$ZDOTDIR/${mod}.zsh"
+  [[ -f "$file" ]] && source "$file" || echo "⚠️  missing: ${mod}.zsh" >&2
 done
+unset zsh_modules mod file
 
-# Load local secrets if they exist
+# Load local secrets
 if [[ -f "$HOME/.zsh_secrets" ]]; then
-    source "$HOME/.zsh_secrets"
+  [[ "$(stat -c %a "$HOME/.zsh_secrets" 2>/dev/null || stat -f %OLp "$HOME/.zsh_secrets")" != "600" ]] \
+    && echo "⚠️  ~/.zsh_secrets is not chmod 600" >&2
+  source "$HOME/.zsh_secrets"
 fi
