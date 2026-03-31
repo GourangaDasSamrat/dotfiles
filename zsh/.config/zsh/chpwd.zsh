@@ -27,24 +27,24 @@ _manage_python_venv() {
 # --- Function 2: List Project Automation Tools ---
 _list_project_tools() {
   # 1. Justfile Support
-  if [[ -f "justfile" ]] && command -v just &> /dev/null; then
+  if [[ -f "justfile" ]] && command -v just &>/dev/null; then
     echo -e "\n\033[1;34m⚡ Justfile detected:\033[0m"
     just --list
 
   # 2. Makefile Support
-  elif [[ -f "Makefile" ]] && command -v make &> /dev/null; then
+  elif [[ -f "Makefile" ]] && command -v make &>/dev/null; then
     echo -e "\n\033[1;32m🛠️  Makefile detected:\033[0m"
     make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /); print A[1]}' | sort -u
 
   # 3. NPM / package.json Support
-  elif [[ -f "package.json" ]] && command -v jq &> /dev/null; then
+  elif [[ -f "package.json" ]] && command -v jq &>/dev/null; then
     echo -e "\n\033[1;33m📦 NPM Scripts detected:\033[0m"
     jq -r '.scripts | keys[]' package.json 2>/dev/null
   fi
 
   # 4. Docker Compose Support
   if [[ -f "docker-compose.yml" || -f "docker-compose.yaml" || -f "compose.yaml" ]]; then
-    if command -v docker &> /dev/null; then
+    if command -v docker &>/dev/null; then
       echo -e "\n\033[1;36m🐳 Docker Compose detected:\033[0m"
       docker compose ps --services 2>/dev/null
     fi
