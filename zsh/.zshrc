@@ -14,15 +14,25 @@ eval "$(starship init zsh)"
 
 # Load modules
 zsh_modules=(
-  env colors
-  aliases overrides
-  fzf utils
-  chpwd archive pass
-  history
+  core/env
+  core/colors
+  core/history
+  functions/utils
+  functions/archive
+  functions/chpwd
+  pluggins/fzf
+  pluggins/pass
+  user/aliases
+  user/overrides
 )
+
 for mod in "${zsh_modules[@]}"; do
   file="$ZDOTDIR/${mod}.zsh"
-  [[ -f "$file" ]] && source "$file" || echo "⚠️  missing: ${mod}.zsh" >&2
+  if [[ -f "$file" ]]; then
+    source "$file"
+  else
+    echo "⚠️  missing: $file" >&2
+  fi
 done
 unset zsh_modules mod file
 
