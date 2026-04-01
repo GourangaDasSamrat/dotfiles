@@ -21,8 +21,8 @@ zsh_modules=(
   functions/utils
   functions/archive
   functions/chpwd
-  pluggins/fzf
-  pluggins/pass
+  plugins/fzf
+  plugins/pass
   user/aliases
   user/overrides
 )
