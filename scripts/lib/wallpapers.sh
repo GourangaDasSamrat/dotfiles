@@ -1,16 +1,17 @@
 #!/bin/bash
 
+URLS_FILE="$HOME/dotfiles/scripts/config/urls.txt"
 WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
 
 setup_wallpapers() {
-	if [ -d "$WALLPAPERS_DIR" ]; then
-		echo "Wallpapers directory already exists, skipping clone..."
-	else
-		echo "Cloning wallpapers repository..."
-		mkdir -p "$HOME/Pictures"
-		git clone --depth 1 https://github.com/blueisharch/wallpapers.git "$WALLPAPERS_DIR"
-		echo "Wallpapers cloned successfully!"
-	fi
+    if [ -d "$WALLPAPERS_DIR" ]; then
+        echo "Wallpapers directory already exists, skipping..."
+    else
+        echo "Downloading wallpapers..."
+        mkdir -p "$WALLPAPERS_DIR"
+        wget -i "$URLS_FILE" -P "$WALLPAPERS_DIR"
+        echo "Wallpapers downloaded successfully!"
+    fi
 }
 
 # ── Run if executed directly ──────────────────────────────────────────────────
