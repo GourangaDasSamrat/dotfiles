@@ -4,6 +4,8 @@ export GPG_TTY=$(tty)
 # ZSH
 export ZDOTDIR="$HOME/.config/zsh"
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_COMPDUMP=$HOME/.cache/zsh/zcompdump
+mkdir -p ~/.cache/zsh
 
 ZSH_THEME=""
 plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
