@@ -20,7 +20,7 @@ if [[ -d "$DOTFILES" ]]; then
   alias dot='cd "$DOTFILES"'
   alias dots='cd "$DOTFILES/scripts"'
 fi
-alias reload="source ~/.zshrc && echo 'ZSH Config Reloaded!'"
+alias reload="source ~/.config/zsh/.zshrc && echo 'ZSH Config Reloaded!'"
 
 # --- Safety ---
 alias cp='cp -iv'
