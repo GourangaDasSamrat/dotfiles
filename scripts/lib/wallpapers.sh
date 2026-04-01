@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URLS_FILE="$HOME/dotfiles/scripts/config/urls.txt"
+URLS_FILE="$HOME/dotfiles/scripts/config/wallpapers.url"
 WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
 
 setup_wallpapers() {
