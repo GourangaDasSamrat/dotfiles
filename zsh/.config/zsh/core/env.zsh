@@ -9,6 +9,9 @@ export BAT_THEME="Dracula"
 
 # Path
 go_bin="$HOME/go/bin"
+uv_bin="$HOME/.local/bin"
 
-export PATH="$go_bin:$PATH"
+export PATH="$go_bin:$uv_bin:$PATH"
+
 unset go_bin
+unset uv_bin
