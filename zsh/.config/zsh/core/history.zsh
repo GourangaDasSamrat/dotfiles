@@ -18,7 +18,7 @@ zshaddhistory() {
   local blocked_prefixes=(
     'pass ' 'op ' 'bw ' 'gpg ' 'ssh-keygen ' 'openssl '
     'curl ' 'wget ' 'mysql -p' 'psql ' 'redis-cli '
-    'docker login' 'gh auth' 'git remote set-url' 'usql'
+    'docker login' 'gh auth' 'git remote set-url' 'usql' 'env-load' 'env-save'
   )
 
   local blocked_substrings=(
