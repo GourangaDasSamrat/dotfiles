@@ -9,12 +9,6 @@ fi
 (($+commands[fdfind])) && alias fd='fdfind'
 (($+commands[batcat])) && alias bat='batcat'
 
-if (($+commands[code-oss])); then
-  alias code='code-oss'
-elif (($+commands[code-insiders])); then
-  alias code='code-insiders'
-fi
-
 # --- Navigation and Config Aliases ---
 if [[ -d "$DOTFILES" ]]; then
   alias dot='cd "$DOTFILES"'
@@ -37,13 +31,21 @@ fi
 alias la='ls -A'
 
 # --- Vscode's Aliases ---
-if (($+commands[code])) || alias code >/dev/null 2>&1; then
-  alias code-b='code --profile "Backend Dev"'
-  alias code-c='code --profile "C/C++ Dev"'
-  alias code-d='code --profile "Database Dev"'
-  alias code-f='code --profile "Frontend Dev"'
-  alias code-g='code --profile "Go Dev"'
-  alias code-w='code --profile "Wiki Dev"'
+if (($+commands[code-oss])); then
+    alias code='code-oss --profile Default'
+elif (($+commands[code-insiders])); then
+    alias code='code-insiders --profile Default'
+elif (($+commands[code])); then
+    alias code='command code --profile Default'
+fi
+
+if alias code >/dev/null 2>&1 || (($+commands[code])); then
+    alias code-b='code --profile "Backend Dev"'
+    alias code-c='code --profile "C/C++ Dev"'
+    alias code-d='code --profile "Database Dev"'
+    alias code-f='code --profile "Frontend Dev"'
+    alias code-g='code --profile "Go Dev"'
+    alias code-w='code --profile "Wiki Dev"'
 fi
 
 # --- Go' Aliases ---
