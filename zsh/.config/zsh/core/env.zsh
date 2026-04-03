@@ -7,11 +7,8 @@ export UV_LINK_MODE=copy
 # BAT
 export BAT_THEME="Dracula"
 
-# Path
-go_bin="$HOME/go/bin"
-uv_bin="$HOME/.local/bin"
+# Unique paths only
+typeset -U path
 
-export PATH="$go_bin:$uv_bin:$PATH"
-
-unset go_bin
-unset uv_bin
+# Add dirs to path if they exist (silently)
+path=($HOME/{go/bin,.local/bin}(N-/) $path)
