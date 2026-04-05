@@ -18,8 +18,9 @@ COMMON_TOOLS=(
 	"tmux"
 	"starship"
 	"gh"
-    "pass"
+  "pass"
 	"mpv"
+  "whois"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=("uv")
