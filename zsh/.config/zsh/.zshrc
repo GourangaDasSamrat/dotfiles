@@ -24,6 +24,7 @@ zsh_modules=(
   plugins/fzf
   plugins/pass
   user/aliases
+  functions/security
   user/overrides
 )
 
