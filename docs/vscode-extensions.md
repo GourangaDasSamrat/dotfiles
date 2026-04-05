@@ -85,6 +85,4 @@
 | Prettier - Code formatter | Prettier    | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) |
 | Excalidraw | pomdtr           | [ Link](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)    |
 | dbdiagram           | dbdiagram     | [ Link](https://marketplace.visualstudio.com/items?itemName=dbdiagram.dbdiagram-vscode)                                                                                       |
-
-
 ---

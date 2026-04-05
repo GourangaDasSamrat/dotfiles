@@ -72,21 +72,22 @@ _every command feels intentional._
 
 <div align="center">
 
-| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does                                                    |
-| :-----------------------------------------: | :-------------------------------------------------------------- |
-|                    `ls`                     | eza — icons, git status, long format. no flags needed           |
-|                    `tab`                    | fzf-tab — fuzzy search with live previews while you type        |
-|                   `mkdir`                   | asks to `git init`, creates README, makes the first commit      |
-|                    `rm`                     | shows what dies. asks before it runs                            |
-|                  `extract`                  | detects and unpacks any archive format. just point at it        |
-|                 `compress`                  | fzf menu picks the format. then it compresses                   |
-|                  `apireq`                   | full API client via fzf. saves requests as `.http` files        |
-|                   `serve`                   | python http server with port conflict detection                 |
-|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification    |
-|                  `backup`                   | timestamped `.tar.gz` of anything. one command                  |
-|                 `env-save`                  | encrypts `.env` into `pass` at any custom path. multi-line safe |
-|                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename    |
-|                `lock-vault`                 | clears GPG agent cache immediately. locks your secret store     |
+| &nbsp;&nbsp;&nbsp;command&nbsp;&nbsp;&nbsp; | what it does                                                                                                                  |
+| :-----------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------- |
+|                    `ls`                     | eza — icons, git status, long format. no flags needed                                                                         |
+|                    `tab`                    | fzf-tab — fuzzy search with live previews while you type                                                                      |
+|                   `mkdir`                   | asks to `git init`, creates README, makes the first commit                                                                    |
+|                    `rm`                     | shows what dies. asks before it runs                                                                                          |
+|                  `extract`                  | detects and unpacks any archive format. just point at it                                                                      |
+|                 `compress`                  | fzf menu picks the format. then it compresses                                                                                 |
+|                  `apireq`                   | full API client via fzf. saves requests as `.http` files                                                                      |
+|                   `serve`                   | python http server with port conflict detection                                                                               |
+|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification                                                                  |
+|                  `backup`                   | timestamped `.tar.gz` of anything. one command                                                                                |
+|                 `env-save`                  | encrypts `.env` into `pass` at any custom path. multi-line safe                                                               |
+|                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename                                                                  |
+|                `lock-vault`                 | clears GPG agent cache immediately. locks your secret store                                                                   |
+|                    `dzw`                    | Use dzw [key] domain.com to perform a filtered WHOIS lookup, either via a predefined server key or the default system server. |
 
 </div>
 
@@ -143,6 +144,7 @@ _six language profiles · italic keywords · ligatures · snippets_
 | c / c++  |      clangd       |
 |    go    | gopls + goimports |
 | database |   prettier-sql    |
+|   wiki   |     prettier      |
 
 </div>
 
@@ -254,9 +256,9 @@ _alacritty · starship_
 
 |                          |                                                             |
 | :----------------------- | :---------------------------------------------------------- |
-| **terminal**             | alacritty · tmux · starship                                 |
-| **shell utils**          | eza · bat · fzf · fd · jq · stow                    |
-| **network**              | curl · wget · gh                                            |
+| **terminal**             | alacritty · tmux · starship · mpv · pass                    |
+| **shell utils**          | eza · bat · fzf · fd · jq · stow                            |
+| **network**              | curl · wget · whois · gh                                    |
 | **linux only**           | zsh · build-essential · rofi                                |
 | **mac only**             | uv                                                          |
 | **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
@@ -286,7 +288,7 @@ lib/plugins.sh       oh my zsh · tpm · zsh plugins
 lib/wallpapers.sh    clones wallpapers repo
 lib/dotfiles.sh      gnu stow · git hook permissions
 lib/go_tools.sh      optional go dev tools
-lib/python_tools.sh  optional python cli tools (but highly recomended)
+lib/python_tools.sh  optional python cli tools (but highly recommended)
 
 install.sh           runs everything above in order
 setup.sh             interactive — run only what you want
