@@ -440,7 +440,9 @@
   // spell checker
   "cSpell.userWords": [
     "Aryna",
+    "alacritty",
     "bson",
+    "catppuccin",
     "cloudinary",
     "Cortado",
     "Excalidraw",
@@ -456,7 +458,9 @@
     "Sabalenka",
     "samrat",
     "Samrat",
-    "redis"
+    "redis",
+    "shfmt",
+    "whois"
   ],
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
