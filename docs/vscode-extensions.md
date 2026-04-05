@@ -14,7 +14,6 @@
 
 | Extension  | Publisher        | Marketplace Link                                                                         |
 | ---------- | ---------------- | ---------------------------------------------------------------------------------------- |
-| Excalidraw | pomdtr           | [ Link](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)    |
 | WordHub    | Hitesh Choudhary | [ Link](https://marketplace.visualstudio.com/items?itemName=hiteshchoudharycode.wordhub) |
 | shfmt      | mkhl             | [ Link](https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt)                  |
 
@@ -24,7 +23,6 @@
 
 | Extension                 | Publisher   | Marketplace Link                                                                    |
 | ------------------------- | ----------- | ----------------------------------------------------------------------------------- |
-| Prettier - Code formatter | Prettier    | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) |
 | ESLint                    | Microsoft   | [ Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) |
 | Live Server               | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  |
 
@@ -61,7 +59,6 @@
 | ------------------- | ---------------- | ----------------------------------------------------------------------------------------------- |
 | Prettier SQL VSCode | inferrinizzard   | [ Link](https://marketplace.visualstudio.com/items?itemName=inferrinizzard.prettier-sql-vscode) |
 | SQLTools            | Matheus Teixeira | [ Link](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools)                      |
-| dbdiagram           | dbdiagram.io     | [ Link]()                                                                                       |
 
 ## C/C++ Dev Profile
 
@@ -78,5 +75,16 @@
 | ----------- | ----------------- | -------------------------------------------------------------------------------------- |
 | Go          | Go Team at Google | [ Link](https://marketplace.visualstudio.com/items?itemName=golang.Go)                 |
 | Code Runner | Jun Han           | [ Link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) |
+
+---
+
+## Wiki Dev Profile
+
+| Extension   | Publisher         | Marketplace Link                                                                       |
+| ----------- | ----------------- | -------------------------------------------------------------------------------------- |
+| Prettier - Code formatter | Prettier    | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) |
+| Excalidraw | pomdtr           | [ Link](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)    |
+| dbdiagram           | dbdiagram     | [ Link](https://marketplace.visualstudio.com/items?itemName=dbdiagram.dbdiagram-vscode)                                                                                       |
+
 
 ---
