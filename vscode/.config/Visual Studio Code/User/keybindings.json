@@ -170,4 +170,14 @@
     "key": "alt+s",
     "command": "simpleBrowser.show",
   },
+  {
+    "key": "ctrl+shift+i",
+    "command": "workbench.action.browser.toggleDevTools",
+    "when": "browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'",
+  },
+  {
+    "key": "f12",
+    "command": "-workbench.action.browser.toggleDevTools",
+    "when": "browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'",
+  },
 ]
