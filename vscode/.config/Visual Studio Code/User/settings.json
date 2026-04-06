@@ -239,6 +239,9 @@
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
+  "[lua]": {
+        "editor.defaultFormatter": "sumneko.lua"
+    },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
   },

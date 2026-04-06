@@ -45,6 +45,7 @@ if alias code >/dev/null 2>&1 || (($+commands[code])); then
     alias code-d='code --profile "Database Dev"'
     alias code-f='code --profile "Frontend Dev"'
     alias code-g='code --profile "Go Dev"'
+    alias code-l='code --profile "Lua Dev"'
     alias code-w='code --profile "Wiki Dev"'
 fi
 
