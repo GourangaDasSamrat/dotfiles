@@ -12,19 +12,19 @@
 
 ### Optional (Default Profile)
 
-| Extension  | Publisher        | Marketplace Link                                                                         |
-| ---------- | ---------------- | ---------------------------------------------------------------------------------------- |
-| WordHub    | Hitesh Choudhary | [ Link](https://marketplace.visualstudio.com/items?itemName=hiteshchoudharycode.wordhub) |
-| shfmt      | mkhl             | [ Link](https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt)                  |
+| Extension | Publisher        | Marketplace Link                                                                         |
+| --------- | ---------------- | ---------------------------------------------------------------------------------------- |
+| WordHub   | Hitesh Choudhary | [ Link](https://marketplace.visualstudio.com/items?itemName=hiteshchoudharycode.wordhub) |
+| shfmt     | mkhl             | [ Link](https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt)                  |
 
 ---
 
 ## Frontend Dev Profile
 
-| Extension                 | Publisher   | Marketplace Link                                                                    |
-| ------------------------- | ----------- | ----------------------------------------------------------------------------------- |
-| ESLint                    | Microsoft   | [ Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) |
-| Live Server               | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  |
+| Extension   | Publisher   | Marketplace Link                                                                    |
+| ----------- | ----------- | ----------------------------------------------------------------------------------- |
+| ESLint      | Microsoft   | [ Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) |
+| Live Server | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  |
 
 ### Optional (Frontend Dev Profile)
 
@@ -78,11 +78,21 @@
 
 ---
 
+## Lua Dev Profile
+
+| Extension   | Publisher | Marketplace Link                                                                       |
+| ----------- | --------- | -------------------------------------------------------------------------------------- |
+| Lua         | sumneko   | [ Link](https://marketplace.visualstudio.com/items?itemName=sumneko.lua)               |
+| Code Runner | Jun Han   | [ Link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) |
+
+---
+
 ## Wiki Dev Profile
 
-| Extension   | Publisher         | Marketplace Link                                                                       |
-| ----------- | ----------------- | -------------------------------------------------------------------------------------- |
-| Prettier - Code formatter | Prettier    | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) |
-| Excalidraw | pomdtr           | [ Link](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)    |
-| dbdiagram           | dbdiagram     | [ Link](https://marketplace.visualstudio.com/items?itemName=dbdiagram.dbdiagram-vscode)                                                                                       |
+| Extension                 | Publisher | Marketplace Link                                                                        |
+| ------------------------- | --------- | --------------------------------------------------------------------------------------- |
+| Prettier - Code formatter | Prettier  | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)     |
+| Excalidraw                | pomdtr    | [ Link](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor)   |
+| dbdiagram                 | dbdiagram | [ Link](https://marketplace.visualstudio.com/items?itemName=dbdiagram.dbdiagram-vscode) |
+
 ---
