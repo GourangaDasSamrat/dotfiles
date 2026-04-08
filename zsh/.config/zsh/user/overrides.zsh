@@ -145,6 +145,3 @@ rm() {
   echo
 }
 
-# Unset any existing gp alias or function to avoid conflicts
-unalias gp 2>/dev/null
-unset -f gp 2>/dev/null
