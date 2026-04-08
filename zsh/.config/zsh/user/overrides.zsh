@@ -144,3 +144,10 @@ rm() {
   fi
   echo
 }
+
+# Overwrite gp (from oh my zsh)
+unalias gp 2>/dev/null      # remove existing alias if exists
+
+gp() {
+  ~/.git-hooks/pre-push "$@" && git push "$@"
+}

@@ -19,11 +19,12 @@
         ui = auto
 
 [fetch]
-    prune = true 
+    prune = true
 
 [push]
-    autoSetupRemote = true 
+    autoSetupRemote = true
 
+# alias
 [alias]
        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
        lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -35,6 +36,15 @@
        last = show --no-patch --format='%C(yellow)Commit: %h%Creset%n%C(magenta)Author: %an%Creset%n%C(cyan)Date:   %ad %Cgreen(%cr)%Creset%n%n    %B%n' --date=format:'%Y-%m-%d %I:%M %p'
        undo = reset --soft HEAD~1
        el = "!sh -c 'git log > git_history.txt'"
+       push = "!f() { ~/.git-hooks/pre-push \"$@\" && git push \"$@\"; }; f"
+
+# git lfs
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
 
 # include local git config file(where gh save credential)
 [include]
