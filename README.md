@@ -256,7 +256,7 @@ _alacritty · starship_
 
 |                          |                                                             |
 | :----------------------- | :---------------------------------------------------------- |
-| **terminal**             | alacritty · tmux · starship · mpv · pass                    |
+| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs          |
 | **shell utils**          | eza · bat · fzf · fd · jq · stow                            |
 | **network**              | curl · wget · whois · gh                                    |
 | **linux only**           | zsh · build-essential · rofi                                |

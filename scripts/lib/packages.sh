@@ -18,6 +18,7 @@ COMMON_TOOLS=(
 	"tmux"
 	"starship"
 	"gh"
+	"git-lfs"
   "pass"
 	"mpv"
   "whois"
