@@ -145,9 +145,6 @@ rm() {
   echo
 }
 
-# Overwrite gp (from oh my zsh)
-unalias gp 2>/dev/null      # remove existing alias if exists
-
-gp() {
-  ~/.git-hooks/pre-push "$@" && git push "$@"
-}
+# Unset any existing gp alias or function to avoid conflicts
+unalias gp 2>/dev/null
+unset -f gp 2>/dev/null
