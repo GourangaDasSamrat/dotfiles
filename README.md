@@ -88,6 +88,9 @@ _every command feels intentional._
 |                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename                                                                  |
 |                `lock-vault`                 | clears GPG agent cache immediately. locks your secret store                                                                   |
 |                    `dzw`                    | Use dzw [key] domain.com to perform a filtered WHOIS lookup, either via a predefined server key or the default system server. |
+| `isup` | checks if a site is live. follows redirects and handles connection errors gracefully |
+| `inspect` | deep-dives into headers. extracts server info, security headers, and content types |
+|` weather` | fetches weather report for any city. clean, minimal, and non-breaking terminal output |
 
 </div>
 

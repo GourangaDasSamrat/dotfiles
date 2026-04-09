@@ -457,6 +457,7 @@
     "Sabalenka",
     "samrat",
     "Samrat",
+    "razorpay",
     "redis",
     "shfmt",
     "whois",
@@ -561,4 +562,5 @@
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.hidesExplorerArrows": true,
+  "chat.viewSessions.orientation": "stacked",
 }
