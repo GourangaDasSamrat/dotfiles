@@ -52,7 +52,7 @@ mkdir() {
     (
       cd "$1" || exit
       git init -q
-      echo "# $1" >README.md
+      echo "# $1" > README.md
       git add .
       git commit -m "chore: initialize repository with README" -q
       echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Initialized git repo in ${COLOR_NORMAL}$(pwd)/.git/${COLOR_RESET}"
@@ -144,4 +144,3 @@ rm() {
   fi
   echo
 }
-

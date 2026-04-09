@@ -45,8 +45,8 @@ compress() {
     "zip      → Cross-platform" \
     "7z       → High compression" \
     "gz       → Single file only" \
-    "bz2      → Single file only" \
-    | fzf \
+    "bz2      → Single file only" |
+    fzf \
       --height=40% \
       --border=rounded \
       --prompt="  › " \
@@ -73,7 +73,7 @@ compress() {
     7z) 7z a "$output" "$input" ;;
     gz)
       if [ -f "$input" ]; then
-        gzip -c "$input" >"$output"
+        gzip -c "$input" > "$output"
       else
         echo "${COLOR_ERROR}  ✗${COLOR_RESET} .gz only supports single files!"
         return 1
@@ -81,7 +81,7 @@ compress() {
       ;;
     bz2)
       if [ -f "$input" ]; then
-        bzip2 -c "$input" >"$output"
+        bzip2 -c "$input" > "$output"
       else
         echo "${COLOR_ERROR}  ✗${COLOR_RESET} .bz2 only supports single files!"
         return 1

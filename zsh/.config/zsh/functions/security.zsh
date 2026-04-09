@@ -1,5 +1,5 @@
 # Auto lock vault every 15 min (single instance)
-if ! pgrep -f "gpg-auto-lock-loop" >/dev/null; then
+if ! pgrep -f "gpg-auto-lock-loop" > /dev/null; then
   (
     exec -a gpg-auto-lock-loop bash -c '
       trap "exit" SIGTERM

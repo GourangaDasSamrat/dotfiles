@@ -1,9 +1,9 @@
 # Define server mapping
 typeset -A WHOIS_SERVERS
 WHOIS_SERVERS=(
-  "dp"    "whois.digitalplat.org"
-  "iana"  "whois.iana.org"
-  "com"   "whois.verisign-grs.com"
+  "dp" "whois.digitalplat.org"
+  "iana" "whois.iana.org"
+  "com" "whois.verisign-grs.com"
 )
 
 dzw() {
@@ -16,10 +16,10 @@ dzw() {
   if [[ -n "$arg2" ]]; then
     target_server="${WHOIS_SERVERS[$arg1]}"
     domain="$arg2"
-    
+
     if [[ -z "$target_server" ]]; then
-        echo "${COLOR_ERROR}Error:${COLOR_NORMAL} Server key '${COLOR_TEXT}$arg1${COLOR_NORMAL}' not found!"
-        return 1
+      echo "${COLOR_ERROR}Error:${COLOR_NORMAL} Server key '${COLOR_TEXT}$arg1${COLOR_NORMAL}' not found!"
+      return 1
     fi
   elif [[ -n "$arg1" ]]; then
     domain="$arg1"
@@ -48,7 +48,7 @@ dzw() {
   if [[ $cmd_status -eq 0 ]]; then
     # Filtering: Only show lines starting with key labels, stop before the 'Terms of Use'
     echo "$raw_output" | grep -E "^(Domain Name|Registrar|Creation Date|Registry Expiry Date|Registrant Name|Registrant Email|Registrant Address|Registrant Phone|Name Server|Domain Status|>>> Last update)" | sed "s/: /: ${COLOR_TEXT}/g" | sed "s/^/${COLOR_NORMAL}/"
-    
+
     echo "${COLOR_BORDER}------------------------------------------${COLOR_RESET}"
     echo "${COLOR_SUCCESS}✅ Done.${COLOR_RESET}"
   else
