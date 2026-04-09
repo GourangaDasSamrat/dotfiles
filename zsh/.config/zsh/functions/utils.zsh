@@ -43,7 +43,7 @@ serve() {
       continue
     fi
 
-    if lsof -Pi :$port -sTCP:LISTEN -t >/dev/null 2>&1; then
+    if lsof -Pi :$port -sTCP:LISTEN -t > /dev/null 2>&1; then
       echo "${COLOR_WARNING}  ⚠${COLOR_RESET} Port $port is already in use!"
       echo "${COLOR_HEADER}  Try another port:${COLOR_RESET} "
       port=""
@@ -192,12 +192,12 @@ timer() {
   done
 
   printf '\a'
-  command -v notify-send &>/dev/null && notify-send "Timer" "Time's up! ⏰" --urgency=critical 2>/dev/null &
-  if command -v paplay &>/dev/null; then
-    [ -f /usr/share/sounds/freedesktop/stereo/complete.oga ] && paplay /usr/share/sounds/freedesktop/stereo/complete.oga &>/dev/null &
-    [ -f /usr/share/sounds/freedesktop/stereo/bell.oga ] && paplay /usr/share/sounds/freedesktop/stereo/bell.oga &>/dev/null &
-  elif command -v aplay &>/dev/null && [ -f /usr/share/sounds/alsa/Front_Center.wav ]; then
-    aplay /usr/share/sounds/alsa/Front_Center.wav &>/dev/null &
+  command -v notify-send &> /dev/null && notify-send "Timer" "Time's up! ⏰" --urgency=critical 2> /dev/null &
+  if command -v paplay &> /dev/null; then
+    [ -f /usr/share/sounds/freedesktop/stereo/complete.oga ] && paplay /usr/share/sounds/freedesktop/stereo/complete.oga &> /dev/null &
+    [ -f /usr/share/sounds/freedesktop/stereo/bell.oga ] && paplay /usr/share/sounds/freedesktop/stereo/bell.oga &> /dev/null &
+  elif command -v aplay &> /dev/null && [ -f /usr/share/sounds/alsa/Front_Center.wav ]; then
+    aplay /usr/share/sounds/alsa/Front_Center.wav &> /dev/null &
   fi
 
   tput cnorm
@@ -242,7 +242,7 @@ backup() {
   local timestamp=$(date +%Y%m%d_%H%M%S)
   local backup_name="${1}_backup_${timestamp}.tar.gz"
 
-  tar -czf "$backup_name" "$1" 2>/dev/null
+  tar -czf "$backup_name" "$1" 2> /dev/null
 
   if [ $? -eq 0 ]; then
     echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Backup created: ${COLOR_CURSOR}$backup_name${COLOR_RESET}"
@@ -251,3 +251,14 @@ backup() {
   fi
 }
 
+# Weather check
+weather() {
+  local city="${1:-Khulna}"
+  echo -e "\n${COLOR_HEADER}󰖐 Fetching weather for ${COLOR_TEXT}${city}...${COLOR_RESET}"
+
+  # -H "Accept-Language: en" ensures English output regardless of IP location
+  # ?0mTq: 0 (current only), m (metric), T (no colors to use your own), q (quiet)
+  curl -s -H "Accept-Language: en" "wttr.in/${city}?0mFq&format=v2" | sed "s/^/${COLOR_NORMAL}/"
+
+  echo -e "${COLOR_RESET}"
+}
