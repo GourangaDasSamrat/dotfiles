@@ -37,17 +37,17 @@ env-load() {
   fi
 
   # Check if the pass entry actually exists before trying to load
-  if ! pass "$pass_path" >/dev/null 2>&1; then
+  if ! pass "$pass_path" > /dev/null 2>&1; then
     echo "${COLOR_ERROR}❌ Error: Path '$pass_path' does not exist in your password store.${COLOR_RESET}"
     return 1
   fi
 
   # Export content from pass to the target file
-  pass "$pass_path" >"$target_file"
+  pass "$pass_path" > "$target_file"
 
   if [[ $? -eq 0 ]]; then
     # Showing line count for confirmation (useful for 20-25 variables)
-    local line_count=$(wc -l <"$target_file")
+    local line_count=$(wc -l < "$target_file")
     echo "${COLOR_HEADER}🚀 Loaded '$pass_path' into '$target_file' ($line_count lines)${COLOR_RESET}"
   fi
 }

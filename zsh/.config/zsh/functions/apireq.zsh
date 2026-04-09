@@ -104,10 +104,10 @@ apireq() {
     # List dirs, skip hidden folders (any path component starting with .)
     find "$start_dir" -type d \
       -not -path '*/.*' \
-      2>/dev/null \
-      | sort \
-      | sed "s|^$HOME|~|" \
-      | fzf --height=50% \
+      2> /dev/null |
+      sort |
+      sed "s|^$HOME|~|" |
+      fzf --height=50% \
         --border=rounded \
         --prompt="  📁 Folder › " \
         --pointer="❯" \
@@ -150,7 +150,7 @@ apireq() {
       if [[ $in_body -eq 1 ]]; then
         body_lines+=("$line")
       fi
-    done <"$file"
+    done < "$file"
 
     _HTTP_BODY=$(printf '%s\n' "${body_lines[@]}")
   }
@@ -200,13 +200,13 @@ apireq() {
       # Write headers
       while IFS= read -r h; do
         [[ -n "$h" ]] && echo "$h"
-      done <<<"$headers_str"
+      done <<< "$headers_str"
       # Blank line before body
       if [[ -n "$body" ]]; then
         echo ""
         echo "$body"
       fi
-    } >"$save_path"
+    } > "$save_path"
 
     echo "${COLOR_SUCCESS}  ✓ Saved to: ${COLOR_TEXT}$save_path${COLOR_RESET}"
     echo ""
@@ -223,14 +223,14 @@ apireq() {
     #      but ~/.config/... etc are not traversed — except ~/.apireq handled above)
     chosen_file=$(
       {
-        find "$HOME/.apireq" -name "*.http" -type f 2>/dev/null
+        find "$HOME/.apireq" -name "*.http" -type f 2> /dev/null
         find "$HOME" -type f -name "*.http" \
           -not -path "$HOME/.apireq/*" \
           -not -path '*/.*' \
-          2>/dev/null
-      } \
-        | sort -u \
-        | fzf --height=60% \
+          2> /dev/null
+      } |
+        sort -u |
+        fzf --height=60% \
           --border=rounded \
           --prompt="  📄 File › " \
           --pointer="❯" \
@@ -276,8 +276,8 @@ apireq() {
       echo ""
       echo "${COLOR_HEADER}▶ Which fields to modify?${COLOR_RESET}"
       local mod_fields
-      mod_fields=$(printf '%s\n' "Method" "URL" "Headers" "Body" \
-        | fzf --height=40% \
+      mod_fields=$(printf '%s\n' "Method" "URL" "Headers" "Body" |
+        fzf --height=40% \
           --border=rounded \
           --prompt="  › " \
           --pointer="❯" \
@@ -476,7 +476,7 @@ apireq() {
           echo "${COLOR_HEADER}▶ JSON Body:${COLOR_RESET}"
           echo "${COLOR_NORMAL}  Enter JSON, Ctrl+D when done${COLOR_RESET}"
           body_content=$(cat)
-          if echo "$body_content" | python3 -m json.tool &>/dev/null; then
+          if echo "$body_content" | python3 -m json.tool &> /dev/null; then
             echo "${COLOR_SUCCESS}  ✓ Valid JSON${COLOR_RESET}"
           else
             echo "${COLOR_WARNING}  ⚠ Invalid JSON, sending as-is${COLOR_RESET}"
