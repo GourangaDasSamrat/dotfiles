@@ -27,6 +27,7 @@ zsh_modules=(
   functions/security
   user/overrides
   functions/whois
+  functions/network
 )
 
 for mod in "${zsh_modules[@]}"; do
