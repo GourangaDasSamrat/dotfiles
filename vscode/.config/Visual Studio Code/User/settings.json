@@ -550,6 +550,14 @@
   "todo-tree.general.showActivityBarBadge": false,
   "todo-tree.general.statusBar": "none",
 
+  // github copilot
+  "chat.viewSessions.orientation": "stacked",
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Use conventional commit message format."
+    }
+  ],
+
   // disable unused things
   "telemetry.telemetryLevel": "off",
   "gitlens.telemetry.enabled": false,
@@ -562,5 +570,4 @@
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.hidesExplorerArrows": true,
-  "chat.viewSessions.orientation": "stacked",
 }

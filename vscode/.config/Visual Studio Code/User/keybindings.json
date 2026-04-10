@@ -180,4 +180,12 @@
     "command": "-workbench.action.browser.toggleDevTools",
     "when": "browserHasUrl && !browserHasError && activeEditor == 'workbench.editor.browser'",
   },
+  {
+    "key": "alt+=",
+    "command": "editor.action.fontZoomIn",
+  },
+  {
+    "key": "alt+-",
+    "command": "editor.action.fontZoomOut",
+  },
 ]
