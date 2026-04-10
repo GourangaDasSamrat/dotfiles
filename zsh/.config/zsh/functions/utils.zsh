@@ -1,27 +1,5 @@
 # Start python server with validation
 serve() {
-  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-    echo ""
-    echo "${COLOR_HEADER}  ◆  serve — Start a Python HTTP server${COLOR_RESET}"
-    echo "${COLOR_BORDER}  ─────────────────────────────────────${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  USAGE${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    serve [port]${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  ARGUMENTS${COLOR_RESET}"
-    echo "${COLOR_CURSOR}    port${COLOR_RESET}    ${COLOR_NORMAL}Port number to listen on (1–65535, default: 8000)${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  EXAMPLES${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    serve           → starts on port 8000${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    serve 3000      → starts on port 3000${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  NOTES${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Validates port range and checks if already in use${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Prompts for a new port if the given one is occupied${COLOR_RESET}"
-    echo ""
-    return 0
-  fi
-
   local port=${1:-}
 
   while true; do
@@ -59,38 +37,6 @@ serve() {
 
 # Timer
 timer() {
-  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-    echo ""
-    echo "${COLOR_HEADER}  ◆  timer — Countdown timer${COLOR_RESET}"
-    echo "${COLOR_BORDER}  ─────────────────────────────────────${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  USAGE${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    timer <duration>${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  ARGUMENTS${COLOR_RESET}"
-    echo "${COLOR_CURSOR}    duration${COLOR_RESET}    ${COLOR_NORMAL}Time to count down from${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  FORMAT${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    Seconds only     timer 90${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    Minutes          timer 5m${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    Hours            timer 2h${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    Combined         timer 1h30m45s${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  EXAMPLES${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    timer 60          → 60 second countdown${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    timer 5m          → 5 minute countdown${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    timer 1h30m       → 1 hour 30 minute countdown${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    timer 2h15m30s    → 2h 15m 30s countdown${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  NOTES${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Progress bar changes color: green → orange → red${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Desktop notification on completion (if notify-send available)${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Audio alert on completion (if paplay/aplay available)${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    • Press Ctrl+C to cancel${COLOR_RESET}"
-    echo ""
-    return 0
-  fi
-
   local total_seconds=$1
 
   if [ -z "$total_seconds" ]; then
@@ -212,27 +158,6 @@ timer() {
 
 # Backup file/folder with timestamp
 backup() {
-  if [[ "$1" == "--help" || "$1" == "-h" ]]; then
-    echo ""
-    echo "${COLOR_HEADER}  ◆  backup — Backup a file or folder with timestamp${COLOR_RESET}"
-    echo "${COLOR_BORDER}  ─────────────────────────────────────${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  USAGE${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    backup <file/folder>${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  ARGUMENTS${COLOR_RESET}"
-    echo "${COLOR_CURSOR}    file/folder${COLOR_RESET}    ${COLOR_NORMAL}Path to the file or directory to back up${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  OUTPUT${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    Creates: <name>_backup_YYYYMMDD_HHMMSS.tar.gz${COLOR_RESET}"
-    echo ""
-    echo "${COLOR_TEXT}  EXAMPLES${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    backup project/          → project_backup_20240210_153045.tar.gz${COLOR_RESET}"
-    echo "${COLOR_NORMAL}    backup config.json       → config.json_backup_20240210_153045.tar.gz${COLOR_RESET}"
-    echo ""
-    return 0
-  fi
-
   if [ -z "$1" ]; then
     echo "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: backup <file/folder>"
     echo "${COLOR_NORMAL}    Run 'backup --help' for more info${COLOR_RESET}"
@@ -256,7 +181,6 @@ weather() {
   local city="${1:-Khulna}"
   echo -e "\n${COLOR_HEADER}󰖐 Fetching weather for ${COLOR_TEXT}${city}...${COLOR_RESET}"
 
-  # -H "Accept-Language: en" ensures English output regardless of IP location
   # ?0mTq: 0 (current only), m (metric), T (no colors to use your own), q (quiet)
   curl -s -H "Accept-Language: en" "wttr.in/${city}?0mFq&format=v2" | sed "s/^/${COLOR_NORMAL}/"
 
