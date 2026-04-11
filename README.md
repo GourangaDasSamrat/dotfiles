@@ -91,6 +91,7 @@ _every command feels intentional._
 | `isup` | checks if a site is live. follows redirects and handles connection errors gracefully |
 | `inspect` | deep-dives into headers. extracts server info, security headers, and content types |
 |` weather` | fetches weather report for any city. clean, minimal, and non-breaking terminal output |
+|` myip` | fetches public info and show IP address, city, region, and ISP |
 
 </div>
 
