@@ -393,7 +393,7 @@
   "git.enableSmartCommit": true,
   "git.autofetch": true,
   "git.branchRandomName.enable": true,
-  "git.branchRandomName.dictionary": ["adjectives", "animals"],
+  "git.branchRandomName.dictionary": ["adjectives", "animals","colors"],
 
   // gitlens
   "gitlens.defaultGravatarsStyle": "mp",
@@ -455,6 +455,7 @@
     "Rybakina",
     "rybakina",
     "Sabalenka",
+    "sabalenka",
     "samrat",
     "Samrat",
     "razorpay",
@@ -554,9 +555,18 @@
   "chat.viewSessions.orientation": "stacked",
   "github.copilot.chat.commitMessageGeneration.instructions": [
     {
+      "file": "~/.copilot/skills/conventional-commit/SKILL.md"
+    },
+    {
       "text": "Use conventional commit message format."
     }
   ],
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
 
   // disable unused things
   "telemetry.telemetryLevel": "off",
