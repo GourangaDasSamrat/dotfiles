@@ -393,7 +393,7 @@
   "git.enableSmartCommit": true,
   "git.autofetch": true,
   "git.branchRandomName.enable": true,
-  "git.branchRandomName.dictionary": ["adjectives", "animals","colors"],
+  "git.branchRandomName.dictionary": ["adjectives", "animals", "colors"],
 
   // gitlens
   "gitlens.defaultGravatarsStyle": "mp",
@@ -428,41 +428,20 @@
   ],
 
   // spell checker
-  "cSpell.userWords": [
-    "Aryna",
-    "aryna",
-    "alacritty",
-    "bson",
-    "catppuccin",
-    "Carlsen",
-    "carlsen",
-    "cloudinary",
-    "Cortado",
-    "Excalidraw",
-    "firefox",
-    "gouranga",
-    "Gouranga",
-    "gourangadassamrat",
-    "github",
-    "Hikaru",
-    "hikaru",
-    "linux",
-    "Macchiato",
-    "Magnus",
-    "magnus",
-    "Mongodb",
-    "Nakamura",
-    "Rybakina",
-    "rybakina",
-    "Sabalenka",
-    "sabalenka",
-    "samrat",
-    "Samrat",
-    "razorpay",
-    "redis",
-    "shfmt",
-    "whois",
-  ],
+  "cSpell.customDictionaries": {
+    "personal-names": {
+      "name": "personal-names",
+      "path": "~/.config/cspell/personal-names.txt",
+      "addWords": true,
+      "scope": "user",
+    },
+    "tech-tools": {
+      "name": "tech-tools",
+      "path": "~/.config/cspell/tech-tools.txt",
+      "addWords": true,
+      "scope": "user",
+    },
+  },
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
   "cSpell.caseSensitive": true,
@@ -553,19 +532,11 @@
 
   // github copilot
   "chat.viewSessions.orientation": "stacked",
-  "github.copilot.chat.commitMessageGeneration.instructions": [
-    {
-      "file": "~/.copilot/skills/conventional-commit/SKILL.md"
-    },
-    {
-      "text": "Use conventional commit message format."
-    }
-  ],
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
     "markdown": false,
-    "scminput": false
+    "scminput": false,
   },
 
   // disable unused things
