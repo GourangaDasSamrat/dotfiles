@@ -1,0 +1,16 @@
+alacritty
+bson
+catppuccin
+cloudinary
+Cortado
+Excalidraw
+firefox
+github
+linux
+Macchiato
+Mongodb
+nestjs
+razorpay
+redis
+shfmt
+whois
