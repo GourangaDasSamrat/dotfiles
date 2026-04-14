@@ -40,6 +40,13 @@ for mod in "${zsh_modules[@]}"; do
 done
 unset zsh_modules mod file
 
+# Display session start time 
+if [[ -n "$COLOR_HEADER" ]]; then
+  echo -e "${COLOR_HEADER}󱑎 Session started:${COLOR_RESET} ${COLOR_NORMAL}$(date '+%A, %d %B %Y | %I:%M %p')${COLOR_RESET}"
+else
+  date '+%A, %d %B %Y | %I:%M %p'
+fi
+
 # Load local secrets
 if [[ -f "$HOME/.zsh_secrets" ]]; then
   [[ "$(stat -c %a "$HOME/.zsh_secrets" 2>/dev/null || stat -f %OLp "$HOME/.zsh_secrets")" != "600" ]] \
