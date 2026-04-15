@@ -186,3 +186,21 @@ weather() {
 
   echo -e "${COLOR_RESET}"
 }
+
+# Universal logger with timestamps
+t() {
+  if ! command -v ts > /dev/null; then
+    print -P "%F{204}error:%f 'moreutils' is not installed."
+    return 1
+  fi
+
+  [[ $# -eq 0 ]] && { echo "Usage: t <command>"; return 1 }
+
+  local D_CLR=$COLOR_NORMAL
+  local T_CLR=$COLOR_HEADER
+  local R=$COLOR_RESET
+
+  # 2>&1 redirects stderr to stdout so 'ts' can catch everything
+  # env flags force color for tools that support it
+  env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 | ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
+}
