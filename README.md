@@ -88,10 +88,11 @@ _every command feels intentional._
 |                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename                                                                  |
 |                `lock-vault`                 | clears GPG agent cache immediately. locks your secret store                                                                   |
 |                    `dzw`                    | Use dzw [key] domain.com to perform a filtered WHOIS lookup, either via a predefined server key or the default system server. |
-| `isup` | checks if a site is live. follows redirects and handles connection errors gracefully |
-| `inspect` | deep-dives into headers. extracts server info, security headers, and content types |
-|` weather` | fetches weather report for any city. clean, minimal, and non-breaking terminal output |
-|` myip` | fetches public info and show IP address, city, region, and ISP |
+|                   `isup`                    | checks if a site is live. follows redirects and handles connection errors gracefully                                          |
+|                  `inspect`                  | deep-dives into headers. extracts server info, security headers, and content types                                            |
+|                 ` weather`                  | fetches weather report for any city. clean, minimal, and non-breaking terminal output                                         |
+|                   ` myip`                   | fetches public info and show IP address, city, region, and ISP                                                                |
+|                     `t`                     | show timestamps before log                                                                                                    |
 
 </div>
 
@@ -258,17 +259,17 @@ _alacritty · starship_
 
 <div align="center">
 
-|                          |                                                             |
-| :----------------------- | :---------------------------------------------------------- |
-| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs          |
-| **shell utils**          | eza · bat · fzf · fd · jq · stow                            |
-| **network**              | curl · wget · whois · gh                                    |
-| **linux only**           | zsh · build-essential · rofi                                |
-| **mac only**             | uv                                                          |
-| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab |
-| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                    |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air · usql · shfmt      |
-| **python tools** _(opt)_ | httpie · ytm-player                                         |
+|                          |                                                                |
+| :----------------------- | :------------------------------------------------------------- |
+| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils |
+| **shell utils**          | eza · bat · fzf · fd · jq · stow                               |
+| **network**              | curl · wget · whois · gh                                       |
+| **linux only**           | zsh · build-essential · rofi                                   |
+| **mac only**             | uv                                                             |
+| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab    |
+| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                       |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air · usql · shfmt         |
+| **python tools** _(opt)_ | httpie · ytm-player                                            |
 
 </div>
 

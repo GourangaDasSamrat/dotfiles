@@ -23,6 +23,7 @@ COMMON_TOOLS=(
 	"mpv"
   "whois"
   "openssl-tool|openssl"
+  "moreutils"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
 MACOS_TOOLS=("uv")
