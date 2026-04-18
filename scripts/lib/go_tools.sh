@@ -12,7 +12,7 @@ echo "Go is installed: $(go version)"
 # Define Go tools to install/update
 declare -A GO_TOOLS=(
     ["goimports"]="golang.org/x/tools/cmd/goimports@latest"
-    ["golangci-lint"]="github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
+    ["golangci-lint"]="github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
     ["gopls"]="golang.org/x/tools/gopls@latest"
     ["air"]="github.com/air-verse/air@latest"
     ["gotests"]="github.com/cweill/gotests/gotests@latest"
@@ -35,7 +35,7 @@ check_and_install_tool() {
     local base_cmd="go install"
 
     echo "----------------------------------------"
-    
+
     # Check if tool is already installed to provide better feedback
     if command -v "$tool_name" &>/dev/null; then
         echo "Updating $tool_name..."

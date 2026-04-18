@@ -32,8 +32,8 @@
       "AllowShortLoopsOnASingleLine: false",
       "AllowShortFunctionsOnASingleLine: Empty",
       "",
-      "BreakStringLiterals: false"
+      "BreakStringLiterals: false",
     ],
-    "description": "Standard clang-format configuration based on Google style"
-  }
+    "description": "Standard clang-format configuration based on Google style",
+  },
 }
