@@ -268,7 +268,7 @@ _alacritty · starship_
 | **mac only**             | uv                                                             |
 | **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab    |
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                       |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · air · usql · shfmt         |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt         |
 | **python tools** _(opt)_ | httpie · ytm-player                                            |
 
 </div>
