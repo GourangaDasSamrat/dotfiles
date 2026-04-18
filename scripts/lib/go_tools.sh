@@ -15,6 +15,8 @@ declare -A GO_TOOLS=(
     ["golangci-lint"]="github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
     ["gopls"]="golang.org/x/tools/gopls@latest"
     ["air"]="github.com/air-verse/air@latest"
+    ["gotests"]="github.com/cweill/gotests/gotests@latest"
+    ["govulncheck"]="golang.org/x/vuln/cmd/govulncheck@latest"
     ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
     ["usql"]="github.com/xo/usql@latest"
 )
