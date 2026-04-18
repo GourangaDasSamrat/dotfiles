@@ -16,29 +16,17 @@
   },
   "Go Package": {
     "prefix": "pkg",
-    "body": [
-      "package ${1:${TM_FILENAME_BASE}}",
-      "",
-      "$0"
-    ],
+    "body": ["package ${1:${TM_FILENAME_BASE}}", "", "$0"],
     "description": "Go package declaration"
   },
   "Go If Error": {
     "prefix": "iferr",
-    "body": [
-      "if err != nil {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["if err != nil {", "\t$0", "}"],
     "description": "Go if error check"
   },
   "Go Interface": {
     "prefix": "interface",
-    "body": [
-      "type ${1:InterfaceName} interface {",
-      "\t$0",
-      "}"
-    ],
+    "body": ["type ${1:InterfaceName} interface {", "\t$0", "}"],
     "description": "Go interface"
   }
 }
