@@ -1,0 +1,249 @@
+name: Shell Script Validation
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "scripts/**/*.sh"
+      - "zsh/**/*.zsh"
+      - ".github/workflows/shell-validation.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "scripts/**/*.sh"
+      - "zsh/**/*.zsh"
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    name: ShellCheck Linting
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Run ShellCheck on shell scripts
+        id: shellcheck
+        run: |
+          shellcheck $(find scripts -type f -name "*.sh") 2>&1 || true
+
+      - name: Create issue on ShellCheck failure
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+
+            try {
+              const output = execSync('bash -c "shellcheck $(find scripts -type f -name \\"*.sh\\") 2>&1"').toString();
+            } catch (error) {
+              const output = error.stdout ? error.stdout.toString() : error.message;
+
+              const title = `[Shell Validation] ShellCheck Issues Found`;
+              const body = `## ShellCheck Validation Failure\n\n\`\`\`\n${output}\n\`\`\`\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+              // Check if issue already exists
+              const issues = await github.rest.issues.listForRepo({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                state: 'open',
+                labels: ['shellcheck-issue']
+              });
+
+              if (issues.data.length === 0) {
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: title,
+                  body: body,
+                  labels: ['shellcheck-issue', 'shell-validation']
+                });
+              } else {
+                // Update existing issue
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issues.data[0].number,
+                  body: body
+                });
+              }
+            }
+
+  bash-syntax-check:
+    runs-on: ubuntu-latest
+    name: Bash Syntax Validation
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check bash syntax
+        id: bash-syntax
+        run: |
+          echo "Checking bash syntax for .sh files..."
+          failed_files=""
+
+          for script in $(find scripts -type f -name "*.sh"); do
+            if ! bash -n "$script" 2>&1; then
+              failed_files="$failed_files$script\n"
+            fi
+          done
+
+          if [ -n "$failed_files" ]; then
+            echo "FAILED_FILES<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$failed_files" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          echo "All bash scripts passed syntax validation!"
+
+      - name: Create issue on bash syntax check failure
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failedFiles = `${{ steps.bash-syntax.outputs.FAILED_FILES }}`;
+            const title = `[Shell Validation] Bash Syntax Error`;
+            const body = `## Bash Syntax Validation Failure\n\n**Failed Files:**\n${failedFiles}\n\nPlease fix the syntax errors in the files listed above.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['bash-syntax-error']
+            });
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['bash-syntax-error', 'shell-validation']
+              });
+            } else {
+              // Update existing issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: body
+              });
+            }
+
+  zsh-syntax-check:
+    runs-on: ubuntu-latest
+    name: Zsh Syntax Validation
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Zsh
+        run: sudo apt-get update && sudo apt-get install -y zsh
+
+      - name: Check zsh syntax
+        id: zsh-syntax
+        run: |
+          echo "Checking zsh syntax for .zsh files..."
+          failed_files=""
+
+          for script in $(find zsh -type f -name "*.zsh"); do
+            if ! zsh -n "$script" 2>&1; then
+              failed_files="$failed_files$script\n"
+            fi
+          done
+
+          if [ -n "$failed_files" ]; then
+            echo "FAILED_FILES<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$failed_files" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          echo "All zsh scripts passed syntax validation!"
+
+      - name: Create issue on zsh syntax check failure
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failedFiles = `${{ steps.zsh-syntax.outputs.FAILED_FILES }}`;
+            const title = `[Shell Validation] Zsh Syntax Error`;
+            const body = `## Zsh Syntax Validation Failure\n\n**Failed Files:**\n${failedFiles}\n\nPlease fix the syntax errors in the files listed above.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['zsh-syntax-error']
+            });
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['zsh-syntax-error', 'shell-validation']
+              });
+            } else {
+              // Update existing issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: body
+              });
+            }
+
+  close-issues:
+    runs-on: ubuntu-latest
+    name: Close Issues on Success
+    needs: [shellcheck, bash-syntax-check, zsh-syntax-check]
+    if: success() && github.event_name == 'push'
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Close shell-validation issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['shell-validation']
+            });
+
+            for (const issue of issues.data) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '✅ All shell scripts passed validation! Closing this issue.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+              });
+            }
