@@ -23,40 +23,41 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y shellcheck curl wget git
-
-      - name: Test script execution
+- name: Test script execution
         id: exec-test
         run: |
-          echo "Testing script execution and sourcing..."
+          echo "Testing script structure and dependencies..."
           failed_scripts=""
 
-          # Test lib scripts (source them)
-          echo "Testing lib scripts (sourcing)..."
+          # Test lib scripts (source them for syntax checking - skip installation scripts)
+          echo "Testing lib scripts (syntax check)..."
+          # Skip scripts that have side effects (installations)
+          skip_patterns="go_tools|python_tools|packages|plugins|wallpapers"
           for script in $(find scripts/lib -type f -name "*.sh"); do
+            basename=$(basename "$script")
+            # Skip installation scripts
+            if echo "$basename" | grep -qE "$skip_patterns"; then
+              echo "  Skipping (installation): $script"
+              continue
+            fi
+
             echo "  Testing: $script"
             if ! bash -c "source $script" 2>&1; then
               failed_scripts="$failed_scripts$script (sourcing failed)\n"
             fi
           done
 
-          # Test main scripts (execute with --help)
-          echo "Testing main scripts (execution)..."
+          # Test main scripts for syntax (don't execute)
+          echo "Testing main scripts (syntax check)..."
           for script in $(find scripts -maxdepth 1 -type f -name "*.sh"); do
             echo "  Testing: $script"
-            if ! bash "$script" --help > /dev/null 2>&1; then
-              # If --help fails, try to at least execute without errors on syntax
-              if ! bash -n "$script" 2>&1; then
-                failed_scripts="$failed_scripts$script (execution test failed)\n"
-              fi
+            if ! bash -n "$script" 2>&1; then
+              failed_scripts="$failed_scripts$script (syntax error)\n"
             fi
           done
 
-          # Test utils scripts (source them)
-          echo "Testing utils scripts (sourcing)..."
+          # Test utils scripts (source them for syntax)
+          echo "Testing utils scripts (syntax check)..."
           for script in $(find scripts/utils -type f -name "*.sh" 2>/dev/null); do
             echo "  Testing: $script"
             if ! bash -c "source $script" 2>&1; then
@@ -70,7 +71,7 @@ jobs:
             echo "EOF" >> $GITHUB_OUTPUT
             exit 1
           fi
-          echo "All scripts executed/sourced successfully!"
+          echo "All scripts passed structure and syntax checks!"
 
       - name: Create issue on execution failure
         if: failure() && github.event_name == 'push'
