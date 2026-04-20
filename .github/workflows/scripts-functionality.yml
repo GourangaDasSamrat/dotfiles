@@ -23,7 +23,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-- name: Test script execution
+      - name: Test script execution
         id: exec-test
         run: |
           echo "Testing script structure and dependencies..."
