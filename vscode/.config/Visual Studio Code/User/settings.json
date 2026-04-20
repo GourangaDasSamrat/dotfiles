@@ -292,7 +292,6 @@
   "go.inlayHints.compositeLiteralTypes": true,
   "go.toolsManagement.autoUpdate": true,
   "go.testFlags": ["-v"],
-  "go.testOnSave": true,
   "go.generateTestsFlags": ["-w", "-all"],
   "gopls": {
     "ui.semanticTokens": true,
@@ -383,8 +382,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
 
   // extensions
-  "extensions.autoCheckUpdates": false,
-  "extensions.autoUpdate": false,
   "extensions.experimental.affinity": {
     "eamodio.gitlens": 1,
     "dbaeumer.vscode-eslint": 1,
@@ -554,5 +551,5 @@
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
-  "material-icon-theme.hidesExplorerArrows": true
+  "material-icon-theme.hidesExplorerArrows": true,
 }
