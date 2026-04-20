@@ -26,7 +26,7 @@ COMMON_TOOLS=(
   "moreutils"
 )
 LINUX_TOOLS=("zsh" "build-essential" "rofi")
-MACOS_TOOLS=("uv")
+MACOS_TOOLS=()
 
 _is_installed() {
 	local tool="$1"
