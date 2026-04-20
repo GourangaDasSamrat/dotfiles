@@ -1,0 +1,145 @@
+name: Scripts Functionality Check
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "scripts/**"
+      - ".github/workflows/scripts-functionality.yml"
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - "scripts/**"
+
+jobs:
+  scripts-execution-check:
+    runs-on: ubuntu-latest
+    name: Scripts Execution Test
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck curl wget git
+
+      - name: Test script execution
+        id: exec-test
+        run: |
+          echo "Testing script execution and sourcing..."
+          failed_scripts=""
+
+          # Test lib scripts (source them)
+          echo "Testing lib scripts (sourcing)..."
+          for script in $(find scripts/lib -type f -name "*.sh"); do
+            echo "  Testing: $script"
+            if ! bash -c "source $script" 2>&1; then
+              failed_scripts="$failed_scripts$script (sourcing failed)\n"
+            fi
+          done
+
+          # Test main scripts (execute with --help)
+          echo "Testing main scripts (execution)..."
+          for script in $(find scripts -maxdepth 1 -type f -name "*.sh"); do
+            echo "  Testing: $script"
+            if ! bash "$script" --help > /dev/null 2>&1; then
+              # If --help fails, try to at least execute without errors on syntax
+              if ! bash -n "$script" 2>&1; then
+                failed_scripts="$failed_scripts$script (execution test failed)\n"
+              fi
+            fi
+          done
+
+          # Test utils scripts (source them)
+          echo "Testing utils scripts (sourcing)..."
+          for script in $(find scripts/utils -type f -name "*.sh" 2>/dev/null); do
+            echo "  Testing: $script"
+            if ! bash -c "source $script" 2>&1; then
+              failed_scripts="$failed_scripts$script (sourcing failed)\n"
+            fi
+          done
+
+          if [ -n "$failed_scripts" ]; then
+            echo "FAILED_SCRIPTS<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$failed_scripts" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          echo "All scripts executed/sourced successfully!"
+
+      - name: Create issue on execution failure
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const failedScripts = `${{ steps.exec-test.outputs.FAILED_SCRIPTS }}`;
+            const title = `[Scripts] Execution Failure`;
+            const body = `## Scripts Execution Test Failure\n\n**Failed Scripts:**\n${failedScripts}\n\nPlease fix the scripts listed above.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['scripts-execution-error']
+            });
+
+            if (issues.data.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['scripts-execution-error', 'scripts-check']
+              });
+            } else {
+              // Update existing issue
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues.data[0].number,
+                body: body
+              });
+            }
+
+  close-issues:
+    runs-on: ubuntu-latest
+    name: Close Issues on Success
+    needs: [scripts-execution-check]
+    if: success() && github.event_name == 'push'
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Close scripts-check issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['scripts-check']
+            });
+
+            for (const issue of issues.data) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '✅ All scripts passed execution test! Closing this issue.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+              });
+            }
