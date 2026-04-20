@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/GourangaDasSamrat/dotfiles/tree/main/docs
+    about: Check the documentation for setup guides and installation instructions
+  - name: 💬 Discussions
+    url: https://github.com/GourangaDasSamrat/dotfiles/discussions
+    about: Have questions or want to share your setup? Start a discussion
