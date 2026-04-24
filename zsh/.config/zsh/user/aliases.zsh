@@ -3,6 +3,7 @@ if [[ -d /data/data/com.termux ]]; then
   alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
   alias df='cd ~/../usr/var/lib/proot-distro/installed-rootfs/debian/home/gouranga/'
   alias af='cd ~/storage/shared'
+  alias start="/data/data/com.termux/files/home/start.sh"
 fi
 
 # --- Conditional Aliases ---
@@ -46,6 +47,7 @@ if alias code > /dev/null 2>&1 || (($+commands[code])); then
   alias code-f='code --profile "Frontend Dev"'
   alias code-g='code --profile "Go Dev"'
   alias code-l='code --profile "Lua Dev"'
+  alias code-p='code --profile "Python Dev"'
   alias code-w='code --profile "Wiki Dev"'
 fi
 
