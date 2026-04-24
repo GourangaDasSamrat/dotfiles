@@ -4,6 +4,7 @@ catppuccin
 cleanenv
 cloudinary
 Cortado
+Eulerian
 Excalidraw
 excalidraw
 firefox
@@ -17,6 +18,7 @@ Macchiato
 Mongodb
 nestjs
 nosql
+Qubit
 razorpay
 redis
 shfmt
