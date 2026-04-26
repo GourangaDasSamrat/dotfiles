@@ -411,7 +411,7 @@
 
   // commitSage
   "commitSage.provider.type": "gemini",
-  "commitSage.gemini.model": "gemini-3.1-flash-lite-preview",
+  "commitSage.gemini.model": "gemini-2.5-flash-lite",
   "commitSage.commit.commitFormat": "conventional",
   "commitSage.commit.promptForRefs": true,
 
