@@ -19,6 +19,7 @@ declare -A GO_TOOLS=(
     ["govulncheck"]="golang.org/x/vuln/cmd/govulncheck@latest"
     ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
     ["usql"]="github.com/xo/usql@latest"
+    ["slim"]="github.com/kamranahmedse/slim@latest"
 )
 
 # Custom tags for usql to include specific database drivers
