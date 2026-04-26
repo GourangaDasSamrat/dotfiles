@@ -93,6 +93,7 @@ _every command feels intentional._
 |                 ` weather`                  | fetches weather report for any city. clean, minimal, and non-breaking terminal output                                         |
 |                   ` myip`                   | fetches public info and show IP address, city, region, and ISP                                                                |
 |                     `t`                     | show timestamps before log                                                                                                    |
+|                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
 
 </div>
 
@@ -259,17 +260,17 @@ _alacritty · starship_
 
 <div align="center">
 
-|                          |                                                                |
-| :----------------------- | :------------------------------------------------------------- |
-| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils |
-| **shell utils**          | eza · bat · fzf · fd · jq · stow                               |
-| **network**              | curl · wget · whois · gh                                       |
-| **linux only**           | zsh · build-essential · rofi                                   |
-| **mac only**             | uv                                                             |
-| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab    |
-| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                       |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt         |
-| **python tools** _(opt)_ | httpie · ytm-player                                            |
+|                          |                                                                                       |
+| :----------------------- | :------------------------------------------------------------------------------------ |
+| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils                        |
+| **shell utils**          | eza · bat · fzf · fd · jq · stow                                                      |
+| **network**              | curl · wget · whois · gh                                                              |
+| **linux only**           | zsh · build-essential · rofi                                                          |
+| **mac only**             | uv                                                                                    |
+| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                           |
+| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                              |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim |
+| **python tools** _(opt)_ | httpie · ytm-player                                                                   |
 
 </div>
 
