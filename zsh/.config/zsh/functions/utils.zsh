@@ -188,19 +188,65 @@ weather() {
 }
 
 # Universal logger with timestamps
-t() {
-  if ! command -v ts > /dev/null; then
-    print -P "%F{204}error:%f 'moreutils' is not installed."
-    return 1
-  fi
+if command -v ts &> /dev/null; then
+  t() {
+    # Check if a command was provided as an argument
+    [[ $# -eq 0 ]] && { 
+      echo "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: t <command>"
+      return 1 
+    }
 
-  [[ $# -eq 0 ]] && { echo "Usage: t <command>"; return 1 }
+    local D_CLR=$COLOR_NORMAL
+    local T_CLR=$COLOR_HEADER
+    local R=$COLOR_RESET
 
-  local D_CLR=$COLOR_NORMAL
-  local T_CLR=$COLOR_HEADER
-  local R=$COLOR_RESET
+    # 2>&1 redirects stderr to stdout so 'ts' can catch everything
+    # env flags force color for tools that support it
+    # stdbuf -oL -eL ensures line-buffered output for real-time logging
+    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Executing with timestamps..."
+    
+    env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 | ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
+  }
+fi
 
-  # 2>&1 redirects stderr to stdout so 'ts' can catch everything
-  # env flags force color for tools that support it
-  env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 | ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
-}
+
+# Slim share tunnel with port validation
+if command -v slim &> /dev/null; then
+  expose() {
+    local port=${1:-}
+    local ttl=${2:-}
+
+    # Port validation loop
+    while true; do
+      if [ -z "$port" ]; then
+        echo "${COLOR_HEADER}  Enter port number (default: 4000):${COLOR_RESET} "
+        read port
+        port=${port:-4000}
+      fi
+
+      if ! [[ "$port" =~ ^[0-9]+$ ]]; then
+        echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be a number!"
+        port=""
+        continue
+      fi
+
+      if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
+        echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be between 1 and 65535!"
+        port=""
+        continue
+      fi
+      
+      break
+    done
+
+    # Execution logic
+    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting tunnel for localhost:${COLOR_CURSOR}$port${COLOR_RESET}"
+    
+    if [ -n "$ttl" ]; then
+      echo "${COLOR_NORMAL}    TTL set to: $ttl${COLOR_RESET}"
+      slim share --port "$port" --ttl "$ttl"
+    else
+      slim share --port "$port"
+    fi
+  }
+fi
