@@ -35,33 +35,33 @@
           "meta.export",
           "meta.module",
           "meta.decorator",
-          "variable.language",
+          "variable.language"
         ],
         "settings": {
-          "fontStyle": "italic",
-        },
-      },
-    ],
+          "fontStyle": "italic"
+        }
+      }
+    ]
   },
   "editor.semanticTokenColorCustomizations": {
     "enabled": true,
     "rules": {
       "variable.readonly": {
-        "fontStyle": "italic",
+        "fontStyle": "italic"
       },
       "parameter": {
-        "fontStyle": "italic",
+        "fontStyle": "italic"
       },
       "property": {
-        "fontStyle": "italic",
+        "fontStyle": "italic"
       },
       "function": {
-        "fontStyle": "bold",
+        "fontStyle": "bold"
       },
       "method": {
-        "fontStyle": "bold",
-      },
-    },
+        "fontStyle": "bold"
+      }
+    }
   },
 
   // font ligatures
@@ -128,7 +128,7 @@
     "*/",
     "+++",
     "<!--",
-    "<!---",
+    "<!---"
   ],
 
   // security
@@ -173,7 +173,7 @@
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#e0ffeb",
     "editorLineNumber.foreground": "#5c6370",
-    "editorLineNumber.activeForeground": "#ffffff",
+    "editorLineNumber.activeForeground": "#ffffff"
   },
   "workbench.sideBar.location": "right",
   "workbench.activityBar.location": "top",
@@ -199,7 +199,7 @@
   "editor.quickSuggestions": {
     "strings": "on",
     "comments": "on",
-    "other": "on",
+    "other": "on"
   },
   "editor.quickSuggestionsDelay": 5,
   "editor.suggestOnTriggerCharacters": true,
@@ -209,7 +209,7 @@
   "terminal.integrated.suggest.quickSuggestions": {
     "commands": "on",
     "arguments": "on",
-    "unknown": "on",
+    "unknown": "on"
   },
 
   // auto rename / closing tags and comments
@@ -229,36 +229,39 @@
 
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
-    "editor.suggest.insertMode": "replace",
+    "editor.suggest.insertMode": "replace"
   },
   "[c]": {
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[go]": {
-    "editor.defaultFormatter": "golang.go",
+    "editor.defaultFormatter": "golang.go"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua",
+    "editor.defaultFormatter": "sumneko.lua"
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "mkhl.shfmt",
+    "editor.defaultFormatter": "mkhl.shfmt"
   },
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.defaultFormatter": "Prisma.prisma"
   },
   "[sql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
   "[sqlite]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode",
+    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit",
+    "source.organizeImports": "explicit"
   },
 
   "eslint.run": "onSave",
@@ -288,16 +291,77 @@
   "go.useLanguageServer": true,
   "go.formatTool": "goimports",
   "go.lintTool": "golangci-lint-v2",
+
+  // inlay hints
   "go.inlayHints.assignVariableTypes": true,
   "go.inlayHints.parameterNames": true,
   "go.inlayHints.compositeLiteralTypes": true,
+
   "go.toolsManagement.autoUpdate": true,
   "go.testFlags": ["-v"],
   "go.generateTestsFlags": ["-w", "-all"],
+
+  // gopls
   "gopls": {
     "ui.semanticTokens": true,
-    "ui.completion.usePlaceholders": true,
+    "ui.completion.usePlaceholders": true
   },
+
+  // Rust (rust-analyzer)
+
+  "rust-analyzer.rustfmt.rangeFormatting.enable": true,
+
+  // inlay hints
+  "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+  "rust-analyzer.inlayHints.closureCaptureHints.enable": true,
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+  "rust-analyzer.inlayHints.discriminantHints.enable": "fieldless",
+  "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "reborrow",
+  "rust-analyzer.inlayHints.implicitDrops.enable": true,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
+  "rust-analyzer.inlayHints.rangeExclusiveHints.enable": true,
+
+  // lens
+  "rust-analyzer.lens.references.adt.enable": true,
+  "rust-analyzer.lens.references.enumVariant.enable": true,
+  "rust-analyzer.lens.references.method.enable": true,
+  "rust-analyzer.lens.references.trait.enable": true,
+
+  // diagnostics
+  "rust-analyzer.diagnostics.experimental.enable": true,
+  "rust-analyzer.diagnostics.styleLints.enable": true,
+
+  // toolchain & checks
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.extraArgs": [
+    "--",
+    "-W",
+    "clippy::pedantic",
+    "-W",
+    "clippy::nursery",
+    "-A",
+    "clippy::missing_docs_in_private_items"
+  ],
+
+  // cargo
+  "rust-analyzer.cargo.features": "all",
+  "rust-analyzer.cargo.buildScripts.enable": true,
+  "rust-analyzer.cargo.buildScripts.useRustcWrapper": true,
+
+  // proc macros
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.procMacro.attributes.enable": true,
+
+  // completion
+  "rust-analyzer.completion.autoimport.enable": true,
+  "rust-analyzer.completion.autoself.enable": true,
+  "rust-analyzer.completion.fullFunctionSignatures.enable": true,
+
+  // semantic tokens
+  "rust-analyzer.semanticHighlighting.operator.enable": true,
+  "rust-analyzer.semanticHighlighting.operator.specialization.enable": true,
+  "rust-analyzer.semanticHighlighting.punctuation.enable": true,
+  "rust-analyzer.semanticHighlighting.punctuation.specialization.enable": true,
 
   // Markdown
   "markdown.validate.enabled": true,
@@ -316,7 +380,7 @@
     "--pretty",
     "--fallback-style=Google",
     "--pch-storage=memory",
-    "--limit-results=0",
+    "--limit-results=0"
   ],
   "clangd.onConfigChanged": "restart",
 
@@ -328,7 +392,7 @@
   "files.exclude": {
     "**/node_modules": true,
     "**/.next": true,
-    "**/.git": true,
+    "**/.git": true
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -345,6 +409,7 @@
     "**/*.a": true,
     "**/*.so": true,
     "**/compile_commands.json": false,
+    "**/target": true
   },
   "files.associations": {
     "*.h": "c",
@@ -353,7 +418,7 @@
     "*.ipp": "cpp",
     "*.myquery": "sql",
     "*.psql": "sql",
-    "*.db": "sqlite",
+    "*.db": "sqlite"
   },
 
   // search
@@ -368,6 +433,7 @@
     "**/yarn.lock": true,
     "**/package-lock.json": true,
     "**/pnpm-lock.yaml": true,
+    "**/target": true
   },
   "search.smartCase": true,
 
@@ -386,7 +452,7 @@
   "extensions.experimental.affinity": {
     "eamodio.gitlens": 1,
     "dbaeumer.vscode-eslint": 1,
-    "esbenp.prettier-vscode": 1,
+    "esbenp.prettier-vscode": 1
   },
 
   // git
@@ -406,7 +472,7 @@
     "stashes",
     "remoteBranches",
     "pullRequests",
-    "tags",
+    "tags"
   ],
 
   // commitSage
@@ -419,14 +485,14 @@
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.includeLanguages": {
     "javascriptreact": "javascript",
-    "typescriptreact": "typescript",
+    "typescriptreact": "typescript"
   },
   "tailwindCSS.files.exclude": [
     "**/.git/**",
     "**/node_modules/**",
     "**/.hg/**",
     "**/.svn/**",
-    "**/.next/**",
+    "**/.next/**"
   ],
 
   // spell checker
@@ -435,14 +501,14 @@
       "name": "personal-names",
       "path": "~/.config/cspell/personal-names.txt",
       "addWords": true,
-      "scope": "user",
+      "scope": "user"
     },
     "tech-tools": {
       "name": "tech-tools",
       "path": "~/.config/cspell/tech-tools.txt",
       "addWords": true,
-      "scope": "user",
-    },
+      "scope": "user"
+    }
   },
   "cSpell.blockCheckingWhenLineLengthGreaterThan": 100000,
   "cSpell.advanced.feature.useReferenceProviderWithRename": true,
@@ -454,7 +520,7 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact",
-    "vue-html": "html",
+    "vue-html": "html"
   },
 
   // live server
@@ -482,50 +548,50 @@
     "HACK",
     "NOTE",
     "REVIEW",
-    "OPTIMIZE",
+    "OPTIMIZE"
   ],
   "todo-tree.highlights.defaultHighlight": {
-    "type": "tag",
+    "type": "tag"
   },
   "todo-tree.highlights.customHighlight": {
     "TODO": {
       "foreground": "#f1fa8c",
       "background": "#44475a",
       "icon": "check",
-      "gutterIcon": true,
+      "gutterIcon": true
     },
     "FIXME": {
       "foreground": "#ff5555",
       "background": "#44475a",
       "icon": "flame",
-      "gutterIcon": true,
+      "gutterIcon": true
     },
     "BUG": {
       "foreground": "#ff5555",
       "background": "#282a36",
       "icon": "bug",
-      "gutterIcon": true,
+      "gutterIcon": true
     },
     "HACK": {
       "foreground": "#ffb86c",
       "background": "#44475a",
-      "icon": "tools",
+      "icon": "tools"
     },
     "NOTE": {
       "foreground": "#8be9fd",
       "background": "#44475a",
-      "icon": "note",
+      "icon": "note"
     },
     "REVIEW": {
       "foreground": "#bd93f9",
       "background": "#44475a",
-      "icon": "eye",
+      "icon": "eye"
     },
     "OPTIMIZE": {
       "foreground": "#50fa7b",
       "background": "#44475a",
-      "icon": "rocket",
-    },
+      "icon": "rocket"
+    }
   },
   "todo-tree.highlights.useColourScheme": false,
   "todo-tree.tree.scanMode": "open files",
@@ -538,7 +604,7 @@
     "*": false,
     "plaintext": false,
     "markdown": false,
-    "scminput": false,
+    "scminput": false
   },
 
   // disable unused things
@@ -552,5 +618,5 @@
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
-  "material-icon-theme.hidesExplorerArrows": true,
+  "material-icon-theme.hidesExplorerArrows": true
 }
