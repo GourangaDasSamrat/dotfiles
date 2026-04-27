@@ -12,6 +12,57 @@ A quick reference for installing essential developer tools manually.
 
 ---
 
+## C Compiler
+
+### GCC (Linux / Termux)
+
+**Debian/Ubuntu:**
+
+```bash
+sudo apt-get install build-essential
+```
+
+**Fedora/CentOS/RHEL:**
+
+```bash
+sudo dnf groupinstall "Development Tools"
+```
+
+**Termux:**
+
+```bash
+apt install build-essential
+```
+
+### Clang (macOS / Linux / Termux)
+
+**macOS (with Xcode):**
+
+```bash
+xcode-select --install
+```
+
+**Linux (Debian/Ubuntu):**
+
+```bash
+sudo apt-get update
+sudo apt-get install clang
+```
+
+**Linux (Fedora/CentOS/RHEL):**
+
+```bash
+sudo dnf install clang
+```
+
+**Termux:**
+
+```bash
+apt install clang
+```
+
+---
+
 ## Go
 
 **macOS / Linux:**
@@ -27,6 +78,14 @@ tar -C /usr/local -xzf go1.x.x.linux-amd64.tar.gz
 
 ---
 
+**Termux:**
+
+```bash
+apt install golang
+```
+
+---
+
 ## uv (Python package manager)
 
 **macOS / Linux:**
@@ -37,12 +96,28 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ---
 
+**Termux:**
+
+```bash
+apt install uv
+```
+
+---
+
 ## Rust
 
 **macOS / Linux:**
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+---
+
+**Termux:**
+
+```bash
+apt install rust
 ```
 
 ---
