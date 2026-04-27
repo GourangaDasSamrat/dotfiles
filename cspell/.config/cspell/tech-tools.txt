@@ -12,6 +12,7 @@ github
 gmail
 gopkg
 GOARCH
+groupinstall
 justfile
 linux
 Macchiato
@@ -23,4 +24,5 @@ razorpay
 redis
 shfmt
 sqlite
+Termux
 whois
