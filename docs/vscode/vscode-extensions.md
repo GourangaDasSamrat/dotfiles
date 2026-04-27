@@ -78,6 +78,15 @@
 
 ---
 
+## Rust Dev Profile
+
+| Extension               | Publisher | Marketplace Link                                                                       |
+| ----------------------- | --------- | -------------------------------------------------------------------------------------- |
+| rust-lang.rust-analyzer | rust-lang | [ Link](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)   |
+| Code Runner             | Jun Han   | [ Link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) |
+
+---
+
 ## Lua Dev Profile
 
 | Extension   | Publisher | Marketplace Link                                                                       |

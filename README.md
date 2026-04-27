@@ -151,6 +151,7 @@ _six language profiles · italic keywords · ligatures · snippets_
 |    go    | gopls + goimports |
 | database |   prettier-sql    |
 |   wiki   |     prettier      |
+|   rust   |   rust-analyzer   |
 
 </div>
 
