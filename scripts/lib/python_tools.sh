@@ -1,67 +1,88 @@
 #!/bin/bash
 
-# 1. Check if uv is installed
+# ─── Flag Parsing ────────────────────────────────────────────────────────────
+UPDATE_MODE=false
+for arg in "$@"; do
+    case $arg in
+        --update) UPDATE_MODE=true ;;
+        *) echo "Unknown flag: $arg"; exit 1 ;;
+    esac
+done
+
+# ─── uv Check ────────────────────────────────────────────────────────────────
 if ! command -v uv &>/dev/null; then
     echo "Error: uv is not installed."
     echo "Please install it first: curl -LsSf https://astral.sh/uv/install.sh | sh"
     exit 1
 fi
-
 echo "uv detected: $(uv --version)"
+$UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" \
+             || echo "Mode: INSTALL (skip already installed tools)"
 
-# 2. Define Tools (Command Name => Package Name)
-# We map the executable name to the PyPI package name
+# ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A PY_TOOLS=(
     ["http"]="httpie"
     ["ytm-player"]="ytm-player"
 )
 
-# Counters for tracking status
 SUCCESS_TOOLS=0
 SKIPPED_TOOLS=0
 FAILED_TOOLS=0
 
-# 3. Installation Function
+# ─── Helper: check if package is installed via uv tool list ──────────────────
+is_uv_installed() {
+    local package_name=$1
+    uv tool list 2>/dev/null | grep -q "^$package_name "
+}
+
+# ─── Install/Update Logic ─────────────────────────────────────────────────────
 install_via_uv() {
     local cmd_name=$1
     local package_name=$2
+    local tool_path
+    tool_path=$(command -v "$cmd_name" 2>/dev/null)
 
-    # Check if the command already exists in the system PATH (brew, pip, etc.)
-    if command -v "$cmd_name" &>/dev/null; then
-        echo ">> '$cmd_name' is already installed at $(which "$cmd_name"). Skipping..."
+    echo "----------------------------------------"
+
+    # Skip if already installed (via uv or system) and not in update mode
+    if { is_uv_installed "$package_name" || [ -n "$tool_path" ]; } && ! $UPDATE_MODE; then
+        local location=${tool_path:-"uv tools"}
+        echo "SKIP: '$cmd_name' is already installed at $location (use --update to reinstall)"
         ((SKIPPED_TOOLS++))
         return 0
     fi
 
-    echo ">> '$cmd_name' not found. Installing '$package_name' via uv..."
-    
-    # 'uv tool install' creates an isolated environment for each tool (like pipx)
-    uv tool install "$package_name"
+    if is_uv_installed "$package_name"; then
+        echo ">> Updating '$package_name' via uv..."
+        uv tool upgrade "$package_name"
+    else
+        echo ">> Installing '$package_name' via uv..."
+        uv tool install "$package_name"
+    fi
 
     if [ $? -eq 0 ]; then
-        echo "Successfully installed $package_name!"
+        echo "Successfully processed $package_name!"
         ((SUCCESS_TOOLS++))
     else
-        echo "Error: Failed to install $package_name via uv."
+        echo "Error: Failed to process $package_name via uv."
         ((FAILED_TOOLS++))
     fi
 }
 
-# 4. Loop through tools and install if missing
+# ─── Run ─────────────────────────────────────────────────────────────────────
 for cmd in "${!PY_TOOLS[@]}"; do
-    echo "----------------------------------------"
     install_via_uv "$cmd" "${PY_TOOLS[$cmd]}"
 done
 
-# 5. Final Summary
+# ─── Summary ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
-echo "Installation Summary:"
-echo "  Installed: $SUCCESS_TOOLS"
-echo "  Skipped:   $SKIPPED_TOOLS (Already present)"
-echo "  Failed:    $FAILED_TOOLS"
+echo "Summary:"
+echo "  Installed/Updated : $SUCCESS_TOOLS"
+echo "  Skipped           : $SKIPPED_TOOLS"
+echo "  Failed            : $FAILED_TOOLS"
 
 if [ $FAILED_TOOLS -gt 0 ]; then
-    echo "Some tools failed to install. Check the logs above."
+    echo "Some tools failed. Check the logs above."
     exit 1
 else
     echo "Process completed successfully!"
