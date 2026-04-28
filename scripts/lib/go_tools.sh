@@ -1,15 +1,25 @@
 #!/bin/bash
 
-# Check if Go is installed
+# ─── Flag Parsing ────────────────────────────────────────────────────────────
+UPDATE_MODE=false
+for arg in "$@"; do
+    case $arg in
+        --update) UPDATE_MODE=true ;;
+        *) echo "Unknown flag: $arg"; exit 1 ;;
+    esac
+done
+
+# ─── Go Check ────────────────────────────────────────────────────────────────
 if ! command -v go &>/dev/null; then
     echo "Error: Go is not installed on this system."
     echo "Please install Go first: https://go.dev/doc/install"
     exit 1
 fi
-
 echo "Go is installed: $(go version)"
+$UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" \
+             || echo "Mode: INSTALL (skip already installed tools)"
 
-# Define Go tools to install/update
+# ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A GO_TOOLS=(
     ["goimports"]="golang.org/x/tools/cmd/goimports@latest"
     ["golangci-lint"]="github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
@@ -22,39 +32,39 @@ declare -A GO_TOOLS=(
     ["slim"]="github.com/kamranahmedse/slim@latest"
 )
 
-# Custom tags for usql to include specific database drivers
 USQL_TAGS="mysql postgres sqlite3 moderncsqlite"
-
-# Counters for tracking status
 FAILED_TOOLS=0
 SUCCESS_TOOLS=0
+SKIPPED_TOOLS=0
 
-# Function to handle installation/update logic
+# ─── Install/Update Logic ─────────────────────────────────────────────────────
 check_and_install_tool() {
     local tool_name=$1
     local tool_package=$2
-    local base_cmd="go install"
 
     echo "----------------------------------------"
 
-    # Check if tool is already installed to provide better feedback
+    # Skip if already installed and not in update mode
+    if command -v "$tool_name" &>/dev/null && ! $UPDATE_MODE; then
+        echo "SKIP: $tool_name is already installed (use --update to reinstall)"
+        ((SKIPPED_TOOLS++))
+        return 0
+    fi
+
     if command -v "$tool_name" &>/dev/null; then
         echo "Updating $tool_name..."
     else
         echo "Installing $tool_name..."
     fi
 
-    # Apply custom build tags specifically for usql
+    # usql needs custom build tags
     if [ "$tool_name" == "usql" ]; then
-        echo "Applying custom build tags for $tool_name: [$USQL_TAGS]"
-        # Using eval to correctly handle nested quotes in the command
-        eval "$base_cmd -tags '$USQL_TAGS' $tool_package"
+        echo "Applying custom build tags: [$USQL_TAGS]"
+        eval "go install -tags '$USQL_TAGS' $tool_package"
     else
-        # Standard installation for other tools
-        $base_cmd "$tool_package"
+        go install "$tool_package"
     fi
 
-    # Check the exit status of the go install command
     if [ $? -ne 0 ]; then
         echo "Error: Failed to process $tool_name"
         ((FAILED_TOOLS++))
@@ -66,25 +76,27 @@ check_and_install_tool() {
     fi
 }
 
-# Iterate through the defined tools and process them
+# ─── Run ─────────────────────────────────────────────────────────────────────
 for tool in "${!GO_TOOLS[@]}"; do
     check_and_install_tool "$tool" "${GO_TOOLS[$tool]}"
 done
 
-# Cleanup Go module cache to free up disk space (preventing that 1.5GB bloat)
+# ─── Cleanup ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
 echo "Cleaning Go module cache to save storage..."
 go clean -modcache
 
+# ─── Summary ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
-echo "Installation Summary:"
-echo "  Successful: $SUCCESS_TOOLS"
-echo "  Failed: $FAILED_TOOLS"
+echo "Summary:"
+echo "  Installed/Updated : $SUCCESS_TOOLS"
+echo "  Skipped           : $SKIPPED_TOOLS"
+echo "  Failed            : $FAILED_TOOLS"
 
 if [ $FAILED_TOOLS -eq 0 ]; then
-    echo -e "\nAll tools updated successfully! Your GOPATH/bin is ready to use."
+    echo -e "\nDone! Your GOPATH/bin is ready to use."
     exit 0
 else
-    echo -e "\nSome tools encountered issues. Please check the logs above."
+    echo -e "\nSome tools encountered issues. Check the logs above."
     exit 1
 fi
