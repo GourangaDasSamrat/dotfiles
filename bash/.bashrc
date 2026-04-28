@@ -49,3 +49,4 @@ alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
 # ── Completion
 [[ -f /usr/share/bash-completion/bash_completion ]] && \
   source /usr/share/bash-completion/bash_completion
+. "$HOME/.cargo/env"

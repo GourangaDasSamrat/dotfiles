@@ -12,8 +12,6 @@ export PNPM_HOME="$HOME/.local/share/pnpm"   # PNPM home
 # Load NVM and its completions
 [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
 [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
-# Load Rust/Cargo environment
-[[ -s "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 
 # --- Path Management ---
 typeset -U path   	       # Prevent duplicate PATH entries
