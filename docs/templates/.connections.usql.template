@@ -1,6 +1,6 @@
 -- =============================================================================
 -- .connections.usql — usql Connection Aliases
--- Template location: ~/dotfiles/docs/.connections.usql.templat3
+-- Template location: ~/dotfiles/docs/.connections.usql.template
 -- Real file location: ~/.connections.usql
 -- Safe to commit — no raw credentials, values come from env vars set by
 -- ~/.zsh_secrets at shell startup.

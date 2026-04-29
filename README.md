@@ -187,6 +187,7 @@ git today        # commits since midnight
 git yesterday    # yesterday's commits
 git mine         # your commits only
 git undo         # soft reset the last commit
+git unstage      # unstage all staged files
 git last         # full detail of the last commit
 ```
 
