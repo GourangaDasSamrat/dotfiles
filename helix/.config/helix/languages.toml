@@ -1,0 +1,252 @@
+# ─────────────────────────────────────────────
+#  Helix  languages.toml
+#  Cloned from VSCode settings (python / sql / prisma removed)
+# ─────────────────────────────────────────────
+
+# ── C ─────────────────────────────────────────
+[[language]]
+name       = "c"
+formatter  = { command = "clang-format", args = ["--style=Google"] }
+auto-format = true
+language-servers = ["clangd"]
+
+[language-server.clangd]
+command = "clangd"
+args    = [
+  "--background-index",
+  "--clang-tidy",
+  "--completion-style=detailed",
+  "--header-insertion=iwyu",
+  "--header-insertion-decorators",
+  "--all-scopes-completion",
+  "--function-arg-placeholders",
+  "--log=error",
+  "--pretty",
+  "--fallback-style=Google",
+  "--pch-storage=memory",
+  "--limit-results=0",
+]
+
+# ── C++ ───────────────────────────────────────
+[[language]]
+name       = "cpp"
+formatter  = { command = "clang-format", args = ["--style=Google"] }
+auto-format = true
+language-servers = ["clangd"]
+file-types = ["cpp", "cc", "cxx", "hpp", "h", "tcc", "ipp"]
+
+# ── Rust ──────────────────────────────────────
+[[language]]
+name       = "rust"
+auto-format = true
+language-servers = ["rust-analyzer"]
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+inlayHints.bindingModeHints.enable                   = true
+inlayHints.closureCaptureHints.enable                = true
+inlayHints.closureReturnTypeHints.enable             = "with_block"
+inlayHints.discriminantHints.enable                  = "fieldless"
+inlayHints.expressionAdjustmentHints.enable          = "always"
+inlayHints.lifetimeElisionHints.enable               = "always"
+inlayHints.typeHints.enable                          = true
+inlayHints.parameterHints.enable                     = true
+lens.enable                                          = true
+lens.implementations.enable                          = true
+lens.references.adt.enable                           = true
+lens.references.enumVariant.enable                   = true
+lens.references.method.enable                        = true
+lens.references.trait.enable                         = true
+diagnostics.experimental.enable                      = true
+diagnostics.styleLints.enable                        = true
+check.command                                        = "clippy"
+check.extraArgs                                      = ["--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-A", "clippy::missing_docs_in_private_items"]
+cargo.features                                       = "all"
+cargo.buildScripts.enable                            = true
+cargo.buildScripts.useRustcWrapper                   = true
+procMacro.enable                                     = true
+procMacro.attributes.enable                          = true
+completion.autoimport.enable                         = true
+completion.autoself.enable                           = true
+completion.fullFunctionSignatures.enable             = true
+semanticHighlighting.operator.enable                 = true
+semanticHighlighting.operator.specialization.enable  = true
+semanticHighlighting.punctuation.enable              = true
+semanticHighlighting.punctuation.specialization.enable = true
+
+# ── Go ────────────────────────────────────────
+[[language]]
+name       = "go"
+auto-format = true
+language-servers = ["gopls"]
+formatter  = { command = "goimports" }
+
+[language-server.gopls]
+command = "gopls"
+
+[language-server.gopls.config.hints]
+assignVariableTypes    = true
+compositeLiteralFields = true
+compositeLiteralTypes  = true
+constantValues         = true
+functionTypeParameters = true
+parameterNames         = true
+rangeVariableTypes     = true
+
+[language-server.gopls.config]
+staticcheck = true
+analyses.shadow      = true
+analyses.unusedparams = true
+analyses.unusedwrite  = true
+
+# ── Lua ───────────────────────────────────────
+[[language]]
+name       = "lua"
+auto-format = true
+language-servers = ["lua-language-server"]
+
+[language-server.lua-language-server]
+command = "lua-language-server"
+
+# ── Shell ─────────────────────────────────────
+[[language]]
+name       = "bash"
+auto-format = true
+formatter  = { command = "shfmt", args = ["-i", "2"] }
+language-servers = ["bash-language-server"]
+
+[language-server.bash-language-server]
+command = "bash-language-server"
+args    = ["start"]
+
+# ── JavaScript / TypeScript ───────────────────
+[[language]]
+name       = "javascript"
+auto-format = true
+language-servers = ["typescript-language-server", "eslint"]
+formatter  = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name       = "typescript"
+auto-format = true
+language-servers = ["typescript-language-server", "eslint"]
+formatter  = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name       = "jsx"
+auto-format = true
+language-servers = ["typescript-language-server", "eslint"]
+formatter  = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name       = "tsx"
+auto-format = true
+language-servers = ["typescript-language-server", "eslint"]
+formatter  = { command = "prettier", args = ["--parser", "typescript"] }
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args    = ["--stdio"]
+
+[language-server.typescript-language-server.config]
+hostInfo = "helix"
+
+[language-server.typescript-language-server.config.typescript.inlayHints]
+includeInlayParameterNameHints              = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayFunctionParameterTypeHints      = true
+includeInlayVariableTypeHints               = true
+includeInlayPropertyDeclarationTypeHints    = true
+includeInlayFunctionLikeReturnTypeHints     = true
+includeInlayEnumMemberValueHints            = true
+
+[language-server.typescript-language-server.config.javascript.inlayHints]
+includeInlayParameterNameHints              = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayFunctionParameterTypeHints      = true
+includeInlayVariableTypeHints               = true
+includeInlayPropertyDeclarationTypeHints    = true
+includeInlayFunctionLikeReturnTypeHints     = true
+includeInlayEnumMemberValueHints            = true
+
+[language-server.typescript-language-server.config.typescript]
+preferGoToSourceDefinition = true
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args    = ["--stdio"]
+
+[language-server.eslint.config]
+run            = "onSave"
+codeAction.disableRuleComment.enable = true
+codeAction.showDocumentation.enable  = true
+
+# ── HTML ──────────────────────────────────────
+[[language]]
+name       = "html"
+auto-format = true
+language-servers = ["vscode-html-language-server"]
+formatter  = { command = "prettier", args = ["--parser", "html"] }
+
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+args    = ["--stdio"]
+
+# ── CSS ───────────────────────────────────────
+[[language]]
+name       = "css"
+auto-format = true
+language-servers = ["vscode-css-language-server"]
+formatter  = { command = "prettier", args = ["--parser", "css"] }
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args    = ["--stdio"]
+
+# ── JSON ──────────────────────────────────────
+[[language]]
+name       = "json"
+auto-format = true
+formatter  = { command = "prettier", args = ["--parser", "json"] }
+language-servers = ["vscode-json-language-server"]
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args    = ["--stdio"]
+
+[language-server.vscode-json-language-server.config]
+provideFormatter = true
+
+# ── YAML ──────────────────────────────────────
+[[language]]
+name       = "yaml"
+auto-format = true
+formatter  = { command = "prettier", args = ["--parser", "yaml"] }
+language-servers = ["yaml-language-server"]
+
+[language-server.yaml-language-server]
+command = "yaml-language-server"
+args    = ["--stdio"]
+
+# ── TOML ──────────────────────────────────────
+[[language]]
+name       = "toml"
+auto-format = true
+language-servers = ["taplo"]
+
+[language-server.taplo]
+command = "taplo"
+args    = ["lsp", "stdio"]
+
+# ── Markdown ──────────────────────────────────
+[[language]]
+name       = "markdown"
+auto-format = true
+formatter  = { command = "prettier", args = ["--parser", "markdown"] }
+language-servers = ["marksman"]
+
+[language-server.marksman]
+command = "marksman"
+args    = ["server"]
