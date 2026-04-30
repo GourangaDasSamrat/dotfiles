@@ -1,0 +1,377 @@
+
+{
+  "Competitive Programming Template": {
+    "prefix": "cptemplate",
+    "body": [
+      "use std::io::{self, BufRead};",
+      "",
+      "fn main() {",
+      "    let stdin = io::stdin();",
+      "    let mut lines = stdin.lock().lines();",
+      "",
+      "    $0",
+      "}"
+    ],
+    "description": "Basic competitive programming template with buffered input"
+  },
+  "Fast I/O Template": {
+    "prefix": "fastio",
+    "body": [
+      "use std::io::{Read, Write};",
+      "",
+      "fn main() {",
+      "    let mut input = String::new();",
+      "    io::stdin().read_to_string(&mut input).unwrap();",
+      "    let mut output = String::new();",
+      "",
+      "    let mut lines = input.lines();",
+      "    $0",
+      "",
+      "    print!(\"{}\", output);",
+      "}"
+    ],
+    "description": "Fast I/O using read_to_string for competitive programming"
+  },
+  "Macro for Fast Parsing": {
+    "prefix": "input_macro",
+    "body": [
+      "macro_rules! input {",
+      "    ($x:expr) => {{",
+      "        let mut line = String::new();",
+      "        io::stdin().read_line(&mut line).unwrap();",
+      "        $x(line.trim())",
+      "    }};",
+      "}",
+      ""
+    ],
+    "description": "Macro for fast input parsing"
+  },
+  "Read Integers": {
+    "prefix": "readints",
+    "body": [
+      "let line = lines.next().unwrap().unwrap();",
+      "let nums: Vec<i32> = line",
+      "    .split_whitespace()",
+      "    .map(|s| s.parse().unwrap())",
+      "    .collect();"
+    ],
+    "description": "Parse space-separated integers from a line"
+  },
+  "Read Single Integer": {
+    "prefix": "readint",
+    "body": [
+      "let n: i32 = lines.next().unwrap().unwrap().trim().parse().unwrap();"
+    ],
+    "description": "Parse a single integer"
+  },
+  "Read String": {
+    "prefix": "readstr",
+    "body": [
+      "let s = lines.next().unwrap().unwrap();"
+    ],
+    "description": "Read a single line as string"
+  },
+  "2D Vector Initialization": {
+    "prefix": "vec2d",
+    "body": [
+      "let mut grid: Vec<Vec<i32>> = vec![vec![0; $1]; $2];"
+    ],
+    "description": "Create 2D vector with given dimensions"
+  },
+  "BFS Template": {
+    "prefix": "bfs",
+    "body": [
+      "use std::collections::VecDeque;",
+      "",
+      "fn bfs(start: usize, adj: &Vec<Vec<usize>>) -> Vec<i32> {",
+      "    let n = adj.len();",
+      "    let mut dist = vec![-1; n];",
+      "    let mut q = VecDeque::new();",
+      "",
+      "    dist[start] = 0;",
+      "    q.push_back(start);",
+      "",
+      "    while let Some(u) = q.pop_front() {",
+      "        for &v in &adj[u] {",
+      "            if dist[v] == -1 {",
+      "                dist[v] = dist[u] + 1;",
+      "                q.push_back(v);",
+      "            }",
+      "        }",
+      "    }",
+      "    dist",
+      "}"
+    ],
+    "description": "BFS template for finding shortest paths"
+  },
+  "DFS Template": {
+    "prefix": "dfs",
+    "body": [
+      "fn dfs(u: usize, adj: &Vec<Vec<usize>>, visited: &mut Vec<bool>) {",
+      "    visited[u] = true;",
+      "    for &v in &adj[u] {",
+      "        if !visited[v] {",
+      "            dfs(v, adj, visited);",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "DFS template for graph traversal"
+  },
+  "Binary Search": {
+    "prefix": "binsearch",
+    "body": [
+      "fn binary_search<T: Ord>(arr: &[T], target: &T) -> Result<usize, usize> {",
+      "    arr.binary_search(target)",
+      "}"
+    ],
+    "description": "Binary search on sorted array"
+  },
+  "GCD Function": {
+    "prefix": "gcd",
+    "body": [
+      "fn gcd(a: i64, b: i64) -> i64 {",
+      "    if b == 0 { a } else { gcd(b, a % b) }",
+      "}"
+    ],
+    "description": "Calculate GCD using Euclidean algorithm"
+  },
+  "LCM Function": {
+    "prefix": "lcm",
+    "body": [
+      "fn lcm(a: i64, b: i64) -> i64 {",
+      "    a / gcd(a, b) * b",
+      "}"
+    ],
+    "description": "Calculate LCM using GCD"
+  },
+  "Modular Exponentiation": {
+    "prefix": "modpow",
+    "body": [
+      "fn mod_pow(mut base: i64, mut exp: i64, modulus: i64) -> i64 {",
+      "    if modulus == 1 { return 0; }",
+      "    let mut result = 1;",
+      "    base %= modulus;",
+      "    while exp > 0 {",
+      "        if exp % 2 == 1 {",
+      "            result = (result * base) % modulus;",
+      "        }",
+      "        exp >>= 1;",
+      "        base = (base * base) % modulus;",
+      "    }",
+      "    result",
+      "}"
+    ],
+    "description": "Fast modular exponentiation"
+  },
+  "Prime Check": {
+    "prefix": "isprime",
+    "body": [
+      "fn is_prime(n: i64) -> bool {",
+      "    if n < 2 { return false; }",
+      "    if n == 2 { return true; }",
+      "    if n % 2 == 0 { return false; }",
+      "    let mut i = 3;",
+      "    while i * i <= n {",
+      "        if n % i == 0 { return false; }",
+      "        i += 2;",
+      "    }",
+      "    true",
+      "}"
+    ],
+    "description": "Check if number is prime"
+  },
+  "Sieve of Eratosthenes": {
+    "prefix": "sieve",
+    "body": [
+      "fn sieve(n: usize) -> Vec<bool> {",
+      "    let mut is_prime = vec![true; n + 1];",
+      "    is_prime[0] = false;",
+      "    is_prime[1] = false;",
+      "    for i in 2..=((n as f64).sqrt() as usize) {",
+      "        if is_prime[i] {",
+      "            for j in ((i * i)..=n).step_by(i) {",
+      "                is_prime[j] = false;",
+      "            }",
+      "        }",
+      "    }",
+      "    is_prime",
+      "}"
+    ],
+    "description": "Sieve of Eratosthenes for finding all primes up to n"
+  },
+  "Factorial": {
+    "prefix": "factorial",
+    "body": [
+      "fn factorial(n: i64, modulus: i64) -> i64 {",
+      "    let mut result = 1;",
+      "    for i in 2..=n {",
+      "        result = (result * i) % modulus;",
+      "    }",
+      "    result",
+      "}"
+    ],
+    "description": "Calculate factorial with modulo"
+  },
+  "Combination (nCr)": {
+    "prefix": "combination",
+    "body": [
+      "fn combination(n: i64, r: i64, modulus: i64) -> i64 {",
+      "    if r > n || r < 0 { return 0; }",
+      "    let num = factorial(n, modulus);",
+      "    let den = (factorial(r, modulus) * factorial(n - r, modulus)) % modulus;",
+      "    (num * mod_pow(den, modulus - 2, modulus)) % modulus",
+      "}"
+    ],
+    "description": "Calculate nCr (requires factorial and mod_pow functions)"
+  },
+  "Sum of Arithmetic Sequence": {
+    "prefix": "sumseq",
+    "body": [
+      "fn sum_arithmetic(first: i64, last: i64, count: i64) -> i64 {",
+      "    (count * (first + last)) / 2",
+      "}"
+    ],
+    "description": "Sum of arithmetic sequence"
+  },
+  "Pair Structure": {
+    "prefix": "pair",
+    "body": [
+      "#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]",
+      "struct Pair(i32, i32);"
+    ],
+    "description": "Custom pair structure with derive macros"
+  },
+  "Comparator with Index": {
+    "prefix": "sortidx",
+    "body": [
+      "let mut indices: Vec<usize> = (0..n).collect();",
+      "indices.sort_by_key(|&i| arr[i]);"
+    ],
+    "description": "Sort indices based on array values"
+  },
+  "String Reverse": {
+    "prefix": "strrev",
+    "body": [
+      "let reversed: String = s.chars().rev().collect();"
+    ],
+    "description": "Reverse a string"
+  },
+  "Check Palindrome": {
+    "prefix": "ispalin",
+    "body": [
+      "fn is_palindrome(s: &str) -> bool {",
+      "    let s = s.to_lowercase();",
+      "    s == s.chars().rev().collect::<String>()",
+      "}"
+    ],
+    "description": "Check if string is palindrome"
+  },
+  "Count Frequency": {
+    "prefix": "countfreq",
+    "body": [
+      "use std::collections::HashMap;",
+      "",
+      "let mut freq = HashMap::new();",
+      "for &x in &arr {",
+      "    *freq.entry(x).or_insert(0) += 1;",
+      "}"
+    ],
+    "description": "Count frequency of elements in array"
+  },
+  "Min and Max": {
+    "prefix": "minmax",
+    "body": [
+      "let min_val = arr.iter().min().unwrap();",
+      "let max_val = arr.iter().max().unwrap();"
+    ],
+    "description": "Find min and max in array"
+  },
+  "Prefix Sum": {
+    "prefix": "prefixsum",
+    "body": [
+      "let mut prefix = vec![0; n + 1];",
+      "for i in 0..n {",
+      "    prefix[i + 1] = prefix[i] + arr[i];",
+      "}"
+    ],
+    "description": "Build prefix sum array for range sum queries"
+  },
+  "Union-Find Data Structure": {
+    "prefix": "unionfind",
+    "body": [
+      "struct UnionFind {",
+      "    parent: Vec<usize>,",
+      "    rank: Vec<usize>,",
+      "}",
+      "",
+      "impl UnionFind {",
+      "    fn new(n: usize) -> Self {",
+      "        UnionFind {",
+      "            parent: (0..n).collect(),",
+      "            rank: vec![0; n],",
+      "        }",
+      "    }",
+      "",
+      "    fn find(&mut self, x: usize) -> usize {",
+      "        if self.parent[x] != x {",
+      "            self.parent[x] = self.find(self.parent[x]);",
+      "        }",
+      "        self.parent[x]",
+      "    }",
+      "",
+      "    fn union(&mut self, x: usize, y: usize) {",
+      "        let px = self.find(x);",
+      "        let py = self.find(y);",
+      "        if px == py { return; }",
+      "        if self.rank[px] < self.rank[py] {",
+      "            self.parent[px] = py;",
+      "        } else if self.rank[px] > self.rank[py] {",
+      "            self.parent[py] = px;",
+      "        } else {",
+      "            self.parent[py] = px;",
+      "            self.rank[px] += 1;",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Union-Find data structure with path compression"
+  },
+  "Bit Manipulation - Popcount": {
+    "prefix": "popcount",
+    "body": [
+      "let count = n.count_ones() as i32;"
+    ],
+    "description": "Count number of set bits"
+  },
+  "Bit Manipulation - Check Bit": {
+    "prefix": "checkbit",
+    "body": [
+      "if (n & (1 << i)) != 0 {",
+      "    // i-th bit is set",
+      "}"
+    ],
+    "description": "Check if i-th bit is set"
+  },
+  "Bit Manipulation - Set Bit": {
+    "prefix": "setbit",
+    "body": [
+      "n |= (1 << i);"
+    ],
+    "description": "Set i-th bit to 1"
+  },
+  "Bit Manipulation - Clear Bit": {
+    "prefix": "clearbit",
+    "body": [
+      "n &= !(1 << i);"
+    ],
+    "description": "Clear i-th bit (set to 0)"
+  },
+  "Bit Manipulation - Toggle Bit": {
+    "prefix": "togglebit",
+    "body": [
+      "n ^= (1 << i);"
+    ],
+    "description": "Toggle i-th bit"
+  }
+}
