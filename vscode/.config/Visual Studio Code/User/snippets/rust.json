@@ -1,4 +1,3 @@
-
 {
   "Competitive Programming Template": {
     "prefix": "cptemplate",
@@ -66,16 +65,12 @@
   },
   "Read String": {
     "prefix": "readstr",
-    "body": [
-      "let s = lines.next().unwrap().unwrap();"
-    ],
+    "body": ["let s = lines.next().unwrap().unwrap();"],
     "description": "Read a single line as string"
   },
   "2D Vector Initialization": {
     "prefix": "vec2d",
-    "body": [
-      "let mut grid: Vec<Vec<i32>> = vec![vec![0; $1]; $2];"
-    ],
+    "body": ["let mut grid: Vec<Vec<i32>> = vec![vec![0; $1]; $2];"],
     "description": "Create 2D vector with given dimensions"
   },
   "BFS Template": {
@@ -138,11 +133,7 @@
   },
   "LCM Function": {
     "prefix": "lcm",
-    "body": [
-      "fn lcm(a: i64, b: i64) -> i64 {",
-      "    a / gcd(a, b) * b",
-      "}"
-    ],
+    "body": ["fn lcm(a: i64, b: i64) -> i64 {", "    a / gcd(a, b) * b", "}"],
     "description": "Calculate LCM using GCD"
   },
   "Modular Exponentiation": {
@@ -252,9 +243,7 @@
   },
   "String Reverse": {
     "prefix": "strrev",
-    "body": [
-      "let reversed: String = s.chars().rev().collect();"
-    ],
+    "body": ["let reversed: String = s.chars().rev().collect();"],
     "description": "Reverse a string"
   },
   "Check Palindrome": {
@@ -339,39 +328,27 @@
   },
   "Bit Manipulation - Popcount": {
     "prefix": "popcount",
-    "body": [
-      "let count = n.count_ones() as i32;"
-    ],
+    "body": ["let count = n.count_ones() as i32;"],
     "description": "Count number of set bits"
   },
   "Bit Manipulation - Check Bit": {
     "prefix": "checkbit",
-    "body": [
-      "if (n & (1 << i)) != 0 {",
-      "    // i-th bit is set",
-      "}"
-    ],
+    "body": ["if (n & (1 << i)) != 0 {", "    // i-th bit is set", "}"],
     "description": "Check if i-th bit is set"
   },
   "Bit Manipulation - Set Bit": {
     "prefix": "setbit",
-    "body": [
-      "n |= (1 << i);"
-    ],
+    "body": ["n |= (1 << i);"],
     "description": "Set i-th bit to 1"
   },
   "Bit Manipulation - Clear Bit": {
     "prefix": "clearbit",
-    "body": [
-      "n &= !(1 << i);"
-    ],
+    "body": ["n &= !(1 << i);"],
     "description": "Clear i-th bit (set to 0)"
   },
   "Bit Manipulation - Toggle Bit": {
     "prefix": "togglebit",
-    "body": [
-      "n ^= (1 << i);"
-    ],
+    "body": ["n ^= (1 << i);"],
     "description": "Toggle i-th bit"
   }
 }
