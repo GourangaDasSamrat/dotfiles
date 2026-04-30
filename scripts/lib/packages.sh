@@ -12,6 +12,7 @@ COMMON_TOOLS=(
 	"bat|batcat"
 	"stow"
 	"neovim"
+	"helix"
 	"jq"
 	"just"
 	"alacritty"
