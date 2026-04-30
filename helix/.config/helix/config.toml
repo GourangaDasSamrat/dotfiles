@@ -2,7 +2,7 @@ theme = "dracula"
 
 # ── Editor ────────────────────────────────────
 [editor]
-line-number          = "relative"
+line-number          = "absolute"
 cursorline           = true
 color-modes          = true
 rulers               = []
@@ -12,7 +12,7 @@ mouse                = true
 middle-click-paste   = false
 auto-save            = true
 auto-format          = true
-idle-timeout         = 1000
+idle-timeout         = 500
 completion-timeout   = 5
 preview-completion-insert = true
 completion-trigger-len = 1
