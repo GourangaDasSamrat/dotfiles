@@ -1,51 +1,83 @@
+# User identity configuration - used for commit authorship
 [user]
 	name = Gouranga Das Samrat
 	email = gouranga.das.khulna@gmail.com
 	signingkey = A72744D62F95F2DB61C5161B9BEEA05E7FA01166
 
+# Commit signing configuration - automatically sign all commits with GPG
 [commit]
         gpgsign = true
+
+# GPG configuration for commit signing
 [gpg]
         program = gpg
 
+# Repository initialization defaults
 [init]
 	defaultBranch = main
 
+# Core git configuration - paths and editor preferences
 [core]
 	hooksPath = ~/.git-hooks
 	editor = nvim
 
+# Color output - improve readability of git commands
 [color]
         ui = auto
 
+# Fetch configuration - automatically remove deleted remote branches locally
 [fetch]
     prune = true
 
+# Push configuration - automatically set up remote tracking for new branches
 [push]
     autoSetupRemote = true
 
-# alias
+# Email configuration for git send-email - allows sending patches via SMTP
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = gouranga.das.khulna@gmail.com
+    confirm = auto
+    smtpsslverify = false
+
+# Credential management - retrieves Gmail SMTP password from pass password manager
+[credential]
+    helper = "!f() { echo \"password=$(pass app/gmail-smtp)\"; }; f"
+
+# Custom git aliases - shortcuts for frequently used commands
 [alias]
+       # Graph log - displays commit history as a decorated graph
        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+       # Graph log all branches - shows commits from all branches in the graph
        lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+       # Today's commits - displays only commits from today with formatted timestamps
        today = log --since=midnight --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
+       # Yesterday's commits - shows commits from yesterday
        yesterday = log --since='yesterday.midnight' --until='midnight' --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset' --date=format:'%I:%M %p'
+       # Last month's commits - displays commits from the past month with date formatting
        lastmonth = log --since='1 month ago' --pretty=format:'%C(yellow)%h%Creset %C(magenta)[%ad]%Creset %s %C(green)(%cr)%Creset %C(bold blue)<%an>%Creset' --date=format:'%Y-%m-%d'
+       # Monthly statistics - summarizes contributions by author in the past month
        monthstat = shortlog --since='1 month ago' --summary --numbered
+       # Personal commits - filters log to show only commits by the configured user
        mine = "!git log --author=\"$(git config user.name)\" --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit"
+       # Last commit details - displays full information about the most recent commit
        last = show --no-patch --format='%C(yellow)Commit: %h%Creset%n%C(magenta)Author: %an%Creset%n%C(cyan)Date:   %ad %Cgreen(%cr)%Creset%n%n    %B%n' --date=format:'%Y-%m-%d %I:%M %p'
+       # Undo last commit - reverts the last commit while preserving changes
        undo = reset --soft HEAD~1
+       # Unstage files - removes files from the staging area
        unstage = reset HEAD --
+       # Export log - saves git history to a file for backup or review
        el = "!sh -c 'git log > git_history.txt'"
 
-# git lfs
+# Git LFS (Large File Storage) configuration - handles large binary files efficiently
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 
-
-# include local git config file(where gh save credential)
+# Local configuration override - includes machine-specific settings (e.g., credentials from gh CLI)
 [include]
        path = ~/.gitconfig.local
