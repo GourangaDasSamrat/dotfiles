@@ -1,0 +1,112 @@
+theme = "dracula"
+
+# ── Editor ────────────────────────────────────
+[editor]
+line-number          = "relative"
+cursorline           = true
+color-modes          = true
+rulers               = []
+scrolloff            = 8
+scroll-lines         = 3
+mouse                = true
+middle-click-paste   = false
+auto-save            = true
+auto-format          = true
+idle-timeout         = 1000
+completion-timeout   = 5
+preview-completion-insert = true
+completion-trigger-len = 1
+auto-info            = true
+text-width           = 100
+default-line-ending  = "lf"
+insert-final-newline = false
+popup-border         = "all"
+indent-guides.render = true
+indent-guides.character = "│"
+indent-guides.skip-levels = 1
+bufferline           = "multiple"
+gutters              = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+end-of-line-diagnostics = "hint"
+
+[editor.statusline]
+left   = ["mode", "spinner", "spacer", "file-name", "file-modification-indicator"]
+center = []
+right  = ["diagnostics", "selections", "primary-selection-length", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+display-messages    = true
+display-inlay-hints = true
+snippets            = true
+goto-reference-include-declaration = true
+
+[editor.cursor-shape]
+normal  = "block"
+insert  = "bar"
+select  = "underline"
+
+[editor.file-picker]
+hidden          = false
+follow-symlinks = true
+ignore          = true
+
+[editor.search]
+smart-case = true
+
+[editor.whitespace.render]
+space   = "none"
+tab     = "all"
+nbsp    = "all"
+newline = "none"
+
+[editor.whitespace.characters]
+tab          = "→"
+tabpad       = " "
+newline      = "⏎"
+
+[editor.smart-tab]
+enable         = true
+supersede-menu = false
+
+[editor.auto-pairs]
+"(" = ")"
+"{" = "}"
+"[" = "]"
+'"' = '"'
+"'" = "'"
+"`" = "`"
+
+[editor.soft-wrap]
+enable            = true
+max-wrap          = 25
+max-indent-retain = 40
+wrap-indicator    = "↪ "
+
+# ── Keys ──────────────────────────────────────
+[keys.normal]
+"A-left"    = "jump_backward"
+"A-right"   = "jump_forward"
+
+# Commented out as they are not standard Helix commands
+# "A-f"       = "fold_all"
+# "A-o"       = "unfold_all"
+
+# Toggle mouse support
+"C-A-b"     = ":toggle mouse"
+
+"C-r"       = ":sh sh -c 'hx --health > /tmp/hx_health.txt'"
+"A-d"       = "select_next_sibling"
+
+"F7"        = "goto_prev_diag"
+"F8"        = "goto_next_diag"
+"F4"        = ":sh xfce4-terminal &"
+
+# Duplicate line (Ctrl+D / Ctrl+U)
+"C-d"       = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "paste_after", "collapse_selection"]
+"C-u"       = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "paste_before", "collapse_selection"]
+
+[keys.insert]
+"A-d"       = "select_next_sibling"
