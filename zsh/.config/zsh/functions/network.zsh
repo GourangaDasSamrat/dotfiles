@@ -29,22 +29,35 @@ if command -v http &> /dev/null; then
   # 2. Define 'myip' to show public IP details using httpie
   myip() {
     echo -e "\n${COLOR_HEADER}󰩟 Fetching Public IP Info...${COLOR_RESET}"
-    
-    # Fetching from ipinfo.io for a nice JSON response
-    local ip_data=$(http -b ipinfo.io 2>/dev/null)
-    
-    if [[ -n "$ip_data" ]]; then
-      local ip=$(echo "$ip_data" | grep -Po '"ip": "\K[^"]*')
-      local city=$(echo "$ip_data" | grep -Po '"city": "\K[^"]*')
-      local region=$(echo "$ip_data" | grep -Po '"region": "\K[^"]*')
-      local org=$(echo "$ip_data" | grep -Po '"org": "\K[^"]*')
 
-      echo -e "${COLOR_NORMAL}Address:  ${COLOR_SUCCESS}${ip}${COLOR_RESET}"
-      echo -e "${COLOR_NORMAL}Location: ${COLOR_TEXT}${city}, ${region}${COLOR_RESET}"
-      echo -e "${COLOR_NORMAL}ISP:      ${COLOR_TEXT}${org}${COLOR_RESET}"
-    else
+    # Fetching from ipinfo.io for a nice JSON response
+    local ip_data
+    ip_data=$(http -b ipinfo.io 2>/dev/null)
+
+    if [[ -z "$ip_data" ]]; then
       echo -e "${COLOR_ERROR}✘ Failed to retrieve IP data.${COLOR_RESET}"
+      echo ""
+      return 1
     fi
+
+    if command -v jq &> /dev/null; then
+      local ip city region org
+      ip=$(echo "$ip_data"     | jq -r '.ip     // "N/A"')
+      city=$(echo "$ip_data"   | jq -r '.city   // "N/A"')
+      region=$(echo "$ip_data" | jq -r '.region // "N/A"')
+      org=$(echo "$ip_data"    | jq -r '.org    // "N/A"')
+    else
+      # Fallback: POSIX-safe grep (no -P flag) for macOS/BSD compatibility
+      local ip city region org
+      ip=$(echo "$ip_data"     | grep -o '"ip":[[:space:]]*"[^"]*"'     | cut -d'"' -f4)
+      city=$(echo "$ip_data"   | grep -o '"city":[[:space:]]*"[^"]*"'   | cut -d'"' -f4)
+      region=$(echo "$ip_data" | grep -o '"region":[[:space:]]*"[^"]*"' | cut -d'"' -f4)
+      org=$(echo "$ip_data"    | grep -o '"org":[[:space:]]*"[^"]*"'    | cut -d'"' -f4)
+    fi
+
+    echo -e "${COLOR_NORMAL}Address:  ${COLOR_SUCCESS}${ip}${COLOR_RESET}"
+    echo -e "${COLOR_NORMAL}Location: ${COLOR_TEXT}${city}, ${region}${COLOR_RESET}"
+    echo -e "${COLOR_NORMAL}ISP:      ${COLOR_TEXT}${org}${COLOR_RESET}"
     echo ""
   }
 
