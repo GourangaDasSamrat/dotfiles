@@ -273,6 +273,7 @@ _alacritty · starship_
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                              |
 | **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim |
 | **python tools** _(opt)_ | httpie · ytm-player                                                                   |
+| **cargo tools** _(opt)_  | cargo-watch                                                                           |
 
 </div>
 
@@ -296,9 +297,10 @@ lib/plugins.sh       oh my zsh · tpm · zsh plugins
 lib/wallpapers.sh    clones wallpapers repo
 lib/dotfiles.sh      gnu stow · git hook permissions
 lib/go_tools.sh      optional go dev tools
-lib/python_tools.sh  optional python cli tools (but highly recommended)
+lib/python_tools.sh  optional python cli tools
+lib/cargo_tools.sh   optional rust cli tools
 
-install.sh           runs everything above in order
+install.sh           runs everything above in order (expect optional tools)
 setup.sh             interactive — run only what you want
 ```
 
