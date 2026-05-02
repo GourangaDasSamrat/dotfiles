@@ -1,8 +1,3 @@
-# ─────────────────────────────────────────────
-#  Helix  languages.toml
-#  Cloned from VSCode settings (python / sql / prisma removed)
-# ─────────────────────────────────────────────
-
 # ── C ─────────────────────────────────────────
 [[language]]
 name       = "c"
