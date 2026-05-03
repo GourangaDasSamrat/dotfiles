@@ -262,18 +262,18 @@ _alacritty · starship_
 
 <div align="center">
 
-|                          |                                                                                       |
-| :----------------------- | :------------------------------------------------------------------------------------ |
-| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils                        |
-| **shell utils**          | eza · bat · fzf · fd · jq · stow                                                      |
-| **network**              | curl · wget · whois · gh                                                              |
-| **linux only**           | zsh · build-essential · rofi                                                          |
-| **mac only**             | uv                                                                                    |
-| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                           |
-| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                              |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim |
-| **python tools** _(opt)_ | httpie · ytm-player                                                                   |
-| **cargo tools** _(opt)_  | cargo-watch                                                                           |
+|                          |                                                                                                    |
+| :----------------------- | :------------------------------------------------------------------------------------------------- |
+| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils                                     |
+| **shell utils**          | eza · bat · fzf · fd · jq · stow                                                                   |
+| **network**              | curl · wget · whois · gh                                                                           |
+| **linux only**           | zsh · build-essential · rofi                                                                       |
+| **mac only**             | uv                                                                                                 |
+| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                        |
+| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                           |
+| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim · goreleaser |
+| **python tools** _(opt)_ | httpie · ytm-player                                                                                |
+| **cargo tools** _(opt)_  | cargo-watch · cargo-cache · cargo-dist                                                             |
 
 </div>
 
