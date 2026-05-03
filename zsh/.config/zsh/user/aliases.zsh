@@ -52,11 +52,26 @@ if alias code > /dev/null 2>&1 || (($+commands[code])); then
   alias code-w='code --profile "Wiki Dev"'
 fi
 
-# --- Go' Aliases ---
+# --- Go's Aliases ---
 if (($+commands[go])); then
   alias gr='go run .'
   alias gb='go build'
   alias gmod='go mod'
+fi
+
+# --- Cargo's Aliases ---
+if (($+commands[cargo])); then
+  # Basic Workflow
+  alias cr='cargo run'
+  alias cb='cargo build'
+  alias ct='cargo test'
+  alias cc='cargo check'
+  alias cn='cargo new'
+
+  # Cleanup & Docs
+  alias ccl='cargo clean'
+  alias cdoc='cargo doc --open'
+  alias cdc='cargo doc --no-deps --open'
 fi
 
 # --- GitHub CLI's Aliases ---
