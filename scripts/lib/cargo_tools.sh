@@ -31,6 +31,8 @@ $UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" ||
 # Format: ["binary_name"]="crate_name"
 declare -A RUST_TOOLS=(
   ["cargo-watch"]="cargo-watch"
+  ["cargo-cache"]="cargo-cache"
+  ["cargo-dist"]="cargo-dist"
 )
 
 FAILED_TOOLS=0

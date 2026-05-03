@@ -27,6 +27,7 @@ declare -A GO_TOOLS=(
     ["air"]="github.com/air-verse/air@latest"
     ["gotests"]="github.com/cweill/gotests/gotests@latest"
     ["govulncheck"]="golang.org/x/vuln/cmd/govulncheck@latest"
+    ["goreleaser"]="github.com/goreleaser/goreleaser/v2@latest"
     ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
     ["usql"]="github.com/xo/usql@latest"
     ["slim"]="github.com/kamranahmedse/slim@latest"
