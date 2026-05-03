@@ -27,5 +27,4 @@ init: |
   \set PROMPT2 "\033[38;5;61m[\033[38;5;242m%R\033[38;5;61m]\033[0m "
   \set PROMPT3 "\033[38;5;212mpassword:\033[0m "
   \setenv PAGER 'less -SRXF'
-  \setenv EDITOR 'nvim'
   \i ~/.connections.usql
