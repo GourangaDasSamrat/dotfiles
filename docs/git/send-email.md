@@ -1,10 +1,10 @@
-# Setting Up Git Send-Email in Termux
+# Setting Up Git Send-Email 
 
-This guide provides instructions for configuring `git send-email` in Termux to send patch emails directly from the command line.
+This guide provides instructions for configuring `git send-email` to send patch emails directly from the command line.
 
 ## Prerequisites
 
-You need Perl and CPAN installed. Termux should have these available by default.
+You need Perl and CPAN installed.
 
 ## Installation
 
@@ -37,4 +37,3 @@ git send-email --to recipient@example.com patches/
 ## References
 
 - [git send-email documentation](https://git-scm.com/docs/git-send-email)
-- [Setting up SMTP in Termux](https://github.com/termux/termux-packages)
