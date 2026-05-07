@@ -34,7 +34,7 @@ path=(
   "/opt/homebrew/sbin"         # Homebrew sbin (Apple Silicon)
   "$HOME/.cargo/bin"           # Rust/Cargo binaries
   "$GOPATH/bin"                # Go binaries using
-  $HOME/{.local/bin}(N-/)      # Local user binaries
+  "$HOME/.local/bin"           # Local user binaries
   $path
 )
 export PATH
