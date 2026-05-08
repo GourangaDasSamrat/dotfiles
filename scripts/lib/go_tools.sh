@@ -31,6 +31,8 @@ declare -A GO_TOOLS=(
     ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
     ["usql"]="github.com/xo/usql@latest"
     ["slim"]="github.com/kamranahmedse/slim@latest"
+    ["eget"]="github.com/zyedidia/eget@latest"
+    ["sheets"]="github.com/maaslalani/sheets@main"
 )
 
 USQL_TAGS="mysql postgres sqlite3 moderncsqlite"
