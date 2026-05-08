@@ -12,12 +12,12 @@ setup_dotfiles() {
 	if stow tmux vscode zsh bash git gh  alacritty usql neovim ytm-player cspell; then
 		echo "Stow completed successfully!"
 
-		if [ -d "$HOME/git-hooks" ]; then
+		if [ -d "$HOME/.git-hooks" ]; then
 			echo "Setting execute permissions for git hooks..."
-			chmod +x "$HOME/git-hooks"/*
+			chmod +x "$HOME/.git-hooks"/*
 			echo "Git hooks permissions updated!"
 		else
-			echo "Note: ~/git-hooks not found. Skipping chmod."
+			echo "Note: ~/.git-hooks not found. Skipping chmod."
 		fi
 	else
 		echo "Error: Stow failed."
