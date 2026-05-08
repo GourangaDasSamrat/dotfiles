@@ -1,13 +1,16 @@
 #!/bin/sh
 
-# Load environment variables from secrets file
-if [ -f "$HOME/.zsh_secrets" ]; then
-    . "$HOME/.zsh_secrets"
+# Verify if pass is available
+if ! command -v pass > /dev/null 2>&1; then
+    printf "Error: 'pass' is not installed.\n" > /dev/tty
+    exit 1
 fi
 
-# Verify if the required security variable is initialized
+# Read passphrase directly from pass
+GIT_PUSH_PASS=$(pass git/push_pass 2>/dev/null)
+
 if [ -z "$GIT_PUSH_PASS" ]; then
-    printf "Error: GIT_PUSH_PASS environment variable is not defined.\n" > /dev/tty
+    printf "Error: Could not retrieve passphrase from pass (git/push_pass).\n" > /dev/tty
     exit 1
 fi
 
@@ -18,7 +21,7 @@ read -r entered_pass < /dev/tty
 stty echo < /dev/tty
 printf "\n" > /dev/tty
 
-# Validate passphrase against the secure environment variable
+# Validate passphrase
 if [ "$entered_pass" = "$GIT_PUSH_PASS" ]; then
     printf "Verification Successful. Proceeding with push.\n" > /dev/tty
     exit 0
