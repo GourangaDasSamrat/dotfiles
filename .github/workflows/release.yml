@@ -1,0 +1,161 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get previous tag
+        id: get-previous-tag
+        run: |
+          # Get the current tag that triggered the workflow
+          CURRENT_TAG="${GITHUB_REF#refs/tags/}"
+          echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
+
+          # Get the previous tag (or use the first commit if no previous tag exists)
+          PREVIOUS_TAG=$(git tag --list --sort=-version:refname --merged "$CURRENT_TAG" | grep -v "^$CURRENT_TAG$" | head -n 1)
+
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # No previous tag, use the root commit
+            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
+
+          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+          echo "Current tag: $CURRENT_TAG"
+          echo "Previous tag: $PREVIOUS_TAG"
+
+      - name: Generate release notes from conventional commits
+        id: generate-notes
+        run: |
+          CURRENT_TAG="${{ steps.get-previous-tag.outputs.current_tag }}"
+          PREVIOUS_TAG="${{ steps.get-previous-tag.outputs.previous_tag }}"
+
+          # Get all commits between previous and current tag
+          if [ "$PREVIOUS_TAG" = "$(git rev-list --max-parents=0 HEAD)" ]; then
+            # If previous_tag is the root commit, use it directly
+            COMMITS=$(git log --pretty=format:"%h|%an|%s|%ae" "$PREVIOUS_TAG..HEAD")
+          else
+            COMMITS=$(git log --pretty=format:"%h|%an|%s|%ae" "$PREVIOUS_TAG..$CURRENT_TAG")
+          fi
+
+          # Initialize sections
+          FEATURES=""
+          BUGFIXES=""
+          DOCUMENTATION=""
+          PERFORMANCE=""
+          REFACTOR=""
+          TESTS=""
+          CHORE=""
+          OTHER=""
+          BREAKING=""
+
+          # Categorize commits based on conventional commits
+          while IFS='|' read -r HASH AUTHOR EMAIL SUBJECT; do
+            if [ -z "$SUBJECT" ]; then
+              continue
+            fi
+
+            # Build commit link
+            REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
+            COMMIT_LINK="[\`${HASH:0:7}\`](${REPO_URL}/commit/${HASH})"
+            COMMIT_ENTRY="- ${SUBJECT} ([${AUTHOR}](mailto:${EMAIL})) ${COMMIT_LINK}"
+
+            # Check for breaking changes
+            if [[ "$SUBJECT" =~ ^[a-z]+!: ]]; then
+              BREAKING="${BREAKING}${COMMIT_ENTRY}"$'\n'
+            fi
+
+            # Categorize by type
+            if [[ "$SUBJECT" =~ ^feat(\(.+\))?!?: ]]; then
+              FEATURES="${FEATURES}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^fix(\(.+\))?!?: ]]; then
+              BUGFIXES="${BUGFIXES}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^docs(\(.+\))?!?: ]]; then
+              DOCUMENTATION="${DOCUMENTATION}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^perf(\(.+\))?!?: ]]; then
+              PERFORMANCE="${PERFORMANCE}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^refactor(\(.+\))?!?: ]]; then
+              REFACTOR="${REFACTOR}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^test(\(.+\))?!?: ]]; then
+              TESTS="${TESTS}${COMMIT_ENTRY}"$'\n'
+            elif [[ "$SUBJECT" =~ ^chore(\(.+\))?!?: ]]; then
+              CHORE="${CHORE}${COMMIT_ENTRY}"$'\n'
+            else
+              OTHER="${OTHER}${COMMIT_ENTRY}"$'\n'
+            fi
+          done <<< "$COMMITS"
+
+          # Build release notes
+          RELEASE_NOTES=""
+
+          if [ -n "$BREAKING" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## ⚠️ Breaking Changes"$'\n\n'"${BREAKING}"$'\n'
+          fi
+
+          if [ -n "$FEATURES" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## ✨ New Features"$'\n\n'"${FEATURES}"$'\n'
+          fi
+
+          if [ -n "$BUGFIXES" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## 🐛 Bug Fixes"$'\n\n'"${BUGFIXES}"$'\n'
+          fi
+
+          if [ -n "$PERFORMANCE" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## ⚡ Performance Improvements"$'\n\n'"${PERFORMANCE}"$'\n'
+          fi
+
+          if [ -n "$REFACTOR" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## ♻️ Refactoring"$'\n\n'"${REFACTOR}"$'\n'
+          fi
+
+          if [ -n "$TESTS" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## ✅ Tests"$'\n\n'"${TESTS}"$'\n'
+          fi
+
+          if [ -n "$DOCUMENTATION" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## 📚 Documentation"$'\n\n'"${DOCUMENTATION}"$'\n'
+          fi
+
+          if [ -n "$CHORE" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## 🔧 Chores"$'\n\n'"${CHORE}"$'\n'
+          fi
+
+          if [ -n "$OTHER" ]; then
+            RELEASE_NOTES="${RELEASE_NOTES}## Other Changes"$'\n\n'"${OTHER}"$'\n'
+          fi
+
+          # If no categorized commits, set default message
+          if [ -z "$RELEASE_NOTES" ]; then
+            RELEASE_NOTES="No changes in this release."
+          fi
+
+          # Escape multi-line content for GitHub Actions
+          RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
+
+          echo "release_notes=$RELEASE_NOTES" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.get-previous-tag.outputs.current_tag }}
+          release_name: ${{ steps.get-previous-tag.outputs.current_tag }}
+          body: ${{ steps.generate-notes.outputs.release_notes }}
+          draft: false
+          prerelease: false
