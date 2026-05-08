@@ -46,116 +46,85 @@ jobs:
           # Get all commits between previous and current tag
           if [ "$PREVIOUS_TAG" = "$(git rev-list --max-parents=0 HEAD)" ]; then
             # If previous_tag is the root commit, use it directly
-            COMMITS=$(git log --pretty=format:"%h|%an|%s|%ae" "$PREVIOUS_TAG..HEAD")
+            COMMITS=$(git log --pretty=format:"%h|%an|%s" "$PREVIOUS_TAG..HEAD")
           else
-            COMMITS=$(git log --pretty=format:"%h|%an|%s|%ae" "$PREVIOUS_TAG..$CURRENT_TAG")
+            COMMITS=$(git log --pretty=format:"%h|%an|%s" "$PREVIOUS_TAG..$CURRENT_TAG")
           fi
 
-          # Initialize sections
-          FEATURES=""
-          BUGFIXES=""
-          DOCUMENTATION=""
-          PERFORMANCE=""
-          REFACTOR=""
-          TESTS=""
-          CHORE=""
-          OTHER=""
-          BREAKING=""
+          # Initialize temporary files for each section
+          TEMP_DIR=$(mktemp -d)
+          touch "$TEMP_DIR"/{breaking,features,bugfixes,performance,refactor,tests,documentation,chore,other}
 
           # Categorize commits based on conventional commits
-          while IFS='|' read -r HASH AUTHOR EMAIL SUBJECT; do
+          while IFS='|' read -r HASH AUTHOR SUBJECT; do
             if [ -z "$SUBJECT" ]; then
               continue
             fi
 
             # Build commit link
             REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
-            COMMIT_LINK="[\`${HASH:0:7}\`](${REPO_URL}/commit/${HASH})"
-            COMMIT_ENTRY="- ${SUBJECT} ([${AUTHOR}](mailto:${EMAIL})) ${COMMIT_LINK}"
+            SHORT_HASH="${HASH:0:7}"
+            COMMIT_ENTRY="- ${SUBJECT} (${AUTHOR}) [${SHORT_HASH}](${REPO_URL}/commit/${HASH})"
 
-            # Check for breaking changes
+            # Check for breaking changes (takes precedence)
             if [[ "$SUBJECT" =~ ^[a-z]+!: ]]; then
-              BREAKING="${BREAKING}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/breaking"
             fi
 
             # Categorize by type
             if [[ "$SUBJECT" =~ ^feat(\(.+\))?!?: ]]; then
-              FEATURES="${FEATURES}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/features"
             elif [[ "$SUBJECT" =~ ^fix(\(.+\))?!?: ]]; then
-              BUGFIXES="${BUGFIXES}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/bugfixes"
             elif [[ "$SUBJECT" =~ ^docs(\(.+\))?!?: ]]; then
-              DOCUMENTATION="${DOCUMENTATION}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/documentation"
             elif [[ "$SUBJECT" =~ ^perf(\(.+\))?!?: ]]; then
-              PERFORMANCE="${PERFORMANCE}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/performance"
             elif [[ "$SUBJECT" =~ ^refactor(\(.+\))?!?: ]]; then
-              REFACTOR="${REFACTOR}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/refactor"
             elif [[ "$SUBJECT" =~ ^test(\(.+\))?!?: ]]; then
-              TESTS="${TESTS}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/tests"
             elif [[ "$SUBJECT" =~ ^chore(\(.+\))?!?: ]]; then
-              CHORE="${CHORE}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/chore"
             else
-              OTHER="${OTHER}${COMMIT_ENTRY}"$'\n'
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/other"
             fi
           done <<< "$COMMITS"
 
-          # Build release notes
-          RELEASE_NOTES=""
+          # Build release notes file
+          RELEASE_NOTES_FILE=$(mktemp)
 
-          if [ -n "$BREAKING" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## ⚠️ Breaking Changes"$'\n\n'"${BREAKING}"$'\n'
+          [ -s "$TEMP_DIR/breaking" ] && echo -e "## ⚠️ Breaking Changes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/breaking" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/features" ] && echo -e "## ✨ New Features\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/features" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/bugfixes" ] && echo -e "## 🐛 Bug Fixes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/bugfixes" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/performance" ] && echo -e "## ⚡ Performance Improvements\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/performance" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/refactor" ] && echo -e "## ♻️ Refactoring\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/refactor" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/tests" ] && echo -e "## ✅ Tests\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/tests" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/documentation" ] && echo -e "## 📚 Documentation\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/documentation" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/chore" ] && echo -e "## 🔧 Chores\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/chore" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/other" ] && echo -e "## Other Changes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/other" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+
+          # If release notes are empty, set default message
+          if [ ! -s "$RELEASE_NOTES_FILE" ]; then
+            echo "No changes in this release." >> "$RELEASE_NOTES_FILE"
           fi
 
-          if [ -n "$FEATURES" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## ✨ New Features"$'\n\n'"${FEATURES}"$'\n'
-          fi
+          # Output the release notes using delimiter method for multi-line content
+          DELIMITER="EOF_$(date +%s)"
+          echo "release_notes<<$DELIMITER" >> $GITHUB_OUTPUT
+          cat "$RELEASE_NOTES_FILE" >> $GITHUB_OUTPUT
+          echo "$DELIMITER" >> $GITHUB_OUTPUT
 
-          if [ -n "$BUGFIXES" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## 🐛 Bug Fixes"$'\n\n'"${BUGFIXES}"$'\n'
-          fi
-
-          if [ -n "$PERFORMANCE" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## ⚡ Performance Improvements"$'\n\n'"${PERFORMANCE}"$'\n'
-          fi
-
-          if [ -n "$REFACTOR" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## ♻️ Refactoring"$'\n\n'"${REFACTOR}"$'\n'
-          fi
-
-          if [ -n "$TESTS" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## ✅ Tests"$'\n\n'"${TESTS}"$'\n'
-          fi
-
-          if [ -n "$DOCUMENTATION" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## 📚 Documentation"$'\n\n'"${DOCUMENTATION}"$'\n'
-          fi
-
-          if [ -n "$CHORE" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## 🔧 Chores"$'\n\n'"${CHORE}"$'\n'
-          fi
-
-          if [ -n "$OTHER" ]; then
-            RELEASE_NOTES="${RELEASE_NOTES}## Other Changes"$'\n\n'"${OTHER}"$'\n'
-          fi
-
-          # If no categorized commits, set default message
-          if [ -z "$RELEASE_NOTES" ]; then
-            RELEASE_NOTES="No changes in this release."
-          fi
-
-          # Escape multi-line content for GitHub Actions
-          RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
-          RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
-          RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
-
-          echo "release_notes=$RELEASE_NOTES" >> $GITHUB_OUTPUT
+          # Cleanup
+          rm -rf "$TEMP_DIR"
+          rm "$RELEASE_NOTES_FILE"
 
       - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.get-previous-tag.outputs.current_tag }}
-          release_name: ${{ steps.get-previous-tag.outputs.current_tag }}
+          tag: ${{ steps.get-previous-tag.outputs.current_tag }}
+          name: ${{ steps.get-previous-tag.outputs.current_tag }}
           body: ${{ steps.generate-notes.outputs.release_notes }}
           draft: false
           prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
