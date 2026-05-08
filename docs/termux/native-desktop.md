@@ -20,7 +20,7 @@ pkg update && pkg upgrade -y
 pkg install git curl wget x11-repo tur-repo termux-x11-nightly pulseaudio -y
 
 # Applications
-apt install firefox code-oss mousepad eog galculator pinentry-gnome3 -y
+apt install firefox code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
 
 # Programming tools
 apt install golang rust cargo-binstall nodejs-lts uv -y
@@ -28,14 +28,12 @@ apt install golang rust cargo-binstall nodejs-lts uv -y
 # XFCE4 desktop environment and plugins
 apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager -y
 
-# Download startup script
-wget https://raw.githubusercontent.com/LinuxDroidMaster/Termux-Desktops/main/scripts/termux_native/startxfce4_termux.sh
 ```
 
 ### Setup Startup Script
 
 ```bash
-mv startxfce4_termux.sh start.sh
+cp -r ~/dotfiles/docs/termux/native-desktop-start.sh ~/start.sh
 chmod +x start.sh
 ```
 
