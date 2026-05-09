@@ -57,7 +57,7 @@ rm ~/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
 3. Create a symlink to the system binary:
 
 ```bash
-ln -s /data/data/com.termux/files/usr/bin/rust-analyzer ~/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
+ln -s $(which rust-analyzer) ~/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
 ```
 
 **Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
@@ -79,16 +79,41 @@ rm ~/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
 3. Create a symlink to the system binary:
 
 ```bash
-ln -s /data/data/com.termux/files/usr/bin/lua-language-server ~/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
+ln -s $(which lua-language-server) ~/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
+```
+
+**Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
+
+### CodeLLDB Debugger
+
+1. Install the CodeLLDB package:
+
+```bash
+apt install codelldb
+```
+
+2. Remove the broken bundled binaries from the extension:
+
+```bash
+rm -rf ~/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
+```
+
+3. Create symlinks to the system binaries:
+
+```bash
+ln -s $(which codelldb) ~/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb
+ln -s $(which lldb) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb
+ln -s $(which lldb-server) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server
+ln -s $(which lldb-argdumper) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
 ```
 
 **Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
 
 ## Troubleshooting
 
-If language servers are not working after setup:
+If language servers or debuggers are not working after setup:
 
-- Verify the symlinks exist: `ls -l ~/.vscode/extensions/[extension-name]*/server/`
-- Confirm the system binary is installed: `which rust-analyzer` or `which lua-language-server`
-- Reload VS Code or restart the language server from the command palette (`Ctrl+Shift+P`)
-- Check VS Code's output panel for language server errors
+- Verify the symlinks exist: `ls -l ~/.vscode/extensions/[extension-name]*/server/` or `ls -l ~/.vscode/extensions/[extension-name]*/adapter/`
+- Ensure symlink targets are executable: `file $(which codelldb)` or `file $(which lldb)`
+- Reload VS Code or restart the language server/debugger from the command palette (`Ctrl+Shift+P`)
+- Check VS Code's output panel for language server or debugger errors
