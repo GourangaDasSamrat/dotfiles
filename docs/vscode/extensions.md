@@ -83,6 +83,7 @@
 | Extension               | Publisher | Marketplace Link                                                                       |
 | ----------------------- | --------- | -------------------------------------------------------------------------------------- |
 | rust-lang.rust-analyzer | rust-lang | [ Link](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)   |
+| CodeLLDB                | vadimcn   | [ Link](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)       |
 | Code Runner             | Jun Han   | [ Link](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) |
 
 ---
