@@ -245,3 +245,14 @@ language-servers = ["marksman"]
 [language-server.marksman]
 command = "marksman"
 args    = ["server"]
+
+# ── SQL ───────────────────────────────────────
+[[language]]
+name       = "sql"
+auto-format = true
+language-servers = ["sql-language-server"]
+formatter  = { command = "sql-formatter", args = ["-l", "sql"] }
+
+[language-server.sql-language-server]
+command = "sql-language-server"
+args    = ["up", "--method", "stdio"]
