@@ -11,7 +11,6 @@ COMMON_TOOLS=(
 	"eza"
 	"bat|batcat"
 	"stow"
-	"neovim"
 	"helix"
 	"jq"
 	"just"
