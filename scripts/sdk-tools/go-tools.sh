@@ -21,14 +21,19 @@ $UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" \
 
 # ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A GO_TOOLS=(
+    # Core Development Tools
     ["goimports"]="golang.org/x/tools/cmd/goimports@latest"
     ["golangci-lint"]="github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
     ["gopls"]="golang.org/x/tools/gopls@latest"
     ["air"]="github.com/air-verse/air@latest"
     ["gotests"]="github.com/cweill/gotests/gotests@latest"
     ["govulncheck"]="golang.org/x/vuln/cmd/govulncheck@latest"
+
+    # Build & Release Tools
     ["goreleaser"]="github.com/goreleaser/goreleaser/v2@latest"
     ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
+
+    # Utilities & Database Tools
     ["usql"]="github.com/xo/usql@latest"
     ["slim"]="github.com/kamranahmedse/slim@latest"
     ["eget"]="github.com/zyedidia/eget@latest"
