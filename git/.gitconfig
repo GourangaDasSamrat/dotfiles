@@ -19,7 +19,7 @@
 # Core git configuration - paths, editor and whitespace preferences
 [core]
   hooksPath = ~/.git-hooks
-  editor = nvim
+  editor = hx
   whitespace = space-before-tab,trailing-space
 
 # Color output - improve readability of git commands
