@@ -178,7 +178,7 @@ backup() {
 
 # Weather check
 weather() {
-  local city="${1:-Khulna}"
+  local city="${1:-${MY_LOCATION:-Khulna}}"
   echo -e "\n${COLOR_HEADER}󰖐 Fetching weather for ${COLOR_TEXT}${city}...${COLOR_RESET}"
 
   # ?0mTq: 0 (current only), m (metric), T (no colors to use your own), q (quiet)
