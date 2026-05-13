@@ -1,6 +1,7 @@
 # --- Termux Specific Environment Variables ---
 if [[ -d /data/data/com.termux ]]; then
    export SSL_CERT_FILE=/data/data/com.termux/files/usr/etc/tls/cert.pem # Path to SSL certificates
+   export BUN_OPTIONS="--os=android"                                    # Bun os option
 fi
 
 # --- Editor & Pager ---
