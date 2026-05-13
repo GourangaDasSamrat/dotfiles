@@ -156,4 +156,12 @@ curl -fsSL https://bun.sh/install | bash
 
 ---
 
+**Termux:**
+
+```bash
+curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" | bash -s install
+```
+
+---
+
 > **Note:** Some installers auto-append lines to your shell config (`~/.bashrc`, `~/.zshrc`, etc.). Since you already have PATH configured, check for duplicates after install and remove them.
