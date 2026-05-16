@@ -20,6 +20,8 @@ alias reload="source ~/.config/zsh/.zshrc && echo 'ZSH Config Reloaded!'"
 # --- Safety ---
 alias cp='cp -iv'
 alias mv='mv -iv'
+alias afk="lock-vault && clear && exit"
+alias play="cat > /dev/null"
 
 # --- Gpg's Aliases ---
 alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
