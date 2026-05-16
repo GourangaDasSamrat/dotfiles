@@ -362,5 +362,14 @@
     "key": "option+-",
     "command": "editor.action.fontZoomOut",
     "when": "isMac"
-  }
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "workbench.action.moveEditorToNewWindow"
+  },
+  {
+    "key": "command+option+n",
+    "command": "workbench.action.moveEditorToNewWindow",
+    "when": "isMac"
+  },
 ]
