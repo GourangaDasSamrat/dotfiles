@@ -28,6 +28,7 @@ declare -A GO_TOOLS=(
     ["air"]="github.com/air-verse/air@latest"
     ["gotests"]="github.com/cweill/gotests/gotests@latest"
     ["govulncheck"]="golang.org/x/vuln/cmd/govulncheck@latest"
+    ["roumon"]="github.com/becheran/roumon@latest"
 
     # Build & Release Tools
     ["goreleaser"]="github.com/goreleaser/goreleaser/v2@latest"
