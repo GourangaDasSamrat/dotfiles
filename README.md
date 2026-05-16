@@ -316,7 +316,32 @@ _every script in `lib/` runs standalone. use only what you need._
 
 <div align="center">
 
-## `🔩 prerequisites`
+## `� documentation`
+
+</div>
+
+<br/>
+
+<div align="center">
+
+|  Category   | Documentation                                                                                                                                                                                     |
+| :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|  **shell**  | [zsh architecture](docs/zsh/architecture.md) · [core config](docs/zsh/core.md) · [customization](docs/zsh/customization.md) · [functions](docs/zsh/functions.md) · [plugins](docs/zsh/plugins.md) |
+|   **git**   | [send-email setup](docs/git/send-email.md)                                                                                                                                                        |
+|  **setup**  | [manual install guide](docs/setup/manual-install.md)                                                                                                                                              |
+| **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [settings](docs/vscode/settings.md) · [termux setup](docs/vscode/termux-setup.md)                           |
+|  **helix**  | [language servers](docs/helix/language-servers.md)                                                                                                                                                |
+| **termux**  | [native desktop](docs/termux/native-desktop.md) · [proot debian](docs/termux/proot-debian.md)                                                                                                     |
+
+</div>
+
+---
+
+<br/>
+
+<div align="center">
+
+## `�🔩 prerequisites`
 
 **git** &nbsp;·&nbsp; **homebrew** _(macOS only)_ — [brew.sh](https://brew.sh)
 
