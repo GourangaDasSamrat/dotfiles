@@ -18,12 +18,12 @@ apireq --help
 3. **Options** (multi-select) — Auth, Custom Headers, Query Params, Request Body
 4. **Output format:**
 
-| Format | Description                               |
-| ------ | ----------------------------------------- |
-| `bat`  | Full response with HTTP syntax highlight  |
-| `jq`   | Headers plain + body pretty-printed JSON  |
-| `auto` | bat for headers, jq if JSON else bat      |
-| `raw`  | Unformatted response                      |
+| Format | Description                              |
+| ------ | ---------------------------------------- |
+| `bat`  | Full response with HTTP syntax highlight |
+| `jq`   | Headers plain + body pretty-printed JSON |
+| `auto` | bat for headers, jq if JSON else bat     |
+| `raw`  | Unformatted response                     |
 
 ### Auth Options
 
@@ -32,11 +32,11 @@ apireq --help
 
 ### Request Body Types
 
-| Type      | Content-Type                        |
-| --------- | ----------------------------------- |
-| JSON      | `application/json`                  |
-| Raw Text  | `text/plain`                        |
-| Form Data | `application/x-www-form-urlencoded` |
+| Type      | Content-Type                          |
+| --------- | ------------------------------------- |
+| JSON      | `application/json`                    |
+| Raw Text  | `text/plain`                          |
+| Form Data | `application/x-www-form-urlencoded`   |
 | Multipart | `multipart/form-data` (`@` for files) |
 
 ### Saved Requests
@@ -80,15 +80,15 @@ compress my_folder/
 
 Opens an FZF menu to pick a compression format:
 
-| Format    | Compression | Notes              |
-| --------- | ----------- | ------------------ |
-| `tar.gz`  | Medium      | Good balance       |
-| `tar.bz2` | High        | Slower             |
-| `tar.xz`  | Very High   | Slowest            |
-| `zip`     | Medium      | Cross-platform     |
-| `7z`      | Very High   | High compression   |
-| `gz`      | Low         | Single files only  |
-| `bz2`     | Medium      | Single files only  |
+| Format    | Compression | Notes             |
+| --------- | ----------- | ----------------- |
+| `tar.gz`  | Medium      | Good balance      |
+| `tar.bz2` | High        | Slower            |
+| `tar.xz`  | Very High   | Slowest           |
+| `zip`     | Medium      | Cross-platform    |
+| `7z`      | Very High   | High compression  |
+| `gz`      | Low         | Single files only |
+| `bz2`     | Medium      | Single files only |
 
 ### Dependencies
 

@@ -6,20 +6,20 @@
 
 ### Navigation
 
-| Alias    | Command                    |
-| -------- | -------------------------- |
-| `dot`    | `cd $DOTFILES`             |
-| `dots`   | `cd $DOTFILES/scripts`     |
-| `reload` | Re-source `.zshrc`         |
+| Alias    | Command                |
+| -------- | ---------------------- |
+| `dot`    | `cd $DOTFILES`         |
+| `dots`   | `cd $DOTFILES/scripts` |
+| `reload` | Re-source `.zshrc`     |
 
 ### Safety
 
-| Alias        | Behavior                          |
-| ------------ | --------------------------------- |
-| `cp`         | `cp -iv` — confirm + verbose      |
-| `mv`         | `mv -iv` — confirm + verbose      |
-| `afk`        | Lock vault, clear screen, exit    |
-| `lock-vault` | Immediately lock GPG vault        |
+| Alias        | Behavior                       |
+| ------------ | ------------------------------ |
+| `cp`         | `cp -iv` — confirm + verbose   |
+| `mv`         | `mv -iv` — confirm + verbose   |
+| `afk`        | Lock vault, clear screen, exit |
+| `lock-vault` | Immediately lock GPG vault     |
 
 ### Eza (`ls` replacement)
 
@@ -127,6 +127,7 @@ Language modules auto-show only when in a relevant project directory.
 **Directory** — truncated to 1 level, read-only indicated with `󰌾`
 
 **Character:**
+
 - Success: `❯` in cyan (`#68f7d8`)
 - Error: `❯` in red (`#B66467`)
 
