@@ -371,5 +371,5 @@
     "key": "command+option+n",
     "command": "workbench.action.moveEditorToNewWindow",
     "when": "isMac"
-  },
+  }
 ]
