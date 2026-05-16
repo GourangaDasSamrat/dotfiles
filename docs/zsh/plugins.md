@@ -17,12 +17,12 @@ _fzf_theme_catppuccin   # Alternative (warm, pastel)
 
 ### Key Bindings
 
-| Key      | Action                    |
-| -------- | ------------------------- |
-| `Ctrl+T` | Fuzzy file picker         |
-| `Ctrl+R` | Search command history    |
-| `Alt+C`  | Fuzzy `cd`                |
-| `Tab`    | FZF-powered tab complete  |
+| Key      | Action                   |
+| -------- | ------------------------ |
+| `Ctrl+T` | Fuzzy file picker        |
+| `Ctrl+R` | Search command history   |
+| `Alt+C`  | Fuzzy `cd`               |
+| `Tab`    | FZF-powered tab complete |
 
 ### Preview
 

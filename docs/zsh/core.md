@@ -67,17 +67,17 @@ done
 
 Sets up PATH and environment variables for development tools.
 
-| Variable      | Value                 | Purpose                  |
-| ------------- | --------------------- | ------------------------ |
-| `EDITOR`      | `hx`                  | Default editor (Helix)   |
-| `VISUAL`      | `$EDITOR`             | Visual editor            |
-| `PAGER`       | `less`                | Default pager            |
-| `BAT_THEME`   | `Dracula`             | bat syntax theme         |
-| `DOTFILES`    | `$HOME/dotfiles`      | Dotfiles location        |
-| `BUN_INSTALL` | `$HOME/.bun`          | Bun installation path    |
-| `NVM_DIR`     | `$HOME/.nvm`          | Node Version Manager     |
-| `PNPM_HOME`   | `~/.local/share/pnpm` | pnpm global location     |
-| `GOPATH`      | `$HOME/go`            | Go workspace             |
+| Variable      | Value                 | Purpose                |
+| ------------- | --------------------- | ---------------------- |
+| `EDITOR`      | `hx`                  | Default editor (Helix) |
+| `VISUAL`      | `$EDITOR`             | Visual editor          |
+| `PAGER`       | `less`                | Default pager          |
+| `BAT_THEME`   | `Dracula`             | bat syntax theme       |
+| `DOTFILES`    | `$HOME/dotfiles`      | Dotfiles location      |
+| `BUN_INSTALL` | `$HOME/.bun`          | Bun installation path  |
+| `NVM_DIR`     | `$HOME/.nvm`          | Node Version Manager   |
+| `PNPM_HOME`   | `~/.local/share/pnpm` | pnpm global location   |
+| `GOPATH`      | `$HOME/go`            | Go workspace           |
 
 PATH additions include: `~/.local/bin`, `$GOPATH/bin`, `$BUN_INSTALL/bin`, `$PNPM_HOME`, Homebrew, and Go binaries.
 
