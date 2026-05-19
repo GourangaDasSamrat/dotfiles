@@ -16,11 +16,25 @@
 [init]
   defaultBranch = main
 
-# Core git configuration - paths, editor and whitespace preferences
+# Core git configuration - paths, editor, pager (Delta), and whitespace preferences
 [core]
   hooksPath = ~/.git-hooks
   editor = hx
+  pager = delta
   whitespace = space-before-tab,trailing-space
+
+# Interactive staging configuration - uses Delta for git add -p
+[interactive]
+  diffFilter = delta --color-only
+
+# Delta pager configuration 
+[delta]
+  features = dracula
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+  hyperlinks = true
+  hunk-header-style = "omit"
 
 # Color output - improve readability of git commands
 [color]
