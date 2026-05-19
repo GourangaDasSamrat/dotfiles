@@ -55,7 +55,7 @@ pd install debian
 ### Symlink Developer Folder
 
 ```bash
-ln -s /data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/debian/home/gouranga/Developer ~/Developer
+ln -s /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/rootfs/home/gouranga/Developer ~/Developer
 ```
 
 ## Customization
