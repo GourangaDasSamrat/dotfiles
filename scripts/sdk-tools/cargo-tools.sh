@@ -33,6 +33,7 @@ declare -A RUST_TOOLS=(
   ["cargo-watch"]="cargo-watch"
   ["cargo-cache"]="cargo-cache"
   ["cargo-dist"]="cargo-dist"
+  ["cargo-modules"]="cargo-modules"
 )
 
 FAILED_TOOLS=0
