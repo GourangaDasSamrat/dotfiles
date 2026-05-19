@@ -6,6 +6,7 @@ source "$SCRIPT_DIR/../utils/detect.sh"
 COMMON_TOOLS=(
 	"curl"
 	"wget"
+	"git-delta"
 	"fd|fd-find"
 	"fzf"
 	"eza"
