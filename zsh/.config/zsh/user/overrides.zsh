@@ -99,7 +99,6 @@ rm() {
   echo
   echo -e "${COLOR_WARNING}  ⚠  About to delete:${COLOR_RESET}"
   echo
-
   for item in "${targets[@]}"; do
     if [ -d "$item" ]; then
       echo -e "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
@@ -110,7 +109,6 @@ rm() {
     fi
   done
 
-  # Show trash vs permanent delete indicator
   if [[ -n "$trash_cmd" ]]; then
     echo
     echo -e "    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}"
@@ -118,13 +116,12 @@ rm() {
     echo
     echo -e "    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}"
   fi
-
   echo
+
   local choice=2
   local key
   tput civis
   trap 'tput cnorm' EXIT
-
   while true; do
     echo -ne "\033[2K\r"
     echo -ne "${COLOR_HEADER}  ◆  Confirm deletion?${COLOR_RESET}\n"
@@ -148,14 +145,12 @@ rm() {
       '') break ;;
     esac
   done
-
   echo -ne "\033[2K\r\033[1B"
   tput cnorm
   trap - EXIT
 
   if [ $choice -eq 1 ]; then
     if [[ -n "$trash_cmd" ]]; then
-      # Flags don't apply to trash commands — pass targets only
       ${=trash_cmd} "${targets[@]}"
       echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Moved to trash"
     else
@@ -165,6 +160,10 @@ rm() {
   else
     echo -e "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"
   fi
-
   echo
+}
+
+# rm! — still prompts, but uses trash if available
+rm!() {
+  rm "$@"
 }
