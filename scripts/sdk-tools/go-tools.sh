@@ -85,10 +85,29 @@ check_and_install_tool() {
     fi
 }
 
+# ─── gtrash (Linux always, macOS only if native trash unavailable) ────────────
+install_gtrash() {
+    if [[ "$OSTYPE" == "linux"* ]]; then
+        check_and_install_tool "gtrash" "github.com/umlx5h/gtrash@latest"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        if ! command -v trash &>/dev/null; then
+            echo "----------------------------------------"
+            echo "macOS: native 'trash' not found (requires macOS 15+), installing gtrash..."
+            check_and_install_tool "gtrash" "github.com/umlx5h/gtrash@latest"
+        else
+            echo "----------------------------------------"
+            echo "SKIP: gtrash — native 'trash' command already available on this macOS"
+            ((SKIPPED_TOOLS++))
+        fi
+    fi
+}
+
 # ─── Run ─────────────────────────────────────────────────────────────────────
 for tool in "${!GO_TOOLS[@]}"; do
     check_and_install_tool "$tool" "${GO_TOOLS[$tool]}"
 done
+
+install_gtrash
 
 # ─── Cleanup ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
