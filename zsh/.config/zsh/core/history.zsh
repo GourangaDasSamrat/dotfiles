@@ -31,18 +31,24 @@ zshaddhistory() {
   )
 
   local blocked_patterns=(
-    'export\ *=*'           
-    '[A-Z]*=*'              
-    '*authorization*'       
-    '*://*:*@*'             
+    'export\ *=*'
+    '[A-Z]*=*'
+    '*authorization*'
+    '*://*:*@*'
     '*--password*'
     '*--token*'
     '*--secret*'
     '*--aws-secret*'
     '*--service-account-key*'
+    '*git*push*force-with*'
+    '*git*push*-f*'
+    '*git*push*--force*'
+    '*gp*force-with*'
+    '*gp*-f*'
+    '*gp*--force*'
   )
 
-  # DRY: single check function
+  # check function
   _blocked() {
     local val="$1" item
     shift
