@@ -62,7 +62,7 @@ mkdir() {
   fi
 }
 
-# Overwrite rm -rf
+# Overwrite rm
 rm() {
   if [ $# -eq 0 ]; then
     echo "Usage: rm <file or folder>"
@@ -84,7 +84,45 @@ rm() {
     return
   fi
 
-  # Validate all targets exist before doing anything
+  # ─── PROTECTED PATHS ────────────────────────────────────────────────────────
+  local -a PROTECTED_EXACT=(
+    "/"
+    "/bin" "/sbin" "/usr" "/usr/bin" "/usr/sbin" "/usr/local"
+    "/etc" "/var" "/tmp" "/opt" "/lib" "/lib64"
+    "/System" "/Library" "/Applications" "/Volumes"
+    "/boot" "/dev" "/proc" "/sys" "/run"
+    "$HOME"
+    "$HOME/Desktop" "$HOME/Documents" "$HOME/Downloads"
+    "$HOME/Library" "$HOME/Movies" "$HOME/Music" "$HOME/Pictures"
+  )
+
+  _resolve_fast() {
+    local p="${1/#\~/$HOME}"
+    if [[ -d "$p" ]]; then
+      (builtin cd -P -- "$p" 2>/dev/null && print -r -- "$PWD")
+    elif [[ -e "$p" || -L "$p" ]]; then
+      local dir="${p:h}"
+      local file="${p:t}"
+      (builtin cd -P -- "$dir" 2>/dev/null && print -r -- "$PWD/$file")
+    else
+      print -r -- "$p"
+    fi
+  }
+
+  local resolved_protected_list=""
+  local pp
+  for pp in "${PROTECTED_EXACT[@]}"; do
+    resolved_protected_list+="$(_resolve_fast "$pp")"$'\n'
+  done
+
+  _is_protected() {
+    local resolved
+    resolved="$(_resolve_fast "$1")"
+    grep -qxF "$resolved" <<< "$resolved_protected_list"
+  }
+  # ────────────────────────────────────────────────────────────────────────────
+
+  # Validate existence
   local missing=0
   for item in "${targets[@]}"; do
     if [[ ! -e "$item" && ! -L "$item" ]]; then
@@ -92,19 +130,26 @@ rm() {
       missing=1
     fi
   done
-  if [[ $missing -eq 1 ]]; then
-    return 1
-  fi
+  [[ $missing -eq 1 ]] && return 1
 
-  # Detect trash command based on OS
-  local trash_cmd=""
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    if command -v trash &>/dev/null; then
-      trash_cmd="trash"
+  # Check protected paths
+  local blocked=0
+  for item in "${targets[@]}"; do
+    if _is_protected "$item"; then
+      echo -e "${COLOR_WARNING}  🛑  '$item' is protected${COLOR_RESET}"
+      blocked=1
     fi
-  elif [[ "$OSTYPE" == "linux"* ]]; then
-    if command -v gtrash &>/dev/null; then
-      trash_cmd="gtrash put"
+  done
+  [[ $blocked -eq 1 ]] && return 1
+
+  # Detect trash command (cached after first call)
+  if [[ -z "${_RM_TRASH_CMD+set}" ]]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      command -v trash &>/dev/null && _RM_TRASH_CMD="trash" || _RM_TRASH_CMD=""
+    elif [[ "$OSTYPE" == "linux"* ]]; then
+      command -v gtrash &>/dev/null && _RM_TRASH_CMD="gtrash put" || _RM_TRASH_CMD=""
+    else
+      _RM_TRASH_CMD=""
     fi
   fi
 
@@ -113,24 +158,17 @@ rm() {
   echo
 
   for item in "${targets[@]}"; do
-    if [ -d "$item" ]; then
-      echo -e "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
-    elif [ -f "$item" ]; then
-      echo -e "    ${COLOR_TEXT}📄 $item${COLOR_RESET}"
-    else
-      echo -e "    ${COLOR_TEXT}🔗 $item${COLOR_RESET}"
+    if   [ -d "$item" ]; then echo -e "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
+    elif [ -f "$item" ]; then echo -e "    ${COLOR_TEXT}📄 $item${COLOR_RESET}"
+    else                      echo -e "    ${COLOR_TEXT}🔗 $item${COLOR_RESET}"
     fi
   done
 
-  if [[ -n "$trash_cmd" ]]; then
-    echo
-    echo -e "    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}"
+  if [[ -n "$_RM_TRASH_CMD" ]]; then
+    echo -e "\n    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}\n"
   else
-    echo
-    echo -e "    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}"
+    echo -e "\n    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}\n"
   fi
-
-  echo
 
   local choice=2
   local key
@@ -154,8 +192,7 @@ rm() {
     fi
     case "$key" in
       $'\x1b[C' | $'\x1b[D')
-        if [ $choice -eq 1 ]; then choice=2; else choice=1; fi
-        ;;
+        if [ $choice -eq 1 ]; then choice=2; else choice=1; fi ;;
       $'\n' | $'\r') break ;;
       '') break ;;
     esac
@@ -166,8 +203,8 @@ rm() {
   trap - EXIT
 
   if [ $choice -eq 1 ]; then
-    if [[ -n "$trash_cmd" ]]; then
-      ${=trash_cmd} "${targets[@]}"
+    if [[ -n "$_RM_TRASH_CMD" ]]; then
+      ${=_RM_TRASH_CMD} "${targets[@]}"
       echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Moved to trash"
     else
       command rm "${flags[@]}" "${targets[@]}"
@@ -176,7 +213,6 @@ rm() {
   else
     echo -e "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"
   fi
-
   echo
 }
 
