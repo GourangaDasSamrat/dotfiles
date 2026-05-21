@@ -84,6 +84,18 @@ rm() {
     return
   fi
 
+  # Validate all targets exist before doing anything
+  local missing=0
+  for item in "${targets[@]}"; do
+    if [[ ! -e "$item" && ! -L "$item" ]]; then
+      echo -e "${COLOR_WARNING}  ✗  '$item' does not exist${COLOR_RESET}"
+      missing=1
+    fi
+  done
+  if [[ $missing -eq 1 ]]; then
+    return 1
+  fi
+
   # Detect trash command based on OS
   local trash_cmd=""
   if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -99,13 +111,14 @@ rm() {
   echo
   echo -e "${COLOR_WARNING}  ⚠  About to delete:${COLOR_RESET}"
   echo
+
   for item in "${targets[@]}"; do
     if [ -d "$item" ]; then
       echo -e "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
     elif [ -f "$item" ]; then
       echo -e "    ${COLOR_TEXT}📄 $item${COLOR_RESET}"
     else
-      echo -e "    ${COLOR_TEXT}❓ $item${COLOR_RESET}"
+      echo -e "    ${COLOR_TEXT}🔗 $item${COLOR_RESET}"
     fi
   done
 
@@ -116,12 +129,14 @@ rm() {
     echo
     echo -e "    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}"
   fi
+
   echo
 
   local choice=2
   local key
   tput civis
   trap 'tput cnorm' EXIT
+
   while true; do
     echo -ne "\033[2K\r"
     echo -ne "${COLOR_HEADER}  ◆  Confirm deletion?${COLOR_RESET}\n"
@@ -145,6 +160,7 @@ rm() {
       '') break ;;
     esac
   done
+
   echo -ne "\033[2K\r\033[1B"
   tput cnorm
   trap - EXIT
@@ -160,6 +176,7 @@ rm() {
   else
     echo -e "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"
   fi
+
   echo
 }
 
