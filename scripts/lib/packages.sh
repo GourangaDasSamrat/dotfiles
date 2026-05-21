@@ -6,7 +6,6 @@ source "$SCRIPT_DIR/../utils/detect.sh"
 COMMON_TOOLS=(
 	"curl"
 	"wget"
-	"git-delta"
 	"fd|fd-find"
 	"fzf"
 	"eza"
@@ -20,14 +19,15 @@ COMMON_TOOLS=(
 	"starship"
 	"gh"
 	"git-lfs"
-  "pass"
+        "git-delta"
+        "pass"
 	"mpv"
-  "whois"
-  "openssl-tool|openssl"
-  "moreutils"
+        "whois"
+        "openssl-tool|openssl"
+        "moreutils"
 )
-LINUX_TOOLS=("zsh" "build-essential" "rofi")
-MACOS_TOOLS=()
+LINUX_TOOLS=("zsh" "build-essential" "pinentry-gnome3" "rofi")
+MACOS_TOOLS=("pinentry-mac")
 
 _is_installed() {
 	local tool="$1"
