@@ -4,6 +4,10 @@
   email = gouranga.das.khulna@gmail.com
   signingkey = A72744D62F95F2DB61C5161B9BEEA05E7FA01166
 
+# Use git@github.com instead of github.com
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
 # Commit signing configuration - automatically sign all commits with GPG
 [commit]
   gpgsign = true
@@ -27,7 +31,7 @@
 [interactive]
   diffFilter = delta --color-only
 
-# Delta pager configuration 
+# Delta pager configuration
 [delta]
   features = dracula
   side-by-side = true
