@@ -2,7 +2,7 @@
 if [[ -d /data/data/com.termux ]]; then
   alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
   alias df="cd /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
-  alias af="cd /data/data/com.termux/files/home/storage/shared"
+  alias af="cd /storage/emulated/0"
   alias start="/data/data/com.termux/files/home/start.sh"
 fi
 
@@ -74,35 +74,6 @@ if (( ${+commands[cargo]} )); then
   alias ccl='cargo clean'
   alias cdoc='cargo doc --open'
   alias cdc='cargo doc --no-deps --open'
-fi
-
-# --- GitHub CLI's Aliases ---
-if (( ${+commands[gh]} )); then
-  # Present
-  alias ght='gh today'
-  alias ghts='gh today-summary'
-  alias ghst='gh today-stats'
-  alias ghm='gh this-month-summary'
-  alias ghms='gh this-month-stats'
-  alias ghy='gh this-year-summary'
-  alias ghys='gh this-year-stats'
-  alias ghstr='gh streak'
-  alias ghl='gh this-year-languages'
-
-  # Past
-  alias ghyy='gh yesterday'
-  alias ghyys='gh yesterday-summary'
-  alias ghyyst='gh yesterday-stats'
-  alias ghlm='gh last-month-summary'
-  alias ghlms='gh last-month-stats'
-  alias ghly='gh last-year-summary'
-  alias ghlys='gh last-year-stats'
-  alias ghlyl='gh last-year-languages'
-
-  # Utilities
-  alias ghp='gh prs'
-  alias gho='gh open'
-  alias ghc='gh co'
 fi
 
 # --- usql's Aliases ---
