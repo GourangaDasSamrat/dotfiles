@@ -224,17 +224,18 @@ This document describes the custom VS Code settings configuration. These setting
 
 ## Language-Specific Formatters
 
-| Language   | Formatter     | Setting                                 |
-| ---------- | ------------- | --------------------------------------- |
-| C++        | clangd        | `llvm-vs-code-extensions.vscode-clangd` |
-| C          | clangd        | `llvm-vs-code-extensions.vscode-clangd` |
-| Go         | goimports     | `golang.go`                             |
-| Rust       | rust-analyzer | `rust-lang.rust-analyzer`               |
-| Python     | Ruff          | `charliermarsh.ruff`                    |
-| Lua        | sumneko.lua   | `sumneko.lua`                           |
-| Shell      | shfmt         | `mkhl.shfmt`                            |
-| Prisma     | Prisma        | `Prisma.prisma`                         |
-| SQL/SQLite | Prettier SQL  | `inferrinizzard.prettier-sql-vscode`    |
+| Language   | Formatter        | Setting                                 |
+| ---------- | ---------------- | --------------------------------------- |
+| C++        | clangd           | `llvm-vs-code-extensions.vscode-clangd` |
+| C          | clangd           | `llvm-vs-code-extensions.vscode-clangd` |
+| Go         | goimports        | `golang.go`                             |
+| Rust       | rust-analyzer    | `rust-lang.rust-analyzer`               |
+| Python     | Ruff             | `charliermarsh.ruff`                    |
+| Lua        | sumneko.lua      | `sumneko.lua`                           |
+| Shell      | shfmt            | `mkhl.shfmt`                            |
+| Toml       | Even Better TOML | `tamasfe.even-better-toml`              |
+| Prisma     | Prisma           | `Prisma.prisma`                         |
+| SQL/SQLite | Prettier SQL     | `inferrinizzard.prettier-sql-vscode`    |
 
 ---
 
