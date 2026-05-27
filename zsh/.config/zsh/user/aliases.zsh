@@ -29,7 +29,7 @@ alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
 # --- Eza's Aliases ---
 if (( ${+commands[eza]} )); then
   alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-  alias lt='eza --tree -a -I "node_modules|.git"'
+  alias lt='eza --tree -a -I "node_modules|.git|target"'
 fi
 alias la='ls -A'
 

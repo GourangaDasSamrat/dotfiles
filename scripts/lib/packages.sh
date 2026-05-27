@@ -15,7 +15,6 @@ COMMON_TOOLS=(
 	"jq"
 	"just"
 	"alacritty"
-	"tmux"
 	"starship"
 	"gh"
 	"git-lfs"
