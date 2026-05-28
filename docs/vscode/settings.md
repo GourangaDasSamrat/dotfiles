@@ -430,7 +430,8 @@ This document describes the custom VS Code settings configuration. These setting
 "files.exclude": {
   "**/node_modules": true,
   "**/.next": true,
-  "**/.git": true
+  "**/.git": true,
+  "**/target": true
 }
 ```
 
@@ -441,7 +442,8 @@ This document describes the custom VS Code settings configuration. These setting
 - `**/dist/**`, `**/.next/**`, `**/build/**`
 - `**/.cache/**`, `**/coverage/**`, `**/.turbo/**`
 - `**/out/**`, `**/*.o`, `**/*.a`, `**/*.so`
-- `**/target` (Rust)
+- `**/target`, `**/Cargo.lock` (Rust)
+- `**/go.sum`
 
 ### File Associations
 
