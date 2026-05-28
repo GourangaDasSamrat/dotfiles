@@ -396,7 +396,8 @@
   "files.exclude": {
     "**/node_modules": true,
     "**/.next": true,
-    "**/.git": true
+    "**/.git": true,
+    "**/target": true
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -437,7 +438,9 @@
     "**/yarn.lock": true,
     "**/package-lock.json": true,
     "**/pnpm-lock.yaml": true,
-    "**/target": true
+    "**/target": true,
+    "**/Cargo.lock": true,
+    "**/go.sum": true
   },
   "search.smartCase": true,
 
