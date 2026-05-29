@@ -4,6 +4,7 @@ catppuccin
 cleanenv
 cloudinary
 Cortado
+clippy
 Eulerian
 Excalidraw
 excalidraw
@@ -25,4 +26,6 @@ redis
 shfmt
 sqlite
 Termux
+Vecs
+vecs
 whois

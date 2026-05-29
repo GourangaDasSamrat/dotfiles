@@ -350,10 +350,21 @@ This document describes the custom VS Code settings configuration. These setting
 **Clippy Extra Args:**
 
 ```json
-"--",
-"-W", "clippy::pedantic",
-"-W", "clippy::nursery",
-"-A", "clippy::missing_docs_in_private_items"
+  "--",
+  "-W", "clippy::pedantic",
+  "-W", "clippy::nursery",
+  "-W", "clippy::cargo",
+  "-D", "clippy::unwrap_used",
+  "-D", "clippy::expect_used",
+  "-D", "clippy::indexing_slicing",
+  "-D", "clippy::todo",
+  "-D", "clippy::panic",
+  "-D", "clippy::dbg_macro",
+  "-W", "clippy::arithmetic_side_effects",
+  "-W", "clippy::float_cmp",
+  "-W", "clippy::cast_possible_truncation",
+  "-W", "clippy::cast_sign_loss",
+  "-A", "clippy::missing_docs_in_private_items"
 ```
 
 ### Proc Macros & Completion
