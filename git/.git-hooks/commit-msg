@@ -7,7 +7,7 @@ commit_msg_file=$1
 # This ensures a clean and aligned git log.
 if [ -f "$commit_msg_file" ]; then
     # Using sed to remove whitespace before hyphens, asterisks, or plus signs at line starts
-    sed -i 's/^[[:space:]]\+\([-*+]\) /\1 /g' "$commit_msg_file"
+    sed 's/^[[:space:]]\+\([-*+]\) /\1 /g' "$commit_msg_file" > "$commit_msg_file.tmp" && mv "$commit_msg_file.tmp" "$commit_msg_file"
 fi
 
 # Get only the first line of the commit message
