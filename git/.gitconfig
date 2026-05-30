@@ -69,6 +69,13 @@
 [credential]
   helper = "!f() { echo \"password=$(pass app/gmail-smtp)\"; }; f"
 
+# Git LFS (Large File Storage) configuration - handles large binary files efficiently
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
 # Custom git aliases - shortcuts for frequently used commands
 [alias]
        # Graph log - displays commit history as a decorated graph
@@ -93,13 +100,6 @@
   unstage = reset HEAD --
        # Export log - saves git history to a file for backup or review
   el = "!sh -c 'git log > git_history.txt'"
-
-# Git LFS (Large File Storage) configuration - handles large binary files efficiently
-[filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
 
 # Local configuration override - includes machine-specific settings (e.g., credentials from gh CLI)
 [include]
