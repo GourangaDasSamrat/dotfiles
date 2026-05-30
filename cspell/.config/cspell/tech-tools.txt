@@ -18,6 +18,7 @@ justfile
 linux
 Macchiato
 Mongodb
+nametag
 nestjs
 nosql
 Qubit
