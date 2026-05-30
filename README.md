@@ -273,7 +273,7 @@ _alacritty · starship_
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                           |
 | **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim · goreleaser · sheets · eget |
 | **python tools** _(opt)_ | httpie · ytm-player                                                                                                |
-| **cargo tools** _(opt)_  | cargo-watch · cargo-cache · cargo-dist · cargo-modules                                                                            |
+| **cargo tools** _(opt)_  | cargo-watch · cargo-cache · cargo-dist · cargo-modules                                                             |
 
 </div>
 

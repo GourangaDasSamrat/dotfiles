@@ -356,7 +356,7 @@ This document describes the custom VS Code settings configuration. These setting
   "-W", "clippy::cargo",
   "-D", "clippy::unwrap_used",
   "-D", "clippy::expect_used",
-  "-D", "clippy::indexing_slicing",
+  "-W", "clippy::indexing_slicing",
   "-D", "clippy::todo",
   "-D", "clippy::panic",
   "-D", "clippy::dbg_macro",
