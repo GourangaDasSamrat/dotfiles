@@ -57,7 +57,23 @@ lens.references.trait.enable                         = true
 diagnostics.experimental.enable                      = true
 diagnostics.styleLints.enable                        = true
 check.command                                        = "clippy"
-check.extraArgs                                      = ["--", "-W", "clippy::pedantic", "-W", "clippy::nursery", "-A", "clippy::missing_docs_in_private_items"]
+check.extraArgs                                      = [
+    "--",
+    "-W", "clippy::pedantic",
+    "-W", "clippy::nursery",
+    "-W", "clippy::cargo",
+    "-D", "clippy::unwrap_used",
+    "-D", "clippy::expect_used",
+    "-W", "clippy::indexing_slicing",
+    "-D", "clippy::todo",
+    "-D", "clippy::panic",
+    "-D", "clippy::dbg_macro",
+    "-W", "clippy::arithmetic_side_effects",
+    "-W", "clippy::float_cmp",
+    "-W", "clippy::cast_possible_truncation",
+    "-W", "clippy::cast_sign_loss",
+    "-A", "clippy::missing_docs_in_private_items"
+  ]
 cargo.features                                       = "all"
 cargo.buildScripts.enable                            = true
 cargo.buildScripts.useRustcWrapper                   = true
