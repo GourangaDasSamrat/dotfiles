@@ -1,6 +1,6 @@
 # Ask questions directly from the terminal using Google Gemini AI.
 # Requires: curl, jq, python3, pass.
-# Save your Gemini API key with: pass insert apps/key/genini
+# Save your Gemini API key with: pass insert apps/key/gemini
 # Usage: ask what is docker  |  ask "explain recursion simply"
 if command -v curl &>/dev/null && command -v jq &>/dev/null && command -v pass &>/dev/null && command -v python3 &>/dev/null; then
   ask() {
@@ -12,7 +12,7 @@ if command -v curl &>/dev/null && command -v jq &>/dev/null && command -v pass &
     local question="$*"
     local api_key
 
-    api_key=$(pass apps/key/genini 2>/dev/null)
+    api_key=$(pass apps/key/gemini 2>/dev/null)
     if [[ -z "$api_key" ]]; then
       echo "${COLOR_ERROR}✗ Failed to retrieve API key${COLOR_RESET}"
       return 1
