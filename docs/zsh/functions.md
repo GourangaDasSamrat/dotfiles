@@ -58,6 +58,44 @@ Authorization: Bearer token123
 
 ---
 
+## AI Query (`ask`)
+
+**Location:** `~/.config/zsh/functions/ai.zsh`
+
+Ask questions directly from the terminal using Google Gemini AI.
+
+```bash
+ask what is docker
+ask "explain recursion simply"
+```
+
+### Setup
+
+Store your Gemini API key using `pass`:
+
+```bash
+pass insert apps/key/genini
+```
+
+Then use `ask` to query Gemini with natural language questions.
+
+### Response Format
+
+Responses are displayed with a formatted border:
+
+```
+╭─ Answer
+│ Your answer text here...
+│ Multiline responses are supported
+╰─
+```
+
+### Dependencies
+
+- **Required:** `curl`, `jq`, `python3`, `pass`
+
+---
+
 ## Archive (`extract` / `compress`)
 
 **Location:** `~/.config/zsh/functions/archive.zsh`
