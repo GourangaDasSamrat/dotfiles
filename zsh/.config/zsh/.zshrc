@@ -26,6 +26,7 @@ zsh_modules=(
   user/aliases
   functions/security
   user/overrides
+  functions/ai
   functions/whois
   functions/network
 )
