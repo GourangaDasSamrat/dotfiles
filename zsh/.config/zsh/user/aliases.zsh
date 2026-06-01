@@ -33,6 +33,11 @@ if (( ${+commands[eza]} )); then
 fi
 alias la='ls -A'
 
+# --- Open command for Linux (mimicking macOS 'open') ---
+if (( ${+commands[xdg-open]} )); then
+  alias open='xdg-open'
+fi
+
 # --- Vscode's Aliases ---
 if (( ${+commands[code-oss]} )); then
   alias code='code-oss --profile Default'
