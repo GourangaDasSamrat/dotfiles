@@ -155,12 +155,12 @@
     "when": "editorFocus && isMac"
   },
   {
-    "key": "ctrl+d ",
+    "key": "ctrl+d",
     "command": "-editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus"
   },
   {
-    "key": "command+d ",
+    "key": "command+d",
     "command": "-editor.action.addSelectionToNextFindMatch",
     "when": "editorFocus && isMac"
   },
