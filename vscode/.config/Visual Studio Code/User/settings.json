@@ -346,7 +346,14 @@
     "**/node_modules": true,
     "**/.next": true,
     "**/.git": true,
-    "**/target": true
+    "**/target": true,
+    "**/.godot": true,
+    "**/.import": true,
+    "**/export_presets.cfg": true,
+    "**/*.uid": true,
+    "**/.mono": true,
+    "**/.vs": true,
+    "**/.gdignore": true
   },
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -372,7 +379,8 @@
     "*.ipp": "cpp",
     "*.myquery": "sql",
     "*.psql": "sql",
-    "*.db": "sqlite"
+    "*.db": "sqlite",
+    "*.gdshader": "glsl"
   },
 
   // search
@@ -389,7 +397,15 @@
     "**/pnpm-lock.yaml": true,
     "**/target": true,
     "**/Cargo.lock": true,
-    "**/go.sum": true
+    "**/go.sum": true,
+    "**/.godot": true,
+    "**/.import": true,
+    "**/*.translation": true,
+    "**/*.uid": true,
+    "**/.mono": true,
+    "**/*.tscn": true,
+    "**/*.tres": true,
+    "**/*.mesh": true
   },
   "search.smartCase": true,
 
@@ -433,7 +449,7 @@
 
   // commitSage
   "commitSage.provider.type": "gemini",
-  "commitSage.gemini.model": "gemini-2.5-flash-lite",
+  "commitSage.gemini.model": "gemini-2.5-flash",
   "commitSage.commit.commitFormat": "conventional",
   "commitSage.commit.promptForRefs": true,
 
