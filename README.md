@@ -95,6 +95,7 @@ _every command feels intentional._
 |                     `t`                     | show timestamps before log                                                                                                    |
 |                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
 |                    `ask`                    | ask questions directly from the terminal using Google Gemini AI                                                               |
+|                    `shd`                    | Find & display large build/dependency folders                                                                                 |
 
 </div>
 
