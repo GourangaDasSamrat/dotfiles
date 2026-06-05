@@ -249,7 +249,7 @@ max-cache-ttl 7200      # 2 hours
 
 ---
 
-## Utils (`serve` / `timer`)
+## Utils (`serve` / `timer` / `shd`)
 
 **Location:** `~/.config/zsh/functions/utils.zsh`
 
@@ -276,6 +276,67 @@ timer 1h30m45s   # Combined
 ```
 
 Progress bar changes color: green (>50%), orange (25–50%), red (<25%). Press `Ctrl+C` to stop and restore the terminal.
+
+### `shd`
+
+Scans and displays large build/dependency folders recursively.
+
+```bash
+shd              # Scan home directory (default)
+shd /path/to/dir # Scan specific directory
+shd . 500        # Scan current dir, only show >= 500 MB
+```
+
+**Parameters:**
+
+- `$1` — Root directory to scan (default: `$HOME`)
+- `$2` — Minimum size filter in MB (default: `0`, no filter)
+
+**Targets Scanned:**
+
+Detects and displays size of common build and dependency folders:
+
+| Category       | Folders                                                                      |
+| -------------- | ---------------------------------------------------------------------------- |
+| Node.js        | `node_modules`, `.pnp`                                                       |
+| Rust           | `target`                                                                     |
+| PHP            | `vendor`, `pkg`                                                              |
+| Python         | `.venv`, `venv`, `__pycache__`, `.eggs`, `dist-packages`, `site-packages`    |
+| .NET           | `bin`, `obj`                                                                 |
+| Java/Gradle    | `build`, `.gradle`, `out`                                                    |
+| Ruby           | `bundle`                                                                     |
+| Frontend Build | `dist`, `.next`, `.nuxt`, `.cache`, `.parcel-cache`, `.turbo`, `.svelte-kit` |
+
+**Output Format:**
+
+Displays results as a formatted table:
+
+```
+Size      Folder Name          Parent Path
+────────────────────────────────────────
+  4.2G    node_modules         /path/to/project
+  1.8G    target               /path/to/rust-project
+```
+
+Color coding:
+
+- Green: under 1GB
+- Orange/Yellow: 200MB–1GB
+- Red: 1GB and above
+
+**Examples:**
+
+```bash
+shd                    # Scan $HOME, show all
+shd ~/projects         # Scan ~/projects directory
+shd . 100              # Current dir, only >= 100 MB
+shd /var/tmp 500       # Scan /var/tmp, only >= 500 MB
+```
+
+### Dependencies
+
+- **Required:** `du` (standard Unix utility)
+- **Optional:** Color support (built-in zsh colors)
 
 ---
 
