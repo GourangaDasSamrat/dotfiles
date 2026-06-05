@@ -320,6 +320,15 @@
   "markdown.validate.enabled": true,
   "markdown.occurrencesHighlight.enabled": true,
 
+  // Toml
+  "evenBetterToml.formatter.alignEntries": true,
+  "evenBetterToml.formatter.reorderKeys": true,
+  "evenBetterToml.schema.enabled": true,
+  "evenBetterToml.schema.associations": {
+    "Cargo\\.toml$": "https://schemastore.org",
+    "pyproject\\.toml$": "https://schemastore.org"
+  },
+
   // clangd
   "clangd.arguments": [
     "--background-index",
