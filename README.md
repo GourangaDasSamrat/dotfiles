@@ -192,6 +192,10 @@ git unstage      # unstage all staged files
 git last         # full detail of the last commit
 ```
 
+---
+
+<br/>
+
 <div align="center">
 
 ## `🔧 github cli`
@@ -237,6 +241,38 @@ gh co                 # Interactive PR checkout
 
 <div align="center">
 
+## `🖱️ macOS GUI setup`
+
+_automatic installation of desktop applications via Homebrew Cask_
+
+</div>
+
+<br/>
+
+**mac-gui.sh** installs essential GUI tools on macOS:
+
+|    Application     | Purpose     |
+| :----------------: | :---------- |
+| Visual Studio Code | code editor |
+|   Google Chrome    | web browser |
+|      Firefox       | web browser |
+
+<div align="center">
+
+OS detection · Homebrew validation · clear feedback · works standalone or sourced
+
+</div>
+
+---
+
+<br/>
+
+---
+
+<br/>
+
+<div align="center">
+
 ## `🎨 terminal & prompt`
 
 _alacritty · starship_
@@ -269,7 +305,7 @@ _alacritty · starship_
 | **shell utils**          | eza · bat · fzf · fd · jq · stow                                                                                   |
 | **network**              | curl · wget · whois · gh                                                                                           |
 | **linux only**           | zsh · build-essential · rofi                                                                                       |
-| **mac only**             | uv                                                                                                                 |
+| **mac only**             | uv · homebrew cask gui tools                                                                                       |
 | **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                                        |
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                           |
 | **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim · goreleaser · sheets · eget |
@@ -297,17 +333,19 @@ lib/packages.sh      installs every tool
 lib/plugins.sh       oh my zsh · tpm · zsh plugins
 lib/wallpapers.sh    clones wallpapers repo
 lib/dotfiles.sh      gnu stow · git hook permissions
-lib/go_tools.sh      optional go dev tools
-lib/python_tools.sh  optional python cli tools
-lib/cargo_tools.sh   optional rust cli tools
+lib/mac-gui.sh       macOS GUI applications via homebrew cask
 
-install.sh           runs everything above in order (expect optional tools)
+sdk-tools/go_tools.sh      optional go dev tools
+sdk-tools/python_tools.sh  optional python cli tools
+sdk-tools/cargo_tools.sh   optional rust cli tools
+
+install.sh           runs everything above in order (except optional tools)
 setup.sh             interactive — run only what you want
 ```
 
 <div align="center">
 
-_every script in `lib/` runs standalone. use only what you need._
+_every script in `lib/`, `sdk-tools` runs standalone. use only what you need._
 
 </div>
 
@@ -317,7 +355,7 @@ _every script in `lib/` runs standalone. use only what you need._
 
 <div align="center">
 
-## `� documentation`
+## `📚 documentation`
 
 </div>
 
@@ -342,7 +380,7 @@ _every script in `lib/` runs standalone. use only what you need._
 
 <div align="center">
 
-## `�🔩 prerequisites`
+## `⚙️ prerequisites`
 
 **git** &nbsp;·&nbsp; **homebrew** _(macOS only)_ — [brew.sh](https://brew.sh)
 
