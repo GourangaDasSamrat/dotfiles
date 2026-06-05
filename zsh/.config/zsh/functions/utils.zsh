@@ -467,3 +467,119 @@ _gtrash()
 if [ "$funcstack[1]" = "_gtrash" ]; then
     _gtrash
 fi
+
+#  Find & display large build/dependency folders
+
+_draw_separator() {
+  print -P "${COLOR_BORDER}$(printf '─%.0s' {1..72})${COLOR_RESET}"
+}
+
+_draw_header() {
+  _draw_separator
+  print -P "${COLOR_HEADER}  ◈  ${COLOR_TEXT}${1}${COLOR_RESET}"
+  _draw_separator
+}
+
+shd() {
+  # Strip any trailing slash to prevent double-slash in constructed paths
+  local scan_root="${${1:-$HOME}%/}"
+  local min_size="${2:-0}"
+
+  local -aU TARGETS=(
+    node_modules .pnp
+    target
+    vendor pkg
+    .venv venv __pycache__ .eggs dist-packages site-packages
+    bin obj
+    build .gradle out
+    bundle
+    dist .next .nuxt .cache .parcel-cache .turbo .svelte-kit
+  )
+
+  emulate -L zsh
+  setopt extended_glob glob_dots no_case_glob null_glob
+
+  _draw_header "scan_heavy_deps  —  scanning: ${COLOR_CURSOR}${scan_root}${COLOR_RESET}"
+  print -P "${COLOR_NORMAL}  Targets : ${COLOR_WARNING}${#TARGETS} folder name(s)${COLOR_RESET}"
+  print -P "${COLOR_NORMAL}  Root    : ${COLOR_CURSOR}${scan_root}${COLOR_RESET}"
+  [[ $min_size -gt 0 ]] && print -P "${COLOR_NORMAL}  Filter  : ${COLOR_WARNING}>= ${min_size} MB${COLOR_RESET}"
+  _draw_separator
+  print ""
+
+  # --- Collect all matching directories recursively ---
+  local -a found_dirs=()
+  local target hits
+  for target in $TARGETS; do
+    hits=( ${scan_root}/**/${target}(/N) )
+    found_dirs+=($hits)
+  done
+
+  # --- Filter: skip hidden ancestors; keep only outermost matches ---
+  local -a clean_dirs=()
+  local dir rel parts skip outer other
+  for dir in $found_dirs; do
+    rel="${dir#${scan_root}/}"
+    parts=("${(@s:/:)rel}")
+
+    skip=0
+    for (( i = 1; i < ${#parts}; i++ )); do
+      [[ ${parts[$i]} == .* ]] && { skip=1; break }
+    done
+    (( skip )) && continue
+
+    outer=0
+    for other in $clean_dirs; do
+      [[ $dir == ${other}/* ]] && { outer=1; break }
+    done
+    (( outer )) && continue
+
+    clean_dirs+=($dir)
+  done
+
+  local -aU clean_dirs=($clean_dirs)
+
+  if [[ ${#clean_dirs} -eq 0 ]]; then
+    print -P "${COLOR_WARNING}  No dependency folders found under ${COLOR_CURSOR}${scan_root}${COLOR_RESET}"
+    return 0
+  fi
+
+  # --- Measure & print ---
+  local total_count=0 skipped_count=0
+  local size size_mb size_unit size_num size_color folder_name parent_path
+  for dir in $clean_dirs; do
+    size=$(du -sh "$dir" 2>/dev/null | awk '{print $1}')
+
+    if [[ -z $size ]]; then
+      (( skipped_count++ ))
+      continue
+    fi
+
+    if [[ $min_size -gt 0 ]]; then
+      size_mb=$(du -sm "$dir" 2>/dev/null | awk '{print $1}')
+      [[ -n $size_mb && $size_mb -lt $min_size ]] && continue
+    fi
+
+    (( total_count++ ))
+
+    folder_name="${dir:t}"
+    parent_path="${dir:h}"
+    size_unit="${size: -1}"
+    size_num="${size%[KMGT]*}"
+
+    size_color=$COLOR_SUCCESS
+    [[ $size_unit == "G" ]]                        && size_color=$COLOR_ERROR
+    [[ $size_unit == "M" && $size_num -gt 200 ]]   && size_color=$COLOR_WARNING
+
+    printf "${size_color}%8s${COLOR_RESET}  ${COLOR_HEADER}%-20s${COLOR_RESET}  ${COLOR_NORMAL}%s${COLOR_RESET}\n" \
+      "$size" "$folder_name" "$parent_path"
+  done
+
+  print ""
+  _draw_separator
+  print -P "${COLOR_TEXT}  Found   : ${COLOR_CURSOR}${total_count}${COLOR_RESET}${COLOR_NORMAL} folder(s)${COLOR_RESET}"
+  [[ $skipped_count -gt 0 ]] && \
+    print -P "${COLOR_NORMAL}  Skipped : ${COLOR_WARNING}${skipped_count}${COLOR_RESET}${COLOR_NORMAL} (permission denied)${COLOR_RESET}"
+  _draw_separator
+  print ""
+}
+
