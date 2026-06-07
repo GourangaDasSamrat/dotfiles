@@ -29,8 +29,10 @@ install_gui_apps() {
         # Array of applications to install
         local apps=(
             "visual-studio-code"
-            "google-chrome"
+            "brave-browser"
             "firefox"
+	    "alacritty"
+	    "applite"
         )
 
         # Install each application
