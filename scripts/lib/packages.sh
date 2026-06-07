@@ -14,7 +14,6 @@ COMMON_TOOLS=(
 	"helix"
 	"jq"
 	"just"
-	"alacritty"
 	"starship"
 	"gh"
 	"git-lfs"
@@ -25,7 +24,7 @@ COMMON_TOOLS=(
         "openssl-tool|openssl"
         "moreutils"
 )
-LINUX_TOOLS=("zsh" "build-essential" "pinentry-gnome3" "rofi")
+LINUX_TOOLS=("zsh" "build-essential" "pinentry-gnome3" "rofi" "alacritty")
 MACOS_TOOLS=("pinentry-mac")
 
 _is_installed() {
