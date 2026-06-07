@@ -252,11 +252,13 @@ _automatic installation of desktop applications via Homebrew Cask_
 
 **mac-gui.sh** installs essential GUI tools on macOS:
 
-|    Application     | Purpose     |
-| :----------------: | :---------- |
-| Visual Studio Code | code editor |
-|   Google Chrome    | web browser |
-|      Firefox       | web browser |
+|    Application     | Purpose           |
+| :----------------: | :---------------- |
+| Visual Studio Code | code editor       |
+|   Brave Browser    | web browser       |
+|      Firefox       | web browser       |
+|     Alacritty      | Terminal Emulator |
+|      Applite       | Brew Cask GUI     |
 
 <div align="center">
 
@@ -302,10 +304,10 @@ _alacritty · starship_
 
 |                          |                                                                                                                    |
 | :----------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| **terminal**             | alacritty · tmux · starship · mpv · pass · git-lfs · moreutils                                                     |
+| **terminal**             | starship · mpv · pass · git-lfs · moreutils                                                                        |
 | **shell utils**          | eza · bat · fzf · fd · jq · stow                                                                                   |
 | **network**              | curl · wget · whois · gh                                                                                           |
-| **linux only**           | zsh · build-essential · rofi                                                                                       |
+| **linux only**           | alacrity · zsh · build-essential · rofi                                                                            |
 | **mac only**             | uv · homebrew cask gui tools                                                                                       |
 | **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                                        |
 | **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                           |
