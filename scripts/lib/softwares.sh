@@ -17,15 +17,29 @@ COMMON_TOOLS=(
 	"starship"
 	"gh"
 	"git-lfs"
-        "git-delta"
-        "pass"
+	"git-delta"
+	"pass"
 	"mpv"
-        "whois"
-        "openssl-tool|openssl"
-        "moreutils"
+	"whois"
+	"openssl-tool|openssl"
+	"moreutils"
+
+	"alacritty"
 )
-LINUX_TOOLS=("zsh" "build-essential" "pinentry-gnome3" "rofi" "alacritty")
-MACOS_TOOLS=("pinentry-mac")
+LINUX_TOOLS=(
+	"zsh"
+	"build-essential"
+	"pinentry-gnome3"
+	"rofi"
+)
+MACOS_TOOLS=(
+	"pinentry-mac"
+
+	"visual-studio-code"
+	"bruno"
+	"brave-browser"
+	"firefox"
+)
 
 _is_installed() {
 	local tool="$1"
