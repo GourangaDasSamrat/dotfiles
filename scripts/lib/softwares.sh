@@ -14,6 +14,7 @@ COMMON_TOOLS=(
 	"helix"
 	"jq"
 	"just"
+	"shfmt"
 	"starship"
 	"gh"
 	"git-lfs"

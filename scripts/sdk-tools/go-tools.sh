@@ -32,7 +32,6 @@ declare -A GO_TOOLS=(
 
     # Build & Release Tools
     ["goreleaser"]="github.com/goreleaser/goreleaser/v2@latest"
-    ["shfmt"]="mvdan.cc/sh/v3/cmd/shfmt@latest"
 
     # Utilities & Database Tools
     ["usql"]="github.com/xo/usql@latest"
