@@ -6,42 +6,47 @@ source "$SCRIPT_DIR/../utils/detect.sh"
 COMMON_TOOLS=(
 	"curl"
 	"wget"
+	"jq"
+
 	"fd|fd-find"
 	"fzf"
 	"eza"
 	"bat|batcat"
-	"stow"
-	"helix"
 
-	"jq"
-	"just"
 	"shfmt"
-	"httpie"
+	"just"
+	"moreutils"
+	"stow"
 
-	"starship"
 	"gh"
 	"git-lfs"
 	"git-delta"
+
 	"pass"
+	"openssl-tool|openssl"
+
+	"starship"
+	"helix"
+
 	"mpv"
 	"whois"
-	"openssl-tool|openssl"
-	"moreutils"
-
 	"alacritty"
 )
+
 LINUX_TOOLS=(
 	"zsh"
 	"build-essential"
 	"pinentry-gnome3"
 	"rofi"
 )
+
 MACOS_TOOLS=(
-	"pinentry-mac"
 	"cargo-binstall"
+	"pinentry-mac"
 
 	"visual-studio-code"
 	"bruno"
+
 	"brave-browser"
 	"firefox"
 )
