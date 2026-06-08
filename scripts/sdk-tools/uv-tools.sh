@@ -21,7 +21,6 @@ $UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" \
 
 # ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A PY_TOOLS=(
-    ["http"]="httpie"
     ["ytm-player"]="ytm-player"
 )
 
