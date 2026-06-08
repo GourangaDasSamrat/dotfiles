@@ -9,13 +9,15 @@ install_plugins() {
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 	fi
 
-	# TPM
-	if [ -d "$HOME/.tmux/plugins/tpm" ]; then
-		echo "TPM is already installed, skipping..."
-	else
-		echo "Installing TPM..."
-		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	fi
+	: <<-'TPM'
+		        # TPM
+		        if [ -d "$HOME/.tmux/plugins/tpm" ]; then
+		                echo "TPM is already installed, skipping..."
+		        else
+		                echo "Installing TPM..."
+		                git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+		        fi
+	TPM
 
 	local ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
