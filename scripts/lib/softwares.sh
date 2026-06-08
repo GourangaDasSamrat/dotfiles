@@ -12,9 +12,12 @@ COMMON_TOOLS=(
 	"bat|batcat"
 	"stow"
 	"helix"
+
 	"jq"
 	"just"
 	"shfmt"
+	"httpie"
+
 	"starship"
 	"gh"
 	"git-lfs"
@@ -35,6 +38,7 @@ LINUX_TOOLS=(
 )
 MACOS_TOOLS=(
 	"pinentry-mac"
+	"cargo-binstall"
 
 	"visual-studio-code"
 	"bruno"
