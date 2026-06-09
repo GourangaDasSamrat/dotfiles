@@ -302,18 +302,18 @@ _alacritty · starship_
 
 <div align="center">
 
-|                          |                                                                                                                    |
-| :----------------------- | :----------------------------------------------------------------------------------------------------------------- |
-| **terminal**             | starship · mpv · pass · git-lfs · moreutils                                                                        |
-| **shell utils**          | eza · bat · fzf · fd · jq · stow                                                                                   |
-| **network**              | curl · wget · whois · gh                                                                                           |
-| **linux only**           | alacrity · zsh · build-essential · rofi                                                                            |
-| **mac only**             | uv · homebrew cask gui tools                                                                                       |
-| **zsh plugins**          | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                                        |
-| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                           |
-| **go tools** _(opt)_     | gopls · goimports · golangci-lint · govulncheck · gotests · air · usql · shfmt · slim · goreleaser · sheets · eget |
-| **python tools** _(opt)_ | httpie · ytm-player                                                                                                |
-| **cargo tools** _(opt)_  | cargo-watch · cargo-cache · cargo-dist · cargo-modules                                                             |
+|                          |                                                                                                                     |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------ |
+| **dev essentials**       | git · gh · git-lfs · build-essential · stow · jq                                                                    |
+| **terminal utilities**   | starship · curl · wget · whois · pass · openssl · moreutils                                                         |
+| **shell & files**        | zsh · eza · bat · fzf · fd · ripgrep                                                                                |
+| **editors & tools**      | helix · alacritty · mpv                                                                                             |
+| **code formatters**      | shfmt · just                                                                                                        |
+| **shell plugins**        | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                                         |
+| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                            |
+| **go tools** _(opt)_     | goimports · gopls · golangci-lint · govulncheck · gotests · air · goreleaser · usql · slim · eget · sheets · roumon |
+| **python tools** _(opt)_ | ytm-player _(via uv)_                                                                                               |
+| **rust tools** _(opt)_   | cargo-watch · cargo-cache · cargo-dist · cargo-modules                                                              |
 
 </div>
 
@@ -323,32 +323,92 @@ _alacritty · starship_
 
 <div align="center">
 
-## `🏗️ architecture`
+## `🏗️ scripts architecture`
 
 </div>
 
 <br/>
 
+<div align="center">
+
+### **Quick Start**
+
+```bash
+# automated — install everything
+./install.sh
+
+# interactive — choose what to run
+./setup.sh
 ```
-utils/detect.sh      os · package manager · sudo detection
 
-lib/packages.sh      installs every tool
-lib/plugins.sh       oh my zsh · tpm · zsh plugins
-lib/wallpapers.sh    clones wallpapers repo
-lib/dotfiles.sh      gnu stow · git hook permissions
-lib/mac-gui.sh       macOS GUI applications via homebrew cask
+</div>
 
-sdk-tools/go_tools.sh      optional go dev tools
-sdk-tools/python_tools.sh  optional python cli tools
-sdk-tools/cargo_tools.sh   optional rust cli tools
+<br/>
 
-install.sh           runs everything above in order (except optional tools)
-setup.sh             interactive — run only what you want
+### **Folder Structure**
+
+```
+scripts/
+├── install.sh              full automated setup (runs lib/ scripts)
+├── setup.sh                interactive menu — pick and choose
+│
+├── lib/                    modular setup scripts (standalone)
+│   ├── softwares.sh        install base tools & language runtimes
+│   ├── plugins.sh          oh-my-zsh · tpm · zsh & tmux plugins
+│   ├── wallpapers.sh       clone wallpapers repository
+│   └── dotfiles.sh         symlink configs with gnu stow
+│
+├── sdk-tools/              optional language-specific installers
+│   ├── cargo-tools.sh      rust cli tools (cargo-watch, cargo-cache, etc.)
+│   ├── go-tools.sh         go dev tools (gopls, golangci-lint, goreleaser, etc.)
+│   └── uv-tools.sh         python cli tools via uv package manager
+│
+├── utils/
+│   └── detect.sh           os · package manager · sudo detection
+│
+└── config/
+    └── wallpapers.url      wallpapers repository url
 ```
 
 <div align="center">
 
-_every script in `lib/`, `sdk-tools` runs standalone. use only what you need._
+_Every script in `lib/` and `sdk-tools/` runs standalone. Source only what you need._
+
+</div>
+
+---
+
+<br/>
+
+### **Usage Modes**
+
+<br/>
+
+**`./install.sh`** — Full automated setup
+
+- runs `lib/softwares.sh` → base tools + language runtimes
+- runs `lib/plugins.sh` → shell plugins
+- runs `lib/wallpapers.sh` → wallpapers repo
+- runs `lib/dotfiles.sh` → symlink configs
+- ⏭️ skips optional sdk-tools
+
+**`./setup.sh`** — Interactive menu
+
+- displays all available scripts (lib/ + sdk-tools/)
+- you choose which ones to run
+- includes optional language tools (Go, Rust, Python)
+
+**Optional Language Tools** — Run individually
+
+```bash
+./sdk-tools/go-tools.sh       # install go dev tools
+./sdk-tools/cargo-tools.sh    # install rust cli tools (requires cargo)
+./sdk-tools/uv-tools.sh       # install python tools (requires uv)
+```
+
+<div align="center">
+
+Add `--update` flag to force reinstall: `./sdk-tools/go-tools.sh --update`
 
 </div>
 
