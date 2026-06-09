@@ -1,3 +1,5 @@
+# File location: zsh/.config/zsh/functions/apireq.zsh
+
 apireq() {
   _init_colors
 
