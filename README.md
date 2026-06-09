@@ -242,40 +242,6 @@ gh co                 # Interactive PR checkout
 
 <div align="center">
 
-## `🖱️ macOS GUI setup`
-
-_automatic installation of desktop applications via Homebrew Cask_
-
-</div>
-
-<br/>
-
-**mac-gui.sh** installs essential GUI tools on macOS:
-
-|    Application     | Purpose           |
-| :----------------: | :---------------- |
-| Visual Studio Code | code editor       |
-|   Brave Browser    | web browser       |
-|      Firefox       | web browser       |
-|     Alacritty      | Terminal Emulator |
-|      Applite       | Brew Cask GUI     |
-
-<div align="center">
-
-OS detection · Homebrew validation · clear feedback · works standalone or sourced
-
-</div>
-
----
-
-<br/>
-
----
-
-<br/>
-
-<div align="center">
-
 ## `🎨 terminal & prompt`
 
 _alacritty · starship_
@@ -304,7 +270,7 @@ _alacritty · starship_
 
 |                          |                                                                                                                     |
 | :----------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| **dev essentials**       | git · gh · git-lfs · build-essential · stow · jq                                                                    |
+| **dev essentials**       | git · gh · git-lfs · build-essential · stow · jq · httpie                                                           |
 | **terminal utilities**   | starship · curl · wget · whois · pass · openssl · moreutils                                                         |
 | **shell & files**        | zsh · eza · bat · fzf · fd · ripgrep                                                                                |
 | **editors & tools**      | helix · alacritty · mpv                                                                                             |
