@@ -7,7 +7,14 @@ ZSH_COMPDUMP=$HOME/.cache/zsh/zcompdump
 mkdir -p ~/.cache/zsh
 
 ZSH_THEME=""
-plugins=(git fzf zsh-autosuggestions zsh-syntax-highlighting fzf-tab)
+plugins=(
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+
+	golang
+	gh
+)
 [[ -d "$ZSH" ]] && source "$ZSH/oh-my-zsh.sh"
 
 # Starship
@@ -15,42 +22,41 @@ eval "$(starship init zsh)"
 
 # Load modules
 zsh_modules=(
-  core/env
-  core/colors
-  core/history
-  functions/utils
-  functions/archive
-  functions/chpwd
-  plugins/fzf
-  plugins/pass
-  user/aliases
-  functions/security
-  user/overrides
-  functions/ai
-  functions/whois
-  functions/network
+	core/env
+	core/colors
+	core/history
+	functions/utils
+	functions/archive
+	functions/chpwd
+	plugins/fzf
+	plugins/pass
+	user/aliases
+	functions/security
+	user/overrides
+	functions/whois
+	functions/network
 )
 
 for mod in "${zsh_modules[@]}"; do
-  file="$ZDOTDIR/${mod}.zsh"
-  if [[ -f "$file" ]]; then
-    source "$file"
-  else
-    echo "⚠️  missing: $file" >&2
-  fi
+	file="$ZDOTDIR/${mod}.zsh"
+	if [[ -f "$file" ]]; then
+		source "$file"
+	else
+		echo "⚠️  missing: $file" >&2
+	fi
 done
 unset zsh_modules mod file
 
-# Display session start time 
+# Display session start time
 if [[ -n "$COLOR_HEADER" ]]; then
-  echo -e "${COLOR_HEADER}󱑎 Session started:${COLOR_RESET} ${COLOR_NORMAL}$(date '+%A, %d %B %Y | %I:%M %p')${COLOR_RESET}"
+	echo -e "${COLOR_HEADER}󱑎 Session started:${COLOR_RESET} ${COLOR_NORMAL}$(date '+%A, %d %B %Y | %I:%M %p')${COLOR_RESET}"
 else
-  date '+%A, %d %B %Y | %I:%M %p'
+	date '+%A, %d %B %Y | %I:%M %p'
 fi
 
 # Load local secrets
 if [[ -f "$HOME/.zsh_secrets" ]]; then
-  [[ "$(stat -c %a "$HOME/.zsh_secrets" 2>/dev/null || stat -f %OLp "$HOME/.zsh_secrets")" != "600" ]] \
-    && echo "⚠️  ~/.zsh_secrets is not chmod 600" >&2
-  source "$HOME/.zsh_secrets"
+	[[ "$(stat -c %a "$HOME/.zsh_secrets" 2>/dev/null || stat -f %OLp "$HOME/.zsh_secrets")" != "600" ]] &&
+		echo "⚠️  ~/.zsh_secrets is not chmod 600" >&2
+	source "$HOME/.zsh_secrets"
 fi
