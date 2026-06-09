@@ -2,7 +2,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$SCRIPT_DIR/lib/packages.sh"
+source "$SCRIPT_DIR/lib/softwares.sh"
 source "$SCRIPT_DIR/lib/plugins.sh"
 source "$SCRIPT_DIR/lib/wallpapers.sh"
 source "$SCRIPT_DIR/lib/dotfiles.sh"
