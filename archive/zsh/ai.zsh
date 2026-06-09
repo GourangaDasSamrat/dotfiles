@@ -1,3 +1,5 @@
+# File location: zsh/.config/zsh/functions/ai.zsh
+
 # Ask questions directly from the terminal using Google Gemini AI.
 # Requires: curl, jq, python3, pass.
 # Save your Gemini API key with: pass insert apps/key/gemini
