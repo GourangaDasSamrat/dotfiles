@@ -4,128 +4,130 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/detect.sh"
 
 COMMON_TOOLS=(
-	"curl"
-	"wget"
-	"jq"
+  "curl"
+  "wget"
+  "jq"
 
-	"fd|fd-find"
-	"fzf"
-	"eza"
-	"bat|batcat"
+  "fd|fd-find"
+  "ripgrep"
+  "fzf"
+  "eza"
+  "bat|batcat"
 
-	"shfmt"
-	"just"
-	"moreutils"
-	"stow"
+  "shfmt"
+  "just"
+  "moreutils"
+  "stow"
 
-	"gh"
-	"git-lfs"
-	"git-delta"
+  "gh"
+  "git-lfs"
+  "git-delta"
 
-	"pass"
-	"openssl-tool|openssl"
+  "pass"
+  "openssl-tool|openssl"
 
-	"starship"
-	"helix"
+  "starship"
+  "helix"
 
-	"mpv"
-	"whois"
-	"alacritty"
+  "mpv"
+  "whois"
+  "alacritty"
 )
 
 LINUX_TOOLS=(
-	"zsh"
-	"build-essential"
-	"pinentry-gnome3"
-	"rofi"
+  "zsh"
+  "build-essential"
+  "pinentry-gnome3"
+  "rofi"
 )
 
 MACOS_TOOLS=(
-	"cargo-binstall"
-	"pinentry-mac"
+  "cargo-binstall"
+  "pinentry-mac"
 
-	"visual-studio-code"
-	"bruno"
+  "visual-studio-code"
+  "bruno"
+  "tableplus"
 
-	"brave-browser"
-	"firefox"
+  "brave-browser"
+  "firefox"
 )
 
 _is_installed() {
-	local tool="$1"
-	case "$PKG_MANAGER" in
-	brew) brew list "$tool" &>/dev/null ;;
-	apt) dpkg -l | grep -q "^ii  $tool " ;;
-	pacman) pacman -Q "$tool" &>/dev/null ;;
-	esac
+  local tool="$1"
+  case "$PKG_MANAGER" in
+  brew) brew list "$tool" &>/dev/null ;;
+  apt) dpkg -l | grep -q "^ii  $tool " ;;
+  pacman) pacman -Q "$tool" &>/dev/null ;;
+  esac
 }
 
 _install_tool() {
-	local tool="$1"
+  local tool="$1"
 
-	# Handle "pkg1|pkg2" OR logic — try each name, install whichever exists in repo
-	if [[ "$tool" == *"|"* ]]; then
-		local candidates
-		IFS='|' read -ra candidates <<<"$tool"
+  # Handle "pkg1|pkg2" OR logic — try each name, install whichever exists in repo
+  if [[ "$tool" == *"|"* ]]; then
+    local candidates
+    IFS='|' read -ra candidates <<<"$tool"
 
-		for candidate in "${candidates[@]}"; do
-			if _is_installed "$candidate"; then
-				echo "$candidate is already installed, skipping..."
-				return
-			fi
-		done
+    for candidate in "${candidates[@]}"; do
+      if _is_installed "$candidate"; then
+        echo "$candidate is already installed, skipping..."
+        return
+      fi
+    done
 
-		# Try installing each candidate until one succeeds
-		for candidate in "${candidates[@]}"; do
-			echo "Trying to install $candidate..."
-			case "$PKG_MANAGER" in
-			brew) brew install "$candidate" && return ;;
-			apt) $SUDO_CMD apt install -y "$candidate" && return ;;
-			pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
-			esac
-		done
+    # Try installing each candidate until one succeeds
+    for candidate in "${candidates[@]}"; do
+      echo "Trying to install $candidate..."
+      case "$PKG_MANAGER" in
+      brew) brew install "$candidate" && return ;;
+      apt) $SUDO_CMD apt install -y "$candidate" && return ;;
+      pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
+      esac
+    done
 
-		echo "Warning: Could not install any of: $tool"
-		return 1
-	fi
+    echo "Warning: Could not install any of: $tool"
+    return 1
+  fi
 
-	# Normal single-tool logic
-	if _is_installed "$tool"; then
-		echo "$tool is already installed, skipping..."
-		return
-	fi
-	echo "Installing $tool..."
-	case "$PKG_MANAGER" in
-	brew) brew install "$tool" ;;
-	apt) $SUDO_CMD apt install -y "$tool" ;;
-	pacman) $SUDO_CMD pacman -S --noconfirm "$tool" ;;
-	esac
+  # Normal single-tool logic
+  if _is_installed "$tool"; then
+    echo "$tool is already installed, skipping..."
+    return
+  fi
+  echo "Installing $tool..."
+  case "$PKG_MANAGER" in
+  brew) brew install "$tool" ;;
+  apt) $SUDO_CMD apt install -y "$tool" ;;
+  pacman) $SUDO_CMD pacman -S --noconfirm "$tool" ;;
+  esac
 }
 
 install_packages() {
-	if [ "$OS" = "unsupported" ] || [ "$PKG_MANAGER" = "unsupported" ]; then
-		echo "Error: Unsupported OS or package manager."
-		return 1
-	fi
+  if [ "$OS" = "unsupported" ] || [ "$PKG_MANAGER" = "unsupported" ]; then
+    echo "Error: Unsupported OS or package manager."
+    return 1
+  fi
 
-	case "$OS" in
-	macos) TOOLS=("${COMMON_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
-	linux) TOOLS=("${COMMON_TOOLS[@]}" "${LINUX_TOOLS[@]}") ;;
-	esac
+  case "$OS" in
+  macos) TOOLS=("${COMMON_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
+  linux) TOOLS=("${COMMON_TOOLS[@]}" "${LINUX_TOOLS[@]}") ;;
+  esac
 
-	echo "Updating system..."
-	case "$PKG_MANAGER" in
-	brew) brew update && brew upgrade ;;
-	apt) $SUDO_CMD apt update && $SUDO_CMD apt upgrade -y ;;
-	pacman) $SUDO_CMD pacman -Syu --noconfirm ;;
-	esac
+  echo "Updating system..."
+  case "$PKG_MANAGER" in
+  brew) brew update && brew upgrade ;;
+  apt) $SUDO_CMD apt update && $SUDO_CMD apt upgrade -y ;;
+  pacman) $SUDO_CMD pacman -Syu --noconfirm ;;
+  esac
 
-	for tool in "${TOOLS[@]}"; do
-		_install_tool "$tool"
-	done
+  for tool in "${TOOLS[@]}"; do
+    _install_tool "$tool"
+  done
 }
 
 # ── Run if executed directly ──────────────────────────────────────────────────
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-	install_packages
+  install_packages
 fi
