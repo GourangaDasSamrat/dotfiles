@@ -32,6 +32,7 @@ COMMON_TOOLS=(
   "mpv"
   "whois"
   "alacritty"
+  "httpie"
 )
 
 LINUX_TOOLS=(
@@ -42,6 +43,11 @@ LINUX_TOOLS=(
 )
 
 MACOS_TOOLS=(
+  "go"
+  "uv"
+  "oven-sh/bun/bun"
+  "rustup"
+
   "cargo-binstall"
   "pinentry-mac"
 
@@ -51,6 +57,9 @@ MACOS_TOOLS=(
 
   "brave-browser"
   "firefox"
+
+  "discord"
+  "raycast"
 )
 
 _is_installed() {
