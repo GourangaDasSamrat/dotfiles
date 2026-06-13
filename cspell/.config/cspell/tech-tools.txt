@@ -5,6 +5,7 @@ cleanenv
 cloudinary
 Cortado
 clippy
+ciphertext
 Eulerian
 Excalidraw
 excalidraw
@@ -14,6 +15,7 @@ gmail
 gopkg
 GOARCH
 groupinstall
+keysize
 justfile
 linux
 Macchiato
