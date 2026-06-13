@@ -1,6 +1,8 @@
 # Functions
 
-## API Request Builder (`apireq`)
+## API Request Builder (`apireq`) - [ARCHIVED]
+
+⚠️ **This function is archived.** If you want to use it, move the file from the `archive/` folder to your desired location.
 
 **Location:** `~/.config/zsh/functions/apireq.zsh`
 
@@ -58,7 +60,9 @@ Authorization: Bearer token123
 
 ---
 
-## AI Query (`ask`)
+## AI Query (`ask`) - [ARCHIVED]
+
+⚠️ **This function is archived.** If you want to use it, move the file from the `archive/` folder to your desired location.
 
 **Location:** `~/.config/zsh/functions/ai.zsh`
 
