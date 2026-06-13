@@ -258,11 +258,13 @@ max-cache-ttl 7200      # 2 hours
 Starts a Python HTTP server with port validation.
 
 ```bash
-serve        # Prompts for port (default: 8000)
+serve           # Prompts for port (default: 8000)
 serve 8080
+serve -b        # Bind to 0.0.0.0 (network-wide), prompts for port
+serve 8080 -b   # Bind to 0.0.0.0 on port 8080
 ```
 
-Validates that the port is numeric, in range (1–65535), and not already in use.
+Validates that the port is numeric, in range (1–65535), and not already in use. The `-b` / `--bind-all` flag exposes the server on all network interfaces instead of localhost only.
 
 ### `timer`
 
