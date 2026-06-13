@@ -1,6 +1,15 @@
 # Start python server with validation
 serve() {
   local port=${1:-}
+  local bind_all=false
+
+  # Parse flags
+  for arg in "$@"; do
+    case "$arg" in
+      -b|--bind-all) bind_all=true ;;
+      [0-9]*) port="$arg" ;;
+    esac
+  done
 
   while true; do
     if [ -z "$port" ]; then
@@ -8,31 +17,32 @@ serve() {
       read port
       port=${port:-8000}
     fi
-
     if ! [[ "$port" =~ ^[0-9]+$ ]]; then
       echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be a number!"
       port=""
       continue
     fi
-
     if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
       echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be between 1 and 65535!"
       port=""
       continue
     fi
-
     if lsof -Pi :$port -sTCP:LISTEN -t > /dev/null 2>&1; then
       echo "${COLOR_WARNING}  ⚠${COLOR_RESET} Port $port is already in use!"
       echo "${COLOR_HEADER}  Try another port:${COLOR_RESET} "
       port=""
       continue
     fi
-
     break
   done
 
-  echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
-  python3 -m http.server "$port"
+  if $bind_all; then
+    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://0.0.0.0:$port${COLOR_RESET} ${COLOR_WARNING}(network-wide)${COLOR_RESET}"
+    python3 -m http.server "$port" --bind 0.0.0.0
+  else
+    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
+    python3 -m http.server "$port"
+  fi
 }
 
 # Timer
