@@ -1,37 +1,50 @@
-# User identity configuration - used for commit authorship
+# User identity configuration & Commit signing
 [user]
   name = Gouranga Das Samrat
   email = gouranga.das.khulna@gmail.com
   signingkey = A72744D62F95F2DB61C5161B9BEEA05E7FA01166
 
-# Use git@github.com instead of github.com
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-
-# Commit signing configuration - automatically sign all commits with GPG
 [commit]
   gpgsign = true
 
-# GPG configuration for commit signing
 [gpg]
   program = gpg
 
-# Repository initialization defaults
-[init]
-  defaultBranch = main
-
-# Core git configuration - paths, editor, pager (Delta), and whitespace preferences
+# Core & Editor configuration
 [core]
   hooksPath = ~/.git-hooks
   editor = hx
   pager = delta
   whitespace = space-before-tab,trailing-space
+  fsmonitor = true
+  untrackedCache = true
 
-# Interactive staging configuration - uses Delta for git add -p
+# UI & Usability Enhancements
+[column]
+  ui = auto               
+
+[branch]
+  sort = -committerdate   
+
+[init]
+  defaultBranch = main
+
+# Repository Maintenance & Conflict Resolution
+[maintenance]
+  auto = true             
+
+[rerere]
+  enabled = true          
+  autoupdate = true
+
+# URL rewrite - Secure Push via SSH, Pull via HTTPS
+[url "git@github.com:"]
+  pushInsteadOf = "https://github.com/"
+
+# Interactive staging & Delta pager
 [interactive]
   diffFilter = delta --color-only
 
-# Delta pager configuration
 [delta]
   features = dracula
   side-by-side = true
@@ -40,17 +53,17 @@
   hyperlinks = true
   hunk-header-style = "omit"
 
-# Color output - improve readability of git commands
 [color]
   ui = auto
 
-# Fetch configuration - automatically remove deleted remote branches locally
+# Sync & Fetch preferences
 [fetch]
   prune = true
+  pruneTags = true        
 
-# Push configuration - automatically set up remote tracking for new branches
 [push]
   autoSetupRemote = true
+  followTags = true
 
 # Email configuration for git send-email - allows sending patches via SMTP
 [sendemail]
