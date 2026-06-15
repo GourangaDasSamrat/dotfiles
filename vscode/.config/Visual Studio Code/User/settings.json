@@ -128,7 +128,7 @@
 
   // terminal
   "terminal.external.linuxExec": "xfce4-terminal",
-  "terminal.external.osxExec": "Alacritty.app",
+  "terminal.external.osxExec": "Kitty.app",
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.cursorBlinking": true,
