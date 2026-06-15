@@ -23,7 +23,7 @@
 <div align="center">
 
 ```
-          zsh  ·  tmux  ·  vscode  ·  alacritty  ·  starship  ·  git  · gh · uSql
+          zsh  ·  tmux  ·  vscode  ·  kitty  ·  starship  ·  git  · gh · uSql
 ```
 
 </div>
@@ -244,13 +244,12 @@ gh co                 # Interactive PR checkout
 
 ## `🎨 terminal & prompt`
 
-_alacritty · starship_
+_kitty · starship_
 
 </div>
 
 <br/>
 
-**Alacritty** — dracula theme · JetBrainsMono Nerd Font · 95% opacity + blur · `option_as_alt` for macOS
 
 **Starship** — two-line prompt. directory + git on line one. language modules inline — node, go, python, rust, java, and more. shows vs code version in any directory.
 
