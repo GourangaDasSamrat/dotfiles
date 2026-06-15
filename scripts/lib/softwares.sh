@@ -31,7 +31,7 @@ COMMON_TOOLS=(
 
   "mpv"
   "whois"
-  "alacritty"
+  "kitty"
   "httpie"
 )
 
@@ -47,6 +47,7 @@ MACOS_TOOLS=(
   "uv"
   "oven-sh/bun/bun"
   "rustup"
+  "fnm"
 
   "cargo-binstall"
   "pinentry-mac"
