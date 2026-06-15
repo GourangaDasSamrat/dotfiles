@@ -1,9 +1,10 @@
 # --- Termux Specific Aliases ---
 if [[ -d /data/data/com.termux ]]; then
   alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
-  alias df="cd /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
+  alias lf="cd /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
   alias start="/data/data/com.termux/files/home/start.sh"
+  alias apt='apt ' i='install' && compdef _apt i=apt 2>/dev/null
 fi
 
 # --- Conditional Aliases ---
