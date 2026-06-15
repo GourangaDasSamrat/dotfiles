@@ -58,7 +58,7 @@ All aliases use `(($+commands[name]))` — only defined if the binary is install
 | Alias    | Purpose                    |
 | -------- | -------------------------- |
 | `debian` | Login to Debian proot      |
-| `df`     | Navigate to Debian home    |
+| `lf`     | Navigate to Debian home    |
 | `af`     | Navigate to shared storage |
 | `start`  | Run startup script         |
 
