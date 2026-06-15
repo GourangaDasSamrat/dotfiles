@@ -48,6 +48,8 @@ MACOS_TOOLS=(
   "oven-sh/bun/bun"
   "rustup"
   "fnm"
+  "docker"
+  "colima"
 
   "cargo-binstall"
   "pinentry-mac"
@@ -56,9 +58,7 @@ MACOS_TOOLS=(
   "bruno"
   "tableplus"
 
-  "brave-browser"
   "firefox"
-
   "discord"
   "raycast"
 )
