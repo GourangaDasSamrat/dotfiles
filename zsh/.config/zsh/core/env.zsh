@@ -15,7 +15,6 @@ export DOTFILES="$HOME/dotfiles"           # Path to dotfiles directory
 export UV_LINK_MODE=copy                   # Symlink mode for UV
 export BAT_THEME="Dracula"                 # Syntax highlighting theme
 export BUN_INSTALL="$HOME/.bun"            # Bun installation directory
-export NVM_DIR="$HOME/.nvm"                # NVM installation directory
 export PNPM_HOME="$HOME/.local/share/pnpm" # PNPM home
 export GOPATH="$HOME/go"                   # Go workspace directory
 export CARGO_NET_GIT_FETCH_WITH_CLI=true   # Use system git for better auth/network stability
@@ -23,9 +22,11 @@ export CARGO_NET_GIT_FETCH_WITH_CLI=true   # Use system git for better auth/netw
 # --- Completions & Loaders ---
 # Load Bun completions
 [[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
-# Load NVM and its completions
-[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+
+# Load fnm (Fast Node Manager) and auto-switch node versions on directory change
+if command -v fnm &> /dev/null; then
+  eval "$(fnm env --use-on-cd --shell zsh)"
+fi
 
 # --- Path Management ---
 typeset -U path # Prevent duplicate PATH entries
