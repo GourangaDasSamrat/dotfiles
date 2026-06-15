@@ -61,4 +61,4 @@ _auto_nvm_use() {
 # --- Register functions to run on directory change ---
 add-zsh-hook chpwd _manage_python_venv
 add-zsh-hook chpwd _list_project_tools
-add-zsh-hook chpwd _auto_nvm_use
+# add-zsh-hook chpwd _auto_nvm_use
