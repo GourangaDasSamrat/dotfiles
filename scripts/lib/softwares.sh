@@ -47,12 +47,10 @@ MACOS_TOOLS=(
   "uv"
   "oven-sh/bun/bun"
   "rustup"
+  "cargo-binstall"
   "fnm"
   "docker"
   "colima"
-
-  "cargo-binstall"
-  "pinentry-mac"
 
   "visual-studio-code"
   "bruno"
@@ -60,7 +58,13 @@ MACOS_TOOLS=(
 
   "firefox"
   "discord"
+  "iina"
+
+  "pinentry-mac"
   "raycast"
+  "alt-tab"
+  "hiddenbar"
+  "google-drive"
 )
 
 _is_installed() {
