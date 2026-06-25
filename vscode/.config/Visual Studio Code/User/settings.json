@@ -282,7 +282,7 @@
     "--",
     "-W", "clippy::pedantic",
     "-W", "clippy::nursery",
-    "-W", "clippy::cargo",
+  //  "-W", "clippy::cargo",
     "-D", "clippy::unwrap_used",
     "-D", "clippy::expect_used",
     "-W", "clippy::indexing_slicing",
