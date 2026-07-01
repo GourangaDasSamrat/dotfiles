@@ -31,8 +31,6 @@ COMMON_TOOLS=(
 
   "mpv"
   "whois"
-  "kitty"
-  "httpie"
 )
 
 LINUX_TOOLS=(
@@ -51,10 +49,12 @@ MACOS_TOOLS=(
   "fnm"
   "docker"
   "colima"
+  "httpie"
 
   "visual-studio-code"
   "bruno"
   "tableplus"
+  "kitty"
 
   "firefox"
   "discord"
