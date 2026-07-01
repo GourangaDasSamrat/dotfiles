@@ -113,6 +113,9 @@ echo "----------------------------------------"
 echo "Cleaning Go module cache to save storage..."
 go clean -modcache
 
+echo "Stripping Go binaries and adding symlink for golangci-lint..."
+strip --strip-all "$GOPATH/bin"/* && ln -s "$GOPATH/bin/golangci-lint" "$GOPATH/bin/golangci-lint-v2"
+
 # ─── Summary ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
 echo "Summary:"
