@@ -15,26 +15,41 @@ termux-setup-storage
 Update the system and install essential packages:
 
 ```bash
-# Core packages
 pkg update && pkg upgrade -y
-pkg install git curl wget x11-repo tur-repo termux-x11-nightly pulseaudio -y
+pkg install git curl wget x11-repo -y
+pkg install tur-repo termux-x11-nightly pulseaudio -y
 
-# Applications
 apt install firefox code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
-
-# Programming tools
 apt install golang rust cargo-binstall nodejs-lts uv -y
-
-# XFCE4 desktop environment and plugins
 apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager -y
-
 ```
 
 ### Setup Startup Script
 
 ```bash
-cp -r ~/dotfiles/docs/termux/native-desktop-start.sh ~/start.sh
-chmod +x start.sh
+ln -s ~/dotfiles/docs/termux/native-desktop-start.sh ~/start.sh
+```
+
+### Install Desktop Themes and Icons
+
+```bash
+mkdir -p ~/.themes && cd ~/.themes
+wget https://github.com/vinceliuice/MacTahoe-gtk-theme/raw/refs/heads/main/release/MacTahoe-Dark.tar.xz
+tar -xf MacTahoe-Dark.tar.xz
+rm -rf MacTahoe-Dark.tar.xz
+
+git clone https://github.com/vinceliuice/MacTahoe-icon-theme
+cd MacTahoe-icon-theme
+./install.sh -t default -d ~/.icons
+rm -rf ../MacTahoe-icon-theme
+
+mkdir -p ~/.local/share/xfce4/terminal/colorschemes
+cd ~/.local/share/xfce4/terminal/colorschemes
+wget https://github.com/dracula/xfce4-terminal/raw/refs/heads/master/Dracula.theme
+
+mkdir -p ~/.local/share/gtksourceview-4/styles
+cd ~/.local/share/gtksourceview-4/styles
+wget https://github.com/dracula/mousepad/raw/refs/heads/master/dracula.xml
 ```
 
 ### Launch Desktop Environment
@@ -59,6 +74,14 @@ ln -s /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/roo
 ```
 
 ## Customization
+
+### Install Termux Theme
+
+```bash
+cd ~/.termux
+wget https://github.com/adi1090x/termux-style/raw/refs/heads/master/colors/dracula.properties
+mv dracula.properties colors.properties
+```
 
 ### Update Termux Homepage
 
