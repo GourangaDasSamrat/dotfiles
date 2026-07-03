@@ -80,7 +80,6 @@ _every command feels intentional._
 |                    `rm`                     | shows what dies. asks before it runs                                                                                          |
 |                  `extract`                  | detects and unpacks any archive format. just point at it                                                                      |
 |                 `compress`                  | fzf menu picks the format. then it compresses                                                                                 |
-|                  `apireq`                   | full API client via fzf. saves requests as `.http` files                                                                      |
 |                   `serve`                   | python http server with port conflict detection                                                                               |
 |                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification                                                                  |
 |                  `backup`                   | timestamped `.tar.gz` of anything. one command                                                                                |
@@ -94,7 +93,6 @@ _every command feels intentional._
 |                   ` myip`                   | fetches public info and show IP address, city, region, and ISP                                                                |
 |                     `t`                     | show timestamps before log                                                                                                    |
 |                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
-|                    `ask`                    | ask questions directly from the terminal using Google Gemini AI                                                               |
 |                    `shd`                    | Find & display large build/dependency folders                                                                                 |
 
 </div>
