@@ -65,6 +65,8 @@ MACOS_TOOLS=(
   "alt-tab"
   "hiddenbar"
   "google-drive"
+
+  "font-jetbrains-mono-nerd-font"
 )
 
 _is_installed() {
