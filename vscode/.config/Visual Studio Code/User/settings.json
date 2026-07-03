@@ -125,6 +125,8 @@
   "workbench.editor.empty.hint": "hidden",
   "workbench.externalBrowser": "firefox",
   "workbench.browser.pageZoom": "100%",
+  "workbench.browser.showInTitleBar": true,
+  "workbench.browser.openLocalhostLinks": true,
 
   // terminal
   "terminal.external.linuxExec": "xfce4-terminal",
@@ -599,5 +601,5 @@
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react_redux",
-  "material-icon-theme.hidesExplorerArrows": true
+  "material-icon-theme.hidesExplorerArrows": true,
 }
