@@ -86,7 +86,7 @@ PATH additions include: `~/.local/bin`, `$GOPATH/bin`, `$BUN_INSTALL/bin`, `$PNP
 ### Termux (Android) Only
 
 ```bash
-export SSL_CERT_FILE=/data/data/com.termux/files/usr/etc/tls/cert.pem
+export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem
 export BUN_OPTIONS="--os=android"
 ```
 

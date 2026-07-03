@@ -70,7 +70,7 @@ pd install debian
 ### Symlink Developer Folder
 
 ```bash
-ln -s /data/data/com.termux/files/usr/var/lib/proot-distro/containers/debian/rootfs/home/gouranga/Developer ~/Developer
+ln -s $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga/Developer ~/Developer
 ```
 
 ## Customization
@@ -102,7 +102,7 @@ nano ~/.gnupg/gpg-agent.conf
 Add the following line:
 
 ```bash
-pinentry-program /data/data/com.termux/files/usr/bin/pinentry-gnome3
+pinentry-program $PREFIX/bin/pinentry-gnome3
 ```
 
 ## Keyboard Shortcuts

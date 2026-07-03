@@ -7,7 +7,7 @@ This guide provides configuration and setup instructions for running VS Code on 
 To make Code-OSS appear as Visual Studio Code in Termux, edit the product configuration file at:
 
 ```
-/data/data/com.termux/files/usr/lib/code-oss/resources/app/product.json
+$PREFIX/lib/code-oss/resources/app/product.json
 ```
 
 Add or update these configuration properties:
