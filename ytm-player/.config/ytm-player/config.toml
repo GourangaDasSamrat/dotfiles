@@ -18,6 +18,7 @@ remote_components = ""
 js_runtimes = ""
 
 [ui]
+theme = "dracula"
 album_art = true
 progress_style = "block"
 sidebar_width = 30
@@ -32,7 +33,7 @@ enabled = true
 timeout_seconds = 5
 
 [mpris]
-enabled = true   # Linux only — remove or set false on macOS
+enabled = true
 
 [discord]
 enabled = false
