@@ -3,13 +3,16 @@ if [[ -d /data/data/com.termux ]]; then
   alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
   alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
-  alias start="/data/data/com.termux/files/home/start.sh"
+  alias start="$HOME/start.sh"
   alias apt='apt ' i='install' && compdef _apt i=apt 2>/dev/null
 fi
 
 # --- Conditional Aliases ---
 (( ${+commands[fdfind]} )) && alias fd='fdfind'
 (( ${+commands[batcat]} )) && alias bat='batcat'
+(( $+commands[bun] )) && bun() {
+    (( $# == 0 )) && { [[ -f package.json ]] && command bun install || command bun repl; } || command bun "$@"
+}
 
 # --- Navigation and Config Aliases ---
 if [[ -d "$DOTFILES" ]]; then
