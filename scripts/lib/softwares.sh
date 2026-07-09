@@ -49,6 +49,7 @@ MACOS_TOOLS=(
   "fnm"
   "docker"
   "colima"
+  "redis"
   "httpie"
 
   "visual-studio-code"
