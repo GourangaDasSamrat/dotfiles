@@ -4,7 +4,8 @@ if [[ -d /data/data/com.termux ]]; then
   alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
   alias start="$HOME/start.sh"
-  alias apt='apt ' i='install' && compdef _apt i=apt 2>/dev/null
+  apt() { [[ "$1" == "i" ]] && { shift; command apt install "$@"; } || { [[ "$1" == "rm" ]] && { shift; command apt remove "$@"; } || command apt "$@"; }; }
+  compdef _apt apt 2>/dev/null
 fi
 
 # --- Conditional Aliases ---
