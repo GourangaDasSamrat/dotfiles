@@ -284,17 +284,18 @@
     "--",
     "-W", "clippy::pedantic",
     "-W", "clippy::nursery",
-    // "-W", "clippy::cargo",
+    "-W", "clippy::cargo",
     "-D", "clippy::unwrap_used",
     "-D", "clippy::expect_used",
-    "-W", "clippy::indexing_slicing",
     "-D", "clippy::todo",
     "-D", "clippy::panic",
     "-D", "clippy::dbg_macro",
+    "-W", "clippy::indexing_slicing",
     "-W", "clippy::arithmetic_side_effects",
-    "-W", "clippy::float_cmp",
-    "-W", "clippy::cast_possible_truncation",
-    "-W", "clippy::cast_sign_loss",
+    "-W", "clippy::clone_on_ref_ptr",
+    "-W", "clippy::undocumented_unsafe_blocks",
+    "-W", "clippy::str_to_string",
+    "-W", "clippy::string_to_string",
     "-A", "clippy::missing_docs_in_private_items"
   ],
 
@@ -611,5 +612,5 @@
     "selectors": "redux-selector",
     "selector": "redux-selector"
   },
-  "material-icon-theme.hidesExplorerArrows": true,
+  "material-icon-theme.hidesExplorerArrows": true
 }
