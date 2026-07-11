@@ -248,7 +248,6 @@ _kitty · starship_
 
 <br/>
 
-
 **Starship** — two-line prompt. directory + git on line one. language modules inline — node, go, python, rust, java, and more. shows vs code version in any directory.
 
 ---
@@ -394,7 +393,7 @@ Add `--update` flag to force reinstall: `./sdk-tools/go-tools.sh --update`
 |  **shell**  | [zsh architecture](docs/zsh/architecture.md) · [core config](docs/zsh/core.md) · [customization](docs/zsh/customization.md) · [functions](docs/zsh/functions.md) · [plugins](docs/zsh/plugins.md) |
 |   **git**   | [send-email setup](docs/git/send-email.md)                                                                                                                                                        |
 |  **setup**  | [manual install guide](docs/setup/manual-install.md)                                                                                                                                              |
-| **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [settings](docs/vscode/settings.md) · [termux setup](docs/vscode/termux-setup.md)                           |
+| **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [termux setup](docs/vscode/termux-setup.md)                           |
 |  **helix**  | [language servers](docs/helix/language-servers.md)                                                                                                                                                |
 | **termux**  | [native desktop](docs/termux/native-desktop.md) · [proot debian](docs/termux/proot-debian.md)                                                                                                     |
 
