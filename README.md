@@ -81,7 +81,6 @@ _every command feels intentional._
 |                  `extract`                  | detects and unpacks any archive format. just point at it                                                                      |
 |                 `compress`                  | fzf menu picks the format. then it compresses                                                                                 |
 |                   `serve`                   | python http server with port conflict detection                                                                               |
-|                   `timer`                   | `timer 1h30m` — color-coded countdown + desktop notification                                                                  |
 |                  `backup`                   | timestamped `.tar.gz` of anything. one command                                                                                |
 |                 `env-save`                  | encrypts `.env` into `pass` at any custom path. multi-line safe                                                               |
 |                 `env-load`                  | pulls secrets from `pass` into `.env` or any custom filename                                                                  |
@@ -89,11 +88,9 @@ _every command feels intentional._
 |                    `dzw`                    | Use dzw [key] domain.com to perform a filtered WHOIS lookup, either via a predefined server key or the default system server. |
 |                   `isup`                    | checks if a site is live. follows redirects and handles connection errors gracefully                                          |
 |                  `inspect`                  | deep-dives into headers. extracts server info, security headers, and content types                                            |
-|                 ` weather`                  | fetches weather report for any city. clean, minimal, and non-breaking terminal output                                         |
 |                   ` myip`                   | fetches public info and show IP address, city, region, and ISP                                                                |
 |                     `t`                     | show timestamps before log                                                                                                    |
 |                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
-|                    `shd`                    | Find & display large build/dependency folders                                                                                 |
 
 </div>
 
@@ -390,7 +387,6 @@ Add `--update` flag to force reinstall: `./sdk-tools/go-tools.sh --update`
 
 |  Category   | Documentation                                                                                                                                                                                     |
 | :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|  **shell**  | [zsh architecture](docs/zsh/architecture.md) · [core config](docs/zsh/core.md) · [customization](docs/zsh/customization.md) · [functions](docs/zsh/functions.md) · [plugins](docs/zsh/plugins.md) |
 |   **git**   | [send-email setup](docs/git/send-email.md)                                                                                                                                                        |
 |  **setup**  | [manual install guide](docs/setup/manual-install.md)                                                                                                                                              |
 | **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [termux setup](docs/vscode/termux-setup.md)                           |
