@@ -14,7 +14,7 @@ if ! pgrep -f "gpg-auto-lock-loop" > /dev/null; then
   disown
 fi
 
-
+: <<-'GPG'
 # --- GPG Agent & Pinentry Configuration ---
 local pinentry_path=""
 
@@ -33,7 +33,7 @@ if [[ -n "$pinentry_path" ]]; then
 
     (
       mkdir -p ~/.gnupg
-      
+
       # 1. Create a truly unique temporary file to avoid parallel write conflicts
       local tmp_conf
       tmp_conf=$(mktemp "$HOME/.gnupg/gpg-agent.conf.XXXXXX")
@@ -53,3 +53,5 @@ if [[ -n "$pinentry_path" ]]; then
 
   fi
 fi
+
+GPG
