@@ -183,9 +183,6 @@
   "[c]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  },
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
   },
@@ -284,7 +281,7 @@
     "--",
     "-W", "clippy::pedantic",
     "-W", "clippy::nursery",
-    "-W", "clippy::cargo",
+    // "-W", "clippy::cargo",
     "-D", "clippy::unwrap_used",
     "-D", "clippy::expect_used",
     "-D", "clippy::todo",
