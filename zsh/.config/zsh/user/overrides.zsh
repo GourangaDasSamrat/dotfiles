@@ -1,222 +1,184 @@
-# Overwrite mkdir
-mkdir() {
-  if [ $# -eq 0 ]; then
-    command mkdir
-    return
-  fi
+#!/usr/bin/env zsh
 
-  command mkdir -p "$@" || return 1
+_resolve_abs() {
+  emulate -L zsh
+  local p=${1/#\~/$HOME}
+  print -r -- ${p:A}
+}
 
-  if [ $# -ne 1 ]; then
-    return 0
-  fi
-
-  local choice=2 # Default to "No"
-  local key
+# Interactive Yes/No prompt, arrow keys + Enter. Result in $REPLY (1=Yes, 2=No).
+_yn_prompt() {
+  emulate -L zsh
+  local question=$1
+  local -i choice=2
+  local key key2 key3
 
   tput civis
-  trap 'tput cnorm' EXIT
+  {
+    while true; do
+      print -n -- $'\033[2K\r'
+      print -n -- "${COLOR_HEADER}  ◆  ${question}${COLOR_RESET}"$'\n'
 
-  while true; do
-    echo -ne "\033[2K\r"
-    echo -ne "${COLOR_HEADER}  ◆  Initialize git repository in '$1'?${COLOR_RESET}\n"
+      if (( choice == 1 )); then
+        print -n -- "     ${COLOR_CURSOR}› Yes${COLOR_RESET}  ${COLOR_NORMAL}No${COLOR_RESET}"
+      else
+        print -n -- "     ${COLOR_NORMAL}Yes${COLOR_RESET}  ${COLOR_CURSOR}› No${COLOR_RESET}"
+      fi
+      print -n -- $'\033[1A'
 
-    if [ $choice -eq 1 ]; then
-      echo -ne "     ${COLOR_CURSOR}› Yes${COLOR_RESET}  ${COLOR_NORMAL}No${COLOR_RESET}"
-    else
-      echo -ne "     ${COLOR_NORMAL}Yes${COLOR_RESET}  ${COLOR_CURSOR}› No${COLOR_RESET}"
-    fi
-    echo -ne "\033[1A"
+      read -k 1 key
+      if [[ $key == $'\x1b' ]]; then
+        read -k 1 -t 0.01 key2
+        read -k 1 -t 0.01 key3
+        key="$key$key2$key3"
+      fi
 
-    read -k1 key
-    if [[ $key == $'\x1b' ]]; then
-      read -k1 -t 0.01 key2
-      read -k1 -t 0.01 key3
-      key="$key$key2$key3"
-    fi
+      case $key in
+        $'\x1b[C'|$'\x1b[D') (( choice = choice == 1 ? 2 : 1 )) ;;
+        $'\n'|$'\r'|'')      break ;;
+      esac
+    done
+  } always {
+    tput cnorm
+  }
 
-    case "$key" in
-      $'\x1b[C' | $'\x1b[D')
-        if [ $choice -eq 1 ]; then choice=2; else choice=1; fi
-        ;;
-      $'\n' | $'\r') break ;;
-      '') break ;;
-    esac
-  done
+  print -n -- $'\033[2K\r\033[1B'
+  REPLY=$choice
+}
 
-  echo -ne "\033[2K\r\033[1B"
-  tput cnorm
-  trap - EXIT
+mkdir() {
+  emulate -L zsh
 
-  if [ $choice -eq 1 ]; then
+  (( $# == 0 )) && { command mkdir; return }
+
+  command mkdir -p -- "$@" || return 1
+  (( $# == 1 )) || return 0
+
+  _yn_prompt "Initialize git repository in '$1'?"
+
+  if (( REPLY == 1 )); then
     (
-      cd "$1" || exit
+      cd -- "$1" || exit 1
       git init -q
-      echo "# $1" > README.md
+      print -- "# $1" > README.md
       git add .
-      git commit -m "chore: initialize repository with README" -q
-      echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Initialized git repo in ${COLOR_NORMAL}$(pwd)/.git/${COLOR_RESET}"
+      git commit -q -m 'chore: initialize repository with README'
+      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Initialized git repo in ${COLOR_NORMAL}${PWD}/.git/${COLOR_RESET}"
     )
   else
-    echo -e "${COLOR_NORMAL}  ○ Created folder without git${COLOR_RESET}"
+    print -- "${COLOR_NORMAL}  ○ Created folder without git${COLOR_RESET}"
   fi
 }
 
-# Overwrite rm
 rm() {
-  if [ $# -eq 0 ]; then
-    echo "Usage: rm <file or folder>"
+  emulate -L zsh
+
+  if (( $# == 0 )); then
+    print -- 'Usage: rm <file or folder>'
     return 1
   fi
 
-  local flags=()
-  local targets=()
+  local -a flags targets
+  local arg
   for arg in "$@"; do
-    if [[ "$arg" == -* ]]; then
+    if [[ $arg == -* ]]; then
       flags+=("$arg")
     else
       targets+=("$arg")
     fi
   done
 
-  if [ ${#targets[@]} -eq 0 ]; then
+  if (( $#targets == 0 )); then
     command rm "${flags[@]}"
     return
   fi
 
-  # ─── PROTECTED PATHS ────────────────────────────────────────────────────────
-  local -a PROTECTED_EXACT=(
-    "/"
-    "/bin" "/sbin" "/usr" "/usr/bin" "/usr/sbin" "/usr/local"
-    "/etc" "/var" "/tmp" "/opt" "/lib" "/lib64"
-    "/System" "/Library" "/Applications" "/Volumes"
-    "/boot" "/dev" "/proc" "/sys" "/run"
+  local -a protected_paths=(
+    '/'
+    '/bin' '/sbin' '/usr' '/usr/bin' '/usr/sbin' '/usr/local'
+    '/etc' '/var' '/tmp' '/opt' '/lib' '/lib64'
+    '/System' '/Library' '/Applications' '/Volumes'
+    '/boot' '/dev' '/proc' '/sys' '/run'
     "$HOME"
     "$HOME/Desktop" "$HOME/Documents" "$HOME/Downloads"
     "$HOME/Library" "$HOME/Movies" "$HOME/Music" "$HOME/Pictures"
   )
 
-  _resolve_fast() {
-    local p="${1/#\~/$HOME}"
-    if [[ -d "$p" ]]; then
-      (builtin cd -P -- "$p" 2>/dev/null && print -r -- "$PWD")
-    elif [[ -e "$p" || -L "$p" ]]; then
-      local dir="${p:h}"
-      local file="${p:t}"
-      (builtin cd -P -- "$dir" 2>/dev/null && print -r -- "$PWD/$file")
-    else
-      print -r -- "$p"
-    fi
-  }
-
-  local resolved_protected_list=""
+  local -a protected_resolved
   local pp
-  for pp in "${PROTECTED_EXACT[@]}"; do
-    resolved_protected_list+="$(_resolve_fast "$pp")"$'\n'
+  for pp in "${protected_paths[@]}"; do
+    protected_resolved+=("$(_resolve_abs "$pp")")
   done
 
   _is_protected() {
-    local resolved
-    resolved="$(_resolve_fast "$1")"
-    grep -qxF "$resolved" <<< "$resolved_protected_list"
+    emulate -L zsh
+    local resolved=$(_resolve_abs "$1")
+    (( ${protected_resolved[(Ie)$resolved]} ))
   }
-  # ────────────────────────────────────────────────────────────────────────────
 
-  # Validate existence
-  local missing=0
+  local item
+  local -i missing=0
   for item in "${targets[@]}"; do
-    if [[ ! -e "$item" && ! -L "$item" ]]; then
-      echo -e "${COLOR_WARNING}  ✗  '$item' does not exist${COLOR_RESET}"
+    if [[ ! -e $item && ! -L $item ]]; then
+      print -- "${COLOR_WARNING}  ✗  '$item' does not exist${COLOR_RESET}"
       missing=1
     fi
   done
-  [[ $missing -eq 1 ]] && return 1
+  (( missing )) && return 1
 
-  # Check protected paths
-  local blocked=0
+  local -i blocked=0
   for item in "${targets[@]}"; do
     if _is_protected "$item"; then
-      echo -e "${COLOR_WARNING}  🛑  '$item' is protected${COLOR_RESET}"
+      print -- "${COLOR_WARNING}  🛑  '$item' is protected${COLOR_RESET}"
       blocked=1
     fi
   done
-  [[ $blocked -eq 1 ]] && return 1
+  (( blocked )) && return 1
 
-  # Detect trash command (cached after first call)
-  if [[ -z "${_RM_TRASH_CMD+set}" ]]; then
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-      command -v trash &>/dev/null && _RM_TRASH_CMD="trash" || _RM_TRASH_CMD=""
-    elif [[ "$OSTYPE" == "linux"* ]]; then
-      command -v gtrash &>/dev/null && _RM_TRASH_CMD="gtrash put" || _RM_TRASH_CMD=""
-    else
-      _RM_TRASH_CMD=""
-    fi
+  # Cache trash-utility detection across calls in $_RM_TRASH_CMD.
+  if [[ ! -v _RM_TRASH_CMD ]]; then
+    typeset -g _RM_TRASH_CMD=''
+    case $OSTYPE in
+      darwin*) (( ${+commands[trash]} ))  && _RM_TRASH_CMD='trash'      ;;
+      linux*)  (( ${+commands[gtrash]} )) && _RM_TRASH_CMD='gtrash put' ;;
+    esac
   fi
 
-  echo
-  echo -e "${COLOR_WARNING}  ⚠  About to delete:${COLOR_RESET}"
-  echo
+  print
+  print -- "${COLOR_WARNING}  ⚠  About to delete:${COLOR_RESET}"
+  print
 
   for item in "${targets[@]}"; do
-    if   [ -d "$item" ]; then echo -e "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
-    elif [ -f "$item" ]; then echo -e "    ${COLOR_TEXT}📄 $item${COLOR_RESET}"
-    else                      echo -e "    ${COLOR_TEXT}🔗 $item${COLOR_RESET}"
+    if   [[ -d $item ]]; then print -- "    ${COLOR_TEXT}📁 $item${COLOR_RESET}"
+    elif [[ -f $item ]]; then print -- "    ${COLOR_TEXT}📄 $item${COLOR_RESET}"
+    else                      print -- "    ${COLOR_TEXT}🔗 $item${COLOR_RESET}"
     fi
   done
 
-  if [[ -n "$_RM_TRASH_CMD" ]]; then
-    echo -e "\n    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}\n"
+  if [[ -n $_RM_TRASH_CMD ]]; then
+    print -- "\n    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}\n"
   else
-    echo -e "\n    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}\n"
+    print -- "\n    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}\n"
   fi
 
-  local choice=2
-  local key
-  tput civis
-  trap 'tput cnorm' EXIT
+  _yn_prompt 'Confirm deletion?'
 
-  while true; do
-    echo -ne "\033[2K\r"
-    echo -ne "${COLOR_HEADER}  ◆  Confirm deletion?${COLOR_RESET}\n"
-    if [ $choice -eq 1 ]; then
-      echo -ne "     ${COLOR_CURSOR}› Yes${COLOR_RESET}  ${COLOR_NORMAL}No${COLOR_RESET}"
-    else
-      echo -ne "     ${COLOR_NORMAL}Yes${COLOR_RESET}  ${COLOR_CURSOR}› No${COLOR_RESET}"
-    fi
-    echo -ne "\033[1A"
-    read -k1 key
-    if [[ $key == $'\x1b' ]]; then
-      read -k1 -t 0.01 key2
-      read -k1 -t 0.01 key3
-      key="$key$key2$key3"
-    fi
-    case "$key" in
-      $'\x1b[C' | $'\x1b[D')
-        if [ $choice -eq 1 ]; then choice=2; else choice=1; fi ;;
-      $'\n' | $'\r') break ;;
-      '') break ;;
-    esac
-  done
-
-  echo -ne "\033[2K\r\033[1B"
-  tput cnorm
-  trap - EXIT
-
-  if [ $choice -eq 1 ]; then
-    if [[ -n "$_RM_TRASH_CMD" ]]; then
+  if (( REPLY == 1 )); then
+    if [[ -n $_RM_TRASH_CMD ]]; then
       ${=_RM_TRASH_CMD} "${targets[@]}"
-      echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Moved to trash"
+      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Moved to trash"
     else
       command rm "${flags[@]}" "${targets[@]}"
-      echo -e "${COLOR_SUCCESS}  ✓${COLOR_RESET} Deleted permanently"
+      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Deleted permanently"
     fi
   else
-    echo -e "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"
+    print -- "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"
   fi
-  echo
+  print
 }
 
-# rm! — still prompts, but uses trash if available
+# NOTE: zsh's bang-history expansion can misfire on a bare `rm!` at the
+# interactive prompt. If so, use `alias rm!='rm'` instead.
 rm!() {
   rm "$@"
 }
