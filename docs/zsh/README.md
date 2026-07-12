@@ -134,7 +134,6 @@ dzw dp example.com  # Via specific server
 **VS Code Profiles**
 
 ```bash
-code-p         # Python Dev profile
 code-r         # Rust Dev profile
 code-g         # Go Dev profile
 ```
