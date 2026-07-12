@@ -1,127 +1,115 @@
-# Start python server with validation
-serve() {
-  local port=${1:-}
-  local bind_all=false
+#!/usr/bin/env zsh
 
-  # Parse flags
-  for arg in "$@"; do
-    case "$arg" in
-      -b|--bind-all) bind_all=true ;;
-      [0-9]*) port="$arg" ;;
-    esac
-  done
+# Shared port-entry loop: prompts until a valid 1-65535 port is chosen.
+# Set check_in_use=1 to also reject ports already listening (via lsof).
+# Result comes back in $REPLY.
+_prompt_port() {
+  emulate -L zsh
+  local default=$1 port=$2
+  local -i check_in_use=${3:-0}
 
   while true; do
-    if [ -z "$port" ]; then
-      echo "${COLOR_HEADER}  Enter port number (default: 8000):${COLOR_RESET} "
-      read port
-      port=${port:-8000}
+    if [[ -z $port ]]; then
+      read "port?${COLOR_HEADER}  Enter port number (default: $default): ${COLOR_RESET}"
+      port=${port:-$default}
     fi
-    if ! [[ "$port" =~ ^[0-9]+$ ]]; then
-      echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be a number!"
-      port=""
+
+    if [[ $port != <1-65535> ]]; then
+      print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be a number between 1 and 65535!"
+      port=''
       continue
     fi
-    if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
-      echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be between 1 and 65535!"
-      port=""
+
+    if (( check_in_use )) && (( ${+commands[lsof]} )) \
+        && lsof -Pi :$port -sTCP:LISTEN -t &>/dev/null; then
+      print -- "${COLOR_WARNING}  ⚠${COLOR_RESET} Port $port is already in use!"
+      port=''
       continue
     fi
-    if lsof -Pi :$port -sTCP:LISTEN -t > /dev/null 2>&1; then
-      echo "${COLOR_WARNING}  ⚠${COLOR_RESET} Port $port is already in use!"
-      echo "${COLOR_HEADER}  Try another port:${COLOR_RESET} "
-      port=""
-      continue
-    fi
+
     break
   done
 
-  if $bind_all; then
-    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://0.0.0.0:$port${COLOR_RESET} ${COLOR_WARNING}(network-wide)${COLOR_RESET}"
+  REPLY=$port
+}
+
+# serve  <port> [-b|--bind-all]  — python3 http.server with port validation
+serve() {
+  emulate -L zsh
+  local port='' arg
+  local -i bind_all=0
+
+  for arg in "$@"; do
+    case $arg in
+      -b|--bind-all) bind_all=1 ;;
+      <->)           port=$arg ;;
+    esac
+  done
+
+  _prompt_port 8000 "$port" 1
+  port=$REPLY
+
+  if (( bind_all )); then
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://0.0.0.0:$port${COLOR_RESET} ${COLOR_WARNING}(network-wide)${COLOR_RESET}"
     python3 -m http.server "$port" --bind 0.0.0.0
   else
-    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting server on ${COLOR_CURSOR}http://localhost:$port${COLOR_RESET}"
     python3 -m http.server "$port"
   fi
 }
 
-# Backup file/folder with timestamp
+# backup <file/folder>           — timestamped tar.gz backup
 backup() {
-  if [ -z "$1" ]; then
-    echo "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: backup <file/folder>"
-    echo "${COLOR_NORMAL}    Run 'backup --help' for more info${COLOR_RESET}"
+  emulate -L zsh
+
+  if [[ -z $1 ]]; then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: backup <file/folder>"
+    print -- "${COLOR_NORMAL}    Run 'backup --help' for more info${COLOR_RESET}"
     return 1
   fi
 
-  local timestamp=$(date +%Y%m%d_%H%M%S)
+  local timestamp=${(%):-%D{%Y%m%d_%H%M%S}}
   local backup_name="${1}_backup_${timestamp}.tar.gz"
 
-  tar -czf "$backup_name" "$1" 2> /dev/null
-
-  if [ $? -eq 0 ]; then
-    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Backup created: ${COLOR_CURSOR}$backup_name${COLOR_RESET}"
+  if tar -czf "$backup_name" "$1" 2>/dev/null; then
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Backup created: ${COLOR_CURSOR}$backup_name${COLOR_RESET}"
   else
-    echo "${COLOR_ERROR}  ✗${COLOR_RESET} Backup failed!"
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Backup failed!"
+    return 1
   fi
 }
 
-# Universal logger with timestamps
-if command -v ts &> /dev/null; then
+# t      <command>               — run a command with timestamped output (needs `ts`)
+if (( ${+commands[ts]} )); then
   t() {
-    # Check if a command was provided as an argument
-    [[ $# -eq 0 ]] && {
-      echo "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: t <command>"
+    emulate -L zsh
+
+    (( $# == 0 )) && {
+      print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Missing argument. Usage: t <command>"
       return 1
     }
 
-    local D_CLR=$COLOR_NORMAL
-    local T_CLR=$COLOR_HEADER
-    local R=$COLOR_RESET
+    local D_CLR=$COLOR_NORMAL T_CLR=$COLOR_HEADER R=$COLOR_RESET
 
-    # 2>&1 redirects stderr to stdout so 'ts' can catch everything
-    # env flags force color for tools that support it
-    # stdbuf -oL -eL ensures line-buffered output for real-time logging
-    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Executing with timestamps..."
-
-    env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 | ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Executing with timestamps..."
+    env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 \
+      | ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
   }
 fi
 
-
-# Slim share tunnel with port validation
-if command -v slim &> /dev/null; then
+# expose <port> [ttl]            — slim share tunnel with port validation (needs `slim`)
+if (( ${+commands[slim]} )); then
   expose() {
-    local port=${1:-}
-    local ttl=${2:-}
+    emulate -L zsh
+    local port=${1:-} ttl=${2:-}
 
-    # Port validation loop
-    while true; do
-      if [ -z "$port" ]; then
-        echo "${COLOR_HEADER}  Enter port number (default: 4000):${COLOR_RESET} "
-        read port
-        port=${port:-4000}
-      fi
+    _prompt_port 4000 "$port" 0
+    port=$REPLY
 
-      if ! [[ "$port" =~ ^[0-9]+$ ]]; then
-        echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be a number!"
-        port=""
-        continue
-      fi
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting tunnel for localhost:${COLOR_CURSOR}$port${COLOR_RESET}"
 
-      if [ "$port" -lt 1 ] || [ "$port" -gt 65535 ]; then
-        echo "${COLOR_ERROR}  ✗${COLOR_RESET} Port must be between 1 and 65535!"
-        port=""
-        continue
-      fi
-
-      break
-    done
-
-    # Execution logic
-    echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Starting tunnel for localhost:${COLOR_CURSOR}$port${COLOR_RESET}"
-
-    if [ -n "$ttl" ]; then
-      echo "${COLOR_NORMAL}    TTL set to: $ttl${COLOR_RESET}"
+    if [[ -n $ttl ]]; then
+      print -- "${COLOR_NORMAL}    TTL set to: $ttl${COLOR_RESET}"
       slim share --port "$port" --ttl "$ttl"
     else
       slim share --port "$port"
