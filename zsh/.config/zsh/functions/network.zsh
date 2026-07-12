@@ -1,86 +1,102 @@
-# 1. Define 'isup' only if httpie (http) is installed
-if command -v http &> /dev/null; then
-  
+#!/usr/bin/env zsh
+
+if (( ${+commands[http]} )); then
+
+# isup    <host>  — quick up/down + status code check (needs httpie)
   isup() {
-    local target="${1:-gouranga.eu.org}"
-    echo -e "\n${COLOR_HEADER}󰴓 Checking status for:${COLOR_RESET} ${COLOR_TEXT}${target}${COLOR_RESET}"
+    emulate -L zsh -o extended_glob
+    local target=${1:-gouranga.eu.org}
+
+    print -- "\n${COLOR_HEADER}󰴓 Checking status for:${COLOR_RESET} ${COLOR_TEXT}${target}${COLOR_RESET}"
 
     local raw_output
-    # -F: Follow redirects, -p=h: Print only headers
-    raw_output=$(http -F --ignore-stdin -p=h "$target" 2>&1)
+    raw_output=$(http -F --ignore-stdin -p=h "$target" 2>&1)  # -F follow redirects, -p=h headers only
 
-    local status_line=$(echo "$raw_output" | grep -Ei "HTTP/.* [0-9]{3}")
-    local status_code=$(echo "$status_line" | awk '{print $2}')
-    local server_name=$(echo "$raw_output" | grep -Ei "^Server:" | tail -n 1 | cut -d' ' -f2- | tr -d '\r')
+    local -a lines=(${(f)raw_output})
+    local status_line=${${(M)lines:#(#i)HTTP/*}[1]}
+    local status_code=${${(z)status_line}[2]}
 
-    if [[ -n "$status_code" ]]; then
-      if [[ "$status_code" == "200" ]]; then
-        echo -e "${COLOR_SUCCESS}✔ ONLINE${COLOR_RESET} [${COLOR_SUCCESS}$status_code OK${COLOR_RESET}]"
+    local -a server_lines=(${(M)lines:#(#i)Server:*})
+    local server_name=${${server_lines[-1]#*: }%$'\r'}
+
+    if [[ -n $status_code ]]; then
+      if [[ $status_code == 200 ]]; then
+        print -- "${COLOR_SUCCESS}✔ ONLINE${COLOR_RESET} [${COLOR_SUCCESS}$status_code OK${COLOR_RESET}]"
       else
-        echo -e "${COLOR_WARNING}⚠ ISSUE${COLOR_RESET} [${COLOR_WARNING}$status_code${COLOR_RESET}]"
+        print -- "${COLOR_WARNING}⚠ ISSUE${COLOR_RESET} [${COLOR_WARNING}$status_code${COLOR_RESET}]"
       fi
-      [[ -n "$server_name" ]] && echo -e "${COLOR_NORMAL}Server: $server_name${COLOR_RESET}"
+      [[ -n $server_name ]] && print -- "${COLOR_NORMAL}Server: $server_name${COLOR_RESET}"
     else
-      echo -e "${COLOR_ERROR}✘ OFFLINE${COLOR_RESET} ${COLOR_NORMAL}(Connection Failed or Timeout)${COLOR_RESET}"
+      print -- "${COLOR_ERROR}✘ OFFLINE${COLOR_RESET} ${COLOR_NORMAL}(Connection Failed or Timeout)${COLOR_RESET}"
     fi
-    echo ""
+    print
   }
 
-  # 2. Define 'myip' to show public IP details using httpie
-  myip() {
-    echo -e "\n${COLOR_HEADER}󰩟 Fetching Public IP Info...${COLOR_RESET}"
+  # Pulls "field": "value" out of a JSON blob via zsh backreference globbing —
+  # used as the no-jq fallback, prints N/A on no match.
+  _json_field() {
+    emulate -L zsh -o extended_glob
+    local json=$1 field=$2
+    if [[ $json == (#b)*\"${field}\"[[:space:]]#:[[:space:]]#\"(*)\"* ]]; then
+      print -r -- $match[1]
+    else
+      print -r -- 'N/A'
+    fi
+  }
 
-    # Fetching from ipinfo.io for a nice JSON response
+# myip             — public IP / geo info via ipinfo.io (needs httpie)
+  myip() {
+    emulate -L zsh
+    print -- "\n${COLOR_HEADER}󰩟 Fetching Public IP Info...${COLOR_RESET}"
+
     local ip_data
     ip_data=$(http -b ipinfo.io 2>/dev/null)
 
-    if [[ -z "$ip_data" ]]; then
-      echo -e "${COLOR_ERROR}✘ Failed to retrieve IP data.${COLOR_RESET}"
-      echo ""
+    if [[ -z $ip_data ]]; then
+      print -- "${COLOR_ERROR}✘ Failed to retrieve IP data.${COLOR_RESET}"
+      print
       return 1
     fi
 
-    if command -v jq &> /dev/null; then
-      local ip city region org
-      ip=$(echo "$ip_data"     | jq -r '.ip     // "N/A"')
-      city=$(echo "$ip_data"   | jq -r '.city   // "N/A"')
-      region=$(echo "$ip_data" | jq -r '.region // "N/A"')
-      org=$(echo "$ip_data"    | jq -r '.org    // "N/A"')
+    local ip city region org
+    if (( ${+commands[jq]} )); then
+      ip=$(jq -r '.ip // "N/A"' <<< "$ip_data")
+      city=$(jq -r '.city // "N/A"' <<< "$ip_data")
+      region=$(jq -r '.region // "N/A"' <<< "$ip_data")
+      org=$(jq -r '.org // "N/A"' <<< "$ip_data")
     else
-      # Fallback: POSIX-safe grep (no -P flag) for macOS/BSD compatibility
-      local ip city region org
-      ip=$(echo "$ip_data"     | grep -o '"ip":[[:space:]]*"[^"]*"'     | cut -d'"' -f4)
-      city=$(echo "$ip_data"   | grep -o '"city":[[:space:]]*"[^"]*"'   | cut -d'"' -f4)
-      region=$(echo "$ip_data" | grep -o '"region":[[:space:]]*"[^"]*"' | cut -d'"' -f4)
-      org=$(echo "$ip_data"    | grep -o '"org":[[:space:]]*"[^"]*"'    | cut -d'"' -f4)
+      ip=$(_json_field "$ip_data" ip)
+      city=$(_json_field "$ip_data" city)
+      region=$(_json_field "$ip_data" region)
+      org=$(_json_field "$ip_data" org)
     fi
 
-    echo -e "${COLOR_NORMAL}Address:  ${COLOR_SUCCESS}${ip}${COLOR_RESET}"
-    echo -e "${COLOR_NORMAL}Location: ${COLOR_TEXT}${city}, ${region}${COLOR_RESET}"
-    echo -e "${COLOR_NORMAL}ISP:      ${COLOR_TEXT}${org}${COLOR_RESET}"
-    echo ""
+    print -- "${COLOR_NORMAL}Address:  ${COLOR_SUCCESS}${ip}${COLOR_RESET}"
+    print -- "${COLOR_NORMAL}Location: ${COLOR_TEXT}${city}, ${region}${COLOR_RESET}"
+    print -- "${COLOR_NORMAL}ISP:      ${COLOR_TEXT}${org}${COLOR_RESET}"
+    print
   }
 
-  # 3. Define 'inspect' only if BOTH httpie and openssl are installed
-  if command -v openssl &> /dev/null; then
+  if (( ${+commands[openssl]} )); then
+# inspect <host>  — headers + TLS cert dates (needs httpie + openssl)
     inspect() {
-      local target="${1:-gouranga.eu.org}"
-      # Strip protocol for openssl (e.g., https://google.com -> google.com)
-      local clean_url="${target#*://}"
-      clean_url="${clean_url%%/*}"
+      emulate -L zsh
+      local target=${1:-gouranga.eu.org}
+      local clean_url=${target#*://}
+      clean_url=${clean_url%%/*}
 
-      echo -e "\n${COLOR_HEADER}󰄨 Inspecting:${COLOR_RESET} ${COLOR_TEXT}${target}${COLOR_RESET}\n"
+      print -- "\n${COLOR_HEADER}󰄨 Inspecting:${COLOR_RESET} ${COLOR_TEXT}${target}${COLOR_RESET}\n"
 
-      # Fetching headers and highlighting keys
-      http -Fh "$target" 2> /dev/null | grep -Ei "HTTP/|server:|content-type:|x-powered-by:|cache-control:|security|strict-transport" |
-        sed "s/\([^:]*:\)/${COLOR_NORMAL}\1${COLOR_RESET}/g"
+      http -Fh "$target" 2>/dev/null \
+        | grep -Ei "HTTP/|server:|content-type:|x-powered-by:|cache-control:|security|strict-transport" \
+        | sed "s/\([^:]*:\)/${COLOR_NORMAL}\1${COLOR_RESET}/g"
 
-      echo -e "\n${COLOR_HEADER}󱈸 SSL/Certificate Info:${COLOR_RESET}"
-      # Fetch SSL dates and format with your palette
-      echo | openssl s_client -connect "${clean_url}":443 2> /dev/null | openssl x509 -noout -dates |
-        sed "s/notBefore=/${COLOR_NORMAL}Start:  ${COLOR_RESET}/" |
-        sed "s/notAfter=/${COLOR_WARNING}Expiry: ${COLOR_RESET}/"
-      echo ""
+      print -- "\n${COLOR_HEADER}󱈸 SSL/Certificate Info:${COLOR_RESET}"
+      openssl s_client -connect "${clean_url}:443" 2>/dev/null </dev/null \
+        | openssl x509 -noout -dates \
+        | sed "s/notBefore=/${COLOR_NORMAL}Start:  ${COLOR_RESET}/" \
+        | sed "s/notAfter=/${COLOR_WARNING}Expiry: ${COLOR_RESET}/"
+      print
     }
   fi
 
