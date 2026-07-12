@@ -24,7 +24,6 @@ COMMON_TOOLS=(
   "git-delta"
 
   "pass"
-  "openssl-tool|openssl"
 
   "starship"
   "helix"
@@ -38,6 +37,7 @@ LINUX_TOOLS=(
   "build-essential"
   "pinentry-gnome3"
   "rofi"
+  "openssl-tool"
 )
 
 MACOS_TOOLS=(
@@ -51,6 +51,7 @@ MACOS_TOOLS=(
   "colima"
   "redis"
   "httpie"
+  "openssl"
 
   "visual-studio-code"
   "bruno"
