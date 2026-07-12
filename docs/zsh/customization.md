@@ -35,7 +35,6 @@
 | -------- | ------------ |
 | `code-b` | Backend Dev  |
 | `code-f` | Frontend Dev |
-| `code-p` | Python Dev   |
 | `code-r` | Rust Dev     |
 | `code-g` | Go Dev       |
 | `code-c` | C/C++ Dev    |
