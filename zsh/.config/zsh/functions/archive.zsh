@@ -1,51 +1,113 @@
-# Universal extractor
+#!/usr/bin/env zsh
+# extract <archive>          — auto-detects format, extracts in place
+# compress <file_or_dir>     — pick a format via fzf, archive/compress it
+# Formats: tar(.gz/.bz2/.xz/.zst/.lz4/.lzma), zip, rar, 7z, iso, gz, bz2,
+#          xz, zst, lz4, lzma, Z, deb, rpm, cab
+
 extract() {
-  if [ -f "$1" ]; then
-    case "$1" in
-      *.tar.* | *.tgz | *.tbz2 | *.txz)
-        tar xvf "$1" && echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$1'${COLOR_RESET}"
-        ;;
-      *.zip)
-        unzip "$1" && echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$1'${COLOR_RESET}"
-        ;;
-      *)
-        echo "${COLOR_ERROR}  ✗${COLOR_RESET} Unsupported format"
+  emulate -L zsh
+  local file=$1
+
+  if [[ -z $file ]]; then
+    print -- "${COLOR_WARNING}  Usage: extract <archive>${COLOR_RESET}"
+    return 1
+  fi
+  if [[ ! -f $file ]]; then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} File not found: ${COLOR_TEXT}'$file'${COLOR_RESET}"
+    return 1
+  fi
+
+  local -a cmd
+  case $file in
+    *.tar.gz|*.tgz)    cmd=(tar xzf "$file") ;;
+    *.tar.bz2|*.tbz2)  cmd=(tar xjf "$file") ;;
+    *.tar.xz|*.txz)    cmd=(tar xJf "$file") ;;
+    *.tar.zst|*.tzst)  cmd=(tar --zstd -xf "$file") ;;
+    *.tar.lz4)         cmd=(tar -I lz4 -xf "$file") ;;
+    *.tar.lzma|*.tlz)  cmd=(tar --lzma -xf "$file") ;;
+    *.tar)             cmd=(tar xf "$file") ;;
+    *.zip)             cmd=(unzip -q "$file") ;;
+    *.rar)             cmd=(unrar x "$file") ;;
+    *.7z|*.iso)        cmd=(7z x "$file") ;;
+    *.gz)              cmd=(gunzip -k "$file") ;;
+    *.bz2)             cmd=(bunzip2 -k "$file") ;;
+    *.xz)              cmd=(unxz -k "$file") ;;
+    *.lzma)            cmd=(unlzma -k "$file") ;;
+    *.zst)             cmd=(zstd -dk "$file") ;;
+    *.lz4)             cmd=(lz4 -dk "$file") ;;
+    *.Z)               cmd=(uncompress -k "$file") ;;
+    *.deb)             cmd=(dpkg-deb -x "$file" "${file:t:r}") ;;
+    *.cab)             cmd=(cabextract "$file") ;;
+    *.rpm)
+      if (( ! (${+commands[rpm2cpio]} && ${+commands[cpio]}) )); then
+        print -- "${COLOR_ERROR}  ✗${COLOR_RESET} requires 'rpm2cpio' and 'cpio'"
         return 1
-        ;;
-    esac
+      fi
+      if rpm2cpio "$file" | cpio -idm; then
+        print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
+      else
+        print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Extraction failed"
+        return 1
+      fi
+      return
+      ;;
+    *)
+      print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Unsupported format: ${COLOR_TEXT}'$file'${COLOR_RESET}"
+      return 1
+      ;;
+  esac
+
+  if (( ! ${+commands[${cmd[1]}]} )); then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${cmd[1]}' is not installed"
+    return 1
+  fi
+
+  if "${cmd[@]}"; then
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
   else
-    echo "${COLOR_ERROR}  ✗${COLOR_RESET} File not found: ${COLOR_TEXT}'$1'${COLOR_RESET}"
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Extraction failed"
     return 1
   fi
 }
 
-# Universal compressor
 compress() {
-  if [ -z "$1" ]; then
-    echo "${COLOR_WARNING}  Usage: compress <file_or_dir>${COLOR_RESET}"
-    return 1
-  fi
-
+  emulate -L zsh
   local input=$1
-  if [ ! -e "$input" ]; then
-    echo "${COLOR_ERROR}  ✗${COLOR_RESET} '${COLOR_TEXT}$input${COLOR_RESET}' does not exist!"
+
+  if [[ -z $input ]]; then
+    print -- "${COLOR_WARNING}  Usage: compress <file_or_dir>${COLOR_RESET}"
+    return 1
+  fi
+  if [[ ! -e $input ]]; then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${COLOR_TEXT}$input${COLOR_RESET}' does not exist!"
+    return 1
+  fi
+  if (( ! ${+commands[fzf]} )); then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} 'fzf' is not installed"
     return 1
   fi
 
-  echo ""
-  echo "${COLOR_HEADER}  ◆  Select compression format${COLOR_RESET}"
-  echo "${COLOR_BORDER}  ─────────────────────────────────────${COLOR_RESET}"
-  echo ""
+  print
+  print -- "${COLOR_HEADER}  ◆  Select compression format${COLOR_RESET}"
+  print -- "${COLOR_BORDER}  ─────────────────────────────────────${COLOR_RESET}"
+  print
 
   local format
-  format=$(printf '%s\n' \
+  format=$(print -l \
     "tar.gz   → Good balance, common" \
     "tar.bz2  → Better compression, slower" \
     "tar.xz   → Best compression, slowest" \
+    "tar.zst  → Fast + strong (zstd)" \
+    "tar.lz4  → Fastest, lowest ratio" \
     "zip      → Cross-platform" \
     "7z       → High compression" \
+    "rar      → Needs 'rar' installed" \
     "gz       → Single file only" \
-    "bz2      → Single file only" |
+    "bz2      → Single file only" \
+    "xz       → Single file only" \
+    "zst      → Single file only" \
+    "lz4      → Single file only" \
+    "Z        → Legacy single file" |
     fzf \
       --height=40% \
       --border=rounded \
@@ -54,41 +116,54 @@ compress() {
       --no-info \
       --header="Enter to confirm, Ctrl+C to cancel")
 
-  [[ -z "$format" ]] && echo "${COLOR_ERROR}  ✗ Cancelled${COLOR_RESET}" && return 1
-
-  # extract just the format name before the space
-  format="${format%% *}"
+  [[ -z $format ]] && { print -- "${COLOR_ERROR}  ✗ Cancelled${COLOR_RESET}"; return 1 }
+  format=${format%% *}
 
   local output="${input%/}.${format}"
+  local -a cmd
+  local -i single_file_only=0
 
-  echo ""
-  echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Compressing ${COLOR_TEXT}'$input'${COLOR_RESET} → ${COLOR_SUCCESS}'$output'${COLOR_RESET}"
-  echo ""
-
-  case "$format" in
-    tar.gz) tar czf "$output" "$input" ;;
-    tar.bz2) tar cjf "$output" "$input" ;;
-    tar.xz) tar cJf "$output" "$input" ;;
-    zip) zip -r "$output" "$input" ;;
-    7z) 7z a "$output" "$input" ;;
-    gz)
-      if [ -f "$input" ]; then
-        gzip -c "$input" > "$output"
-      else
-        echo "${COLOR_ERROR}  ✗${COLOR_RESET} .gz only supports single files!"
-        return 1
-      fi
-      ;;
-    bz2)
-      if [ -f "$input" ]; then
-        bzip2 -c "$input" > "$output"
-      else
-        echo "${COLOR_ERROR}  ✗${COLOR_RESET} .bz2 only supports single files!"
-        return 1
-      fi
-      ;;
+  case $format in
+    tar.gz)  cmd=(tar czf "$output" "$input") ;;
+    tar.bz2) cmd=(tar cjf "$output" "$input") ;;
+    tar.xz)  cmd=(tar cJf "$output" "$input") ;;
+    tar.zst) cmd=(tar --zstd -cf "$output" "$input") ;;
+    tar.lz4) cmd=(tar -I lz4 -cf "$output" "$input") ;;
+    zip)     cmd=(zip -rq "$output" "$input") ;;
+    7z)      cmd=(7z a "$output" "$input") ;;
+    rar)     cmd=(rar a "$output" "$input") ;;
+    gz)      cmd=(gzip -c "$input");   single_file_only=1 ;;
+    bz2)     cmd=(bzip2 -c "$input");  single_file_only=1 ;;
+    xz)      cmd=(xz -c "$input");     single_file_only=1 ;;
+    zst)     cmd=(zstd -c "$input");   single_file_only=1 ;;
+    lz4)     cmd=(lz4 -c "$input");    single_file_only=1 ;;
+    Z)       cmd=(compress -c "$input"); single_file_only=1 ;;
   esac
 
-  echo "${COLOR_SUCCESS}  ✓${COLOR_RESET} Done! Created: ${COLOR_SUCCESS}$output${COLOR_RESET}"
-  echo ""
+  if (( single_file_only )) && [[ ! -f $input ]]; then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} .$format only supports single files!"
+    return 1
+  fi
+  if (( ! ${+commands[${cmd[1]}]} )); then
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${cmd[1]}' is not installed"
+    return 1
+  fi
+
+  print
+  print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Compressing ${COLOR_TEXT}'$input'${COLOR_RESET} → ${COLOR_SUCCESS}'$output'${COLOR_RESET}"
+  print
+
+  if (( single_file_only )); then
+    "${cmd[@]}" > "$output"
+  else
+    "${cmd[@]}"
+  fi
+
+  if (( $? == 0 )); then
+    print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Done! Created: ${COLOR_SUCCESS}$output${COLOR_RESET}"
+  else
+    print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Compression failed"
+    return 1
+  fi
+  print
 }
