@@ -34,7 +34,7 @@ alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
 # --- Eza's Aliases ---
 if (( ${+commands[eza]} )); then
   alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-  alias lt='eza --tree -a -I "node_modules|.git|target"'
+  alias lt='eza --tree -a -I ".git|node_modules||target|.venv"'
 fi
 alias la='ls -A'
 
@@ -59,7 +59,6 @@ if alias code >/dev/null 2>&1 || (($ + commands[code])); then
   alias code-f='code --profile "Frontend Dev"'
   alias code-g='code --profile "Go Dev"'
   alias code-l='code --profile "Lua Dev"'
-  alias code-p='code --profile "Python Dev"'
   alias code-r='code --profile "Rust Dev"'
   alias code-w='code --profile "Wiki Dev"'
 fi
