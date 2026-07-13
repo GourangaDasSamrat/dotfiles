@@ -31,21 +31,21 @@ fi
 
 # --- Path Management ---
 typeset -U path # Prevent duplicate PATH entries
-path=(
-  "$PNPM_HOME"         # pnpm global bin
-  "$BUN_INSTALL/bin"   # Bun binaries
-  "/opt/homebrew/bin"  # Homebrew binaries (Apple Silicon)
-  "/opt/homebrew/sbin" # Homebrew sbin (Apple Silicon)
-  "$HOME/.cargo/bin"   # Rust/Cargo binaries
-  "$GOPATH/bin"        # Go binaries using
-  "$HOME/.local/bin"   # Local user binaries
-  $path
-)
-export PATH
 
-# Load Homebrew shellenv (sets HOMEBREW_PREFIX and other vars)
-if [[ -x "/opt/homebrew/bin/brew" ]]; then
+# Load Homebrew shellenv dynamically using architecture check
+if [[ "$CPUTYPE" == "arm64" && -x "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x "/usr/local/bin/brew" ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
+
+# Set custom paths
+path=(
+  "$PNPM_HOME"            # pnpm global bin
+  "$BUN_INSTALL/bin"      # Bun binaries
+  "$HOME/.cargo/bin"      # Rust/Cargo binaries
+  "$GOPATH/bin"           # Go binaries
+  "$HOME/.local/bin"      # Local user binaries
+  $path
+)
+export PATH
