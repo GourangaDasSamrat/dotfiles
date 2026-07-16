@@ -4,7 +4,7 @@
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono','SF Mono'",
   "editor.inlineSuggest.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
   "editor.inlayHints.fontFamily": "'Cartograph CF','MonoLisa', 'JetBrainsMono Nerd Font'",
-  "editor.codeLensFontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
+  "editor.codeLensFontFamily": "'SF Mono', 'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
   "debug.console.fontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
   "scm.inputFontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
   "errorLens.fontFamily": "'Cartograph CF', 'Operator Mono Lig', 'MonoLisa','JetBrainsMono Nerd Font'",
@@ -176,12 +176,9 @@
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  "[cpp]": {
+  "[cpp][c]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.suggest.insertMode": "replace"
-  },
-  "[c]": {
-    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
   },
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
@@ -196,9 +193,6 @@
     "editor.defaultFormatter": "Prisma.prisma"
   },
   "[sql]": {
-    "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
-  },
-  "[sqlite]": {
     "editor.defaultFormatter": "inferrinizzard.prettier-sql-vscode"
   },
 
