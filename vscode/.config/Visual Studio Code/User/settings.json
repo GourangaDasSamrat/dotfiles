@@ -1,7 +1,7 @@
 {
   // fonts
   "editor.fontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font Mono','SF Mono'",
   "editor.inlineSuggest.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
   "editor.inlayHints.fontFamily": "'Cartograph CF','MonoLisa', 'JetBrainsMono Nerd Font'",
   "editor.codeLensFontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa','JetBrainsMono Nerd Font'",
@@ -10,7 +10,7 @@
   "errorLens.fontFamily": "'Cartograph CF', 'Operator Mono Lig', 'MonoLisa','JetBrainsMono Nerd Font'",
   "gitlens.currentLine.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
   "gitlens.blame.fontFamily": "'Operator Mono Lig', 'Cartograph CF','MonoLisa','JetBrainsMono Nerd Font'",
-  "markdown.preview.fontFamily": "'Founders Grotesk', 'MonoLisa', -apple-system, system-ui",
+  "markdown.preview.fontFamily": "'Founders Grotesk',  -apple-system, system-ui",
   "chat.editor.fontFamily": "'Operator Mono Lig', 'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
   "chat.fontFamily": "'Cartograph CF', 'MonoLisa', 'JetBrainsMono Nerd Font'",
 
