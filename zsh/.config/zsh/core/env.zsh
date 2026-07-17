@@ -1,8 +1,8 @@
 # --- Termux Specific Environment Variables ---
-if [[ -d /data/data/com.termux ]]; then
+if [[ -d $PREFIX ]]; then
   export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem # Path to SSL certificates
   export BUN_OPTIONS="--os=android"                                     # Bun os option
-  export XDG_DATA_HOME="/data/data/com.termux/files/home/.local/share"  # Unix base directory
+  export XDG_DATA_HOME="$HOME/.local/share"  # Unix base directory
   export TZ="Asia/Dhaka"                                                # Set timezone
 fi
 
