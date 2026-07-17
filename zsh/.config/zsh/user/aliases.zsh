@@ -1,5 +1,5 @@
 # --- Termux Specific Aliases ---
-if [[ -d /data/data/com.termux ]]; then
+if [[ -d $PREFIX ]]; then
   alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
   alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
@@ -34,7 +34,7 @@ alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
 # --- Eza's Aliases ---
 if (( ${+commands[eza]} )); then
   alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
-  alias lt='eza --tree -a -I ".git|node_modules||target|.venv"'
+  alias lt='eza --tree -a -I ".git|node_modules|target|.venv"'
 fi
 alias la='ls -A'
 
