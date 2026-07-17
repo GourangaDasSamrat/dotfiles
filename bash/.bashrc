@@ -46,5 +46,5 @@ fi
 # ── Completion
 [[ -f /usr/share/bash-completion/bash_completion ]] && \
   source /usr/share/bash-completion/bash_completion
-
-
+[[ -f $PREFIX/share/bash_completion ]] && \
+  source $PREFIX/share/bash-completion/bash_completion
