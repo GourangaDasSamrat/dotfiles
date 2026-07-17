@@ -315,6 +315,7 @@ scripts/
 │   ├── softwares.sh        install base tools & language runtimes
 │   ├── plugins.sh          oh-my-zsh · tpm · zsh & tmux plugins
 │   ├── wallpapers.sh       clone wallpapers repository
+│   ├── fonts.sh            use apples's font on linux
 │   └── dotfiles.sh         symlink configs with gnu stow
 │
 ├── sdk-tools/              optional language-specific installers
@@ -348,6 +349,7 @@ _Every script in `lib/` and `sdk-tools/` runs standalone. Source only what you n
 - runs `lib/softwares.sh` → base tools + language runtimes
 - runs `lib/plugins.sh` → shell plugins
 - runs `lib/wallpapers.sh` → wallpapers repo
+- runs `lib/fonts.sh` → apple fonts
 - runs `lib/dotfiles.sh` → symlink configs
 - ⏭️ skips optional sdk-tools
 
@@ -385,13 +387,13 @@ Add `--update` flag to force reinstall: `./sdk-tools/go-tools.sh --update`
 
 <div align="center">
 
-|  Category   | Documentation                                                                                                                                                                                     |
-| :---------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|   **git**   | [send-email setup](docs/git/send-email.md)                                                                                                                                                        |
-|  **setup**  | [manual install guide](docs/setup/manual-install.md)                                                                                                                                              |
-| **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [termux setup](docs/vscode/termux-setup.md)                           |
-|  **helix**  | [language servers](docs/helix/language-servers.md)                                                                                                                                                |
-| **termux**  | [native desktop](docs/termux/native-desktop.md) · [proot debian](docs/termux/proot-debian.md)                                                                                                     |
+|  Category   | Documentation                                                                                                                     |
+| :---------: | :-------------------------------------------------------------------------------------------------------------------------------- |
+|   **git**   | [send-email setup](docs/git/send-email.md)                                                                                        |
+|  **setup**  | [manual install guide](docs/setup/manual-install.md)                                                                              |
+| **vs code** | [extensions](docs/vscode/extensions.md) · [keybindings](docs/vscode/keybindings.md) · [termux setup](docs/vscode/termux-setup.md) |
+|  **helix**  | [language servers](docs/helix/language-servers.md)                                                                                |
+| **termux**  | [native desktop](docs/termux/native-desktop.md) · [proot debian](docs/termux/proot-debian.md)                                     |
 
 </div>
 
