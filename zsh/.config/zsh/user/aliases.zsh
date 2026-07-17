@@ -4,8 +4,8 @@ if [[ -d $PREFIX ]]; then
   alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
   alias start="$HOME/start.sh"
-  apt() { [[ "$1" == "i" ]] && { shift; command apt install "$@"; } || { [[ "$1" == "rm" ]] && { shift; command apt remove "$@"; } || command apt "$@"; }; }
-  compdef _apt apt 2>/dev/null
+
+  (( ${+commands[moto_server]} )) && alias repms='curl -X POST http://localhost:5000/moto-api/recorder/replay-recording'
 fi
 
 # --- Conditional Aliases ---
@@ -14,6 +14,12 @@ fi
 (( $+commands[bun] )) && bun() {
     (( $# == 0 )) && { [[ -f package.json ]] && command bun install || command bun repl; } || command bun "$@"
 }
+
+# --- apt wrapper ---
+if (( ${+commands[apt]} )); then
+  apt() { [[ "$1" == "i" ]] && { shift; command apt install "$@"; } || { [[ "$1" == "rm" ]] && { shift; command apt remove "$@"; } || command apt "$@"; }; }
+  compdef _apt apt 2>/dev/null
+fi
 
 # --- Navigation and Config Aliases ---
 if [[ -d "$DOTFILES" ]]; then
