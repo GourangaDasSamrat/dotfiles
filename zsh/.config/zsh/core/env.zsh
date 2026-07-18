@@ -1,15 +1,12 @@
 # --- Termux Specific Environment Variables ---
 if [[ -d $PREFIX ]]; then
-  export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem 		# Path to SSL certificates
-  export XDG_DATA_HOME="$HOME/.local/share"  			# Unix base directory
-  export TZ="Asia/Dhaka"                                        # Set timezone
+  export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem 			# Path to SSL certificates
+  export XDG_DATA_HOME="$HOME/.local/share"  				# Unix base directory
+  export TZ="Asia/Dhaka"                                        	# Set timezone
 
-  (( ${+commands[bun]} )) && export BUN_OPTIONS="--os=android"  # Bun os option
+  (( ${+commands[bun]} )) && export BUN_OPTIONS="--os=android"  	# Bun os option
 
-  if (( ${+commands[moto_server]} )); then
-    export MOTO_ENABLE_RECORDING=True				# Enable Moto server recording
-    export MOTO_RECORDER_FILE="$HOME/.moto_history"		# Path to save Moto recording history
-  fi
+  (( ${+commands[moto_server]} )) && export MOTO_ENABLE_RECORDING=True  # Enable Moto server recording
 fi
 
 # --- Editor & Pager ---
