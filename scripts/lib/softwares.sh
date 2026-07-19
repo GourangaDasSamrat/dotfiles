@@ -51,7 +51,6 @@ MACOS_TOOLS=(
   "colima"
   "redis"
   "httpie"
-  "awscli"
   "openssl"
 
   "visual-studio-code"
