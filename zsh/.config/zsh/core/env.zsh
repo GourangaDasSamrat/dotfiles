@@ -5,8 +5,6 @@ if [[ -d $PREFIX ]]; then
   export TZ="Asia/Dhaka"                                        	# Set timezone
 
   (( ${+commands[bun]} )) && export BUN_OPTIONS="--os=android"  	# Bun os option
-
-  (( ${+commands[moto_server]} )) && export MOTO_ENABLE_RECORDING=True  # Enable Moto server recording
 fi
 
 # --- Editor & Pager ---
