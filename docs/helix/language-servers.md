@@ -23,7 +23,7 @@ apt install helix-grammars
 **Language server:**
 
 ```bash
-npm install -g bash-language-server
+bun add -g bash-language-server
 ```
 
 **Formatter:**
@@ -51,7 +51,7 @@ brew install shfmt
 ## HTML
 
 ```bash
-npm install -g vscode-langservers-extracted
+bun add -g vscode-langservers-extracted
 ```
 
 Provides `vscode-html-language-server`.
@@ -61,7 +61,7 @@ Provides `vscode-html-language-server`.
 ## CSS
 
 ```bash
-npm install -g vscode-langservers-extracted
+bun add -g vscode-langservers-extracted
 ```
 
 Provides `vscode-css-language-server`. Skip if already installed for HTML.
@@ -73,13 +73,13 @@ Provides `vscode-css-language-server`. Skip if already installed for HTML.
 **Language server:**
 
 ```bash
-npm install -g typescript-language-server
+bun add -g typescript-language-server
 ```
 
 **Formatter & Linter:**
 
 ```bash
-npm install -g eslint prettier
+bun add -g eslint prettier
 ```
 
 ---
@@ -169,7 +169,7 @@ apt install marksman
 ## JSON
 
 ```bash
-npm install -g vscode-langservers-extracted
+bun add -g vscode-langservers-extracted
 ```
 
 Provides `vscode-json-language-server`. Skip if already installed above.
@@ -187,7 +187,7 @@ cargo install taplo-cli --locked
 ## YAML
 
 ```bash
-npm install -g yaml-language-server
+bun add -g yaml-language-server
 ```
 
 ---
@@ -197,13 +197,13 @@ npm install -g yaml-language-server
 **Language server:**
 
 ```bash
-npm install -g sql-language-server
+bun add -g sql-language-server
 ```
 
 **Formatter:**
 
 ```bash
-npm install -g sql-formatter
+bun add -g sql-formatter
 ```
 
 ---
