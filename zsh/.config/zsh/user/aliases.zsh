@@ -4,8 +4,6 @@ if [[ -d $PREFIX ]]; then
   alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
   alias af="cd /storage/emulated/0"
   alias start="$HOME/start.sh"
-
-  (( ${+commands[moto_server]} )) && alias repms='curl -X POST http://localhost:5000/moto-api/recorder/replay-recording'
 fi
 
 # --- Conditional Aliases ---
@@ -93,3 +91,6 @@ fi
 
 # --- usql's Aliases ---
 (( ${+commands[usql]} )) && alias usql='usql -q'
+
+# --- mongosh's Aliases ---
+(( ${+command[mongosh]} )) && alias mongosh='mongosh --quiet'
