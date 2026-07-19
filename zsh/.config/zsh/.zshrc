@@ -14,7 +14,6 @@ plugins=(
 
 	golang
 	gh
-	aws
 )
 [[ -d "$ZSH" ]] && source "$ZSH/oh-my-zsh.sh"
 
