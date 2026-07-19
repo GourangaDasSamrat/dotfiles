@@ -10,7 +10,7 @@ setup_dotfiles() {
   cd "$HOME/dotfiles" || return 1
 
   # Default packages list for GNU Stow
-  local packages=(zsh bash git gh kitty usql cspell)
+  local packages=(zsh bash git gh kitty usql mongosh cspell)
 
   # OS detection using uname
   if [ "$(uname)" == "Darwin" ]; then
