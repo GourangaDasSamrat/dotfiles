@@ -4,164 +4,113 @@ A quick reference for installing essential developer tools manually.
 
 ---
 
-## Homebrew (macOS)
+## Xcode Command Line Tools (macOS)
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-
----
-
-## C Compiler
-
-### GCC (Linux / Termux)
-
-**Debian/Ubuntu:**
-
-```bash
-sudo apt-get install build-essential
-```
-
-**Fedora/CentOS/RHEL:**
-
-```bash
-sudo dnf groupinstall "Development Tools"
-```
-
-**Termux:**
-
-```bash
-apt install build-essential
-```
-
-### Clang (macOS / Linux / Termux)
-
-**macOS (with Xcode):**
+Required before Homebrew, and also provides Clang. Run once:
 
 ```bash
 xcode-select --install
 ```
 
-**Linux (Debian/Ubuntu):**
+---
 
-```bash
-sudo apt-get update
-sudo apt-get install clang
-```
+## Homebrew (macOS)
 
-**Linux (Fedora/CentOS/RHEL):**
+| Requires          | Command                                                                                           |
+| ----------------- | ------------------------------------------------------------------------------------------------- |
+| Xcode CLT (above) | `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` |
 
-```bash
-sudo dnf install clang
-```
+---
 
-**Termux:**
+## C Compiler
 
-```bash
-apt install clang
-```
+macOS: already covered by Xcode CLT above, nothing extra needed.
+
+| Platform           | Compiler | Command                                     |
+| ------------------ | -------- | ------------------------------------------- |
+| Debian/Ubuntu      | GCC      | `sudo apt-get install build-essential`      |
+| Fedora/CentOS/RHEL | GCC      | `sudo dnf groupinstall "Development Tools"` |
+| Termux             | GCC      | `apt install build-essential`               |
 
 ---
 
 ## Go
 
-**macOS / Linux:**
-
-1. Download the latest tarball from [https://go.dev/dl](https://go.dev/dl)
-2. Extract and install:
-
-```bash
-tar -C /usr/local -xzf go1.x.x.linux-amd64.tar.gz
-```
-
-3. Extract done.
-
----
-
-**Termux:**
-
-```bash
-apt install golang
-```
+| Platform               | Command                                                                                                        |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------- |
+| macOS (brew)           | `brew install go`                                                                                              |
+| macOS / Linux (manual) | Download tarball from [go.dev/dl](https://go.dev/dl), then `tar -C /usr/local -xzf go1.x.x.linux-amd64.tar.gz` |
+| Termux                 | `apt install golang`                                                                                           |
 
 ---
 
 ## uv (Python package manager)
 
-**macOS / Linux:**
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
----
-
-**Termux:**
-
-```bash
-apt install uv
-```
+| Platform      | Command                                            |
+| ------------- | -------------------------------------------------- |
+| macOS (brew)  | `brew install uv`                                  |
+| macOS / Linux | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| Termux        | `apt install uv`                                   |
 
 ---
 
 ## Rust
 
-**macOS / Linux:**
+Even via brew, install `rustup` (the toolchain manager) — not the `rust` formula directly.
+
+| Platform               | Command                                                           |
+| ---------------------- | ----------------------------------------------------------------- |
+| macOS (brew)           | `brew install rustup-init && rustup-init`                         |
+| macOS / Linux (manual) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` |
+| Termux                 | `apt install rust`                                                |
+
+After install:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup update
+rustup toolchain install stable
 ```
 
 ---
 
-**Termux:**
+## Node.js
+
+| Platform      | Command                                             |
+| ------------- | --------------------------------------------------- |
+| macOS (brew)  | `brew install fnm`                                  |
+| macOS / Linux | `curl -fsSL https://fnm.vercel.app/install \| bash` |
+
+Install Node.js:
 
 ```bash
-apt install rust
-```
+fnm install --lts       # latest LTS
+fnm use --lts
+fnm default lts-latest
 
----
-
-## nvm
-
-**macOS / Linux:**
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-```
-
-### Install Node 24
-
-```bash
-nvm install 24
-```
-
----
-
-## pnpm
-
-```bash
-corepack enable pnpm
+# or a specific version
+fnm install 20
+fnm use 20
 ```
 
 ---
 
 ## Bun
 
-**macOS / Linux:**
-
-```bash
-curl -fsSL https://bun.sh/install | bash
-```
-
----
-
-**Termux:**
-
-```bash
-curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" | bash -s install
-```
+| Platform      | Command                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| macOS (brew)  | `brew tap oven-sh/bun && brew install bun`                                                                                          |
+| macOS / Linux | `curl -fsSL https://bun.sh/install \| bash`                                                                                         |
+| Termux        | `curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" \| bash -s install` |
 
 ---
 
-> **Note:** Some installers auto-append lines to your shell config (`~/.bashrc`, `~/.zshrc`, etc.). Since you already have PATH configured, check for duplicates after install and remove them.
+## Mongosh
+
+| Platform                         | Command                        |
+| -------------------------------- | ------------------------------ |
+| macOS (brew)                     | `brew install mongosh`         |
+| macOS / Linux / Termux (via Bun) | `bun add -g @mongosh/cli-repl` |
+
+---
+
+> **Note:** Some installers append lines to your shell config (`~/.bashrc`, `~/.zshrc`, etc.) — including `fnm env` and `rustup`/`cargo` PATH exports. Since you already manage your shell config yourself, check for duplicate entries after each install and remove them.
