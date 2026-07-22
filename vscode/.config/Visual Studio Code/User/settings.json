@@ -575,6 +575,7 @@
 
   // github copilot
   "chat.viewSessions.orientation": "stacked",
+  "chat.tips.enabled": false,
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
