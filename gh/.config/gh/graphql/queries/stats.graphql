@@ -1,0 +1,11 @@
+query ($from: DateTime!, $to: DateTime!) {
+  viewer {
+    contributionsCollection(from: $from, to: $to) {
+      totalCommitContributions
+      totalPullRequestContributions
+      totalIssueContributions
+      totalRepositoryContributions
+      restrictedContributionsCount
+    }
+  }
+}
