@@ -1,0 +1,15 @@
+query ($from: DateTime!, $to: DateTime!) {
+  viewer {
+    contributionsCollection(from: $from, to: $to) {
+      totalCommitContributions
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository {
+          nameWithOwner
+        }
+        contributions {
+          totalCount
+        }
+      }
+    }
+  }
+}
