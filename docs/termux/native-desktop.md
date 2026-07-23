@@ -19,7 +19,7 @@ pkg update && pkg upgrade -y
 pkg install git curl wget x11-repo -y
 pkg install tur-repo termux-x11-nightly pulseaudio -y
 
-apt install firefox code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
+apt install firefox code-oss mousepad eog galculator engrampa pinentry-gnome3 helix-grammars -y
 apt install golang rust cargo-binstall nodejs-lts uv -y
 apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager -y
 ```
