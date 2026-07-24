@@ -124,9 +124,13 @@
   "workbench.panel.showLabels": false,
   "workbench.editor.empty.hint": "hidden",
   "workbench.externalBrowser": "firefox",
+
+  // integrated browser
   "workbench.browser.pageZoom": "100%",
   "workbench.browser.showInTitleBar": true,
   "workbench.browser.openLocalhostLinks": true,
+  "workbench.browser.searchEngine": "google",
+  "workbench.browser.maxHistoryEntries": 100,
 
   // terminal
   "terminal.external.linuxExec": "xfce4-terminal",
@@ -577,10 +581,7 @@
   "chat.viewSessions.orientation": "stacked",
   "chat.tips.enabled": false,
   "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+    "*": false
   },
 
   // disable unused things
