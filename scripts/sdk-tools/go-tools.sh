@@ -35,7 +35,6 @@ declare -A GO_TOOLS=(
 
     # Utilities & Database Tools
     ["usql"]="github.com/xo/usql@latest"
-    ["slim"]="github.com/kamranahmedse/slim@latest"
     ["eget"]="github.com/zyedidia/eget@latest"
     ["sheets"]="github.com/maaslalani/sheets@main"
 )
