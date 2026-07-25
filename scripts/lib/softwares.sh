@@ -50,8 +50,10 @@ MACOS_TOOLS=(
   "docker"
   "colima"
   "redis"
+  
   "httpie"
   "openssl"
+  "cloudflared"
 
   "visual-studio-code"
   "bruno"
