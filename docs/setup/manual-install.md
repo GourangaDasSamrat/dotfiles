@@ -113,4 +113,12 @@ fnm use 20
 
 ---
 
+## Claude Code CLI
+
+| Platform | Command                                                                                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Termux   | `curl -fsSL https://raw.githubusercontent.com/ferrumclaudepilgrim/claude-code-android/main/install.sh -o install.sh && bash install.sh && rm -rf install.sh` |
+
+---
+
 > **Note:** Some installers append lines to your shell config (`~/.bashrc`, `~/.zshrc`, etc.) — including `fnm env` and `rustup`/`cargo` PATH exports. Since you already manage your shell config yourself, check for duplicate entries after each install and remove them.
