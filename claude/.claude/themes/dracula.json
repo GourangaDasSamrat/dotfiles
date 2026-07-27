@@ -1,0 +1,17 @@
+{
+  "name": "Dracula",
+  "base": "dark",
+  "overrides": {
+    "claude": "#bd93f9",
+    "error": "#ff5555",
+    "success": "#50fa7b",
+    "warning": "#ffb86c",
+    "info": "#8be9fd",
+    "primary": "#bd93f9",
+    "secondary": "#6272a4",
+    "background": "#282a36",
+    "foreground": "#f8f8f2",
+    "accent": "#ff79c6",
+    "border": "#44475a"
+  }
+}
