@@ -3,7 +3,7 @@
 # ── Environment
 export DOTFILES="$HOME/dotfiles"
 export BAT_THEME="Dracula"
-export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/go/bin:$HOME/.local/bin:$HOME/.bun/bin:$HOME/.cargo/bin:$PATH"
 # ── History
 HISTFILE="$HOME/.bash_history"
 HISTSIZE=10000
@@ -44,7 +44,7 @@ elif [[ "$(uname -s)" == "Linux" ]] && command -v gtrash &>/dev/null; then
 fi
 
 # ── Completion
-[[ -f /usr/share/bash-completion/bash_completion ]] && \
+[[ -f /usr/share/bash-completion/bash_completion ]] &&
   source /usr/share/bash-completion/bash_completion
-[[ -f $PREFIX/share/bash_completion ]] && \
+[[ -f $PREFIX/share/bash_completion ]] &&
   source $PREFIX/share/bash-completion/bash_completion
