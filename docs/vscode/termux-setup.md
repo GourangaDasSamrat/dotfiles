@@ -18,6 +18,7 @@ Add or update these configuration properties:
   "nameLong": "Visual Studio Code",
   "applicationName": "code",
   "dataFolderName": ".vscode",
+  "sharedDataFolderName": ".vscode-shared",
 
   "linuxIconName": "code",
 
