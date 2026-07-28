@@ -41,8 +41,8 @@ _install_fonts_main() {
         7z x "${pkg_name}" > /dev/null
         7z x Payload~ > /dev/null
 
-        mkdir -p "$HOME/.local/share/${font_name}"
-        mv Library/Fonts/* "$HOME/.local/share/${font_name}/"
+        mkdir -p "$HOME/.local/share/fonts/${font_name}"
+        mv Library/Fonts/* "$HOME/.local/share/fonts/${font_name}/"
 
         rm -rf "${font_name}.dmg" "${pkg_name}" Payload~ Library/ [[:digit:]]*
     done
