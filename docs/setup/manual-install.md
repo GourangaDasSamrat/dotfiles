@@ -49,7 +49,7 @@ macOS: already covered by Xcode CLT above, nothing extra needed.
 | Platform      | Command                                            |
 | ------------- | -------------------------------------------------- |
 | macOS (brew)  | `brew install uv`                                  |
-| macOS / Linux | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| macOS / Linux | `curl -LsSf https://astral.sh/uv/install.sh | sh` |
 | Termux        | `apt install uv`                                   |
 
 ---
@@ -61,7 +61,7 @@ Even via brew, install `rustup` (the toolchain manager) — not the `rust` formu
 | Platform               | Command                                                           |
 | ---------------------- | ----------------------------------------------------------------- |
 | macOS (brew)           | `brew install rustup-init && rustup-init`                         |
-| macOS / Linux (manual) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \| sh` |
+| macOS / Linux (manual) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` |
 | Termux                 | `apt install rust`                                                |
 
 After install:
@@ -78,7 +78,7 @@ rustup toolchain install stable
 | Platform      | Command                                             |
 | ------------- | --------------------------------------------------- |
 | macOS (brew)  | `brew install fnm`                                  |
-| macOS / Linux | `curl -fsSL https://fnm.vercel.app/install \| bash` |
+| macOS / Linux | `curl -fsSL https://fnm.vercel.app/install | bash` |
 
 Install Node.js:
 
@@ -99,8 +99,8 @@ fnm use 20
 | Platform      | Command                                                                                                                             |
 | ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | macOS (brew)  | `brew tap oven-sh/bun && brew install bun`                                                                                          |
-| macOS / Linux | `curl -fsSL https://bun.sh/install \| bash`                                                                                         |
-| Termux        | `curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" \| bash -s install` |
+| macOS / Linux | `curl -fsSL https://bun.sh/install | bash`                                                                                         |
+| Termux        | `curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" | bash -s install` |
 
 ---
 
