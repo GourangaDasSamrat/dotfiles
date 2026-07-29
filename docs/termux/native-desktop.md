@@ -15,9 +15,9 @@ termux-setup-storage
 Update the system and install essential packages:
 
 ```bash
-pkg update && pkg upgrade -y
-pkg install git curl wget x11-repo -y
-pkg install tur-repo termux-x11-nightly pulseaudio -y
+apt update && pkg upgrade -y
+apt install git curl wget x11-repo -y
+apt install tur-repo termux-x11-nightly pulseaudio -y
 
 apt install firefox code-oss mousepad eog galculator engrampa pinentry-gnome3 helix-grammars -y
 apt install golang rust cargo-binstall nodejs-lts uv -y
@@ -27,7 +27,7 @@ apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshoo
 ### Setup Startup Script
 
 ```bash
-ln -s ~/dotfiles/docs/termux/native-desktop-start.sh ~/start.sh
+ln -s $HOME/dotfiles/docs/termux/native-desktop-start.sh $PREFIX/start.sh
 ```
 
 ### Install Desktop Themes and Icons
@@ -55,7 +55,7 @@ wget https://github.com/dracula/mousepad/raw/refs/heads/master/dracula.xml
 ### Launch Desktop Environment
 
 ```bash
-./start.sh
+$PREFIX/start.sh
 ```
 
 ## PRoot Distro Setup
