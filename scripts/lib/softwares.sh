@@ -50,7 +50,7 @@ MACOS_TOOLS=(
   "docker"
   "colima"
   "redis"
-  
+
   "httpie"
   "openssl"
   "cloudflared"
@@ -60,7 +60,7 @@ MACOS_TOOLS=(
   "tableplus"
   "kitty"
 
-  "firefox"
+  "zen"
   "discord"
   "iina"
 
