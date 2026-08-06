@@ -11,31 +11,27 @@ setup_dotfiles() {
 
   # Default packages list for GNU Stow
   local packages=(zsh bash git gh kitty cspell)
+  local vscode_package
 
   # OS detection using uname
   if [ "$(uname)" == "Darwin" ]; then
     echo "OS: macOS (Darwin) detected."
-
-    # Ensure the specific macOS directory structure exists for VS Code
-    local mac_vscode_dir="vscode-mac/Library/Application Support/Code"
-    if [ ! -d "$mac_vscode_dir/User" ]; then
-      echo "Setting up macOS specific VS Code directory structure..."
-      mkdir -p "$mac_vscode_dir"
-      # Symlink the generic VS Code config to the macOS stow structure
-      ln -sfn "$HOME/dotfiles/vscode/.config/Visual Studio Code/User" "$mac_vscode_dir/User"
-    fi
-
-    # Append macOS-specific package instead of generic vscode
-    packages+=(vscode-mac)
+    vscode_package="vscode-mac"
   else
     echo "OS: Linux/Other detected."
-    # Append standard vscode package for Linux/other systems
-    packages+=(vscode)
+    vscode_package="vscode-linux"
   fi
 
   # Execute Stow with the dynamically constructed package list
   if stow "${packages[@]}"; then
     echo "Stow completed successfully for: ${packages[*]}"
+
+    if stow -d vscode -t ~ "$vscode_package"; then
+      echo "VS Code stow completed successfully for: $vscode_package"
+    else
+      echo "Error: VS Code stow failed for: $vscode_package"
+      return 1
+    fi
 
     if [ -d "$HOME/.git-hooks" ]; then
       echo "Setting execute permissions for git hooks..."
