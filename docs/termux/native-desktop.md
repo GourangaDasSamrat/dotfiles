@@ -16,7 +16,7 @@ Update the system and install essential packages:
 
 ```bash
 apt update && pkg upgrade -y
-apt install git curl wget x11-repo -y
+apt install git curl wget openssl-tool x11-repo -y
 apt install tur-repo termux-x11-nightly pulseaudio -y
 
 apt install zen-browser code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
