@@ -19,6 +19,10 @@ detect_package_manager() {
 		echo "brew"
 		return
 	fi
+	if command -v dnf &>/dev/null; then
+		echo "dnf"
+		return
+	fi
 	if command -v apt &>/dev/null; then
 		echo "apt"
 		return
