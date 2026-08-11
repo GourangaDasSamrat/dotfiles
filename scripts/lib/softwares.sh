@@ -32,12 +32,20 @@ COMMON_TOOLS=(
   "whois"
 )
 
-LINUX_TOOLS=(
+SHARED_LINUX_TOOLS=(
   "zsh"
-  "build-essential"
   "pinentry-gnome3"
   "rofi"
+)
+
+GENERIC_LINUX_TOOLS=(
+  "build-essential"
   "openssl-tool"
+)
+
+FEDORA_TOOLS=(
+  "@development-tools"
+  "openssl-devel"
 )
 
 MACOS_TOOLS=(
@@ -79,6 +87,14 @@ _is_installed() {
   brew) brew list "$tool" &>/dev/null ;;
   apt) dpkg -l | grep -q "^ii  $tool " ;;
   pacman) pacman -Q "$tool" &>/dev/null ;;
+  dnf)
+	if [[ "$tool" == @* ]]; then
+	  local group_name="${tool#@}"
+    dnf group list --installed 2>/dev/null | grep -qiF "$group_name"
+	else
+	  dnf list installed "$tool" &>/dev/null
+	fi
+	;;
   esac
 }
 
@@ -104,6 +120,13 @@ _install_tool() {
       brew) brew install "$candidate" && return ;;
       apt) $SUDO_CMD apt install -y "$candidate" && return ;;
       pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
+      dnf)
+	if [[ "$candidate" == @* ]]; then
+	  $SUDO_CMD dnf group install -y "${candidate#@}" && return
+	else
+	  $SUDO_CMD dnf install -y "$candidate" && return
+	fi
+	;;
       esac
     done
 
@@ -121,6 +144,13 @@ _install_tool() {
   brew) brew install "$tool" ;;
   apt) $SUDO_CMD apt install -y "$tool" ;;
   pacman) $SUDO_CMD pacman -S --noconfirm "$tool" ;;
+  dnf)
+	if [[ "$tool" == @* ]]; then
+	  $SUDO_CMD dnf group install -y "${tool#@}"
+	else
+	  $SUDO_CMD dnf install -y "$tool"
+	fi
+	;;
   esac
 }
 
@@ -132,12 +162,18 @@ install_packages() {
 
   case "$OS" in
   macos) TOOLS=("${COMMON_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
-  linux) TOOLS=("${COMMON_TOOLS[@]}" "${LINUX_TOOLS[@]}") ;;
+  linux)
+	case "$PKG_MANAGER" in
+    dnf) TOOLS=("${COMMON_TOOLS[@]}" "${SHARED_LINUX_TOOLS[@]}" "${FEDORA_TOOLS[@]}") ;;
+    *) TOOLS=("${COMMON_TOOLS[@]}" "${SHARED_LINUX_TOOLS[@]}" "${GENERIC_LINUX_TOOLS[@]}") ;;
+	esac
+	;;
   esac
 
   echo "Updating system..."
   case "$PKG_MANAGER" in
   brew) brew update && brew upgrade ;;
+  dnf) $SUDO_CMD dnf upgrade --refresh -y ;;
   apt) $SUDO_CMD apt update && $SUDO_CMD apt upgrade -y ;;
   pacman) $SUDO_CMD pacman -Syu --noconfirm ;;
   esac
