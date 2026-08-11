@@ -100,36 +100,6 @@ _every command feels intentional._
 
 <div align="center">
 
-## `🪟 tmux`
-
-_catppuccin macchiato · live weather in the status bar_
-_sessions that survive reboots_
-
-</div>
-
-<br/>
-
-```
-  prefix      ctrl+a            splits        |  and  -
-  navigate    h · j · k · l     windows       alt + 1–5
-  mouse       on                persist       auto-save every 5 min
-```
-
-<br/>
-
-<div align="center">
-
-tmux-resurrect + tmux-continuum restore your exact layout,
-panes, and working directories after every reboot.
-
-</div>
-
----
-
-<br/>
-
-<div align="center">
-
 ## `🖥️ vs code`
 
 _six language profiles · italic keywords · ligatures · snippets_
