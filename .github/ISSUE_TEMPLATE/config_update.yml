@@ -1,0 +1,92 @@
+name: 📖 Configuration Update
+description: Report an issue with or request updates to configuration files
+title: "[CONFIG] "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📝 Description
+
+        Use this form to report a configuration issue or request an update.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Clear description of the configuration issue or update needed.
+      placeholder: Describe the configuration change.
+    validations:
+      required: true
+  - type: checkboxes
+    id: affected_component
+    attributes:
+      label: Affected Component
+      description: Which configuration file or tool does this relate to?
+      options:
+        - label: zsh configuration
+        - label: tmux configuration
+        - label: neovim configuration
+        - label: vscode configuration
+        - label: alacritty configuration
+        - label: git configuration
+        - label: gh configuration
+        - label: scripts
+        - label: other
+  - type: input
+    id: other_component
+    attributes:
+      label: Other Component
+      description: Fill this in if you selected other above.
+      placeholder: Describe the component.
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Behavior
+      description: How is it currently configured?
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Behavior
+      description: How should it be configured?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_changes
+    attributes:
+      label: Proposed Changes
+      description: Describe the configuration changes or additions needed.
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: Operating system where this applies.
+      placeholder: Ubuntu 22.04, macOS Ventura, Arch Linux, etc.
+  - type: input
+    id: tool_version
+    attributes:
+      label: Tool Version
+      description: Version of the relevant tool, if applicable.
+  - type: input
+    id: install_method
+    attributes:
+      label: Installation Method
+      description: How the setup was installed.
+      placeholder: install.sh, manual, etc.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Link to relevant documentation, examples, or issues.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've verified this is not already configured elsewhere
+        - label: This improves the user experience
+        - label: I can explain why this change is beneficial
