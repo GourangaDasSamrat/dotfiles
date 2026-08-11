@@ -1,0 +1,96 @@
+name: 🐛 Bug Report
+description: Report a bug in the dotfiles
+title: "[BUG] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📝 Description
+
+        Use this form to report a bug in the dotfiles setup.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the problem here.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: List the steps needed to reproduce the behavior.
+      placeholder: |
+        1. Go to ...
+        2. Execute ...
+        3. See the error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen.
+      placeholder: Explain the expected result.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What happens instead.
+      placeholder: Explain the actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots or Logs
+      description: Add screenshots, terminal output, or logs if available.
+      placeholder: Paste any useful output here.
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      description: Operating system where the issue happened.
+      placeholder: Ubuntu 22.04, macOS Ventura, Arch Linux, etc.
+  - type: input
+    id: shell
+    attributes:
+      label: Shell
+      description: Shell you were using when the issue happened.
+      placeholder: zsh, bash, fish, etc.
+  - type: input
+    id: install_method
+    attributes:
+      label: Installation Method
+      description: How the dotfiles were installed.
+      placeholder: install.sh, manual, symlinked, etc.
+  - type: textarea
+    id: tools
+    attributes:
+      label: Relevant Tools
+      description: Mention tools or configs involved in the issue.
+      placeholder: neovim, tmux, vscode, git, gh, etc.
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration
+      description: Paste the relevant configuration snippets or file references.
+      render: shell
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I've checked existing issues for duplicates
+        - label: I've reviewed the README and documentation
+        - label: I've provided sufficient detail for reproduction
