@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/detect.sh"
 
-COMMON_TOOLS=(
+CROSS_PLATFORM_TOOLS=(
   "curl"
   "wget"
   "jq"
@@ -33,15 +33,15 @@ COMMON_TOOLS=(
   "openssl"
 )
 
-SHARED_LINUX_TOOLS=(
+LINUX_COMMON_TOOLS=(
   "zsh"
   "pinentry-gnome3"
   "rofi"
 )
 
-GENERIC_LINUX_TOOLS=("build-essential|base-devel")
+DEB_ARCH_TOOLS=("build-essential|base-devel")
 
-FEDORA_TOOLS=(
+RHEL_TOOLS=(
   "@development-tools"
   "openssl-devel"
 )
@@ -159,11 +159,11 @@ install_packages() {
   fi
 
   case "$OS" in
-  macos) TOOLS=("${COMMON_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
+  macos) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
   linux)
     case "$PKG_MANAGER" in
-    dnf) TOOLS=("${COMMON_TOOLS[@]}" "${SHARED_LINUX_TOOLS[@]}" "${FEDORA_TOOLS[@]}") ;;
-    *) TOOLS=("${COMMON_TOOLS[@]}" "${SHARED_LINUX_TOOLS[@]}" "${GENERIC_LINUX_TOOLS[@]}") ;;
+    dnf) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${RHEL_TOOLS[@]}") ;;
+    *) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEB_ARCH_TOOLS[@]}") ;;
     esac
     ;;
   esac
