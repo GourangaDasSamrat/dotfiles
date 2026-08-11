@@ -583,6 +583,11 @@
   "github.copilot.enable": {
     "*": false
   },
+  "chat.tools.urls.autoApprove": {
+    "https://code.visualstudio.com": true,
+    "https://github.com/microsoft/vscode/wiki/*": true,
+    "https://docs.github.com": true
+  },
 
   // disable unused things
   "telemetry.telemetryLevel": "off",
