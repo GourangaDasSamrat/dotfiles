@@ -83,7 +83,7 @@ _is_installed() {
   case "$PKG_MANAGER" in
   brew) brew list "$tool" &>/dev/null ;;
   apt) dpkg -l | grep -q "^ii  $tool " ;;
-  pacman) pacman -Q "$tool" &>/dev/null ;;
+  pacman) pacman -Q "$tool" &>/dev/null || pacman -Qg "$tool" &>/dev/null ;;
   dnf)
     if [[ "$tool" == @* ]]; then
       local group_name="${tool#@}"
