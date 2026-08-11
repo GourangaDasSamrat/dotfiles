@@ -50,7 +50,7 @@ body:
     attributes:
       label: Screenshots or Logs
       description: Add screenshots, terminal output, or logs if available.
-      placeholder: Paste any useful output here.
+      description: Add screenshots, terminal output, or logs if available. Please redact any secrets (tokens, API keys, passwords).
   - type: input
     id: os
     attributes:
