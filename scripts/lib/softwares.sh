@@ -30,6 +30,7 @@ COMMON_TOOLS=(
 
   "mpv"
   "whois"
+  "openssl"
 )
 
 SHARED_LINUX_TOOLS=(
@@ -38,10 +39,7 @@ SHARED_LINUX_TOOLS=(
   "rofi"
 )
 
-GENERIC_LINUX_TOOLS=(
-  "build-essential"
-  "openssl"
-)
+GENERIC_LINUX_TOOLS=("build-essential")
 
 FEDORA_TOOLS=(
   "@development-tools"
@@ -60,7 +58,6 @@ MACOS_TOOLS=(
   "redis"
 
   "httpie"
-  "openssl"
   "cloudflared"
 
   "visual-studio-code"
