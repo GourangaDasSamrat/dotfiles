@@ -40,7 +40,7 @@ SHARED_LINUX_TOOLS=(
 
 GENERIC_LINUX_TOOLS=(
   "build-essential"
-  "openssl-tool"
+  "openssl"
 )
 
 FEDORA_TOOLS=(
