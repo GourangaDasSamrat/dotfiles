@@ -46,11 +46,11 @@ macOS: already covered by Xcode CLT above, nothing extra needed.
 
 ## uv (Python package manager)
 
-| Platform      | Command                                            |
-| ------------- | -------------------------------------------------- |
-| macOS (brew)  | `brew install uv`                                  |
+| Platform      | Command                                     |
+| ------------- | ------------------------------------------- |
+| macOS (brew)  | `brew install uv`                           |
 | macOS / Linux | `curl -LsSf https://astral.sh/uv/install.sh | sh` |
-| Termux        | `apt install uv`                                   |
+| Termux        | `apt install uv`                            |
 
 ---
 
@@ -58,11 +58,11 @@ macOS: already covered by Xcode CLT above, nothing extra needed.
 
 Even via brew, install `rustup` (the toolchain manager) — not the `rust` formula directly.
 
-| Platform               | Command                                                           |
-| ---------------------- | ----------------------------------------------------------------- |
-| macOS (brew)           | `brew install rustup-init && rustup-init`                         |
+| Platform               | Command                                                    |
+| ---------------------- | ---------------------------------------------------------- |
+| macOS (brew)           | `brew install rustup-init && rustup-init`                  |
 | macOS / Linux (manual) | `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` |
-| Termux                 | `apt install rust`                                                |
+| Termux                 | `apt install rust`                                         |
 
 After install:
 
@@ -75,9 +75,9 @@ rustup toolchain install stable
 
 ## Node.js
 
-| Platform      | Command                                             |
-| ------------- | --------------------------------------------------- |
-| macOS (brew)  | `brew install fnm`                                  |
+| Platform      | Command                                    |
+| ------------- | ------------------------------------------ |
+| macOS (brew)  | `brew install fnm`                         |
 | macOS / Linux | `curl -fsSL https://fnm.vercel.app/install | bash` |
 
 Install Node.js:
@@ -96,10 +96,10 @@ fnm use 20
 
 ## Bun
 
-| Platform      | Command                                                                                                                             |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| macOS (brew)  | `brew tap oven-sh/bun && brew install bun`                                                                                          |
-| macOS / Linux | `curl -fsSL https://bun.sh/install | bash`                                                                                         |
+| Platform      | Command                                                                                                         |
+| ------------- | --------------------------------------------------------------------------------------------------------------- |
+| macOS (brew)  | `brew tap oven-sh/bun && brew install bun`                                                                      |
+| macOS / Linux | `curl -fsSL https://bun.sh/install                                                                              | bash`            |
 | Termux        | `curl -fsSL "https://raw.githubusercontent.com/Happ1ness-dev/bun-termux/main/helper_scripts/bun-termux-manager" | bash -s install` |
 
 ---

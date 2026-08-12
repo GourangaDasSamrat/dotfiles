@@ -79,7 +79,7 @@ bun add -g typescript-language-server
 **Formatter & Linter:**
 
 ```bash
-bun add -g eslint prettier
+bun add -g biome
 ```
 
 ---
