@@ -112,8 +112,8 @@ _six language profiles · italic keywords · ligatures · snippets_
 
 | profile  |     formatter     |
 | :------: | :---------------: |
-| frontend | prettier + eslint |
-| backend  | prettier + eslint |
+| frontend |       biome       |
+| backend  |       biome       |
 | c / c++  |      clangd       |
 |    go    | gopls + goimports |
 | database |   prettier-sql    |

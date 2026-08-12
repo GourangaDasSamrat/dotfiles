@@ -21,10 +21,10 @@
 
 ## Frontend Dev Profile
 
-| Extension   | Publisher   | Marketplace Link                                                                    |
-| ----------- | ----------- | ----------------------------------------------------------------------------------- |
-| ESLint      | Microsoft   | [ Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) |
-| Live Server | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)  |
+| Extension   | Publisher   | Marketplace Link                                                                   |
+| ----------- | ----------- | ---------------------------------------------------------------------------------- |
+| Biome       | Biome       | [ Link](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)         |
+| Live Server | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) |
 
 ### Optional (Frontend Dev Profile)
 
@@ -37,11 +37,10 @@
 
 ## Backend Dev Profile
 
-| Extension                 | Publisher      | Marketplace Link                                                                          |
-| ------------------------- | -------------- | ----------------------------------------------------------------------------------------- |
-| Prettier - Code formatter | Prettier       | [ Link](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)       |
-| ESLint                    | Microsoft      | [ Link](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)       |
-| Thunder Client            | Thunder Client | [ Link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) |
+| Extension      | Publisher      | Marketplace Link                                                                          |
+| -------------- | -------------- | ----------------------------------------------------------------------------------------- |
+| Biome          | Biome          | [ Link](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)                |
+| Thunder Client | Thunder Client | [ Link](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) |
 
 ### Optional (Backend Dev Profile)
 
