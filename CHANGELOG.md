@@ -1,8 +1,21 @@
-## [unreleased]
+## [0.177.0] - 2026-08-13
+
+### 🚀 Features
+
+- *(scripts)* Add ARCH_TOOLS support and expand MACOS_TOOLS (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(vscode,zsh)* Remove redundant root vscode symlinks and cleanup aliases (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- Add changelog (Gouranga Das Samrat)
 
 ### ⚙️ Miscellaneous Tasks
 
 - *(release)* Include non-conventional commits in filter_unconventional (Gouranga Das Samrat)
+- *(release)* Auto-commit full CHANGELOG.md on release (Gouranga Das Samrat)
 ## [0.176.0] - 2026-08-13
 
 ### 🚀 Features
