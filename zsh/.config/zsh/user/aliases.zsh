@@ -92,3 +92,6 @@ fi
 
 # --- mongosh's Aliases ---
 (( $+commands[mongosh] )) && alias mongosh='mongosh --quiet'
+
+# --- Git's Aliases ---
+alias gc-codex='git -c user.name="Codex" -c user.email="noreply@openai.com" commit'
