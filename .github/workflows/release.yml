@@ -54,7 +54,7 @@ jobs:
 
           # Initialize temporary files for each section
           TEMP_DIR=$(mktemp -d)
-          touch "$TEMP_DIR"/{breaking,features,bugfixes,performance,refactor,tests,documentation,chore,other}
+          touch "$TEMP_DIR"/{breaking,features,bugfixes,performance,refactor,tests,documentation,build,chore,other}
 
           # Categorize commits based on conventional commits
           while IFS='|' read -r HASH AUTHOR SUBJECT; do
@@ -62,30 +62,34 @@ jobs:
               continue
             fi
 
+            SUBJECT_LOWER="${SUBJECT,,}"
+
             # Build commit link
             REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
             SHORT_HASH="${HASH:0:7}"
             COMMIT_ENTRY="- ${SUBJECT} (${AUTHOR}) [${SHORT_HASH}](${REPO_URL}/commit/${HASH})"
 
             # Check for breaking changes (takes precedence)
-            if [[ "$SUBJECT" =~ ^[a-z]+!: ]]; then
+            if [[ "$SUBJECT_LOWER" =~ ^[a-z]+!: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/breaking"
             fi
 
             # Categorize by type
-            if [[ "$SUBJECT" =~ ^feat(\(.+\))?!?: ]]; then
+            if [[ "$SUBJECT_LOWER" =~ ^feat(ure)?(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/features"
-            elif [[ "$SUBJECT" =~ ^fix(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^fix(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/bugfixes"
-            elif [[ "$SUBJECT" =~ ^docs(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^docs(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/documentation"
-            elif [[ "$SUBJECT" =~ ^perf(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^build(\(.+\))?!?: ]]; then
+              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/build"
+            elif [[ "$SUBJECT_LOWER" =~ ^perf(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/performance"
-            elif [[ "$SUBJECT" =~ ^refactor(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^refactor(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/refactor"
-            elif [[ "$SUBJECT" =~ ^test(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^test(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/tests"
-            elif [[ "$SUBJECT" =~ ^chore(\(.+\))?!?: ]]; then
+            elif [[ "$SUBJECT_LOWER" =~ ^chore(\(.+\))?!?: ]]; then
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/chore"
             else
               echo "$COMMIT_ENTRY" >> "$TEMP_DIR/other"
@@ -102,6 +106,7 @@ jobs:
           [ -s "$TEMP_DIR/refactor" ] && echo -e "## ♻️ Refactoring\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/refactor" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
           [ -s "$TEMP_DIR/tests" ] && echo -e "## ✅ Tests\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/tests" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
           [ -s "$TEMP_DIR/documentation" ] && echo -e "## 📚 Documentation\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/documentation" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
+          [ -s "$TEMP_DIR/build" ] && echo -e "## 🏗️ Build\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/build" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
           [ -s "$TEMP_DIR/chore" ] && echo -e "## 🔧 Chores\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/chore" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
           [ -s "$TEMP_DIR/other" ] && echo -e "## Other Changes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/other" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
 
