@@ -46,16 +46,47 @@ RHEL_TOOLS=(
   "openssl-devel"
 )
 
-MACOS_TOOLS=(
-  "go"
-  "uv"
-  "oven-sh/bun/bun"
+ARCH_TOOLS=(
   "rustup"
   "cargo-binstall"
+  "uv"
+  "bun"
+  "fnm"
+  "docker"
+  "redis"
+
+  "go"
+  "golangci-lint"
+  "gopls"
+  "air"
+  "goreleaser"
+
+  "httpie"
+  "cloudflared"
+  "git-cliff"
+
+  "kitty"
+  "discord"
+)
+
+MACOS_TOOLS=(
+  "rustup"
+  "cargo-binstall"
+  "uv"
+  "oven-sh/bun/bun"
   "fnm"
   "docker"
   "colima"
   "redis"
+
+  "go"
+  "goimports"
+  "golangci-lint"
+  "gopls"
+  "air"
+  "gotests"
+  "govulncheck"
+  "goreleaser"
 
   "httpie"
   "cloudflared"
@@ -164,6 +195,7 @@ install_packages() {
   linux)
     case "$PKG_MANAGER" in
     dnf) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${RHEL_TOOLS[@]}") ;;
+    pacman) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEB_ARCH_TOOLS[@]}" "${ARCH_TOOLS[@]}") ;;
     *) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEB_ARCH_TOOLS[@]}") ;;
     esac
     ;;
