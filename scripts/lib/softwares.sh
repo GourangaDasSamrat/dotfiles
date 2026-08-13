@@ -59,6 +59,7 @@ MACOS_TOOLS=(
 
   "httpie"
   "cloudflared"
+  "git-cliff"
 
   "visual-studio-code"
   "bruno"
