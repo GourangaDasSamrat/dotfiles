@@ -14,21 +14,24 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository branch directly to avoid detached HEAD
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
-      - name: Generate Changelog with git-cliff
+      # 1. Generate release notes for the latest tag only (for GitHub Release body)
+      - name: Generate Release Notes with git-cliff
         id: git-cliff
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
           args: --latest --strip header
         env:
-          OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
 
+      # 2. Create the GitHub Release
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
@@ -38,3 +41,23 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3. Generate the full project changelog and write it to CHANGELOG.md
+      - name: Generate Full CHANGELOG.md
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: -o CHANGELOG.md
+        env:
+          GITHUB_REPO: ${{ github.repository }}
+
+      # 4. Commit and push the updated CHANGELOG.md back to the repository branch
+      - name: Commit and Push CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: main
+          commit_message: "docs(changelog): update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"
+          file_pattern: "CHANGELOG.md"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
