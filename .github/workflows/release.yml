@@ -19,118 +19,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get previous tag
-        id: get-previous-tag
-        run: |
-          # Get the current tag that triggered the workflow
-          CURRENT_TAG="${GITHUB_REF#refs/tags/}"
-          echo "current_tag=$CURRENT_TAG" >> $GITHUB_OUTPUT
-
-          # Get the previous tag (or use the first commit if no previous tag exists)
-          PREVIOUS_TAG=$(git tag --list --sort=-version:refname --merged "$CURRENT_TAG" | grep -v "^$CURRENT_TAG$" | head -n 1)
-
-          if [ -z "$PREVIOUS_TAG" ]; then
-            # No previous tag, use the root commit
-            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
-          fi
-
-          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
-          echo "Current tag: $CURRENT_TAG"
-          echo "Previous tag: $PREVIOUS_TAG"
-
-      - name: Generate release notes from conventional commits
-        id: generate-notes
-        run: |
-          CURRENT_TAG="${{ steps.get-previous-tag.outputs.current_tag }}"
-          PREVIOUS_TAG="${{ steps.get-previous-tag.outputs.previous_tag }}"
-
-          # Get all commits between previous and current tag
-          if [ "$PREVIOUS_TAG" = "$(git rev-list --max-parents=0 HEAD)" ]; then
-            # If previous_tag is the root commit, use it directly
-            COMMITS=$(git log --pretty=format:"%h|%an|%s" "$PREVIOUS_TAG..HEAD")
-          else
-            COMMITS=$(git log --pretty=format:"%h|%an|%s" "$PREVIOUS_TAG..$CURRENT_TAG")
-          fi
-
-          # Initialize temporary files for each section
-          TEMP_DIR=$(mktemp -d)
-          touch "$TEMP_DIR"/{breaking,features,bugfixes,performance,refactor,tests,documentation,build,chore,other}
-
-          # Categorize commits based on conventional commits
-          while IFS='|' read -r HASH AUTHOR SUBJECT; do
-            if [ -z "$SUBJECT" ]; then
-              continue
-            fi
-
-            SUBJECT_LOWER="${SUBJECT,,}"
-
-            # Build commit link
-            REPO_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}"
-            SHORT_HASH="${HASH:0:7}"
-            COMMIT_ENTRY="- ${SUBJECT} (${AUTHOR}) [${SHORT_HASH}](${REPO_URL}/commit/${HASH})"
-
-            # Check for breaking changes (takes precedence)
-            if [[ "$SUBJECT_LOWER" =~ ^[a-z]+!: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/breaking"
-            fi
-
-            # Categorize by type
-            if [[ "$SUBJECT_LOWER" =~ ^feat(ure)?(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/features"
-            elif [[ "$SUBJECT_LOWER" =~ ^fix(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/bugfixes"
-            elif [[ "$SUBJECT_LOWER" =~ ^docs(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/documentation"
-            elif [[ "$SUBJECT_LOWER" =~ ^build(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/build"
-            elif [[ "$SUBJECT_LOWER" =~ ^perf(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/performance"
-            elif [[ "$SUBJECT_LOWER" =~ ^refactor(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/refactor"
-            elif [[ "$SUBJECT_LOWER" =~ ^test(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/tests"
-            elif [[ "$SUBJECT_LOWER" =~ ^chore(\(.+\))?!?: ]]; then
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/chore"
-            else
-              echo "$COMMIT_ENTRY" >> "$TEMP_DIR/other"
-            fi
-          done <<< "$COMMITS"
-
-          # Build release notes file
-          RELEASE_NOTES_FILE=$(mktemp)
-
-          [ -s "$TEMP_DIR/breaking" ] && echo -e "## ⚠️ Breaking Changes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/breaking" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/features" ] && echo -e "## ✨ New Features\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/features" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/bugfixes" ] && echo -e "## 🐛 Bug Fixes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/bugfixes" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/performance" ] && echo -e "## ⚡ Performance Improvements\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/performance" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/refactor" ] && echo -e "## ♻️ Refactoring\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/refactor" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/tests" ] && echo -e "## ✅ Tests\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/tests" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/documentation" ] && echo -e "## 📚 Documentation\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/documentation" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/build" ] && echo -e "## 🏗️ Build\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/build" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/chore" ] && echo -e "## 🔧 Chores\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/chore" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-          [ -s "$TEMP_DIR/other" ] && echo -e "## Other Changes\n" >> "$RELEASE_NOTES_FILE" && cat "$TEMP_DIR/other" >> "$RELEASE_NOTES_FILE" && echo "" >> "$RELEASE_NOTES_FILE"
-
-          # If release notes are empty, set default message
-          if [ ! -s "$RELEASE_NOTES_FILE" ]; then
-            echo "No changes in this release." >> "$RELEASE_NOTES_FILE"
-          fi
-
-          # Output the release notes using delimiter method for multi-line content
-          DELIMITER="EOF_$(date +%s)"
-          echo "release_notes<<$DELIMITER" >> $GITHUB_OUTPUT
-          cat "$RELEASE_NOTES_FILE" >> $GITHUB_OUTPUT
-          echo "$DELIMITER" >> $GITHUB_OUTPUT
-
-          # Cleanup
-          rm -rf "$TEMP_DIR"
-          rm "$RELEASE_NOTES_FILE"
+      - name: Generate Changelog with git-cliff
+        id: git-cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.get-previous-tag.outputs.current_tag }}
-          name: ${{ steps.get-previous-tag.outputs.current_tag }}
-          body: ${{ steps.generate-notes.outputs.release_notes }}
+          tag: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: ${{ steps.git-cliff.outputs.content }}
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
