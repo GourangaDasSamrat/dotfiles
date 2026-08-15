@@ -332,7 +332,7 @@ _Every script in `lib/` and `sdk-tools/` runs standalone. Source only what you n
 **Optional Language Tools** — Run individually
 
 ```bash
-./sdk-tools/go-tools.sh       # install go dev tools
+./sdk-tools/go-tools.sh       # install go dev tools (requires go)
 ./sdk-tools/cargo-tools.sh    # install rust cli tools (requires cargo)
 ./sdk-tools/uv-tools.sh       # install python tools (requires uv)
 ```
