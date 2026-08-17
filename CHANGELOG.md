@@ -1,3 +1,18 @@
+## [0.178.0] - 2026-08-17
+
+### 🚀 Features
+
+- *(scripts)* Add notion to software list (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(scripts)* Improve APT package detection in softwares.sh (Gouranga Das Samrat)
+- *(scripts)* Extract software tool arrays into utility file (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.177.0 [skip ci] (github-actions[bot])
+- Update README to specify Go requirement for tools (Gouranga Das Samrat)
 ## [0.177.0] - 2026-08-13
 
 ### 🚀 Features
