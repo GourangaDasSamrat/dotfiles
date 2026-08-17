@@ -130,6 +130,7 @@ MACOS_TOOLS=(
   "kitty"
 
   "zen"
+  "notion"
   "discord"
   "iina"
 
