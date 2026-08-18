@@ -135,7 +135,7 @@
   // terminal
   "terminal.external.linuxExec": "xfce4-terminal",
   "terminal.external.osxExec": "Kitty.app",
-  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.fontSize": 17,
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
@@ -586,6 +586,7 @@
     "https://github.com/microsoft/vscode/wiki/*": true,
     "https://docs.github.com": true
   },
+  "chat.stickyScroll.enabled": true,
 
   // json schema download
   "json.schemaDownload.trustedDomains": {
