@@ -205,9 +205,6 @@
     "source.organizeImports": "explicit"
   },
 
-  "eslint.run": "onSave",
-  "eslint.format.enable": true,
-
   // prettier sql
   "Prettier-SQL.SQLFlavourOverride": "postgresql",
   "Prettier-SQL.ignoreTabSettings": false,
@@ -621,5 +618,5 @@
     "selectors": "redux-selector",
     "selector": "redux-selector"
   },
-  "material-icon-theme.hidesExplorerArrows": true
+  "material-icon-theme.hidesExplorerArrows": true,
 }
