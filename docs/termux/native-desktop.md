@@ -15,9 +15,9 @@ termux-setup-storage
 Update the system and install essential packages:
 
 ```bash
-apt update && pkg upgrade -y
-apt install git curl wget openssl-tool x11-repo -y
-apt install tur-repo termux-x11-nightly pulseaudio -y
+apt update && apr upgrade -y
+apt install x11-repo tur-repo -y
+apt install git curl wget openssl-tool termux-x11-nightly pulseaudio -y
 
 apt install zen-browser code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
 apt install golang rust cargo-binstall nodejs-lts uv -y
