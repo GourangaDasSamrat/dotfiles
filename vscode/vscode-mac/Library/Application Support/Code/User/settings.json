@@ -618,5 +618,5 @@
     "selectors": "redux-selector",
     "selector": "redux-selector"
   },
-  "material-icon-theme.hidesExplorerArrows": true,
+  "material-icon-theme.hidesExplorerArrows": true
 }
