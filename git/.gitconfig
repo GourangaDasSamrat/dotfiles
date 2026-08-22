@@ -113,6 +113,8 @@
   unstage = reset HEAD --
        # Export log - saves git history to a file for backup or review
   el = "!sh -c 'git log > git_history.txt'"
+	gone = git fetch --prune && git branch -vv | grep ': gone]' | awk '{print }' | xargs -r git branch -D fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+  gone = !git fetch --prune && git branch -vv | awk '/: gone]/ {print $1}' | xargs -r git branch -D
 
 # Local configuration override - includes machine-specific settings (e.g., credentials from gh CLI)
 [include]
