@@ -52,13 +52,13 @@ apt install rust-analyzer
 2. Remove the broken bundled binary from the extension:
 
 ```bash
-rm ~/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
+rm $HOME/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
 ```
 
 3. Create a symlink to the system binary:
 
 ```bash
-ln -s $(which rust-analyzer) ~/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
+ln -s $(which rust-analyzer) $HOME/.vscode/extensions/rust-lang.rust-analyzer-*/server/rust-analyzer
 ```
 
 **Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
@@ -74,13 +74,13 @@ apt install lua-language-server
 2. Remove the broken bundled binary from the extension:
 
 ```bash
-rm ~/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
+rm $HOME/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
 ```
 
 3. Create a symlink to the system binary:
 
 ```bash
-ln -s $(which lua-language-server) ~/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
+ln -s $(which lua-language-server) $HOME/.vscode/extensions/sumneko.lua-*/server/bin/lua-language-server
 ```
 
 **Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
@@ -96,16 +96,16 @@ apt install codelldb
 2. Remove the broken bundled binaries from the extension:
 
 ```bash
-rm -rf ~/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
+rm -rf $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
 ```
 
 3. Create symlinks to the system binaries:
 
 ```bash
-ln -s $(which codelldb) ~/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb
-ln -s $(which lldb) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb
-ln -s $(which lldb-server) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server
-ln -s $(which lldb-argdumper) ~/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
+ln -s $(which codelldb) $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/adapter/codelldb
+ln -s $(which lldb) $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb
+ln -s $(which lldb-server) $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-server
+ln -s $(which lldb-argdumper) $HOME/.vscode/extensions/vadimcn.vscode-lldb-*/lldb/bin/lldb-argdumper
 ```
 
 **Note**: Replace the wildcard `*` with the specific version number if the glob pattern doesn't work.
