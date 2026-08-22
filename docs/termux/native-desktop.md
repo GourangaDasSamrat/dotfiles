@@ -17,7 +17,7 @@ Update the system and install essential packages:
 ```bash
 apt update && apr upgrade -y
 apt install x11-repo tur-repo -y
-apt install git curl wget openssl-tool termux-x11-nightly pulseaudio -y
+apt install git curl wget openssl-tool termux-x11-nightly pulseaudio ttf-jetbrains-mono-nerd -y
 
 apt install zen-browser code-oss mousepad eog galculator pinentry-gnome3 helix-grammars -y
 apt install golang rust cargo-binstall nodejs-lts uv -y
@@ -89,6 +89,12 @@ Edit the MOTD (Message of the Day) file:
 
 ```bash
 nano $PREFIX/etc/motd
+```
+
+### Symlink font
+
+```bash
+ln -s $PREFIX/share/fonts/TTF/JetBrainsMonoNerdFont-Regular.ttf $HOME/.termux/font.ttf
 ```
 
 ### Configure GPG Agent
