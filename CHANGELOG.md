@@ -1,3 +1,29 @@
+## [0.179.0] - 2026-08-22
+
+### 🚀 Features
+
+- *(git)* Add `gone` alias to prune deleted remote branches (Gouranga Das Samrat)
+
+### 💼 Other
+
+- Add justfile for task automation (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.178.0 [skip ci] (github-actions[bot])
+- Update application launcher shortcut (Gouranga Das Samrat)
+- *(termux)* Update package installation order (Gouranga Das Samrat)
+- *(termux)* Add jetbrains mono font installation (Gouranga Das Samrat)
+- *(vscode)* Use $HOME for extension paths (Gouranga Das Samrat)
+
+### 🎨 Styling
+
+- *(vscode)* Remove trailing comma from settings.json (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(vscode)* Adjust integrated terminal font size (Gouranga Das Samrat)
+- *(vscode)* Remove unused eslint run on save settings (Gouranga Das Samrat)
 ## [0.178.0] - 2026-08-17
 
 ### 🚀 Features
