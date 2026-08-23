@@ -15,6 +15,10 @@ detect_os() {
 }
 
 detect_package_manager() {
+	if command -v pkg &>/dev/null; then
+		echo "pkg"
+		return
+	fi
 	if command -v brew &>/dev/null; then
 		echo "brew"
 		return

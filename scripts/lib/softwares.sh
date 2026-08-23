@@ -8,6 +8,7 @@ _is_installed() {
   local tool="$1"
   case "$PKG_MANAGER" in
   brew) brew list "$tool" &>/dev/null ;;
+  pkg) pkg list-installed 2>/dev/null | grep -qE "^${tool} " ;;
   apt) dpkg-query -W -f='${Status}' "$tool" 2>/dev/null | grep -q "ok installed" ;;
   pacman) pacman -Q "$tool" &>/dev/null || pacman -Qg "$tool" &>/dev/null ;;
   dnf)
@@ -41,6 +42,7 @@ _install_tool() {
       echo "Trying to install $candidate..."
       case "$PKG_MANAGER" in
       brew) brew install "$candidate" && return ;;
+      pkg) pkg install -y "$candidate" && return ;;
       apt) $SUDO_CMD apt install -y "$candidate" && return ;;
       pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
       dnf)
@@ -66,6 +68,7 @@ _install_tool() {
   echo "Installing $tool..."
   case "$PKG_MANAGER" in
   brew) brew install "$tool" ;;
+  pkg) pkg install -y "$tool" ;;
   apt) $SUDO_CMD apt install -y "$tool" ;;
   pacman) $SUDO_CMD pacman -S --noconfirm "$tool" ;;
   dnf)
@@ -88,6 +91,7 @@ install_packages() {
   macos) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
   linux)
     case "$PKG_MANAGER" in
+    pkg) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${TERMUX_TOOLS[@]}") ;;
     dnf) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${RHEL_TOOLS[@]}") ;;
     pacman) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEB_ARCH_TOOLS[@]}" "${ARCH_TOOLS[@]}") ;;
     *) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEB_ARCH_TOOLS[@]}") ;;
@@ -98,6 +102,7 @@ install_packages() {
   echo "Updating system..."
   case "$PKG_MANAGER" in
   brew) brew update && brew upgrade ;;
+  pkg) pkg update -y && pkg upgrade -y ;;
   dnf) $SUDO_CMD dnf upgrade --refresh -y ;;
   apt) $SUDO_CMD apt update && $SUDO_CMD apt upgrade -y ;;
   pacman) $SUDO_CMD pacman -Syu --noconfirm ;;

@@ -42,7 +42,7 @@ CROSS_PLATFORM_TOOLS=(
 
 # ------------------------------------------------------------------------------
 # Common Linux Tools
-# Packages required for standard desktop and interactive terminal sessions 
+# Packages required for standard desktop and interactive terminal sessions
 # across all modern Linux distributions (Debian/Ubuntu, Arch, RHEL/Fedora).
 # ------------------------------------------------------------------------------
 LINUX_COMMON_TOOLS=(
@@ -60,7 +60,7 @@ DEB_ARCH_TOOLS=("build-essential|base-devel")
 
 # ------------------------------------------------------------------------------
 # RHEL / Fedora / CentOS Tools
-# Development packages and system tools specific to RPM-based distributions 
+# Development packages and system tools specific to RPM-based distributions
 # using the DNF package manager.
 # ------------------------------------------------------------------------------
 RHEL_TOOLS=(
@@ -141,4 +141,32 @@ MACOS_TOOLS=(
   "google-drive"
 
   "font-jetbrains-mono-nerd-font"
+)
+
+# ------------------------------------------------------------------------------
+# Termux Android tools
+# Packages suited for the Termux environment, where the package manager is pkg
+# and many Linux packages are installed directly on Android devices.
+# ------------------------------------------------------------------------------
+TERMUX_TOOLS=(
+  "build_essentials"
+  "nodejs-lts"
+  "uv"
+
+  "golang"
+  "goapls"
+  "goimports"
+  "golangci"-lint
+  "air"
+
+  "rust"
+  "cargo-binstall"
+  "rust-analyzer"
+
+  "zen-browser"
+  "code-oss"
+  "mousepad"
+  "eog"
+  "galculator"
+  "helix-grammars"
 )
