@@ -1,3 +1,16 @@
+## [0.180.0] - 2026-08-23
+
+### 🚀 Features
+
+- *(termux)* Add pkg manager support (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.179.0 [skip ci] (github-actions[bot])
+
+### ⚙️ Miscellaneous Tasks
+
+- Remove unused roumon tool (Gouranga Das Samrat)
 ## [0.179.0] - 2026-08-22
 
 ### 🚀 Features
