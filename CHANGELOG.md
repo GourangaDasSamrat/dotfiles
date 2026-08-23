@@ -1,3 +1,12 @@
+## [0.181.0] - 2026-08-23
+
+### 🚀 Features
+
+- *(scripts)* Promote httpie, integrate biome, and fix package typos (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.180.0 [skip ci] (github-actions[bot])
 ## [0.180.0] - 2026-08-23
 
 ### 🚀 Features
