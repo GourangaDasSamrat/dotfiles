@@ -1,3 +1,12 @@
+## [0.181.1] - 2026-08-23
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Typo fix in Termux tools array (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.181.0 [skip ci] (github-actions[bot])
 ## [0.181.0] - 2026-08-23
 
 ### 🚀 Features
