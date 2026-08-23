@@ -145,7 +145,7 @@ MACOS_TOOLS=(
 # and many Linux packages are installed directly on Android devices.
 # ------------------------------------------------------------------------------
 TERMUX_TOOLS=(
-  "build_l-essential"
+  "build-essential"
   "nodejs-lts"
   "uv"
   "biome2"
