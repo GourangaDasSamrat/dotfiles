@@ -34,6 +34,7 @@ CROSS_PLATFORM_TOOLS=(
 
   "starship"
   "helix"
+  "httpie"
 
   "mpv"
   "whois"
@@ -80,7 +81,7 @@ ARCH_TOOLS=(
   "bun"
   "fnm"
   "docker"
-  "redis"
+  "biome-bin"
 
   "go"
   "golangci-lint"
@@ -88,12 +89,8 @@ ARCH_TOOLS=(
   "air"
   "goreleaser"
 
-  "httpie"
   "cloudflared"
   "git-cliff"
-
-  "kitty"
-  "discord"
 )
 
 # ------------------------------------------------------------------------------
@@ -107,9 +104,9 @@ MACOS_TOOLS=(
   "uv"
   "oven-sh/bun/bun"
   "fnm"
+  "biome"
   "docker"
   "colima"
-  "redis"
 
   "go"
   "goimports"
@@ -120,7 +117,6 @@ MACOS_TOOLS=(
   "govulncheck"
   "goreleaser"
 
-  "httpie"
   "cloudflared"
   "git-cliff"
 
@@ -149,14 +145,15 @@ MACOS_TOOLS=(
 # and many Linux packages are installed directly on Android devices.
 # ------------------------------------------------------------------------------
 TERMUX_TOOLS=(
-  "build_essentials"
+  "build_l-essential"
   "nodejs-lts"
   "uv"
+  "biome2"
 
   "golang"
   "goapls"
   "goimports"
-  "golangci"-lint
+  "golangci-lint"
   "air"
 
   "rust"
@@ -170,3 +167,4 @@ TERMUX_TOOLS=(
   "galculator"
   "helix-grammars"
 )
+
