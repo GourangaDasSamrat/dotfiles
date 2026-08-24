@@ -1,3 +1,16 @@
+## [0.181.2] - 2026-08-24
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Update go and js development tools (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.181.1 [skip ci] (github-actions[bot])
+
+### ⚙️ Miscellaneous Tasks
+
+- *(git)* Configure git pull and rebase options (Gouranga Das Samrat)
 ## [0.181.1] - 2026-08-23
 
 ### 🐛 Bug Fixes
