@@ -65,6 +65,14 @@
   autoSetupRemote = true
   followTags = true
 
+[pull]
+  rebase = true
+
+[rebase]
+  autosquash = true
+  autostash = true
+  stat = true
+
 # Email configuration for git send-email - allows sending patches via SMTP
 [sendemail]
   smtpserver = smtp.gmail.com
