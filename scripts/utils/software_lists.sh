@@ -81,12 +81,11 @@ ARCH_TOOLS=(
   "bun"
   "fnm"
   "docker"
-  "biome-bin"
+  "biome"
 
   "go"
   "golangci-lint"
   "gopls"
-  "air"
   "goreleaser"
 
   "cloudflared"
@@ -112,7 +111,7 @@ MACOS_TOOLS=(
   "goimports"
   "golangci-lint"
   "gopls"
-  "air"
+  "go-air"
   "gotests"
   "govulncheck"
   "goreleaser"
@@ -167,4 +166,3 @@ TERMUX_TOOLS=(
   "galculator"
   "helix-grammars"
 )
-
