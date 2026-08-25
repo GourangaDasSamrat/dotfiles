@@ -89,7 +89,6 @@ ARCH_TOOLS=(
   "goreleaser"
 
   "cloudflared"
-  "git-cliff"
 )
 
 # ------------------------------------------------------------------------------
@@ -117,7 +116,6 @@ MACOS_TOOLS=(
   "goreleaser"
 
   "cloudflared"
-  "git-cliff"
 
   "visual-studio-code"
   "bruno"

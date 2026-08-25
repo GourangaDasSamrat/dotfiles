@@ -34,7 +34,6 @@ declare -A RUST_TOOLS=(
   ["cargo-cache"]="cargo-cache"
   ["cargo-dist"]="cargo-dist"
   ["cargo-modules"]="cargo-modules"
-  ["git-cliff"]="git-cliff"
 )
 
 FAILED_TOOLS=0
