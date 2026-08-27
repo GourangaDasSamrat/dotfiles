@@ -1,3 +1,20 @@
+## [0.182.0] - 2026-08-27
+
+### 🚀 Features
+
+- *(config)* Add sccache setup and gtrash to software list (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.181.2 [skip ci] (github-actions[bot])
+
+### 🎨 Styling
+
+- Remove trailing whitespace in git config (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(scripts)* Remove git-cliff from tool lists (Gouranga Das Samrat)
 ## [0.181.2] - 2026-08-24
 
 ### 🐛 Bug Fixes
