@@ -163,4 +163,5 @@ TERMUX_TOOLS=(
   "eog"
   "galculator"
   "helix-grammars"
+  "gtrash"
 )

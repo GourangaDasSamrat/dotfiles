@@ -46,3 +46,12 @@ path=(
 )
 
 path=($^path(N/))
+
+# --- Sccache Configuration ---
+if (( $+commands[sccache] )); then
+  export RUSTC_WRAPPER=sccache
+  export CC=sccache
+  export CXX=sccache
+  export SCCACHE_CACHE_SIZE="20G"
+  export SCCACHE_DIR="$HOME/.cache/sccache"
+fi
