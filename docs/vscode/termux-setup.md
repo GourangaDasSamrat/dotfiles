@@ -14,7 +14,7 @@ Add or update these configuration properties:
 
 ```json
 {
-  "nameShort": "Visual Studio Code",
+  "nameShort": "Code",
   "nameLong": "Visual Studio Code",
   "applicationName": "code",
   "dataFolderName": ".vscode",
