@@ -103,8 +103,6 @@ MACOS_TOOLS=(
   "oven-sh/bun/bun"
   "fnm"
   "biome"
-  "docker"
-  "colima"
 
   "go"
   "goimports"
@@ -115,6 +113,9 @@ MACOS_TOOLS=(
   "govulncheck"
   "goreleaser"
 
+  "docker"
+  "colima"
+  "sccache"
   "cloudflared"
 
   "visual-studio-code"
