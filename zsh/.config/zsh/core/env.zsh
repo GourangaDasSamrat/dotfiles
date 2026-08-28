@@ -21,13 +21,6 @@ export PNPM_HOME=$HOME/.local/share/pnpm   # PNPM home
 export GOPATH=$HOME/go                     # Go workspace directory
 export CARGO_NET_GIT_FETCH_WITH_CLI=true   # Use system git for better auth/network stability
 
-# --- Completions & Loaders ---
-# Load Bun completions
-[[ -s $BUN_INSTALL/_bun ]] && source $BUN_INSTALL/_bun
-
-# Load fnm (Fast Node Manager) and auto-switch node versions on directory change
-(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
-
 # --- Path Management ---
 typeset -U path # Prevent duplicate PATH entries
 
@@ -46,6 +39,13 @@ path=(
 )
 
 path=($^path(N/))
+
+# --- Completions & Loaders ---
+# Load Bun completions
+[[ -s $BUN_INSTALL/_bun ]] && source $BUN_INSTALL/_bun
+
+# Load fnm (Fast Node Manager) and auto-switch node versions on directory change
+(( $+commands[fnm] )) && eval "$(fnm env --use-on-cd --shell zsh)"
 
 # --- Sccache Configuration ---
 if (( $+commands[sccache] )); then
