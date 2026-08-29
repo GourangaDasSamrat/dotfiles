@@ -145,6 +145,7 @@ MACOS_TOOLS=(
 TERMUX_TOOLS=(
   "build-essential"
   "nodejs-lts"
+  "bun"
   "uv"
   "biome2"
 
@@ -165,4 +166,5 @@ TERMUX_TOOLS=(
   "galculator"
   "helix-grammars"
   "gtrash"
+  "xdg-utils"
 )
