@@ -1,3 +1,23 @@
+## [0.183.0] - 2026-08-29
+
+### 🚀 Features
+
+- *(zsh)* Add support for xdg-utils-xdg-open in open alias (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(zsh)* Reorder env completions and loaders (Gouranga Das Samrat)
+- *(vscode)* Change linux symlink config path from 'Visual Studio Code' to 'Code' (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.182.0 [skip ci] (github-actions[bot])
+- Update short name for vscode config (Gouranga Das Samrat)
+- *(setup)* Remove manual install guide and update termux tools (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(scripts)* Update macos tools list (Gouranga Das Samrat)
 ## [0.182.0] - 2026-08-27
 
 ### 🚀 Features
