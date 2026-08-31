@@ -3,8 +3,6 @@ if [[ -d $PREFIX ]]; then
   export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem                         # Path to SSL certificates
   export XDG_DATA_HOME=$HOME/.local/share                               # Unix base directory
   export TZ=Asia/Dhaka                                                  # Set timezone
-
-  (( $+commands[bun] )) && export BUN_OPTIONS=--os=android              # Bun os option
 fi
 
 # --- Editor & Pager ---
