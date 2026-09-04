@@ -86,7 +86,6 @@ ARCH_TOOLS=(
   "go"
   "golangci-lint"
   "gopls"
-  "goreleaser"
 
   "cloudflared"
 )
@@ -109,9 +108,6 @@ MACOS_TOOLS=(
   "golangci-lint"
   "gopls"
   "go-air"
-  "gotests"
-  "govulncheck"
-  "goreleaser"
 
   "docker"
   "colima"
@@ -150,7 +146,7 @@ TERMUX_TOOLS=(
   "biome2"
 
   "golang"
-  "goapls"
+  "gopls"
   "goimports"
   "golangci-lint"
   "air"
