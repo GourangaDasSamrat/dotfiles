@@ -1,3 +1,18 @@
+## [0.184.0] - 2026-09-05
+
+### 🚀 Features
+
+- *(scripts)* Add shellcheck to common tools (Gouranga Das Samrat)
+- *(zsh)* Add gentoken and gensalt utility functions (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(zsh)* Remove bun options on termux from env.zsh (Gouranga Das Samrat)
+- *(scripts)* Remove unused tools and fix typo (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.183.0 [skip ci] (github-actions[bot])
 ## [0.183.0] - 2026-08-29
 
 ### 🚀 Features
