@@ -22,6 +22,7 @@ CROSS_PLATFORM_TOOLS=(
   "bat|batcat"
 
   "shfmt"
+  "shellcheck"
   "just"
   "moreutils"
   "stow"
