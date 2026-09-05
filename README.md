@@ -91,6 +91,8 @@ _every command feels intentional._
 |                   ` myip`                   | fetches public info and show IP address, city, region, and ISP                                                                |
 |                     `t`                     | show timestamps before log                                                                                                    |
 |                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
+|                 `gentoken`                  | generate a cryptographically secure random token (hex / base64 / URL-safe)                                                    |
+|                  `gensalt`                  | generate a cryptographically secure random salt (hex by default, or base64)                                                   |
 
 </div>
 
