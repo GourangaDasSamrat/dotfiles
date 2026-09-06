@@ -1,0 +1,17 @@
+# Load with: antidote load  (see .zshrc)
+
+# oh-my-zsh core lib: restores Ctrl/Alt+Arrow, Home/End, Delete keybindings
+ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
+
+# oh-my-zsh core lib: .. / ... / .... and 1-9 cd-up aliases + take/mkd/etc
+ohmyzsh/ohmyzsh path:lib/directories.zsh
+
+# oh-my-zsh library plugins, used standalone via antidote
+ohmyzsh/ohmyzsh path:plugins/git
+
+# fzf-tab needs compinit to have already run (handled in .zshrc)
+Aloxaf/fzf-tab
+
+# suggestions + highlighting; keep syntax-highlighting last
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting

@@ -85,6 +85,4 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-# Load fzf-tab plugin
-[[ -f ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh ]] &&
-  source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab/fzf-tab.plugin.zsh
+# fzf-tab plugin is now loaded via Antidote (see .zsh_plugins.txt)
