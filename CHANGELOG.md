@@ -1,3 +1,18 @@
+## [0.185.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(scripts)* Add duf to common software list (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(zsh)* Migrate to antidote plugin manager (Gouranga Das Samrat)
+- *(plugins)* Remove plugin installation script (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.184.0 [skip ci] (github-actions[bot])
+- Remove outdated plugin lists (Gouranga Das Samrat)
 ## [0.184.0] - 2026-09-05
 
 ### 🚀 Features
