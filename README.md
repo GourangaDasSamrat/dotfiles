@@ -240,8 +240,6 @@ _kitty · starship_
 | **shell & files**        | zsh · eza · bat · fzf · fd · ripgrep                                                                                |
 | **editors & tools**      | helix · alacritty · mpv                                                                                             |
 | **code formatters**      | shfmt · just                                                                                                        |
-| **shell plugins**        | oh-my-zsh · autosuggestions · syntax-highlighting · fzf-tab                                                         |
-| **tmux plugins**         | tpm · catppuccin · resurrect · continuum                                                                            |
 | **go tools** _(opt)_     | goimports · gopls · golangci-lint · govulncheck · gotests · air · goreleaser · usql · slim · eget · sheets · roumon |
 | **python tools** _(opt)_ | ytm-player _(via uv)_                                                                                               |
 | **rust tools** _(opt)_   | cargo-watch · cargo-cache · cargo-dist · cargo-modules                                                              |
