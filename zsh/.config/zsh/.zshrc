@@ -1,21 +1,24 @@
 # GPG
 export GPG_TTY=$(tty)
 
-# ZSH
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_COMPDUMP=$HOME/.cache/zsh/zcompdump
+# ZSH completion cache
+ZSH_COMPDUMP="$HOME/.cache/zsh/zcompdump"
 mkdir -p ~/.cache/zsh
 
-ZSH_THEME=""
-plugins=(
-	git
-	zsh-autosuggestions
-	zsh-syntax-highlighting
+# Some oh-my-zsh plugins expect $ZSH_CACHE_DIR to already
+# be set — normally oh-my-zsh.sh does this; we do it ourselves for antidote.
+export ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
+mkdir -p "$ZSH_CACHE_DIR/completions"
 
-	golang
-	gh
-)
-[[ -d "$ZSH" ]] && source "$ZSH/oh-my-zsh.sh"
+# Antidote plugin manager
+ANTIDOTE_HOME="$HOME/.antidote"
+[[ -d "$ANTIDOTE_HOME" ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_HOME"
+source "$ANTIDOTE_HOME/antidote.zsh"
+
+autoload -Uz compinit
+compinit -d "$ZSH_COMPDUMP"
+
+antidote load "$ZDOTDIR/.zsh_plugins.txt"
 
 # Starship
 eval "$(starship init zsh)"
