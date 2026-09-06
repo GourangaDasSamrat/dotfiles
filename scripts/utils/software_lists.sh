@@ -20,6 +20,7 @@ CROSS_PLATFORM_TOOLS=(
   "fzf"
   "eza"
   "bat|batcat"
+  "duf"
 
   "shfmt"
   "shellcheck"
