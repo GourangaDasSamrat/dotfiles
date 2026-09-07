@@ -55,7 +55,8 @@ format-shell:
 		-type f \
 		\( \
 			-name '*.sh' -o \
-			-name '*.bash' \
+			-name '*.bash' -o \
+			-name '*.zsh \
 		\) \
 		! -path './.git/*' \
 		-exec shfmt -w {} +
