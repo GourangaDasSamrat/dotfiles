@@ -1,10 +1,15 @@
 # Load with: antidote load  (see .zshrc)
 
-# oh-my-zsh core lib: restores Ctrl/Alt+Arrow, Home/End, Delete keybindings
+# oh-my-zsh core lib:
+#restores Ctrl/Alt+Arrow, Home/End, Delete keybindings
 ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
 
-# oh-my-zsh core lib: .. / ... / .... and 1-9 cd-up aliases + take/mkd/etc
+# .. / ... / .... and 1-9 cd-up aliases + take/mkd/etc
 ohmyzsh/ohmyzsh path:lib/directories.zsh
+
+# smart history defaults, tab sharing & duplicate handling
+ohmyzsh/ohmyzsh path:lib/history.zsh
+
 
 # oh-my-zsh library plugins, used standalone via antidote
 ohmyzsh/ohmyzsh path:plugins/git

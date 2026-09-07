@@ -10,6 +10,16 @@ mkdir -p ~/.cache/zsh
 export ZSH_CACHE_DIR="$HOME/.cache/oh-my-zsh"
 mkdir -p "$ZSH_CACHE_DIR/completions"
 
+# Add System site-functions/vendor-completions in $fpath
+typeset -U fpath
+local -a sys_comp_dirs=(
+	/data/data/com.termux/files/usr/share/zsh/{site-functions,vendor-completions} # Termux
+	/usr/share/zsh/{site-functions,vendor-completions,functions}                  # Linux & Mac
+	/opt/homebrew/share/zsh/site-functions                                        # Apple silicon chip
+	/usr/local/share/zsh/site-functions                                           # Apple intel chip
+)
+fpath+=(${^sys_comp_dirs:#^(*#(|/*))})
+
 # Antidote plugin manager
 ANTIDOTE_HOME="$HOME/.antidote"
 [[ -d "$ANTIDOTE_HOME" ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_HOME"
