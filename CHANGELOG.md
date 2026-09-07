@@ -1,3 +1,20 @@
+## [0.186.0] - 2026-09-07
+
+### 🚀 Features
+
+- *(zsh)* Add smart history and system completions (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.185.0 [skip ci] (github-actions[bot])
+
+### 🎨 Styling
+
+- *(zsh)* Update indentation to tabs (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(format)* Add zsh files to shell formatting (Gouranga Das Samrat)
 ## [0.185.0] - 2026-09-06
 
 ### 🚀 Features
