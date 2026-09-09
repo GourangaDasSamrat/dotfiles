@@ -27,18 +27,22 @@ _manage_python_venv() {
 # --- Function 2: List Project Automation Tools ---
 _list_project_tools() {
 	# 1. Justfile Support
-	if [[ -f "justfile" ]] && command -v just &>/dev/null; then
+	if compgen -G "[Jj]ustfile" &>/dev/null; then
 		echo -e "\n\033[1;34m⚡ Justfile detected:\033[0m"
 		just --list
 
 	# 2. Makefile Support
 	elif [[ -f "Makefile" ]] && command -v make &>/dev/null; then
 		echo -e "\n\033[1;32m🛠️  Makefile detected:\033[0m"
-		make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /); print A[1]}' | sort -u
+		make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /); print A[1]}'
 
-	# 3. NPM / package.json Support
+	# 3. NPM / Bun (package.json) Support
 	elif [[ -f "package.json" ]] && command -v jq &>/dev/null; then
-		echo -e "\n\033[1;33m📦 NPM Scripts detected:\033[0m"
+		if [[ -f "bun.lock" || -f "bun.lockb" ]] && command -v bun &>/dev/null; then
+			echo -e "\n\033[1;33m🥟 Bun Scripts detected:\033[0m"
+		else
+			echo -e "\n\033[1;33m📦 NPM Scripts detected:\033[0m"
+		fi
 		jq -r '.scripts | keys[]' package.json 2>/dev/null
 	fi
 
