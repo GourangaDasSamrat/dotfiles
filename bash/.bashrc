@@ -44,7 +44,16 @@ elif [[ "$(uname -s)" == "Linux" ]] && command -v gtrash &>/dev/null; then
 fi
 
 # ── Completion
-[[ -f /usr/share/bash-completion/bash_completion ]] &&
-  source /usr/share/bash-completion/bash_completion
-[[ -f $PREFIX/share/bash_completion ]] &&
-  source $PREFIX/share/bash-completion/bash_completion
+bash_comp_bases=(
+    "/data/data/com.termux/files/usr/share/bash-completion"  # Termux
+    "/usr/share/bash-completion"                             # Linux
+    "/opt/homebrew/share/bash-completion"                    # Mac Apple Silicon
+    "/usr/local/share/bash-completion"                       # Mac Intel
+)
+
+for comp_file in "${bash_comp_bases[@]}"; do
+    if [ -f "$comp_file" ]; then
+        . "$comp_file"
+        break
+    fi
+done
