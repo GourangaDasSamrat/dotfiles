@@ -1,3 +1,22 @@
+## [0.187.0] - 2026-09-09
+
+### 🚀 Features
+
+- *(zsh)* Enhance chpwd and completion (Gouranga Das Samrat)
+- *(scripts)* Add bash-completion to cross-platform tools (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(go)* Update lint tool name (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(bash)* Improve bash completion loading (Gouranga Das Samrat)
+- *(justfile)* Use fd for file finding (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.186.0 [skip ci] (github-actions[bot])
 ## [0.186.0] - 2026-09-07
 
 ### 🚀 Features
