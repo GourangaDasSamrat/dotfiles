@@ -6,9 +6,10 @@ if [[ -d $PREFIX ]]; then
 fi
 
 # --- Editor & Pager ---
-export EDITOR=hx      # Set Helix as default editor
-export VISUAL=$EDITOR # Set Visual editor
-export PAGER=less     # Default pager for long outputs
+export EDITOR=hx         # Set Helix as default editor
+export VISUAL=$EDITOR    # Set Visual editor
+export PAGER=less        # Default pager for long outputs
+export LESS="-R --mouse" # Enable mouse support on less
 
 # --- Environment Variables ---
 export DOTFILES=$HOME/dotfiles           # Path to dotfiles directory
