@@ -228,7 +228,7 @@
   // Go
   "go.useLanguageServer": true,
   "go.formatTool": "goimports",
-  "go.lintTool": "golangci-lint-v2",
+  "go.lintTool": "golangci-lint",
 
   // inlay hints
   "go.inlayHints.assignVariableTypes": true,
