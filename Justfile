@@ -1,65 +1,33 @@
 set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
 default:
-	@just --list
+        @just --list
 
 # Run the automated installer.
 install:
-	@bash "{{justfile_directory()}}/scripts/install.sh"
+        @bash "{{justfile_directory()}}/scripts/install.sh"
 
 # Run the interactive setup selector.
 setup:
-	@bash "{{justfile_directory()}}/scripts/setup.sh"
+        @bash "{{justfile_directory()}}/scripts/setup.sh"
 
 # Format Biome-supported files.
 format-biome:
-	find . \
-		-type f \
-		\( \
-			-name '*.js' -o \
-			-name '*.jsx' -o \
-			-name '*.ts' -o \
-			-name '*.tsx' -o \
-			-name '*.mjs' -o \
-			-name '*.cjs' -o \
-			-name '*.mts' -o \
-			-name '*.cts' -o \
-			-name '*.json' -o \
-			-name '*.jsonc' -o \
-			-name '*.css' -o \
-			-name '*.scss' -o \
-			-name '*.less' \
-		\) \
-		! -path './.git/*' \
-		-exec biome format --write {} +
+        fd -e js -e jsx -e ts -e tsx -e mjs -e cjs -e mts -e cts -e json -e jsonc -e css -e scss -e less \
+                --exclude .git \
+                -X biome format --write
 
 # Format files that Biome does not handle well.
 format-prettier:
-	find . \
-		-type f \
-		\( \
-			-name '*.md' -o \
-			-name '*.mdx' -o \
-			-name '*.yml' -o \
-			-name '*.yaml' -o \
-			-name '*.toml' -o \
-			-name '*.html' -o \
-			-name '*.htm' \
-		\) \
-		! -path './.git/*' \
-		-exec npx prettier --write {} +
+        fd -e md -e mdx -e yml -e yaml -e toml -e html -e htm \
+                --exclude .git \
+                -X npx prettier --write
 
 # Format shell scripts.
 format-shell:
-	find . \
-		-type f \
-		\( \
-			-name '*.sh' -o \
-			-name '*.bash' -o \
-			-name '*.zsh \
-		\) \
-		! -path './.git/*' \
-		-exec shfmt -w {} +
+        fd -e sh -e bash -e zsh \
+                --exclude .git \
+                -X shfmt -w
 
 # Format the whole repository.
 format: format-biome format-prettier format-shell
