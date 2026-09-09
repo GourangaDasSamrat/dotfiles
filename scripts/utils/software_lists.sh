@@ -21,6 +21,7 @@ CROSS_PLATFORM_TOOLS=(
   "eza"
   "bat|batcat"
   "duf"
+  "bash-completion"
 
   "shfmt"
   "shellcheck"
