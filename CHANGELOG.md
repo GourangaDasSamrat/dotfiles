@@ -1,3 +1,25 @@
+## [0.188.0] - 2026-09-10
+
+### 🚀 Features
+
+- *(zsh)* Enable mouse support in less pager (Gouranga Das Samrat)
+- *(scripts)* Add cloudflared to termux tools (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(zsh)* Improve justfile detection in chpwd (Gouranga Das Samrat)
+
+### 💼 Other
+
+- Add jq files to linguist detection (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(justfile)* Remove redundant --exclude .git (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.187.0 [skip ci] (github-actions[bot])
 ## [0.187.0] - 2026-09-09
 
 ### 🚀 Features
