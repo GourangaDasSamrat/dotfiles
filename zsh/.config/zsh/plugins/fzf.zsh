@@ -84,5 +84,3 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always $realpath
 # Layout and group styling
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':fzf-tab:*' switch-group '<' '>'
-
-# fzf-tab plugin is now loaded via Antidote (see .zsh_plugins.txt)

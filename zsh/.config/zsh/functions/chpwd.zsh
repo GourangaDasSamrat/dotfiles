@@ -27,7 +27,7 @@ _manage_python_venv() {
 # --- Function 2: List Project Automation Tools ---
 _list_project_tools() {
 	# 1. Justfile Support
-	if compgen -G "[Jj]ustfile" &>/dev/null; then
+	if [[ -f "justfile" || -f "Justfile" ]] && command -v just &>/dev/null; then
 		echo -e "\n\033[1;34m⚡ Justfile detected:\033[0m"
 		just --list
 
