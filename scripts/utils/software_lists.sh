@@ -165,5 +165,6 @@ TERMUX_TOOLS=(
   "galculator"
   "helix-grammars"
   "gtrash"
+  "cloudflared"
   "xdg-utils"
 )
