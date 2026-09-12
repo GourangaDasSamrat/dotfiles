@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Theme Definitions
 
 _fzf_theme_dracula() {

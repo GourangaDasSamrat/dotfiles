@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # First, load the hook function (important)
 autoload -Uz add-zsh-hook
 

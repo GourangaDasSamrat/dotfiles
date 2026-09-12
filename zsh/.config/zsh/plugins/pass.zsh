@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Function to save a local .env file into 'pass'
 # Usage: env-save <file_path> <pass_storage_path>
 env-save() {

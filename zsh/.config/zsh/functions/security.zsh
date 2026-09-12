@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Auto lock vault every 15 min (single instance)
 if ! pgrep -f "gpg-auto-lock-loop" >/dev/null; then
 	(

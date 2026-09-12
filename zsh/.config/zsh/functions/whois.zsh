@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Define server mapping
 typeset -A WHOIS_SERVERS
 WHOIS_SERVERS=(
