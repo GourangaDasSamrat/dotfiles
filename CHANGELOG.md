@@ -1,3 +1,17 @@
+## [0.189.0] - 2026-09-12
+
+### 🚀 Features
+
+- *(bash)* Add custom prompt theme (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.188.0 [skip ci] (github-actions[bot])
+
+### ⚙️ Miscellaneous Tasks
+
+- *(zsh)* Add shebang to zsh scripts (Gouranga Das Samrat)
+- *(helix)* Enable editor config (Gouranga Das Samrat)
 ## [0.188.0] - 2026-09-10
 
 ### 🚀 Features
