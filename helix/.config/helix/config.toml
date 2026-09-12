@@ -27,6 +27,7 @@ indent-guides.skip-levels = 1
 bufferline           = "multiple"
 gutters              = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
 end-of-line-diagnostics = "hint"
+editor-config = true
 
 [editor.statusline]
 left   = ["mode", "spinner", "spacer", "file-name", "file-modification-indicator"]
