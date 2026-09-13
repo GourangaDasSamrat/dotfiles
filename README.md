@@ -93,6 +93,7 @@ _every command feels intentional._
 |                  `expose`                   | expose localhost port on internet using slim tunnel                                                                           |
 |                 `gentoken`                  | generate a cryptographically secure random token (hex / base64 / URL-safe)                                                    |
 |                  `gensalt`                  | generate a cryptographically secure random salt (hex by default, or base64)                                                   |
+|                    `yt`                     | stream video/playlist URLs via mpv & yt-dlp                                                                                   |
 
 </div>
 
