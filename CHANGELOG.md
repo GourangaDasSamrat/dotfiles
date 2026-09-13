@@ -1,3 +1,21 @@
+## [0.190.0] - 2026-09-13
+
+### 🚀 Features
+
+- *(zsh)* Add media streaming function (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(software)* Update termux and cross-platform tools (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.189.0 [skip ci] (github-actions[bot])
+- Add `yt` command to README (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Add editorconfig and prettierignore files (Gouranga Das Samrat)
 ## [0.189.0] - 2026-09-12
 
 ### 🚀 Features
