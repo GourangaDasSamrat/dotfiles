@@ -48,6 +48,7 @@ zsh_modules=(
 	user/overrides
 	functions/whois
 	functions/network
+	functions/media
 )
 
 for mod in "${zsh_modules[@]}"; do
