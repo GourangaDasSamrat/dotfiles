@@ -39,8 +39,6 @@ CROSS_PLATFORM_TOOLS=(
   "helix"
   "httpie"
 
-  "mpv"
-  "whois"
   "openssl"
 )
 
@@ -167,4 +165,8 @@ TERMUX_TOOLS=(
   "gtrash"
   "cloudflared"
   "xdg-utils"
+
+  "mpv-x"
+  "python-yt-dlp"
 )
+
