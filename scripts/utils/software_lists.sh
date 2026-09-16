@@ -169,4 +169,3 @@ TERMUX_TOOLS=(
   "mpv-x"
   "python-yt-dlp"
 )
-

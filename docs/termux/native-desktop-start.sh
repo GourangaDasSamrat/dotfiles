@@ -14,13 +14,14 @@ termux-x11 :0 >/dev/null &
 sleep 3
 
 # Launch Termux X11 main activity
-am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity > /dev/null 2>&1
+am start --user 0 -n com.termux.x11/com.termux.x11.MainActivity >/dev/null 2>&1
 sleep 1
 
 # Set audio server
 export PULSE_SERVER=127.0.0.1
 
 # Run XFCE4 Desktop
-env DISPLAY=:0 dbus-launch --exit-with-session xfce4-session & > /dev/null 2>&1
+env DISPLAY=:0 dbus-launch --exit-with-session xfce4-session &
+>/dev/null 2>&1
 
 exit 0
