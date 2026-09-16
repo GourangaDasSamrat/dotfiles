@@ -25,7 +25,15 @@ apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshoo
 ### Setup Startup Script
 
 ```bash
-ln -s $HOME/dotfiles/docs/termux/native-desktop-start.sh $PREFIX/start.sh
+ln -s $HOME/dotfiles/docs/termux/native-desktop.sh $PREFIX/bin/desktop
+chmod +x $HOME/dotfiles/docs/termux/native-desktop.sh
+```
+
+#### Usage
+
+```bash
+desktop start   # Start XFCE Desktop + Termux-X11
+desktop stop    # Stop XFCE Desktop + Termux-X11
 ```
 
 ### Install Desktop Themes and Icons
