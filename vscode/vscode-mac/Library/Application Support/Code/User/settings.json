@@ -188,7 +188,9 @@
     "editor.defaultFormatter": "sumneko.lua"
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "mkhl.shfmt"
+    "editor.defaultFormatter": "mkhl.shfmt",
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false
   },
   "[toml]": {
     "editor.defaultFormatter": "tamasfe.even-better-toml"
