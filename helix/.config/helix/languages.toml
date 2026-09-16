@@ -124,8 +124,6 @@ command = "lua-language-server"
 # ── Shell ─────────────────────────────────────
 [[language]]
 name       = "bash"
-auto-format = true
-formatter  = { command = "shfmt", args = ["-i", "2"] }
 language-servers = ["bash-language-server"]
 
 [language-server.bash-language-server]
