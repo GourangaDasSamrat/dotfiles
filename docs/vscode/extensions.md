@@ -7,6 +7,7 @@
 | Error Lens                 | Alexander            | [ Link](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)                  |
 | Code Spell Checker         | Street Side Software | [ Link](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) |
 | GitLens — Git supercharged | GitKraken            | [ Link](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)                       |
+| EditorConfig               | EditorConfig         | [ Link](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)             |
 | Commit Sage                | VizzleTF             | [ Link](https://marketplace.visualstudio.com/items?itemName=VizzleTF.geminicommit)                 |
 | Todo Tree                  | Gruntfuggly          | [ Link](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.too-tree)                  |
 
