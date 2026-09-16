@@ -3,7 +3,6 @@ if [[ -d $PREFIX ]]; then
 	alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
 	alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
 	alias af="cd /storage/emulated/0"
-	alias start=$PREFIX/start.sh
 fi
 
 # --- Conditional Aliases ---
