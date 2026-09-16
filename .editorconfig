@@ -1,5 +1,10 @@
 root = true
 
-# shfmt: ignore these shell files
-[{zsh/.config/zsh/user/aliases.zsh,zsh/.config/zsh/functions/media.zsh}]
-# Intentionally excluded from shell formatting.
+[*]
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+# Ignore specific zsh files
+[zsh/.config/zsh/{user/aliases,functions/media,user/overrides}.zsh]
+ignore = true
