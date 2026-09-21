@@ -48,7 +48,7 @@ fi
 alias la='ls -A'
 
 # --- Open Command (Termux & Linux) ---
-if (($+commands[xdg-utils- xdg-open])); then
+if (($+commands[xdg-utils-xdg-open])); then
 	alias open=xdg-utils-xdg-open
 elif (($+commands[xdg-open])); then
 	alias open=xdg-open
