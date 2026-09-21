@@ -114,6 +114,7 @@ MACOS_TOOLS=(
   "colima"
   "sccache"
   "cloudflared"
+  "xo/xo/usql"
 
   "visual-studio-code"
   "bruno"
@@ -145,6 +146,7 @@ TERMUX_TOOLS=(
   "bun"
   "uv"
   "biome2"
+  "usql"
 
   "golang"
   "gopls"
