@@ -1,3 +1,31 @@
+## [0.191.0] - 2026-09-21
+
+### 🚀 Features
+
+- *(scripts)* Add usql in both macOS and Termux tools array (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(zsh)* Remove whitespace from xdg-utils-xdg-open (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(helix)* Remove bash auto-formatting (Gouranga Das Samrat)
+- *(vscode)* Disable shellscript format on save/paste (Gouranga Das Samrat)
+- Format shell scripts (Gouranga Das Samrat)
+- *(termux)* Merge native-desktop-start.sh into native-desktop.sh with start/stop (Gouranga Das Samrat)
+- *(zsh)* Remove deprecated start alias from aliases.zsh (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.190.0 [skip ci] (github-actions[bot])
+- *(vscode)* Add editorconfig extension (Gouranga Das Samrat)
+- *(termux)* Update native-desktop.md for new unified script and usage (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Update editorconfig for zsh files (Gouranga Das Samrat)
+- Update biome schema and config (Gouranga Das Samrat)
 ## [0.190.0] - 2026-09-13
 
 ### 🚀 Features
