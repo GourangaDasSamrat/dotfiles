@@ -1,0 +1,29 @@
+name: Mirror to GitLab
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+  delete:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror to GitLab
+        env:
+          GITLAB_USERNAME: ${{ secrets.GITLAB_DEPLOY_TOKEN_USERNAME }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_DEPLOY_TOKEN }}
+          GITLAB_REPO_URL: ${{ secrets.GITLAB_REPO_URL }}
+          GITHUB_REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
+        run: |
+          git clone --mirror "$GITHUB_REPO_URL" repo-mirror
+          cd repo-mirror
+          git push --prune "https://${GITLAB_USERNAME}:${GITLAB_TOKEN}@${GITLAB_REPO_URL}" \
+            '+refs/heads/*:refs/heads/*' \
+            '+refs/tags/*:refs/tags/*'
