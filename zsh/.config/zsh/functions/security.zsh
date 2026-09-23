@@ -80,28 +80,49 @@ _require_entropy() {
 _gen_random() {
 	emulate -L zsh
 	local -i bytes=$1
-	local mode=$2 token
+	local mode=$2 token expected_len rem
+	local -a statuses
 
 	case $mode in
 	hex)
 		# `od` gives portable hex on both BSD and GNU (unlike `xxd`, which
 		# isn't guaranteed to be preinstalled everywhere).
 		token=$(head -c "$bytes" /dev/urandom | od -An -tx1 -v | tr -d ' \n')
+		statuses=("${pipestatus[@]}")
+		expected_len=$((bytes * 2))
 		;;
 	base64)
 		token=$(head -c "$bytes" /dev/urandom | base64 | tr -d '\n')
+		statuses=("${pipestatus[@]}")
+		expected_len=$((((bytes + 2) / 3) * 4))
 		;;
 	base64url)
 		token=$(head -c "$bytes" /dev/urandom | base64 | tr -d '\n')
+		statuses=("${pipestatus[@]}")
 		token=${token//+/-}
 		token=${token//\//_}
 		token=${token//=/}
+		rem=$((bytes % 3))
+		case $rem in
+		0) expected_len=$(((bytes / 3) * 4)) ;;
+		1) expected_len=$((((bytes / 3) * 4) + 2)) ;;
+		2) expected_len=$((((bytes / 3) * 4) + 3)) ;;
+		esac
 		;;
 	*)
 		_err "Unknown encoding: $mode"
 		return 1
 		;;
 	esac
+
+	if (( statuses[1] != 0 || statuses[2] != 0 || statuses[3] != 0 )); then
+		_err "Failed to generate random bytes!"
+		return 1
+	fi
+	if (( ${#token} != expected_len )); then
+		_err "Generated token length mismatch!"
+		return 1
+	fi
 
 	REPLY=$token
 }
