@@ -63,7 +63,7 @@ mkdir() {
       print -- "# $1" > README.md
       git add .
       git commit -q -m 'chore: initialize repository with README'
-      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Initialized git repo in ${COLOR_NORMAL}${PWD}/.git/${COLOR_RESET}"
+      _ok "Initialized git repo in ${COLOR_NORMAL}${PWD}/.git/${COLOR_RESET}"
     )
   else
     print -- "${COLOR_NORMAL}  ○ Created folder without git${COLOR_RESET}"
@@ -166,10 +166,10 @@ rm() {
   if (( REPLY == 1 )); then
     if [[ -n $_RM_TRASH_CMD ]]; then
       ${=_RM_TRASH_CMD} "${targets[@]}"
-      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Moved to trash"
+      _ok "Moved to trash"
     else
       command rm "${flags[@]}" "${targets[@]}"
-      print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Deleted permanently"
+      _ok "Deleted permanently"
     fi
   else
     print -- "${COLOR_NORMAL}  ○ Cancelled${COLOR_RESET}"

@@ -156,7 +156,7 @@ if ((${+commands[http]})); then
 		ip_data=$(http -b ipinfo.io 2>/dev/null)
 
 		if [[ -z $ip_data ]]; then
-			print -- "${COLOR_ERROR}✘ Failed to retrieve IP data.${COLOR_RESET}"
+			_err "Failed to retrieve IP data."
 			print
 			return 1
 		fi

@@ -27,7 +27,7 @@ if (( $+commands[mpv] )) && (( $+commands[yt-dlp] )); then
         done
 
         if [[ -z "$url" ]]; then
-            echo "${COLOR_ERROR}Error:${COLOR_RESET} ${COLOR_TEXT}No target URL provided.${COLOR_RESET}" >&2
+            _err "No target URL provided." >&2
             echo "${COLOR_HEADER}Usage:${COLOR_RESET} ${COLOR_TEXT}yt${COLOR_RESET} [${COLOR_NORMAL}-q height${COLOR_RESET}] [${COLOR_NORMAL}-n start_num${COLOR_RESET}] [${COLOR_NORMAL}-a${COLOR_RESET}] [${COLOR_NORMAL}-f${COLOR_RESET}] ${COLOR_CURSOR}<URL>${COLOR_RESET}" >&2
             return 1
         fi
