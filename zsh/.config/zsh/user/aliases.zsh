@@ -1,7 +1,9 @@
 # --- Termux Specific Aliases ---
 if [[ -d $PREFIX ]]; then
-	alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
-	alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
+  if (($+commands[proot-distro])); then
+	  alias debian="TERM='xterm-256color' proot-distro login debian --user gouranga"
+	  alias lf="cd $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga"
+  fi
 	alias af="cd /storage/emulated/0"
 fi
 
@@ -11,18 +13,6 @@ fi
 (($+commands[bun])) && bun() {
 	(($# == 0)) && { [[ -f package.json ]] && command bun install || command bun repl; } || command bun "$@"
 }
-
-# --- apt wrapper ---
-if (($+commands[apt])); then
-	apt() { [[ $1 == i ]] && {
-		shift
-		command apt install "$@"
-	} || { [[ $1 == rm ]] && {
-		shift
-		command apt remove "$@"
-	} || command apt "$@"; }; }
-	compdef _apt apt 2>/dev/null
-fi
 
 # --- Navigation and Config Aliases ---
 if [[ -d $DOTFILES ]]; then
@@ -44,6 +34,7 @@ alias lock-vault="gpg-connect-agent reloadagent /bye > /dev/null 2>&1"
 if (($+commands[eza])); then
 	alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions'
 	alias lt='eza --tree -a -I ".git|node_modules|target|.venv"'
+  alias ll='eza -lh --icons=always'
 fi
 alias la='ls -A'
 
