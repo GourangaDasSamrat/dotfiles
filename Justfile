@@ -19,7 +19,7 @@ format-biome:
 # Format files that Biome does not handle well.
 format-prettier:
         fd -e md -e mdx -e yml -e yaml -e toml -e html -e htm \
-                -X npx prettier --write
+                -X pnpx prettier --write
 
 # Format shell scripts.
 format-shell:
