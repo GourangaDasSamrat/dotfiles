@@ -1,3 +1,73 @@
+## [0.194.0] - 2026-09-23
+
+### 💼 Other
+
+- Refactor whole zsh scripts (#13)
+
+* refactor(zsh): add shared status printers
+
+- Wrap repeated color symbol pattern
+- Simplify status output functions
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* feat(network): add serve and expose functions
+
+- Implement local http server with port validation
+- Add cloudflared tunnel for port exposure
+- Include port-entry loop for user input
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* feat(security): add gentoken and gensalt functions
+
+- Generate secure random tokens and salts
+- Supports hex, base64, and base64url encoding
+- Ensures /dev/urandom is available
+- Portable across BSD and GNU coreutils
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* feat(zsh): add package manager wrappers
+
+- Simplify package installation and removal
+- Support apt, brew, and dnf commands
+- Use 'i' for install and 'rm' for remove
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* refactor(zsh): remove unused utility functions
+
+- Removed server, expose, gentoken, gensalt
+- Removed internal helper functions
+- Reduced file size and complexity
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* feat(zsh): add pkg module to zshrc
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* refactor(zsh): replace print with helper functions
+
+- Use _warn, _err, and _ok for output
+- Standardize message formatting
+- Improve readability
+
+Co-authored-by: Codex <noreply@openai.com>
+
+* fix(zsh): validate random generation pipeline and output length
+
+Co-authored-by: GourangaDasSamrat <146644902+GourangaDasSamrat@users.noreply.github.com>
+
+---------
+
+Co-authored-by: Codex <noreply@openai.com>
+Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com> (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.193.0 [skip ci] (github-actions[bot])
 ## [0.193.0] - 2026-09-23
 
 ### 🚀 Features
