@@ -1,3 +1,23 @@
+## [0.193.0] - 2026-09-23
+
+### 🚀 Features
+
+- *(zsh)* Add package manager wrappers (Gouranga Das Samrat)
+- *(zsh)* Add fallback browser configuration (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(zsh)* Update aliases config (Gouranga Das Samrat)
+- *(gh)* Update prs alias to improve output (Gouranga Das Samrat)
+- *(helix)* Remove commented out keybindings (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.192.0 [skip ci] (github-actions[bot])
+
+### ⚙️ Miscellaneous Tasks
+
+- Update prettierignore and Justfile (Gouranga Das Samrat)
 ## [0.192.0] - 2026-09-23
 
 ### 🚀 Features
