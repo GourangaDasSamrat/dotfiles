@@ -14,3 +14,9 @@ _init_colors() {
 
 # Initialize colors once
 _init_colors
+
+# Shared status printers: wrap the repeated
+# "${COLOR_X}  symbol${COLOR_RESET} message" pattern used across all functions.
+_ok() { print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} $1"; }
+_err() { print -- "${COLOR_ERROR}  ✗${COLOR_RESET} $1"; }
+_warn() { print -- "${COLOR_WARNING}  ⚠${COLOR_RESET} $1"; }
