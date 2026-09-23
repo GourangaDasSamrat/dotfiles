@@ -7,7 +7,8 @@ pager:
 aliases:
   # --- General Shortcuts ---
   co: pr checkout
-  prs: '!gh pr list --author "@me" --state all --json "title,url,updatedAt" --jq ".[] | \"\u001b[38;5;84m\(.title)\u001b[0m \u001b[38;5;117m➜\u001b[0m \u001b[38;5;242m\(.url)\u001b[0m\""'
+  prs: >-
+    pr list --author "@me" --state all --limit 500 --json number,title,state,createdAt,updatedAt --template '{{tablerow "NUMBER" "TITLE" "STATE" "CREATED" "UPDATED"}}{{range .}}{{$c := "red"}}{{if eq .state "OPEN"}}{{$c = "green"}}{{else if eq .state "MERGED"}}{{$c = "magenta"}}{{end}}{{tablerow (printf "#%v" .number) .title (.state | autocolor $c) (timeago .createdAt) (timeago .updatedAt)}}{{end}}'
   open: repo view --web
 
   # --- Present (Current Activity) ---
