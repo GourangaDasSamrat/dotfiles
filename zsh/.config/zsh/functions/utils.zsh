@@ -18,9 +18,9 @@ backup() {
 	fi
 }
 
-# t      <command>               — run a command with timestamped output (needs `ts`)
+# tstamp      <command>               — run a command with timestamped output (needs `ts`)
 if ((${+commands[ts]})); then
-	t() {
+	tstamp() {
 		emulate -L zsh
 		(($# == 0)) && {
 			_err "Missing argument. Usage: t <command>"
