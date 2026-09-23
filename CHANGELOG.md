@@ -1,3 +1,16 @@
+## [0.192.0] - 2026-09-23
+
+### 🚀 Features
+
+- *(kitty)* Add SSH remote control support (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(changelog)* Update CHANGELOG.md for v0.191.0 [skip ci] (github-actions[bot])
+
+### ⚙️ Miscellaneous Tasks
+
+- Add workflow to mirror this repo on gitlab (Gouranga Das Samrat)
 ## [0.191.0] - 2026-09-21
 
 ### 🚀 Features
