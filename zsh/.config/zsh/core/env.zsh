@@ -54,3 +54,6 @@ if (($+commands[sccache])); then
 	export SCCACHE_CACHE_SIZE="20G"
 	export SCCACHE_DIR="$HOME/.cache/sccache"
 fi
+
+# --- Set fallback browser ---
+() { for c; (( $+commands[$c] )) && export BROWSER=$c && break } zen-browser zen
