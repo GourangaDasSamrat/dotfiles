@@ -19,13 +19,13 @@ dzw() {
 		domain="$arg2"
 
 		if [[ -z "$target_server" ]]; then
-			echo "${COLOR_ERROR}Error:${COLOR_NORMAL} Server key '${COLOR_TEXT}$arg1${COLOR_NORMAL}' not found!"
+			_err "Server key '${COLOR_TEXT}$arg1${COLOR_NORMAL}' not found!"
 			return 1
 		fi
 	elif [[ -n "$arg1" ]]; then
 		domain="$arg1"
 	else
-		echo "${COLOR_ERROR}Error:${COLOR_NORMAL} No domain specified."
+		_err "No domain specified."
 		return 1
 	fi
 
@@ -51,8 +51,8 @@ dzw() {
 		echo "$raw_output" | grep -E "^(Domain Name|Registrar|Creation Date|Registry Expiry Date|Registrant Name|Registrant Email|Registrant Address|Registrant Phone|Name Server|Domain Status|>>> Last update)" | sed "s/: /: ${COLOR_TEXT}/g" | sed "s/^/${COLOR_NORMAL}/"
 
 		echo "${COLOR_BORDER}------------------------------------------${COLOR_RESET}"
-		echo "${COLOR_SUCCESS}✅ Done.${COLOR_RESET}"
+		_ok "Done."
 	else
-		echo "${COLOR_ERROR}❌ Failed to fetch WHOIS data.${COLOR_RESET}"
+		_err "Failed to fetch WHOIS data."
 	fi
 }

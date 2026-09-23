@@ -41,6 +41,7 @@ zsh_modules=(
 	functions/utils
 	functions/archive
 	functions/chpwd
+	functions/pkg
 	plugins/fzf
 	plugins/pass
 	user/aliases

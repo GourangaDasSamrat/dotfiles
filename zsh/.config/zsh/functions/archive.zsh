@@ -9,11 +9,11 @@ extract() {
 	local file=$1
 
 	if [[ -z $file ]]; then
-		print -- "${COLOR_WARNING}  Usage: extract <archive>${COLOR_RESET}"
+		_warn "Usage: extract <archive>"
 		return 1
 	fi
 	if [[ ! -f $file ]]; then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} File not found: ${COLOR_TEXT}'$file'${COLOR_RESET}"
+		_err "File not found: ${COLOR_TEXT}'$file'${COLOR_RESET}"
 		return 1
 	fi
 
@@ -40,32 +40,32 @@ extract() {
 	*.cab) cmd=(cabextract "$file") ;;
 	*.rpm)
 		if ((! (${+commands[rpm2cpio]} && ${+commands[cpio]}))); then
-			print -- "${COLOR_ERROR}  ✗${COLOR_RESET} requires 'rpm2cpio' and 'cpio'"
+			_err "requires 'rpm2cpio' and 'cpio'"
 			return 1
 		fi
 		if rpm2cpio "$file" | cpio -idm; then
-			print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
+			_ok "Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
 		else
-			print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Extraction failed"
+			_err "Extraction failed"
 			return 1
 		fi
 		return
 		;;
 	*)
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Unsupported format: ${COLOR_TEXT}'$file'${COLOR_RESET}"
+		_err "Unsupported format: ${COLOR_TEXT}'$file'${COLOR_RESET}"
 		return 1
 		;;
 	esac
 
 	if ((! ${+commands[${cmd[1]}]})); then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${cmd[1]}' is not installed"
+		_err "'${cmd[1]}' is not installed"
 		return 1
 	fi
 
 	if "${cmd[@]}"; then
-		print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
+		_ok "Extracted ${COLOR_TEXT}'$file'${COLOR_RESET}"
 	else
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Extraction failed"
+		_err "Extraction failed"
 		return 1
 	fi
 }
@@ -75,15 +75,15 @@ compress() {
 	local input=$1
 
 	if [[ -z $input ]]; then
-		print -- "${COLOR_WARNING}  Usage: compress <file_or_dir>${COLOR_RESET}"
+		_warn "Usage: compress <file_or_dir>"
 		return 1
 	fi
 	if [[ ! -e $input ]]; then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${COLOR_TEXT}$input${COLOR_RESET}' does not exist!"
+		_err "'${COLOR_TEXT}$input${COLOR_RESET}' does not exist!"
 		return 1
 	fi
 	if ((! ${+commands[fzf]})); then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} 'fzf' is not installed"
+		_err "'fzf' is not installed"
 		return 1
 	fi
 
@@ -117,7 +117,7 @@ compress() {
 			--header="Enter to confirm, Ctrl+C to cancel")
 
 	[[ -z $format ]] && {
-		print -- "${COLOR_ERROR}  ✗ Cancelled${COLOR_RESET}"
+		_err "Cancelled"
 		return 1
 	}
 	format=${format%% *}
@@ -162,16 +162,16 @@ compress() {
 	esac
 
 	if ((single_file_only)) && [[ ! -f $input ]]; then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} .$format only supports single files!"
+		_err ".$format only supports single files!"
 		return 1
 	fi
 	if ((! ${+commands[${cmd[1]}]})); then
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} '${cmd[1]}' is not installed"
+		_err "'${cmd[1]}' is not installed"
 		return 1
 	fi
 
 	print
-	print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Compressing ${COLOR_TEXT}'$input'${COLOR_RESET} → ${COLOR_SUCCESS}'$output'${COLOR_RESET}"
+	_ok "Compressing ${COLOR_TEXT}'$input'${COLOR_RESET} → ${COLOR_SUCCESS}'$output'${COLOR_RESET}"
 	print
 
 	if ((single_file_only)); then
@@ -181,9 +181,9 @@ compress() {
 	fi
 
 	if (($? == 0)); then
-		print -- "${COLOR_SUCCESS}  ✓${COLOR_RESET} Done! Created: ${COLOR_SUCCESS}$output${COLOR_RESET}"
+		_ok "Done! Created: ${COLOR_SUCCESS}$output${COLOR_RESET}"
 	else
-		print -- "${COLOR_ERROR}  ✗${COLOR_RESET} Compression failed"
+		_err "Compression failed"
 		return 1
 	fi
 	print

@@ -7,13 +7,13 @@ env-save() {
 
 	# Check if the source file exists
 	if [[ ! -f "$source_file" ]]; then
-		echo "${COLOR_ERROR}❌ Error: File '$source_file' not found.${COLOR_RESET}"
+		_err "File '$source_file' not found."
 		return 1
 	fi
 
 	# Check if a pass path was provided
 	if [[ -z "$pass_path" ]]; then
-		echo "${COLOR_WARNING}Usage: env-save <file_name> <your/custom/path>${COLOR_RESET}"
+		_warn "Usage: env-save <file_name> <your/custom/path>"
 		return 1
 	fi
 
@@ -21,7 +21,7 @@ env-save() {
 	cat "$source_file" | pass insert -m "$pass_path"
 
 	if [[ $? -eq 0 ]]; then
-		echo "${COLOR_SUCCESS}✅ Successfully saved '$source_file' to pass as '$pass_path'${COLOR_RESET}"
+		_ok "Successfully saved '$source_file' to pass as '$pass_path'"
 	fi
 }
 
@@ -33,13 +33,13 @@ env-load() {
 
 	# Check if pass path argument is missing
 	if [[ -z "$pass_path" ]]; then
-		echo "${COLOR_WARNING}Usage: env-load <your/custom/path> [target_file_name]${COLOR_RESET}"
+		_warn "Usage: env-load <your/custom/path> [target_file_name]"
 		return 1
 	fi
 
 	# Check if the pass entry actually exists before trying to load
 	if ! pass "$pass_path" >/dev/null 2>&1; then
-		echo "${COLOR_ERROR}❌ Error: Path '$pass_path' does not exist in your password store.${COLOR_RESET}"
+		_err "Path '$pass_path' does not exist in your password store."
 		return 1
 	fi
 
