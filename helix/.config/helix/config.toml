@@ -91,10 +91,6 @@ wrap-indicator    = "↪ "
 "A-left"    = "jump_backward"
 "A-right"   = "jump_forward"
 
-# Commented out as they are not standard Helix commands
-# "A-f"       = "fold_all"
-# "A-o"       = "unfold_all"
-
 # Toggle mouse support
 "C-A-b"     = ":toggle mouse"
 
@@ -105,7 +101,7 @@ wrap-indicator    = "↪ "
 "F8"        = "goto_next_diag"
 "F4"        = ":sh xfce4-terminal &"
 
-# Duplicate line (Ctrl+D / Ctrl+U)
+# Duplicate line
 "C-d"       = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "paste_after", "collapse_selection"]
 "C-u"       = ["extend_to_line_bounds", "yank_main_selection_to_clipboard", "paste_before", "collapse_selection"]
 
