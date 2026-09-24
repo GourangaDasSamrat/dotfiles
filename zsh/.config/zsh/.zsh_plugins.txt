@@ -1,5 +1,8 @@
 # Load with: antidote load  (see .zshrc)
 
+# oh-my-zsh core dependencies:
+ohmyzsh/ohmyzsh path:lib/functions.zsh
+
 # oh-my-zsh core lib:
 #restores Ctrl/Alt+Arrow, Home/End, Delete keybindings
 ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
@@ -9,6 +12,9 @@ ohmyzsh/ohmyzsh path:lib/directories.zsh
 
 # smart history defaults, tab sharing & duplicate handling
 ohmyzsh/ohmyzsh path:lib/history.zsh
+
+# dynamically update terminal emulator's title
+ohmyzsh/ohmyzsh path:lib/termsupport.zsh
 
 # completion settings (case-insensitive handling, etc.)
 ohmyzsh/ohmyzsh path:lib/completion.zsh
