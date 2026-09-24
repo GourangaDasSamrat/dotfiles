@@ -147,39 +147,6 @@ if ((${+commands[http]})); then
 		fi
 	}
 
-	# myip             — public IP / geo info via ipinfo.io (needs httpie)
-	myip() {
-		emulate -L zsh
-		print -- "\n${COLOR_HEADER}󰩟 Fetching Public IP Info...${COLOR_RESET}"
-
-		local ip_data
-		ip_data=$(http -b ipinfo.io 2>/dev/null)
-
-		if [[ -z $ip_data ]]; then
-			_err "Failed to retrieve IP data."
-			print
-			return 1
-		fi
-
-		local ip city region org
-		if ((${+commands[jq]})); then
-			ip=$(jq -r '.ip // "N/A"' <<<"$ip_data")
-			city=$(jq -r '.city // "N/A"' <<<"$ip_data")
-			region=$(jq -r '.region // "N/A"' <<<"$ip_data")
-			org=$(jq -r '.org // "N/A"' <<<"$ip_data")
-		else
-			ip=$(_json_field "$ip_data" ip)
-			city=$(_json_field "$ip_data" city)
-			region=$(_json_field "$ip_data" region)
-			org=$(_json_field "$ip_data" org)
-		fi
-
-		print -- "${COLOR_NORMAL}Address:  ${COLOR_SUCCESS}${ip}${COLOR_RESET}"
-		print -- "${COLOR_NORMAL}Location: ${COLOR_TEXT}${city}, ${region}${COLOR_RESET}"
-		print -- "${COLOR_NORMAL}ISP:      ${COLOR_TEXT}${org}${COLOR_RESET}"
-		print
-	}
-
 	if ((${+commands[openssl]})); then
 		# inspect <host>  — headers + TLS cert dates (needs httpie + openssl)
 		inspect() {

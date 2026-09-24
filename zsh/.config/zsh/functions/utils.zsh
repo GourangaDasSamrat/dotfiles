@@ -17,18 +17,3 @@ backup() {
 		return 1
 	fi
 }
-
-# tstamp      <command>               — run a command with timestamped output (needs `ts`)
-if ((${+commands[ts]})); then
-	tstamp() {
-		emulate -L zsh
-		(($# == 0)) && {
-			_err "Missing argument. Usage: t <command>"
-			return 1
-		}
-		local D_CLR=$COLOR_NORMAL T_CLR=$COLOR_HEADER R=$COLOR_RESET
-		_ok "Executing with timestamps..."
-		env FORCE_COLOR=3 CLICOLOR_FORCE=1 stdbuf -oL -eL "$@" 2>&1 |
-			ts "${D_CLR}[%Y-%m-%d${R} ${T_CLR}%H:%M:%S]${R}"
-	}
-fi
