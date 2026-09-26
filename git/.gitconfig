@@ -12,6 +12,7 @@
 
 # Core & Editor configuration
 [core]
+  sshCommand = "ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519"
   hooksPath = ~/.git-hooks
   editor = hx
   pager = delta
