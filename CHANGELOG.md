@@ -1,3 +1,30 @@
+## [0.195.0] - 2026-09-26
+
+### 🚀 Features
+
+- *(git)* Configure ssh command for git (Gouranga Das Samrat)
+
+### 💼 Other
+
+- Skip changelog updates in cliff.toml (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(zsh)* Rename function `t` to `tstamp` for make sense (Gouranga Das Samrat)
+- *(starship)* Update prompt appearance (Gouranga Das Samrat)
+- *(zsh)* Remove unused functions (Gouranga Das Samrat)
+- *(scripts)* Remove unused plugins source (Gouranga Das Samrat)
+- *(scripts)* Update package lists (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- Update readme with new features and tools (Gouranga Das Samrat)
+- Update software lists (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(zsh)* Add oh-my-zsh core dependencies (Gouranga Das Samrat)
+- *(zsh)* Update environment variables and handlers (Gouranga Das Samrat)
 ## [0.194.0] - 2026-09-23
 
 ### 💼 Other
@@ -64,10 +91,6 @@ Co-authored-by: GourangaDasSamrat <146644902+GourangaDasSamrat@users.noreply.git
 
 Co-authored-by: Codex <noreply@openai.com>
 Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com> (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.193.0 [skip ci] (github-actions[bot])
 ## [0.193.0] - 2026-09-23
 
 ### 🚀 Features
@@ -81,10 +104,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 - *(gh)* Update prs alias to improve output (Gouranga Das Samrat)
 - *(helix)* Remove commented out keybindings (Gouranga Das Samrat)
 
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.192.0 [skip ci] (github-actions[bot])
-
 ### ⚙️ Miscellaneous Tasks
 
 - Update prettierignore and Justfile (Gouranga Das Samrat)
@@ -93,10 +112,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 ### 🚀 Features
 
 - *(kitty)* Add SSH remote control support (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.191.0 [skip ci] (github-actions[bot])
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -121,7 +136,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.190.0 [skip ci] (github-actions[bot])
 - *(vscode)* Add editorconfig extension (Gouranga Das Samrat)
 - *(termux)* Update native-desktop.md for new unified script and usage (Gouranga Das Samrat)
 
@@ -141,7 +155,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.189.0 [skip ci] (github-actions[bot])
 - Add `yt` command to README (Gouranga Das Samrat)
 
 ### ⚙️ Miscellaneous Tasks
@@ -152,10 +165,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 ### 🚀 Features
 
 - *(bash)* Add custom prompt theme (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.188.0 [skip ci] (github-actions[bot])
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -179,10 +188,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 ### 🚜 Refactor
 
 - *(justfile)* Remove redundant --exclude .git (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.187.0 [skip ci] (github-actions[bot])
 ## [0.187.0] - 2026-09-09
 
 ### 🚀 Features
@@ -198,19 +203,11 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 - *(bash)* Improve bash completion loading (Gouranga Das Samrat)
 - *(justfile)* Use fd for file finding (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.186.0 [skip ci] (github-actions[bot])
 ## [0.186.0] - 2026-09-07
 
 ### 🚀 Features
 
 - *(zsh)* Add smart history and system completions (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.185.0 [skip ci] (github-actions[bot])
 
 ### 🎨 Styling
 
@@ -232,7 +229,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.184.0 [skip ci] (github-actions[bot])
 - Remove outdated plugin lists (Gouranga Das Samrat)
 ## [0.184.0] - 2026-09-05
 
@@ -245,10 +241,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 - *(zsh)* Remove bun options on termux from env.zsh (Gouranga Das Samrat)
 - *(scripts)* Remove unused tools and fix typo (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.183.0 [skip ci] (github-actions[bot])
 ## [0.183.0] - 2026-08-29
 
 ### 🚀 Features
@@ -262,7 +254,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.182.0 [skip ci] (github-actions[bot])
 - Update short name for vscode config (Gouranga Das Samrat)
 - *(setup)* Remove manual install guide and update termux tools (Gouranga Das Samrat)
 
@@ -274,10 +265,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 ### 🚀 Features
 
 - *(config)* Add sccache setup and gtrash to software list (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.181.2 [skip ci] (github-actions[bot])
 
 ### 🎨 Styling
 
@@ -292,10 +279,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 - *(scripts)* Update go and js development tools (Gouranga Das Samrat)
 
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.181.1 [skip ci] (github-actions[bot])
-
 ### ⚙️ Miscellaneous Tasks
 
 - *(git)* Configure git pull and rebase options (Gouranga Das Samrat)
@@ -304,28 +287,16 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 ### 🐛 Bug Fixes
 
 - *(scripts)* Typo fix in Termux tools array (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.181.0 [skip ci] (github-actions[bot])
 ## [0.181.0] - 2026-08-23
 
 ### 🚀 Features
 
 - *(scripts)* Promote httpie, integrate biome, and fix package typos (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.180.0 [skip ci] (github-actions[bot])
 ## [0.180.0] - 2026-08-23
 
 ### 🚀 Features
 
 - *(termux)* Add pkg manager support (Gouranga Das Samrat)
-
-### 📚 Documentation
-
-- *(changelog)* Update CHANGELOG.md for v0.179.0 [skip ci] (github-actions[bot])
 
 ### ⚙️ Miscellaneous Tasks
 
@@ -342,7 +313,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.178.0 [skip ci] (github-actions[bot])
 - Update application launcher shortcut (Gouranga Das Samrat)
 - *(termux)* Update package installation order (Gouranga Das Samrat)
 - *(termux)* Add jetbrains mono font installation (Gouranga Das Samrat)
@@ -369,7 +339,6 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 📚 Documentation
 
-- *(changelog)* Update CHANGELOG.md for v0.177.0 [skip ci] (github-actions[bot])
 - Update README to specify Go requirement for tools (Gouranga Das Samrat)
 ## [0.177.0] - 2026-08-13
 
