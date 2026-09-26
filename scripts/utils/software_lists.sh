@@ -54,11 +54,14 @@ LINUX_COMMON_TOOLS=(
 )
 
 # ------------------------------------------------------------------------------
-# Debian/Ubuntu & Arch Linux Build Tools
-# Essential build dependencies and development tools shared by Debian-based
-# systems (Apt) and Arch Linux (Pacman).
+# Debian/Ubuntu Tools
+# Essential build dependencies and system helpers intended for apt-based
+# Linux distributions.
 # ------------------------------------------------------------------------------
-DEB_ARCH_TOOLS=("build-essential|base-devel")
+DEBIAN_TOOLS=(
+  "build-essential"
+  "command-not-found"
+)
 
 # ------------------------------------------------------------------------------
 # RHEL / Fedora / CentOS Tools
@@ -68,6 +71,7 @@ DEB_ARCH_TOOLS=("build-essential|base-devel")
 RHEL_TOOLS=(
   "@development-tools"
   "openssl-devel"
+  "PackageKit-command-not-found"
 )
 
 # ------------------------------------------------------------------------------
@@ -76,6 +80,7 @@ RHEL_TOOLS=(
 # for Arch-based environments (installed via Pacman).
 # ------------------------------------------------------------------------------
 ARCH_TOOLS=(
+  "base-devel"
   "rustup"
   "cargo-binstall"
   "uv"
@@ -89,6 +94,7 @@ ARCH_TOOLS=(
   "gopls"
 
   "cloudflared"
+  "pkgfile"
 )
 
 # ------------------------------------------------------------------------------
@@ -130,7 +136,6 @@ MACOS_TOOLS=(
   "raycast"
   "alt-tab"
   "hiddenbar"
-  "google-drive"
 
   "font-jetbrains-mono-nerd-font"
 )
