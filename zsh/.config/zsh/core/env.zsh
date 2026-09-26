@@ -13,10 +13,11 @@ export LESS="-R --mouse" # Enable mouse support on less
 
 # --- Environment Variables ---
 export DOTFILES=$HOME/dotfiles           # Path to dotfiles directory
-export UV_LINK_MODE=copy                 # Symlink mode for UV
 export BAT_THEME=Dracula                 # Syntax highlighting theme
+export UV_LINK_MODE=copy                 # Symlink mode for UV
 export BUN_INSTALL=$HOME/.bun            # Bun installation directory
 export PNPM_HOME=$HOME/.local/share/pnpm # PNPM home
+export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 # Disables the Corepack download prompt
 export GOPATH=$HOME/go                   # Go workspace directory
 export CARGO_NET_GIT_FETCH_WITH_CLI=true # Use system git for better auth/network stability
 
@@ -45,6 +46,14 @@ path=($^path(N/))
 
 # Load fnm (Fast Node Manager) and auto-switch node versions on directory change
 (($+commands[fnm])) && eval "$(fnm env --use-on-cd --shell zsh)"
+
+# Homebrew command-not-found handler
+if (($+commands[brew])) && [ -f "$(brew --repository)/Library/Homebrew/command-not-found/handler.sh" ]; then
+  source "$(brew --repository)/Library/Homebrew/command-not-found/handler.sh"
+fi
+
+# Arch Linux pkgfile command-not-found handler
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # --- Sccache Configuration ---
 if (($+commands[sccache])); then
