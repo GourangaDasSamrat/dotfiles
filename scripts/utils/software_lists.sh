@@ -48,6 +48,8 @@ CROSS_PLATFORM_TOOLS=(
 # across all modern Linux distributions (Debian/Ubuntu, Arch, RHEL/Fedora).
 # ------------------------------------------------------------------------------
 LINUX_COMMON_TOOLS=(
+  "clang"
+  "llvm"
   "zsh"
   "pinentry-gnome3"
   "rofi"
