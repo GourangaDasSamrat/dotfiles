@@ -28,8 +28,13 @@ typeset -U path # Prevent duplicate PATH entries
 [[ $CPUTYPE == arm64 && -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv) ||
 	[[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
 
+# LLVM binary path selection
+[[ $CPUTYPE == arm64 && -d /opt/homebrew/opt/llvm/bin ]] && llvm_bin="/opt/homebrew/opt/llvm/bin" ||
+        [[ -d /usr/local/opt/llvm/bin ]] && llvm_bin="/usr/local/opt/llvm/bin"
+
 # Set custom paths
 path=(
+	$llvm_bin        # LLVM binaries
 	$PNPM_HOME       # pnpm global bin
 	$BUN_INSTALL/bin # Bun binaries
 	$HOME/.cargo/bin # Rust/Cargo binaries
