@@ -121,6 +121,6 @@ pinentry-program $PREFIX/bin/pinentry-gnome3
 
 | Function             | Command                   | Shortcut      |
 | -------------------- | ------------------------- | ------------- |
-| Application Launcher | `rofi -show drun`         | `ALt+Space`  |
+| Application Launcher | `rofi -show drun`         | `ALt+Space`   |
 | Clipboard Manager    | `xfce4-clipman-history`   | `Super+Alt+V` |
 | Main Menu            | `xfce4-popup-whiskermenu` | `Super`       |
