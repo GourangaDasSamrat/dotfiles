@@ -22,10 +22,9 @@
 
 ## Frontend Dev Profile
 
-| Extension   | Publisher   | Marketplace Link                                                                   |
-| ----------- | ----------- | ---------------------------------------------------------------------------------- |
-| Biome       | Biome       | [ Link](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)         |
-| Live Server | Ritwick Dey | [ Link](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) |
+| Extension | Publisher | Marketplace Link                                                           |
+| --------- | --------- | -------------------------------------------------------------------------- |
+| Biome     | Biome     | [ Link](https://marketplace.visualstudio.com/items?itemName=biomejs.biome) |
 
 ### Optional (Frontend Dev Profile)
 

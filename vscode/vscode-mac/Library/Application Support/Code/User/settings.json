@@ -499,13 +499,6 @@
     "vue-html": "html"
   },
 
-  // live server
-  "liveServer.settings.CustomBrowser": "firefox:PrivateMode",
-  "liveServer.settings.root": "/",
-  "liveServer.settings.donotShowInfoMsg": true,
-  "liveServer.settings.donotVerifyTags": true,
-  "liveServer.settings.wait": 10,
-
   // error lens
   "errorLens.delay": 0,
   "errorLens.enabledDiagnosticLevels": ["hint", "error", "info", "warning"],
@@ -515,6 +508,12 @@
   // code runner
   "code-runner.saveFileBeforeRun": true,
   "code-runner.clearPreviousOutput": true,
+  "code-runner.executorMap": {
+    "javascript": "cd $dir && bun run $fileName",
+    "typescript": "cd $dir && bun run $fileName",
+    "c": "cd $dir && clang $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "cpp": "cd $dir && clang++ -std=c++20 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  },
 
   // todo tree
   "todo-tree.general.tags": [

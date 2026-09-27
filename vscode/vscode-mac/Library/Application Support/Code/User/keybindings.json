@@ -76,46 +76,6 @@
     "when": "isMac"
   },
   {
-    "key": "ctrl+alt+s",
-    "command": "extension.liveServer.goOnline",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "command+option+s",
-    "command": "extension.liveServer.goOnline",
-    "when": "editorTextFocus && isMac"
-  },
-  {
-    "key": "alt+l alt+o",
-    "command": "-extension.liveServer.goOnline",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "option+l option+o",
-    "command": "-extension.liveServer.goOnline",
-    "when": "editorTextFocus && isMac"
-  },
-  {
-    "key": "ctrl+alt+q",
-    "command": "extension.liveServer.goOffline",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "command+option+q",
-    "command": "extension.liveServer.goOffline",
-    "when": "editorTextFocus && isMac"
-  },
-  {
-    "key": "alt+l alt+c",
-    "command": "-extension.liveServer.goOffline",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "option+l option+c",
-    "command": "-extension.liveServer.goOffline",
-    "when": "editorTextFocus && isMac"
-  },
-  {
     "key": "ctrl+shift+g",
     "command": "workbench.view.scm",
     "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
