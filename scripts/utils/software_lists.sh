@@ -111,6 +111,7 @@ MACOS_TOOLS=(
   "oven-sh/bun/bun"
   "fnm"
   "biome"
+  "llvm"
 
   "go"
   "goimports"
