@@ -29,14 +29,11 @@ CROSS_PLATFORM_TOOLS=(
   "moreutils"
   "stow"
 
-  "gh"
+  "gh|github-cli"
   "git-lfs"
   "git-delta"
 
   "pass"
-
-  "starship"
-  "helix"
   "httpie"
 
   "openssl"
@@ -51,7 +48,6 @@ LINUX_COMMON_TOOLS=(
   "clang"
   "llvm"
   "zsh"
-  "pinentry-gnome3"
   "rofi"
 )
 
@@ -63,6 +59,7 @@ LINUX_COMMON_TOOLS=(
 DEBIAN_TOOLS=(
   "build-essential"
   "command-not-found"
+  "starship"
 )
 
 # ------------------------------------------------------------------------------
@@ -74,6 +71,7 @@ RHEL_TOOLS=(
   "@development-tools"
   "openssl-devel"
   "PackageKit-command-not-found"
+  "helix"
 )
 
 # ------------------------------------------------------------------------------
@@ -97,6 +95,8 @@ ARCH_TOOLS=(
 
   "cloudflared"
   "pkgfile"
+  "starship"
+  "helix"
 )
 
 # ------------------------------------------------------------------------------
@@ -124,6 +124,8 @@ MACOS_TOOLS=(
   "sccache"
   "cloudflared"
   "xo/xo/usql"
+  "starship"
+  "helix"
 
   "visual-studio-code"
   "bruno"
@@ -171,6 +173,8 @@ TERMUX_TOOLS=(
   "mousepad"
   "eog"
   "galculator"
+  "starship"
+  "helix"
   "helix-grammars"
   "gtrash"
   "cloudflared"
