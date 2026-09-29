@@ -58,27 +58,6 @@ cd ~/.local/share/gtksourceview-4/styles
 wget https://github.com/dracula/mousepad/raw/refs/heads/master/dracula.xml
 ```
 
-### Launch Desktop Environment
-
-```bash
-$PREFIX/start.sh
-```
-
-## PRoot Distro Setup
-
-### Install PRoot and Debian
-
-```bash
-pkg install proot-distro
-pd install debian
-```
-
-### Symlink Developer Folder
-
-```bash
-ln -s $PREFIX/var/lib/proot-distro/containers/debian/rootfs/home/gouranga/Developer ~/Developer
-```
-
 ## Customization
 
 ### Install Termux Theme
