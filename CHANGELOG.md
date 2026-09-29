@@ -1,3 +1,12 @@
+## [0.196.1] - 2026-09-29
+
+### 🚀 Features
+
+- *(zsh)* Add conditional alias mapping wget to wget2 (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Resolve software installation failures on fedora (Gouranga Das Samrat)
 ## [0.196.0] - 2026-09-29
 
 ### 🚀 Features
