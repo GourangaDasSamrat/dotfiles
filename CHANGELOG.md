@@ -1,3 +1,24 @@
+## [0.196.0] - 2026-09-29
+
+### 🚀 Features
+
+- *(scripts)* Add clang and llvm to linux common tools (Gouranga Das Samrat)
+- *(zsh)* Add llvm binaries to path (Gouranga Das Samrat)
+- *(scripts)* Add llvm on macOS tools list (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Resolve software installation failures across distros (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- Fix table alignment in README and termux docs (Gouranga Das Samrat)
+- *(termux)* Replace PRoot Debian guide with Arch Linux and Ubuntu setup (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(vscode)* Remove live server extension (Gouranga Das Samrat)
+- Add software install test workflow (Gouranga Das Samrat)
 ## [0.195.0] - 2026-09-26
 
 ### 🚀 Features
