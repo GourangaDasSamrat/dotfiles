@@ -10,6 +10,7 @@ fi
 # --- Conditional Aliases ---
 (($+commands[fdfind])) && alias fd=fdfind
 (($+commands[batcat])) && alias bat=batcat
+(($+commands[wget2])) && alias wget=wget2
 (($+commands[bun])) && bun() {
 	(($# == 0)) && { [[ -f package.json ]] && command bun install || command bun repl; } || command bun "$@"
 }
