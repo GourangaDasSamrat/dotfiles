@@ -170,15 +170,18 @@ TERMUX_TOOLS=(
 
   "zen-browser"
   "code-oss"
+  "bruno"
   "mousepad"
   "eog"
   "galculator"
+
   "starship"
   "helix"
   "helix-grammars"
   "gtrash"
   "cloudflared"
   "xdg-utils"
+  "openssl-tool"
 
   "mpv-x"
   "python-yt-dlp"

@@ -17,7 +17,7 @@ Update the system and install essential packages:
 ```bash
 apt update && apr upgrade -y
 apt install x11-repo tur-repo -y
-apt install git curl wget openssl-tool termux-x11-nightly pulseaudio ttf-jetbrains-mono-nerd -y
+apt install git curl termux-x11-nightly pulseaudio ttf-jetbrains-mono-nerd -y
 
 apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager -y
 ```
