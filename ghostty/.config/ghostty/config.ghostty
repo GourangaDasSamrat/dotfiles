@@ -1,0 +1,71 @@
+# Ghostty configuration (ported from kitty.conf, Ghostty 1.3+)
+# Docs: https://ghostty.org/docs/config/reference
+# Validate: ghostty +validate-config
+
+# Theme: Dracula
+palette = 0=#21222c
+palette = 1=#ff5555
+palette = 2=#50fa7b
+palette = 3=#f1fa8c
+palette = 4=#bd93f9
+palette = 5=#ff79c6
+palette = 6=#8be9fd
+palette = 7=#f8f8f2
+palette = 8=#6272a4
+palette = 9=#ff6e6e
+palette = 10=#69ff94
+palette = 11=#ffffa5
+palette = 12=#d6acff
+palette = 13=#ff92df
+palette = 14=#a4ffff
+palette = 15=#ffffff
+
+background = #282a36
+foreground = #f8f8f2
+cursor-color = #f8f8f2
+cursor-text = #282a36
+selection-background = #44475a
+selection-foreground = #ffffff
+
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+
+# Terminal identity
+# Keep a standard TERM for apps that rely on it (Ghostty defaults to xterm-ghostty).
+term = xterm-256color
+
+# Window appearance
+window-padding-x = 10
+window-padding-y = 10
+background-opacity = 0.90
+background-blur = 20
+# Removes titlebar, borders and rounded corners (kitty: titlebar-and-corners).
+# Note: on macOS this also disables native tabs and native fullscreen.
+# window-decoration = none
+
+# macOS behavior
+# Treat both Option keys as Alt.
+macos-option-as-alt = true
+
+# URL handling
+# Ghostty opens links with Ctrl+Click on Linux and Cmd+Click on macOS;
+# a plain click never opens a link. link-url is on by default.
+link-url = true
+
+# Splits
+# kitty: F5 = vsplit (side by side), F6 = hsplit (stacked)
+keybind = f5=new_split:right
+keybind = f6=new_split:down
+
+# Quick tab navigation
+keybind = alt+1=goto_tab:1
+keybind = alt+2=goto_tab:2
+keybind = alt+3=goto_tab:3
+keybind = alt+4=goto_tab:4
+keybind = alt+5=goto_tab:5
+keybind = alt+6=goto_tab:6
+keybind = alt+7=goto_tab:7
+keybind = alt+8=goto_tab:8
+keybind = alt+9=goto_tab:9
+
