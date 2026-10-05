@@ -1,3 +1,22 @@
+## [0.197.0] - 2026-10-05
+
+### 🚀 Features
+
+- *(zsh)* Alias xdg-utils-xdg-open as xdg-open in Termux (Gouranga Das Samrat)
+- *(scripts)* Update wallpaper URLs and software installation lists (Gouranga Das Samrat)
+- *(ghostty)* Add initial terminal configuration (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(termux)* Update native desktop packages (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(readme)* Add ghostty to featured tools list (Gouranga Das Samrat)
+
+### 🎨 Styling
+
+- *(kitty)* Restore window decorations (Gouranga Das Samrat)
 ## [0.196.1] - 2026-09-29
 
 ### 🚀 Features
