@@ -97,6 +97,9 @@ ARCH_TOOLS=(
   "pkgfile"
   "starship"
   "helix"
+
+  "ghostty"
+  "kitty"
 )
 
 # ------------------------------------------------------------------------------
@@ -130,6 +133,7 @@ MACOS_TOOLS=(
   "visual-studio-code"
   "bruno"
   "tableplus"
+  "ghostty"
   "kitty"
 
   "zen"
@@ -171,6 +175,7 @@ TERMUX_TOOLS=(
   "zen-browser"
   "code-oss"
   "bruno"
+  "ghostty"
   "mousepad"
   "eog"
   "galculator"
