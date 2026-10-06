@@ -1,3 +1,5 @@
+# VS Code Extensions
+
 ## Default Profile
 
 | Extension                  | Publisher            | Marketplace Link                                                                                   |
