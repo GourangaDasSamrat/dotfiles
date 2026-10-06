@@ -1,1 +1,4 @@
 zsh/.config/zsh/.zsh_plugins.zsh
+node_modules
+docs/.vitepress/cache
+docs/.vitepress/dist
