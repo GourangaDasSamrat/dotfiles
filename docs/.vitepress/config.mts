@@ -15,11 +15,30 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: "Guide", link: "/termux/native-desktop" },
+      { text: "Guide", link: "/guide/getting-started" },
       { text: "Changelog", link: `${repo}/blob/main/CHANGELOG.md` },
     ],
 
     sidebar: [
+      {
+        text: "Guide",
+        items: [
+          { text: "Getting Started", link: "/guide/getting-started" },
+          { text: "GNU Stow", link: "/guide/stow" },
+          { text: "Secrets, pass & GPG", link: "/guide/secrets" },
+        ],
+      },
+      {
+        text: "Shell",
+        items: [{ text: "Reference", link: "/shell/reference" }],
+      },
+      {
+        text: "Git",
+        items: [
+          { text: "Workflow", link: "/git/workflow" },
+          { text: "Send Email", link: "/git/send-email" },
+        ],
+      },
       {
         text: "Termux",
         items: [
@@ -41,10 +60,6 @@ export default defineConfig({
       {
         text: "Helix",
         items: [{ text: "Language Servers", link: "/helix/language-servers" }],
-      },
-      {
-        text: "Git",
-        items: [{ text: "Send Email", link: "/git/send-email" }],
       },
     ],
 
