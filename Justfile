@@ -11,6 +11,18 @@ install:
 setup:
         @bash "{{justfile_directory()}}/scripts/setup.sh"
 
+# Run the docs site in dev mode.
+docs-dev:
+        @cd "{{justfile_directory()}}/docs" && pnpm install && pnpm docs:dev
+
+# Build the docs site for production.
+docs-build:
+        @cd "{{justfile_directory()}}/docs" && pnpm install && pnpm docs:build
+
+# Preview the built docs site locally.
+docs-serve:
+        @cd "{{justfile_directory()}}/docs" && pnpm docs:preview
+
 # Format Biome-supported files.
 format-biome:
         fd -e js -e jsx -e ts -e tsx -e mjs -e cjs -e mts -e cts -e json -e jsonc -e css -e scss -e less \
