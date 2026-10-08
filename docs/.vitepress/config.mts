@@ -26,6 +26,9 @@ export default defineConfig({
           { text: "Getting Started", link: "/guide/getting-started" },
           { text: "GNU Stow", link: "/guide/stow" },
           { text: "Secrets, pass & GPG", link: "/guide/secrets" },
+          { text: "Installed Software", link: "/guide/installed-software" },
+          { text: "Troubleshooting", link: "/guide/troubleshooting" },
+          { text: "Development", link: "/guide/development" },
         ],
       },
       {
@@ -36,6 +39,7 @@ export default defineConfig({
         text: "Git",
         items: [
           { text: "Workflow", link: "/git/workflow" },
+          { text: "GitHub CLI", link: "/git/github-cli" },
           { text: "Send Email", link: "/git/send-email" },
         ],
       },

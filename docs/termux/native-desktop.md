@@ -15,7 +15,7 @@ termux-setup-storage
 Update the system and install essential packages:
 
 ```bash
-apt update && apr upgrade -y
+apt update && apt upgrade -y
 apt install x11-repo tur-repo -y
 apt install git curl termux-x11-nightly pulseaudio ttf-jetbrains-mono-nerd -y
 
