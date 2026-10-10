@@ -1,0 +1,131 @@
+---
+import Default from "@astrojs/starlight/components/ThemeSelect.astro";
+import { DEFAULT_PALETTE, PALETTES } from "../lib/palettes";
+---
+
+<div class="dt-theme-controls">
+  <dotfiles-palette-select>
+    <label>
+      <span class="sr-only">Colour palette</span>
+      <span class="swatch" aria-hidden="true"></span>
+      <select autocomplete="off">
+        {
+          PALETTES.map((p) => (
+            <option value={p.id} selected={p.id === DEFAULT_PALETTE}>
+              {p.label}
+            </option>
+          ))
+        }
+      </select>
+      <svg
+        class="caret"
+        aria-hidden="true"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1 1 0 0 0 1.42 0L17 10.59a1 1 0 0 0 0-1.42Z"></path>
+      </svg>
+    </label>
+  </dotfiles-palette-select>
+  <Default {...Astro.props} />
+</div>
+
+<script>
+  import {
+    DEFAULT_PALETTE,
+    PALETTE_STORAGE_KEY,
+    PALETTES,
+  } from "../lib/palettes";
+
+  const ids = PALETTES.map((p) => p.id);
+
+  function stored(): string {
+    try {
+      const value = localStorage.getItem(PALETTE_STORAGE_KEY);
+      return value && ids.includes(value) ? value : DEFAULT_PALETTE;
+    } catch {
+      return DEFAULT_PALETTE;
+    }
+  }
+
+  function apply(id: string) {
+    document.documentElement.dataset.palette = id;
+    try {
+      localStorage.setItem(PALETTE_STORAGE_KEY, id);
+    } catch {
+      // Storage can be unavailable (private mode); the choice just won't persist.
+    }
+    for (const el of document.querySelectorAll("dotfiles-palette-select")) {
+      (el as PaletteSelect).sync(id);
+    }
+  }
+
+  class PaletteSelect extends HTMLElement {
+    connectedCallback() {
+      const select = this.querySelector("select");
+      this.sync(stored());
+      select?.addEventListener("change", () => apply(select.value));
+    }
+
+    sync(id: string) {
+      const select = this.querySelector("select");
+      if (select) select.value = id;
+      const swatch = PALETTES.find((p) => p.id === id)?.swatch;
+      if (swatch) this.style.setProperty("--swatch", swatch);
+    }
+  }
+
+  customElements.define("dotfiles-palette-select", PaletteSelect);
+</script>
+
+<style>
+  @layer starlight.core {
+    label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: var(--sl-color-gray-2);
+    }
+    label:hover {
+      color: var(--sl-color-white);
+    }
+    .swatch {
+      position: absolute;
+      inset-inline-start: 0.1rem;
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 999px;
+      background: var(--swatch, var(--sl-color-accent));
+      box-shadow: 0 0 0 2px var(--sl-color-gray-5);
+      pointer-events: none;
+    }
+    select {
+      border: 0;
+      padding-block: 0.625rem;
+      padding-inline: 1.4rem 1.6rem;
+      margin-inline: -0.25rem;
+      width: 7.6rem;
+      background-color: transparent;
+      color: inherit;
+      cursor: pointer;
+      appearance: none;
+      text-overflow: ellipsis;
+    }
+    option {
+      background-color: var(--sl-color-bg-nav);
+      color: var(--sl-color-gray-1);
+    }
+    .caret {
+      position: absolute;
+      inset-inline-end: -0.25rem;
+      pointer-events: none;
+    }
+    @media (min-width: 50rem) {
+      select {
+        font-size: var(--sl-text-sm);
+      }
+    }
+  }
+</style>

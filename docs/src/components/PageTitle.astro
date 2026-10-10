@@ -1,0 +1,31 @@
+---
+import PageActions from "./PageActions.astro";
+
+const { entry, id } = Astro.locals.starlightRoute;
+const showActions = entry.data.template !== "splash" && id !== "index";
+---
+
+<div class="title-row">
+  <h1 id="_top">{entry.data.title}</h1>
+  {showActions && <PageActions slug={id} />}
+</div>
+
+<style>
+  @layer starlight.core {
+    .title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      margin-top: 1rem;
+    }
+    h1 {
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: var(--sl-color-white);
+    }
+  }
+</style>

@@ -1,0 +1,82 @@
+:root {
+  --sl-font:
+    "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Noto Sans Bengali", sans-serif;
+  --sl-font-mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+  --dt-radius: 0.6rem;
+}
+
+body {
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* Soft accent glow behind the page, tinted by the active palette. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 30rem at 85% -10%, var(--dt-glow), transparent 70%),
+    radial-gradient(40rem 25rem at 0% 110%, var(--dt-glow), transparent 70%);
+}
+
+/* Hero title uses the palette's two accents. */
+.hero h1 {
+  background: linear-gradient(
+    120deg,
+    var(--sl-color-accent),
+    var(--dt-accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sidebar: pill-shaped current page. */
+.sidebar-content a {
+  border-radius: 0.5rem;
+}
+.sidebar-content a[aria-current="page"] {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+}
+:root[data-theme="light"] .sidebar-content a[aria-current="page"] {
+  color: var(--sl-color-accent-high);
+}
+
+/* Cards, tables, asides and code share one corner radius. */
+.card,
+.sl-link-card,
+aside.starlight-aside {
+  border-radius: var(--dt-radius);
+}
+.sl-link-card {
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+.sl-link-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sl-color-accent);
+}
+.sl-markdown-content table {
+  display: table;
+  width: 100%;
+  border-radius: var(--dt-radius);
+  overflow: hidden;
+}
+.sl-markdown-content :not(pre) > code {
+  border-radius: 0.35rem;
+}
+
+/* Header controls (palette + mode) */
+.dt-theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

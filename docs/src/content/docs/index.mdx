@@ -1,0 +1,56 @@
+---
+title: Dotfiles
+description: Setup guides and notes for my dotfiles
+template: splash
+hero:
+  title: Dotfiles
+  tagline: Terminal, editor and Termux setups, written down so they can be rebuilt in minutes.
+  actions:
+    - text: Get started
+      link: /dotfiles/guide/getting-started/
+      icon: right-arrow
+    - text: GitHub
+      link: https://github.com/GourangaDasSamrat/dotfiles
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+<CardGrid>
+  <LinkCard
+    title="Getting Started"
+    description="Clone, run the installer and link the configs with GNU Stow on macOS, Linux or Termux."
+    href="/dotfiles/guide/getting-started/"
+  />
+  <LinkCard
+    title="Secrets, pass & GPG"
+    description="Signed commits, the push guard and env files, all backed by pass."
+    href="/dotfiles/guide/secrets/"
+  />
+  <LinkCard
+    title="Shell"
+    description="Every command, alias and automatic behaviour the zsh config adds."
+    href="/dotfiles/shell/reference/"
+  />
+  <LinkCard
+    title="Git Workflow"
+    description="Conventional commits, the pre-push guard, signing and the alias set."
+    href="/dotfiles/git/workflow/"
+  />
+  <LinkCard
+    title="Termux"
+    description="Native desktop setup and proot-distro guides for Ubuntu, Arch Linux, Alpine and Fedora."
+    href="/dotfiles/termux/native-desktop/"
+  />
+  <LinkCard
+    title="VS Code"
+    description="Running VS Code in Termux, custom keybindings and the extension list."
+    href="/dotfiles/vscode/termux-setup/"
+  />
+  <LinkCard
+    title="Helix"
+    description="Language servers, formatters and linters for the Helix editor."
+    href="/dotfiles/helix/language-servers/"
+  />
+</CardGrid>

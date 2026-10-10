@@ -1,0 +1,175 @@
+/*
+ * Colour palettes. Every palette defines a dark and a light variant; the
+ * light/dark switch is Starlight's own `data-theme`, the palette is
+ * `data-palette` (set from localStorage by an inline script in <head>).
+ *
+ * Starlight scale: `white` is the strongest text colour, `black` the page
+ * background, gray-1..gray-6 sit in between (gray-7 is only used in light).
+ */
+
+/* ---------- Dracula (default) ---------- */
+:root,
+:root[data-palette="dracula"] {
+  --sl-color-white: #f8f8f2;
+  --sl-color-gray-1: #e3e3ec;
+  --sl-color-gray-2: #c0c4da;
+  --sl-color-gray-3: #8f97bf;
+  --sl-color-gray-4: #6272a4;
+  --sl-color-gray-5: #44475a;
+  --sl-color-gray-6: #343746;
+  --sl-color-black: #282a36;
+  --sl-color-accent-low: #3b3459;
+  --sl-color-accent: #bd93f9;
+  --sl-color-accent-high: #d9bfff;
+  --dt-accent-2: #ff79c6;
+  --dt-glow: rgba(189, 147, 249, 0.18);
+}
+:root[data-palette="dracula"][data-theme="light"],
+:root:not([data-palette])[data-theme="light"] {
+  --sl-color-white: #1f1f1f;
+  --sl-color-gray-1: #2b2b3a;
+  --sl-color-gray-2: #3d3f55;
+  --sl-color-gray-3: #5c5f7a;
+  --sl-color-gray-4: #8a8da6;
+  --sl-color-gray-5: #d9d4bd;
+  --sl-color-gray-6: #ece7d1;
+  --sl-color-gray-7: #f4f0dc;
+  --sl-color-black: #fffbeb;
+  --sl-color-accent-low: #e6dcfa;
+  --sl-color-accent: #6c4bd6;
+  --sl-color-accent-high: #4b2fa8;
+  --dt-accent-2: #c2418f;
+  --dt-glow: rgba(108, 75, 214, 0.12);
+}
+
+/* ---------- Catppuccin (Mocha / Latte) ---------- */
+:root[data-palette="catppuccin"] {
+  --sl-color-white: #cdd6f4;
+  --sl-color-gray-1: #bac2de;
+  --sl-color-gray-2: #a6adc8;
+  --sl-color-gray-3: #9399b2;
+  --sl-color-gray-4: #6c7086;
+  --sl-color-gray-5: #45475a;
+  --sl-color-gray-6: #313244;
+  --sl-color-black: #1e1e2e;
+  --sl-color-accent-low: #3a3150;
+  --sl-color-accent: #cba6f7;
+  --sl-color-accent-high: #e0c9fb;
+  --dt-accent-2: #f5c2e7;
+  --dt-glow: rgba(203, 166, 247, 0.16);
+}
+:root[data-palette="catppuccin"][data-theme="light"] {
+  --sl-color-white: #4c4f69;
+  --sl-color-gray-1: #5c5f77;
+  --sl-color-gray-2: #6c6f85;
+  --sl-color-gray-3: #7c7f93;
+  --sl-color-gray-4: #9ca0b0;
+  --sl-color-gray-5: #ccd0da;
+  --sl-color-gray-6: #e6e9ef;
+  --sl-color-gray-7: #eceef3;
+  --sl-color-black: #eff1f5;
+  --sl-color-accent-low: #e5d8fb;
+  --sl-color-accent: #8839ef;
+  --sl-color-accent-high: #6a22c9;
+  --dt-accent-2: #ea76cb;
+  --dt-glow: rgba(136, 57, 239, 0.1);
+}
+
+/* ---------- Tokyo Night (Night / Day) ---------- */
+:root[data-palette="tokyo-night"] {
+  --sl-color-white: #c0caf5;
+  --sl-color-gray-1: #a9b1d6;
+  --sl-color-gray-2: #9aa5ce;
+  --sl-color-gray-3: #7982ad;
+  --sl-color-gray-4: #565f89;
+  --sl-color-gray-5: #3b4261;
+  --sl-color-gray-6: #24283b;
+  --sl-color-black: #1a1b26;
+  --sl-color-accent-low: #232c4f;
+  --sl-color-accent: #7aa2f7;
+  --sl-color-accent-high: #a9c3fb;
+  --dt-accent-2: #bb9af7;
+  --dt-glow: rgba(122, 162, 247, 0.16);
+}
+:root[data-palette="tokyo-night"][data-theme="light"] {
+  --sl-color-white: #343b58;
+  --sl-color-gray-1: #3760bf;
+  --sl-color-gray-2: #4e5a8f;
+  --sl-color-gray-3: #6172b0;
+  --sl-color-gray-4: #848cb5;
+  --sl-color-gray-5: #c4c8da;
+  --sl-color-gray-6: #d0d5e3;
+  --sl-color-gray-7: #dadde8;
+  --sl-color-black: #e1e2e7;
+  --sl-color-accent-low: #cdd9f7;
+  --sl-color-accent: #2e5fd1;
+  --sl-color-accent-high: #1e48ac;
+  --dt-accent-2: #9854f1;
+  --dt-glow: rgba(46, 95, 209, 0.1);
+}
+
+/* ---------- Nord (Polar Night / Snow Storm) ---------- */
+:root[data-palette="nord"] {
+  --sl-color-white: #eceff4;
+  --sl-color-gray-1: #e5e9f0;
+  --sl-color-gray-2: #d8dee9;
+  --sl-color-gray-3: #a7b1c4;
+  --sl-color-gray-4: #7b88a1;
+  --sl-color-gray-5: #4c566a;
+  --sl-color-gray-6: #3b4252;
+  --sl-color-black: #2e3440;
+  --sl-color-accent-low: #2f4a57;
+  --sl-color-accent: #88c0d0;
+  --sl-color-accent-high: #b4dbe6;
+  --dt-accent-2: #81a1c1;
+  --dt-glow: rgba(136, 192, 208, 0.14);
+}
+:root[data-palette="nord"][data-theme="light"] {
+  --sl-color-white: #2e3440;
+  --sl-color-gray-1: #3b4252;
+  --sl-color-gray-2: #434c5e;
+  --sl-color-gray-3: #596378;
+  --sl-color-gray-4: #7b88a1;
+  --sl-color-gray-5: #d8dee9;
+  --sl-color-gray-6: #e5e9f0;
+  --sl-color-gray-7: #ebeef4;
+  --sl-color-black: #f2f4f8;
+  --sl-color-accent-low: #d3e3ec;
+  --sl-color-accent: #3f6a8c;
+  --sl-color-accent-high: #2c506e;
+  --dt-accent-2: #5e81ac;
+  --dt-glow: rgba(94, 129, 172, 0.12);
+}
+
+/* ---------- Rosé Pine (Main / Dawn) ---------- */
+:root[data-palette="rose-pine"] {
+  --sl-color-white: #e0def4;
+  --sl-color-gray-1: #cfcce6;
+  --sl-color-gray-2: #b4b0cc;
+  --sl-color-gray-3: #908caa;
+  --sl-color-gray-4: #6e6a86;
+  --sl-color-gray-5: #403d52;
+  --sl-color-gray-6: #26233a;
+  --sl-color-black: #191724;
+  --sl-color-accent-low: #3a2f50;
+  --sl-color-accent: #c4a7e7;
+  --sl-color-accent-high: #ddc9f3;
+  --dt-accent-2: #eb6f92;
+  --dt-glow: rgba(196, 167, 231, 0.15);
+}
+:root[data-palette="rose-pine"][data-theme="light"] {
+  --sl-color-white: #575279;
+  --sl-color-gray-1: #625d85;
+  --sl-color-gray-2: #797593;
+  --sl-color-gray-3: #8a869f;
+  --sl-color-gray-4: #9893a5;
+  --sl-color-gray-5: #dfdad9;
+  --sl-color-gray-6: #f2e9e1;
+  --sl-color-gray-7: #f7f0e9;
+  --sl-color-black: #faf4ed;
+  --sl-color-accent-low: #ebdff5;
+  --sl-color-accent: #7c5ea4;
+  --sl-color-accent-high: #5f4586;
+  --dt-accent-2: #b4637a;
+  --dt-glow: rgba(144, 122, 169, 0.14);
+}
