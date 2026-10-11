@@ -1,3 +1,21 @@
+## [1.0.0] - 2026-10-11
+
+### 💼 Other
+
+- Setup VitePress site and add workflow guides (#18) (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- [**breaking**] Remove kitty and ytm-player, standardize on ghostty (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- Rework README and expand docs site (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Ignore pnpm-lock.yaml in Prettier (Gouranga Das Samrat)
+- *(justfile)* Add justfile recipes for docs (Gouranga Das Samrat)
 ## [0.197.0] - 2026-10-05
 
 ### 🚀 Features
