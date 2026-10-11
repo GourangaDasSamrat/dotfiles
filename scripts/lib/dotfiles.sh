@@ -10,7 +10,7 @@ setup_dotfiles() {
   cd "$HOME/dotfiles" || return 1
 
   # Default packages list for GNU Stow
-  local packages=(zsh bash git gh kitty cspell)
+  local packages=(zsh bash git gh cspell)
   local vscode_package
 
   # OS detection using uname

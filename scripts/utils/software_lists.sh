@@ -99,7 +99,6 @@ ARCH_TOOLS=(
   "helix"
 
   "ghostty"
-  "kitty"
 )
 
 # ------------------------------------------------------------------------------
@@ -134,7 +133,6 @@ MACOS_TOOLS=(
   "bruno"
   "tableplus"
   "ghostty"
-  "kitty"
 
   "zen"
   "notion"

@@ -27,7 +27,6 @@ repository has to live at `~/dotfiles`: run from there, the parent is `~`.
 | `bash`                | `~/.bashrc`                                              |   yes   |
 | `git`                 | `~/.gitconfig`, `~/.git-hooks/`                          |   yes   |
 | `gh`                  | `~/.config/gh/` (GitHub CLI aliases, queries, scripts)   |   yes   |
-| `kitty`               | `~/.config/kitty/`                                       |   yes   |
 | `cspell`              | `~/.config/cspell/` (shared dictionaries)                |   yes   |
 | `vscode/vscode-linux` | `~/.config/Code/User/` (settings, keybindings, snippets) |   yes   |
 | `vscode/vscode-mac`   | `~/Library/Application Support/Code/User/`               |   yes   |
@@ -37,7 +36,6 @@ repository has to live at `~/dotfiles`: run from there, the parent is `~`.
 | `rofi`                | `~/.config/rofi/config.rasi`                             |   no    |
 | `usql`                | `~/.config/usql/config.yaml`                             |   no    |
 | `mongosh`             | `~/.mongoshrc.js`                                        |   no    |
-| `ytm-player`          | `~/.config/ytm-player/config.toml`                       |   no    |
 
 "Default" means `install.sh` links it for you. Only the VS Code package matching
 your OS is linked: `vscode-mac` on macOS, `vscode-linux` everywhere else.
@@ -48,7 +46,7 @@ your OS is linked: `vscode-mac` on macOS, `vscode-linux` everywhere else.
 
 ```bash
 cd ~/dotfiles
-stow zsh bash git gh kitty cspell
+stow zsh bash git gh cspell
 
 # VS Code lives one level deeper, so the stow directory is given explicitly
 stow -d vscode -t ~ vscode-linux      # vscode-mac on macOS
@@ -64,7 +62,7 @@ Link whichever tools you use, from the repository root:
 
 ```bash
 cd ~/dotfiles
-stow helix claude ghostty rofi usql mongosh ytm-player
+stow helix claude ghostty rofi usql mongosh
 ```
 
 ## Everyday commands

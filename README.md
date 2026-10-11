@@ -23,7 +23,7 @@
 <div align="center">
 
 ```
-     zsh  ·  vscode · ghostty ·  kitty  ·  starship  ·  helix  ·  git  ·  gh  ·  claude
+     zsh  ·  vscode · ghostty ·  starship  ·  helix  ·  git  ·  gh  ·  claude
 ```
 
 </div>
@@ -114,10 +114,10 @@ _every tool wears the same dracula_
 - **shell** — zsh · starship · fzf-tab · safe `rm` · `serve` / `expose` · `env-save` / `env-load` · history that keeps secrets out
 - **git** — conventional commits enforced · signed · push guard via `pass` · delta · tidy aliases
 - **vs code** — nine profiles · biome / clangd / gopls / rust-analyzer · snippets · italic ligatures
-- **terminal** — kitty · ghostty · two-line starship prompt
-- **and more** — helix · claude code statusline · rofi · usql · mongosh · ytm-player · cspell
+- **terminal** — ghostty · two-line starship prompt
+- **and more** — helix · claude code statusline · rofi · usql · mongosh · cspell
 
-> `install.sh` stows **zsh · bash · git · gh · kitty · cspell** and the vs code package. everything else is opt-in. see [gnu stow](https://gourangadassamrat.github.io/dotfiles/guide/stow#opt-in-packages).
+> `install.sh` stows **zsh · bash · git · gh · cspell** and the vs code package. everything else is opt-in. see [gnu stow](https://gourangadassamrat.github.io/dotfiles/guide/stow#opt-in-packages).
 
 ---
 
