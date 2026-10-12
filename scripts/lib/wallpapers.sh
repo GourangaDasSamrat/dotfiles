@@ -6,7 +6,7 @@ WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
 
 setup_wallpapers() {
   # Check if URLs file exists
-  if [ ! -f "$URLS_FILE" ]; then
+  if [! -f "$URLS_FILE" ]; then
     echo "Error: Wallpapers URL file not found at $URLS_FILE" >&2
     return 1
   fi
@@ -17,14 +17,24 @@ setup_wallpapers() {
     echo "Downloading wallpapers..."
 
     # Create directory with error handling
-    if ! mkdir -p "$WALLPAPERS_DIR"; then
+    if! mkdir -p "$WALLPAPERS_DIR"; then
       echo "Error: Failed to create wallpapers directory at $WALLPAPERS_DIR" >&2
       return 1
     fi
 
     # Download wallpapers with error handling
-    if ! wget -i "$URLS_FILE" -P "$WALLPAPERS_DIR"; then
-      echo "Error: Failed to download wallpapers" >&2
+    local downloader=""
+    if command -v wget2 >/dev/null 2>&1; then
+      downloader="wget2"
+    elif command -v wget >/dev/null 2>&1; then
+      downloader="wget"
+    else
+      echo "Error: Neither wget2 nor wget found. Please install wget or wget2." >&2
+      return 1
+    fi
+
+    if! "$downloader" -i "$URLS_FILE" -P "$WALLPAPERS_DIR"; then
+      echo "Error: Failed to download wallpapers with $downloader" >&2
       return 1
     fi
 
