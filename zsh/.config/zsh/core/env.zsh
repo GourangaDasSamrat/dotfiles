@@ -70,4 +70,4 @@ if (($+commands[sccache])); then
 fi
 
 # --- Set fallback browser ---
-() { for c; (( $+commands[$c] )) && export BROWSER=$c && break } zen-browser zen
+(($+commands[firefox])) && export BROWSER=firefox

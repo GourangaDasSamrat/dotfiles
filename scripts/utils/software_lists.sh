@@ -134,7 +134,7 @@ MACOS_TOOLS=(
   "tableplus"
   "ghostty"
 
-  "zen"
+  "firefox"
   "notion"
   "discord"
   "iina"
@@ -170,7 +170,7 @@ TERMUX_TOOLS=(
   "cargo-binstall"
   "rust-analyzer"
 
-  "zen-browser"
+  "firefox"
   "code-oss"
   "bruno"
   "ghostty"
