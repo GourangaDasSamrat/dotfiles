@@ -17,8 +17,8 @@ jobs:
     steps:
       - name: Mirror to GitLab
         env:
-          GITLAB_USERNAME: ${{ secrets.GITLAB_DEPLOY_TOKEN_USERNAME }}
-          GITLAB_TOKEN: ${{ secrets.GITLAB_DEPLOY_TOKEN }}
+          GITLAB_USERNAME: ${{ secrets.GITLAB_USERNAME }}
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           GITLAB_REPO_URL: ${{ secrets.GITLAB_REPO_URL }}
           GITHUB_REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
         run: |
