@@ -452,8 +452,8 @@
   ],
 
   // commitSage
-  "commitSage.provider.type": "gemini",
-  "commitSage.gemini.model": "gemini-2.5-flash",
+  "commitSage.provider.type": "groq",
+  "commitSage.groq.model": "openai/gpt-oss-120b",
   "commitSage.commit.commitFormat": "conventional",
   "commitSage.commit.commitlint.enabled": true,
 
