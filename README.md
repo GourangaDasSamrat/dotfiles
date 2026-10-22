@@ -57,7 +57,7 @@ _detects your os · installs every tool · symlinks every config · done_
 
 > the repo must live at `~/dotfiles` — the scripts and the `dot` alias expect it there.
 
-> something not working? see [troubleshooting](https://gourangadassamrat.github.io/dotfiles/guide/troubleshooting).
+> something not working? see [troubleshooting](https://dotfiles.gouranga.eu.org/guide/troubleshooting).
 
 <div align="center">
 
@@ -77,7 +77,7 @@ _detects your os · installs every tool · symlinks every config · done_
 
 ## `📖 documentation`
 
-### **[gourangadassamrat.github.io/dotfiles](https://gourangadassamrat.github.io/dotfiles/)**
+### **[dotfiles.gouranga.eu.org](https://dotfiles.gouranga.eu.org/)**
 
 </div>
 
@@ -87,12 +87,12 @@ _detects your os · installs every tool · symlinks every config · done_
 
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **start here** | [getting started](https://gourangadassamrat.github.io/dotfiles/guide/getting-started) · [gnu stow](https://gourangadassamrat.github.io/dotfiles/guide/stow) · [secrets, pass & gpg](https://gourangadassamrat.github.io/dotfiles/guide/secrets) · [installed software](https://gourangadassamrat.github.io/dotfiles/guide/installed-software)                                                                                     |
-| **shell**      | [command reference](https://gourangadassamrat.github.io/dotfiles/shell/reference)                                                                                                                                                                                                                                                                                                                                                 |
-| **git**        | [workflow](https://gourangadassamrat.github.io/dotfiles/git/workflow) · [github cli](https://gourangadassamrat.github.io/dotfiles/git/github-cli) · [send email](https://gourangadassamrat.github.io/dotfiles/git/send-email)                                                                                                                                                                                                     |
-| **editors**    | [keybindings](https://gourangadassamrat.github.io/dotfiles/vscode/keybindings) · [extensions](https://gourangadassamrat.github.io/dotfiles/vscode/extensions) · [helix](https://gourangadassamrat.github.io/dotfiles/helix/language-servers)                                                                                                                                                                                      |
-| **termux**     | [native desktop](https://gourangadassamrat.github.io/dotfiles/termux/native-desktop) · [ubuntu](https://gourangadassamrat.github.io/dotfiles/termux/proot-setup-ubuntu) · [arch](https://gourangadassamrat.github.io/dotfiles/termux/proot-setup-archlinux) · [alpine](https://gourangadassamrat.github.io/dotfiles/termux/proot-setup-alpine) · [fedora](https://gourangadassamrat.github.io/dotfiles/termux/proot-setup-fedora) |
-| **help**       | [troubleshooting & faq](https://gourangadassamrat.github.io/dotfiles/guide/troubleshooting) · [development](https://gourangadassamrat.github.io/dotfiles/guide/development)                                                                                                                                                                                                                                                       |
+| **start here** | [getting started](https://dotfiles.gouranga.eu.org/guide/getting-started) · [gnu stow](https://dotfiles.gouranga.eu.org/guide/stow) · [secrets, pass & gpg](https://dotfiles.gouranga.eu.org/guide/secrets) · [installed software](https://dotfiles.gouranga.eu.org/guide/installed-software)                                                                                     |
+| **shell**      | [command reference](https://dotfiles.gouranga.eu.org/shell/reference)                                                                                                                                                                                                                                                                                                                                                 |
+| **git**        | [workflow](https://dotfiles.gouranga.eu.org/git/workflow) · [github cli](https://dotfiles.gouranga.eu.org/git/github-cli) · [send email](https://dotfiles.gouranga.eu.org/git/send-email)                                                                                                                                                                                                     |
+| **editors**    | [keybindings](https://dotfiles.gouranga.eu.org/vscode/keybindings) · [extensions](https://dotfiles.gouranga.eu.org/vscode/extensions) · [helix](https://dotfiles.gouranga.eu.org/helix/language-servers)                                                                                                                                                                                      |
+| **termux**     | [native desktop](https://dotfiles.gouranga.eu.org/termux/native-desktop) · [ubuntu](https://dotfiles.gouranga.eu.org/termux/proot-setup-ubuntu) · [arch](https://dotfiles.gouranga.eu.org/termux/proot-setup-archlinux) · [alpine](https://dotfiles.gouranga.eu.org/termux/proot-setup-alpine) · [fedora](https://dotfiles.gouranga.eu.org/termux/proot-setup-fedora) |
+| **help**       | [troubleshooting & faq](https://dotfiles.gouranga.eu.org/guide/troubleshooting) · [development](https://dotfiles.gouranga.eu.org/guide/development)                                                                                                                                                                                                                                                       |
 | **templates**  | [`.zsh_secrets`](docs/templates/.zsh_secrets.template) · [`.connections.usql`](docs/templates/.connections.usql.template)                                                                                                                                                                                                                                                                                                         |
 
 </div>
@@ -117,7 +117,7 @@ _every tool wears the same dracula_
 - **terminal** — ghostty · two-line starship prompt
 - **and more** — helix · claude code statusline · rofi · usql · mongosh · cspell
 
-> `install.sh` stows **zsh · bash · git · gh · cspell** and the vs code package. everything else is opt-in. see [gnu stow](https://gourangadassamrat.github.io/dotfiles/guide/stow#opt-in-packages).
+> `install.sh` stows **zsh · bash · git · gh · cspell** and the vs code package. everything else is opt-in. see [gnu stow](https://dotfiles.gouranga.eu.org/guide/stow#opt-in-packages).
 
 ---
 
@@ -135,7 +135,7 @@ _every tool wears the same dracula_
 just format    # biome + prettier + shfmt across the repo
 ```
 
-commits follow [conventional commits](https://www.conventionalcommits.org), and the docs site rebuilds from `docs/` on every push to `main`. details in [development](https://gourangadassamrat.github.io/dotfiles/guide/development).
+commits follow [conventional commits](https://www.conventionalcommits.org), and the docs site rebuilds from `docs/` on every push to `main`. details in [development](https://dotfiles.gouranga.eu.org/guide/development).
 
 ---
 
