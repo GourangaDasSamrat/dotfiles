@@ -47,6 +47,7 @@ plugin, `fzf-tab`, `zsh-autosuggestions` and `zsh-syntax-highlighting` (kept las
 | `la`                | `ls -A` — include hidden files                                                                                                  |
 | `lt`                | Tree view (`eza --tree -a`), ignoring `.git`, `node_modules`, `target` and `.venv`                                              |
 | `cp`, `mv`          | Interactive and verbose (`-iv`)                                                                                                 |
+| `c`                 | Clear the shell with `clear` command.                                                                                           |
 | `mkdir <dir>`       | Creates the folder (with parents). With one argument it asks whether to `git init`, add a `README.md` and make the first commit |
 | `rm <paths>`        | Lists what will be deleted and asks for confirmation (default is **No**)                                                        |
 | `extract <archive>` | Detects the format and unpacks it in place                                                                                      |
@@ -227,7 +228,7 @@ commands starting with a space. A filter keeps credentials out of
 | `BAT_THEME`        | `Dracula`                                                                                                                  |
 | `PATH` additions   | LLVM (Homebrew), pnpm, bun, `~/.cargo/bin`, `~/go/bin`, `~/.local/bin`; missing folders are dropped and duplicates removed |
 | `sccache`          | When installed, used as the Rust and C/C++ compiler wrapper with a 20 GB cache in `~/.cache/sccache`                       |
-| `BROWSER`          | `firefox`                                                                                   |
+| `BROWSER`          | `firefox`                                                                                                                  |
 | Termux             | `TZ=Asia/Dhaka`, `SSL_CERT_FILE` and `XDG_DATA_HOME` are set                                                               |
 
 ## Customising

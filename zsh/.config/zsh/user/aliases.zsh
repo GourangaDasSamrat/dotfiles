@@ -23,6 +23,7 @@ if [[ -d $DOTFILES ]]; then
 	alias dots="cd $DOTFILES/scripts"
 fi
 alias reload="source ~/.config/zsh/.zshrc && echo 'ZSH Config Reloaded!'"
+alias c=clear
 
 # --- Safety ---
 alias cp='cp -iv'

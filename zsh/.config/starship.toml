@@ -1,6 +1,3 @@
-## ░█▀▀░▀█▀░█▀█░█▀▄░█▀▀░█░█░▀█▀░█▀█
-## ░▀▀█░░█░░█▀█░█▀▄░▀▀█░█▀█░░█░░█▀▀
-## ░▀▀▀░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀░░
 ## CROSS-SHELL PROMPT
 ## The minimal, blazing-fast, and infinitely customizable prompt for anyshell!
 
@@ -312,23 +309,3 @@ symbol = " "
 
 [zig]
 symbol = " "
-
-[custom.vscode]
-command = """
-for bin in code-insiders code-oss code; do
-  path=$(command -v $bin 2>/dev/null) || continue
-  real=$(readlink -f $path 2>/dev/null || echo $path)
-  dir=$(dirname $real)
-  pkg="$dir/../resources/app/package.json"
-  if [ -f "$pkg" ]; then
-    grep -m1 '\"version\"' \"$pkg\" | sed 's/.*\"version\": *\"\\(.*\\)\".*/v\\1/' | tr -d '\\n'
-    break
-  fi
-done
-"""
-symbol = " 󰨞 "
-format = "[$symbol$output]($style) "
-style = "fg:#23A9F2 bold"
-when = "command -v code &>/dev/null || command -v code-oss &>/dev/null || command -v code-insiders &>/dev/null"
-detect_folders = ["."]
-shell = ["bash", "--noprofile", "--norc"]
