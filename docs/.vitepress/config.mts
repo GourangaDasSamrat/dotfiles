@@ -5,7 +5,7 @@ const repo = "https://github.com/GourangaDasSamrat/dotfiles";
 export default defineConfig({
   title: "Dotfiles",
   description: "Setup guides and notes for my dotfiles",
-  base: "/dotfiles/",
+  base: "/",
   lang: "en-US",
   cleanUrls: true,
   lastUpdated: true,
