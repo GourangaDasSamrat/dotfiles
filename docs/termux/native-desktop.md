@@ -19,7 +19,7 @@ apt update && apt upgrade -y
 apt install x11-repo tur-repo -y
 apt install git curl termux-x11-nightly pulseaudio ttf-jetbrains-mono-nerd -y
 
-apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager -y
+apt install xfce4 xfce4-whiskermenu-plugin xfce4-clipman-plugin xfce4-screenshooter xfce4-docklike-plugin xfce4-panel-profiles xfce4-taskmanager xorg-setxkbmap -y
 ```
 
 ### Setup Startup Script
@@ -103,3 +103,15 @@ pinentry-program $PREFIX/bin/pinentry-gnome3
 | Application Launcher | `rofi -show drun`         | `ALt+Space`   |
 | Clipboard Manager    | `xfce4-clipman-history`   | `Super+Alt+V` |
 | Main Menu            | `xfce4-popup-whiskermenu` | `Super`       |
+
+## Keymap
+
+> All things here are need to add in autostart menu.
+
+1. Set `caps_lock` key as `esc`
+
+```
+Name	    : Caps to Esc
+Description : Remaps Caps Lock to Escape
+Command	    : sh -c "sleep 2 && setxkbmap -option '' && setxkbmap -layout us -option caps:escape"
+```
