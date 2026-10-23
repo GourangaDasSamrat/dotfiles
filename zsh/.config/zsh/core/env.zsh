@@ -12,14 +12,16 @@ export PAGER=less        # Default pager for long outputs
 export LESS="-R --mouse" # Enable mouse support on less
 
 # --- Environment Variables ---
-export DOTFILES=$HOME/dotfiles           # Path to dotfiles directory
-export BAT_THEME=Dracula                 # Syntax highlighting theme
-export UV_LINK_MODE=copy                 # Symlink mode for UV
-export BUN_INSTALL=$HOME/.bun            # Bun installation directory
-export PNPM_HOME=$HOME/.local/share/pnpm # PNPM home
-export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 # Disables the Corepack download prompt
-export GOPATH=$HOME/go                   # Go workspace directory
-export CARGO_NET_GIT_FETCH_WITH_CLI=true # Use system git for better auth/network stability
+export DOTFILES=$HOME/dotfiles           	 # Path to dotfiles directory
+export BAT_THEME=Dracula                 	 # Syntax highlighting theme
+export UV_LINK_MODE=copy                 	 # Symlink mode for UV
+export BUN_INSTALL=$HOME/.bun            	 # Bun installation directory
+export PNPM_HOME=$HOME/.local/share/pnpm 	 # PNPM home
+export COREPACK_HOME=$HOME/.local/share/corepack # Corepack home
+export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 	 # Disables the Corepack download prompt
+export GOPATH=$HOME/go                   	 # Go workspace directory
+export GOCACHE=$GOPATH/cache/go-build		 # Go cache directory
+export CARGO_NET_GIT_FETCH_WITH_CLI=true 	 # Use system git for better auth/network stability
 
 # --- Path Management ---
 typeset -U path # Prevent duplicate PATH entries
@@ -66,7 +68,7 @@ if (($+commands[sccache])); then
 	export CC=sccache
 	export CXX=sccache
 	export SCCACHE_CACHE_SIZE="20G"
-	export SCCACHE_DIR="$HOME/.cache/sccache"
+	export SCCACHE_DIR=$HOME/.local/share/sccache
 fi
 
 # --- Set fallback browser ---
