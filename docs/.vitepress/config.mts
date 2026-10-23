@@ -1,6 +1,7 @@
 import { defineConfig } from "vitepress";
 
 const repo = "https://github.com/GourangaDasSamrat/dotfiles";
+const mirror = "https://gitlab.com/GourangaDasSamrat/dotfiles";
 
 export default defineConfig({
   title: "Dotfiles",
@@ -67,7 +68,10 @@ export default defineConfig({
       },
     ],
 
-    socialLinks: [{ icon: "github", link: repo }],
+    socialLinks: [
+      { icon: "github", link: repo },
+      { icon: "gitlab", link: mirror },
+    ],
     search: { provider: "local" },
     outline: { level: [2, 3] },
     editLink: {

@@ -29,6 +29,12 @@ git clone https://github.com/GourangaDasSamrat/dotfiles.git ~/dotfiles
 cd ~/dotfiles/scripts
 ```
 
+The repository is also mirrored on GitLab, in case GitHub is unreachable:
+
+```bash
+git clone https://gitlab.com/GourangaDasSamrat/dotfiles.git ~/dotfiles
+```
+
 ## 2. Run the installer
 
 Pick one of two modes.

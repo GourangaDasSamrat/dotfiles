@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: GitHub
       link: https://github.com/GourangaDasSamrat/dotfiles
+    - theme: alt
+      text: GitLab mirror
+      link: https://gitlab.com/GourangaDasSamrat/dotfiles
 
 features:
   - title: Getting Started

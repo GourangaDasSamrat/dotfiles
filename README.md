@@ -55,6 +55,8 @@ _detects your os · installs every tool · symlinks every config · done_
 
 > want control? `./setup.sh` lets you pick exactly what to run.
 
+> github unreachable? use the [gitlab mirror](https://gitlab.com/GourangaDasSamrat/dotfiles).
+
 > the repo must live at `~/dotfiles` — the scripts and the `dot` alias expect it there.
 
 > something not working? see [troubleshooting](https://dotfiles.gouranga.eu.org/guide/troubleshooting).
