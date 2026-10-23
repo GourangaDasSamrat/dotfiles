@@ -1,3 +1,9 @@
+## [1.2.0] - 2026-10-23
+
+### 🚀 Features
+
+- *(ci)* Add Termux job to software-install-test workflow (Gouranga Das Samrat)
+- *(zsh)* Add corepack home and go cache env vars (Gouranga Das Samrat)
 ## [1.1.1] - 2026-10-23
 
 ### 🐛 Bug Fixes
