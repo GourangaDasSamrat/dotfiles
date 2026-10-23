@@ -114,8 +114,16 @@ echo "----------------------------------------"
 echo "Cleaning Go module cache to save storage..."
 go clean -modcache
 
+# GNU strip accepts --strip-all; BSD strip does not and
+# uses -x (drop local symbols) instead.
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  STRIP_FLAGS=(-x)
+else
+  STRIP_FLAGS=(--strip-all)
+fi
+
 echo "Stripping Go binaries and adding symlink for golangci-lint..."
-strip --strip-all "$GOPATH/bin"/* && ln -s "$GOPATH/bin/golangci-lint" "$GOPATH/bin/golangci-lint-v2"
+strip "${STRIP_FLAGS[@]}" "$GOPATH/bin"/* && ln -s "$GOPATH/bin/golangci-lint" "$GOPATH/bin/golangci-lint-v2"
 
 # ─── Summary ─────────────────────────────────────────────────────────────────
 echo "----------------------------------------"
