@@ -181,7 +181,6 @@ TERMUX_TOOLS=(
   "eog"
   "galculator"
 
-  "opencode"
   "starship"
   "helix"
   "helix-grammars"
