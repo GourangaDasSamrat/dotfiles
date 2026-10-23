@@ -134,7 +134,7 @@ MACOS_TOOLS=(
 
   "visual-studio-code"
   "bruno"
-  "tableplus"
+  "dbeaver-community"
   "ghostty"
 
   "firefox"
