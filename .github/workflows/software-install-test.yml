@@ -165,11 +165,84 @@ jobs:
           path: report/macos.json
           retention-days: 1
 
+  termux:
+    name: Termux
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      # Official x86_64 Termux image, so the job runs natively on the runner.
+      IMAGE: termux/termux-docker:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull ${{ env.IMAGE }}
+        run: docker pull "$IMAGE"
+
+      - name: Run softwares.sh in ${{ env.IMAGE }}
+        id: install
+        run: |
+          # Same pipefail reasoning as the linux job: keep docker's exit status.
+          set -o pipefail
+          mkdir -p ci-logs
+          # Unlike the linux images, the container does not run as root but as Termux's
+          # unprivileged `system` user, which cannot append to the runner-owned step
+          # summary unless the file is world-writable.
+          chmod a+w "$GITHUB_STEP_SUMMARY"
+          docker run --rm \
+            -e DEBIAN_FRONTEND=noninteractive \
+            -e GITHUB_STEP_SUMMARY=/ci/step_summary.md \
+            -v "$GITHUB_STEP_SUMMARY:/ci/step_summary.md" \
+            -v "$PWD:/dotfiles" \
+            -w /dotfiles \
+            "$IMAGE" \
+            bash -c '
+              # firefox, code-oss, bruno, ... come from these two repos, the same
+              # prerequisite docs/termux/native-desktop.md asks for before the installer.
+              pkg update -y && pkg install -y x11-repo tur-repo
+
+              bash scripts/lib/softwares.sh
+              install_status=$?
+
+              bash .github/scripts/verify-software.sh
+              verify_status=$?
+
+              echo "install exit code: $install_status, verify exit code: $verify_status"
+              [ "$install_status" -eq 0 ] && [ "$verify_status" -eq 0 ]
+            ' 2>&1 | tee ci-logs/install.log
+
+      - name: Write report
+        if: always()
+        env:
+          OS_NAME: Termux
+          SLUG: termux
+          OUTCOME: ${{ steps.install.outcome }}
+        run: |
+          mkdir -p report ci-logs
+          touch ci-logs/install.log
+          missing=$(grep -E '^  MISSING  ' ci-logs/install.log | sed -E 's/^  MISSING  //' || true)
+          jq -n \
+            --arg name "$OS_NAME" \
+            --arg outcome "$OUTCOME" \
+            --arg missing "$missing" \
+            --arg log "$(tail -n 60 ci-logs/install.log)" \
+            '{name: $name, outcome: $outcome, missing: ($missing | split("\n") | map(select(length > 0))), log: $log}' \
+            > "report/$SLUG.json"
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-termux
+          path: report/termux.json
+          retention-days: 1
+
   # Opens one issue per failing OS (listing the packages that failed) and
   # closes it again once that OS passes on a later run.
   report:
     name: Open / close issues
-    needs: [linux, macos]
+    needs: [linux, macos, termux]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     permissions:

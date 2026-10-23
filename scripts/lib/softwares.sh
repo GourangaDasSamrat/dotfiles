@@ -8,7 +8,7 @@ _is_installed() {
   local tool="$1"
   case "$PKG_MANAGER" in
   brew) brew list "$tool" &>/dev/null ;;
-  pkg) pkg list-installed 2>/dev/null | grep -qE "^${tool} " ;;
+  pkg) pkg list-installed 2>/dev/null | grep -qE "^${tool}/" ;;
   apt) dpkg-query -W -f='${Status}' "$tool" 2>/dev/null | grep -q "ok installed" ;;
   pacman) pacman -Q "$tool" &>/dev/null || pacman -Qg "$tool" &>/dev/null ;;
   dnf)
