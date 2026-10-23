@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 URLS_FILE="$HOME/dotfiles/scripts/config/wallpapers.url"
 WALLPAPERS_DIR="$HOME/Pictures/wallpapers"
@@ -44,5 +43,6 @@ setup_wallpapers() {
 
 # ── Run if executed directly ──────────────────────────────────────────────────
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  set -euo pipefail
   setup_wallpapers
 fi

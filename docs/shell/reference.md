@@ -149,6 +149,7 @@ apt update       # unchanged
 | Navigation | `dot` → `~/dotfiles`, `dots` → `~/dotfiles/scripts`, `reload` re-sources the zsh config                           |
 | Go         | `gr` = `go run .`, `gb` = `go build`, `gmod` = `go mod`                                                           |
 | Cargo      | `cr` run, `cb` build, `ct` test, `cc` check, `cn` new, `ccl` clean, `cdoc` doc --open, `cdc` doc --no-deps --open |
+| Misc       | `play` reads standard input and discards it (`cat > /dev/null`)                                                   |
 | Databases  | `usql` and `mongosh` start in quiet mode                                                                          |
 | Distro fix | `fd` → `fdfind`, `bat` → `batcat`, `wget` → `wget2` when only those names exist                                   |
 | `bun`      | A bare `bun` runs `bun install` inside a project (when `package.json` exists), otherwise `bun repl`               |

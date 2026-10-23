@@ -11,7 +11,7 @@ and git setup. Everything is driven by the scripts in
 | `git`           | Needed to clone the repository.                                        |
 | Homebrew        | macOS only — install from [brew.sh](https://brew.sh) first.            |
 | `sudo`          | Used automatically for `apt`, `dnf` and `pacman` when it is available. |
-| `wget` and `7z` | Linux only — the font installer downloads and unpacks Apple's DMGs.    |
+| `curl` and `7z` | Linux only — the font installer downloads and unpacks Apple's DMGs.    |
 | Internet access | Packages, fonts and wallpapers are downloaded during setup.            |
 
 Supported package managers are detected in this order: `pkg` (Termux), `brew`,
@@ -128,7 +128,7 @@ see exactly which one fails:
 ```bash
 ./lib/softwares.sh
 ./lib/wallpapers.sh
-./lib/fonts.sh        # Linux only, needs wget and 7z
+./lib/fonts.sh        # Linux only, needs curl and 7z
 ./lib/dotfiles.sh
 ```
 

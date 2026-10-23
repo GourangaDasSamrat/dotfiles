@@ -8,8 +8,8 @@ source "$SCRIPT_DIR/lib/fonts.sh"
 source "$SCRIPT_DIR/lib/dotfiles.sh"
 
 install_packages
-install_plugins
 setup_wallpapers
+setup_fonts
 setup_dotfiles
 
 echo ""

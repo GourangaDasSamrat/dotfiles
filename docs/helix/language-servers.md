@@ -79,7 +79,7 @@ bun add -g typescript-language-server
 **Formatter & Linter:**
 
 ```bash
-bun add -g biome
+bun add -g @biomejs/biome
 ```
 
 ---
@@ -117,7 +117,7 @@ go install golang.org/x/tools/cmd/goimports@latest
 **Linter:**
 
 ```bash
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
 ```
 
 ---

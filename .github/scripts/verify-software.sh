@@ -6,29 +6,15 @@
 # reflects the last package. This script checks each one explicitly and prints
 # (and, in CI, summarises) whatever is missing.
 #
-# NOTE: the tool selection below mirrors install_packages() in softwares.sh.
-# Keep both in sync if the selection logic changes.
+# The tool selection comes from _select_tools() in softwares.sh, the same
+# function install_packages() uses, so the two can never drift apart.
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 # shellcheck source=../../scripts/lib/softwares.sh
 source "$REPO_ROOT/scripts/lib/softwares.sh"
 
-case "$OS" in
-macos) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
-linux)
-  case "$PKG_MANAGER" in
-  pkg) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${TERMUX_TOOLS[@]}") ;;
-  dnf) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${RHEL_TOOLS[@]}") ;;
-  pacman) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${ARCH_TOOLS[@]}") ;;
-  *) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEBIAN_TOOLS[@]}") ;;
-  esac
-  ;;
-*)
-  echo "Error: unsupported OS '$OS'"
-  exit 1
-  ;;
-esac
+_select_tools || exit 1
 
 echo "Verifying ${#TOOLS[@]} entries (OS=$OS, package manager=$PKG_MANAGER)..."
 

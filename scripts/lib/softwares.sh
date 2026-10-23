@@ -81,12 +81,9 @@ _install_tool() {
   esac
 }
 
-install_packages() {
-  if [ "$OS" = "unsupported" ] || [ "$PKG_MANAGER" = "unsupported" ]; then
-    echo "Error: Unsupported OS or package manager."
-    return 1
-  fi
-
+# Fills the global TOOLS array for the detected OS and package manager.
+# Shared with .github/scripts/verify-software.sh so both always agree.
+_select_tools() {
   case "$OS" in
   macos) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${MACOS_TOOLS[@]}") ;;
   linux)
@@ -97,7 +94,20 @@ install_packages() {
     *) TOOLS=("${CROSS_PLATFORM_TOOLS[@]}" "${LINUX_COMMON_TOOLS[@]}" "${DEBIAN_TOOLS[@]}") ;;
     esac
     ;;
+  *)
+    echo "Error: unsupported OS '$OS'" >&2
+    return 1
+    ;;
   esac
+}
+
+install_packages() {
+  if [ "$OS" = "unsupported" ] || [ "$PKG_MANAGER" = "unsupported" ]; then
+    echo "Error: Unsupported OS or package manager."
+    return 1
+  fi
+
+  _select_tools || return 1
 
   echo "Updating system..."
   case "$PKG_MANAGER" in

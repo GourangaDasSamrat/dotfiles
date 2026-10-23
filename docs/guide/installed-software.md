@@ -9,7 +9,7 @@ lists live in
 |                          |                                                                                                                                                                                                                                                                                                                                                  |
 | :----------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **everywhere**           | curl · wget · jq · httpie · openssl · fd · ripgrep · fzf · eza · bat · duf · bash-completion · shfmt · shellcheck · just · moreutils · stow · gh · git-lfs · git-delta · pass                                                                                                                                                                    |
-| **linux extras**         | clang · llvm · zsh · rofi                                                                                                                                                                                                                                                                                                                        |
+| **linux extras**         | clang · llvm · zsh · rofi · 7zip                                                                                                                                                                                                                                                                                                                 |
 | **debian / ubuntu**      | build-essential · command-not-found · starship                                                                                                                                                                                                                                                                                                   |
 | **fedora / rhel**        | development-tools · openssl-devel · PackageKit-command-not-found · helix                                                                                                                                                                                                                                                                         |
 | **arch**                 | base-devel · rustup · cargo-binstall · uv · bun · fnm · docker · biome · go · golangci-lint · gopls · opencode · cloudflared · pkgfile · starship · helix · ghostty                                                                                                                                                                              |
@@ -35,7 +35,7 @@ scripts/
 ├── lib/                    modular setup scripts (standalone)
 │   ├── softwares.sh        install packages for your os and package manager
 │   ├── wallpapers.sh       download the wallpaper collection
-│   ├── fonts.sh            apple's SF Pro & SF Mono on linux (needs wget + 7z)
+│   ├── fonts.sh            apple's SF Pro & SF Mono on linux (needs curl + 7z)
 │   └── dotfiles.sh         symlink configs with gnu stow
 │
 ├── sdk-tools/              optional language-specific installers

@@ -81,7 +81,7 @@ Full command list: [Shell Reference](../shell/reference).
 | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `Unsupported OS or package manager`                              | Only `pkg`, `brew`, `dnf`, `apt` and `pacman` are detected                                                                                |
 | `install.sh` stops partway                                       | Run the steps one at a time with `./lib/*.sh`, or use `./setup.sh`. See [Getting Started](./getting-started#if-the-installer-stops-early) |
-| Fonts step fails on Linux                                        | It needs `wget` and `7z` (`p7zip`). Install both and run `./lib/fonts.sh` again                                                           |
+| Fonts step fails on Linux                                        | It needs `curl` and `7z` (or `7zz`). Install both and run `./lib/fonts.sh` again                                                          |
 | Stow reports `existing target is neither a link nor a directory` | A real file is in the way. Move it aside and re-run `stow`. See [GNU Stow](./stow#fixing-conflicts)                                       |
 | Links point to the wrong place                                   | The repository is not at `~/dotfiles`. Move it there and run `stow -R <package>`                                                          |
 | Git hooks do nothing                                             | They must be executable: `chmod +x ~/.git-hooks/*`                                                                                        |
