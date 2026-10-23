@@ -21,7 +21,7 @@ local -a sys_comp_dirs=(
 fpath+=(${^sys_comp_dirs:#^(*#(|/*))})
 
 # Antidote plugin manager
-ANTIDOTE_HOME="$HOME/.antidote"
+ANTIDOTE_HOME="$HOME/.local/share/antidote"
 [[ -d "$ANTIDOTE_HOME" ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git "$ANTIDOTE_HOME"
 source "$ANTIDOTE_HOME/antidote.zsh"
 
