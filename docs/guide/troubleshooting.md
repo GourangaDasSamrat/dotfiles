@@ -84,7 +84,7 @@ Full command list: [Shell Reference](../shell/reference).
 | Fonts step fails on Linux                                        | It needs `curl` and `7z` (or `7zz`). Install both and run `./lib/fonts.sh` again                                                          |
 | Stow reports `existing target is neither a link nor a directory` | A real file is in the way. Move it aside and re-run `stow`. See [GNU Stow](./stow#fixing-conflicts)                                       |
 | Links point to the wrong place                                   | The repository is not at `~/dotfiles`. Move it there and run `stow -R <package>`                                                          |
-| Git hooks do nothing                                             | They must be executable: `chmod +x ~/.git-hooks/*`                                                                                        |
+| Git hooks do nothing                                             | They must be executable: `chmod +x ~/.config/git/hooks/*`                                                                                        |
 
 ## Docs site
 

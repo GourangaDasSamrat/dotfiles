@@ -33,9 +33,9 @@ setup_dotfiles() {
       return 1
     fi
 
-    if [ -d "$HOME/.git-hooks" ]; then
+    if [ -d "$HOME/.config/git/hooks" ]; then
       echo "Setting execute permissions for git hooks..."
-      chmod +x "$HOME/.git-hooks"/*
+      chmod +x "$HOME/.config/git/hooks"/*
       echo "Git hooks permissions updated!"
     else
       echo "Note: ~/.git-hooks not found. Skipping chmod."

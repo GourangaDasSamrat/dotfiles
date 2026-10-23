@@ -2,9 +2,9 @@
 
 The git setup enforces conventional commits, signs every commit, and puts a
 passphrase guard in front of `git push`. The config is `git/.gitconfig` and the
-hooks are in `git/.git-hooks/`, both linked by [GNU Stow](../guide/stow).
+hooks are in `git/.config/git/hooks/`, both linked by [GNU Stow](../guide/stow).
 
-Hooks are installed globally through `core.hooksPath = ~/.git-hooks`, so they run
+Hooks are installed globally through `core.hooksPath = ~/.config/git/hooks`, so they run
 in **every** repository on the machine, not just this one.
 
 ## Commit messages

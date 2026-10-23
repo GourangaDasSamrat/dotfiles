@@ -13,7 +13,7 @@
 # Core & Editor configuration
 [core]
   sshCommand = "ssh -o IdentitiesOnly=yes -i ~/.ssh/id_ed25519"
-  hooksPath = ~/.git-hooks
+  hooksPath = ~/.config/git/hooks
   editor = hx
   pager = delta
   whitespace = space-before-tab,trailing-space

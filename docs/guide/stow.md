@@ -13,7 +13,7 @@ symlinks.
 ```text
 ~/dotfiles/zsh/.config/zsh/.zshrc   →   ~/.config/zsh/.zshrc
 ~/dotfiles/git/.gitconfig           →   ~/.gitconfig
-~/dotfiles/git/.git-hooks/          →   ~/.git-hooks/
+~/dotfiles/git/.config/git/hooks/          →   ~/.config/git/hooks/
 ```
 
 Stow links into the **parent of the directory you run it from**. That is why the
@@ -25,7 +25,7 @@ repository has to live at `~/dotfiles`: run from there, the parent is `~`.
 | --------------------- | -------------------------------------------------------- | :-----: |
 | `zsh`                 | `~/.zshenv`, `~/.config/zsh/`, `~/.config/starship.toml` |   yes   |
 | `bash`                | `~/.bashrc`                                              |   yes   |
-| `git`                 | `~/.gitconfig`, `~/.git-hooks/`                          |   yes   |
+| `git`                 | `~/.gitconfig`, `~/.config/git/hooks/`                          |   yes   |
 | `gh`                  | `~/.config/gh/` (GitHub CLI aliases, queries, scripts)   |   yes   |
 | `cspell`              | `~/.config/cspell/` (shared dictionaries)                |   yes   |
 | `vscode/vscode-linux` | `~/.config/Code/User/` (settings, keybindings, snippets) |   yes   |
@@ -51,7 +51,7 @@ stow zsh bash git gh cspell
 # VS Code lives one level deeper, so the stow directory is given explicitly
 stow -d vscode -t ~ vscode-linux      # vscode-mac on macOS
 
-chmod +x ~/.git-hooks/*
+chmod +x ~/.config/git/hooks/*
 ```
 
 The last line matters: git ignores hooks that are not executable.
