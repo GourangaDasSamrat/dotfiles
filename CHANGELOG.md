@@ -1,3 +1,44 @@
+## [1.1.1] - 2026-10-23
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Use platform-specific strip flags for macOS compatibility (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(shell)* Add c alias and remove custom vscode module (Gouranga Das Samrat)
+- Unify tool selection and swap wget→curl in fonts (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(vitepress)* Change base url from /dotfiles to / (Gouranga Das Samrat)
+- *(termux)* Add xorg-setxkbmap package and keymap configuration for Caps Lock to Escape (Gouranga Das Samrat)
+- Migrate documentation links to new custom domain (Gouranga Das Samrat)
+- [**breaking**] Add GitLab mirror links and update package lists (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Change auth method to pat (Gouranga Das Samrat)
+- *(termux)* Update Termux native-desktop shebang (Gouranga Das Samrat)
+- *(git)* Set push default to current (Gouranga Das Samrat)
+- *(vscode)* Switch commitSage provider to groq (Gouranga Das Samrat)
+## [1.1.0] - 2026-10-17
+
+### 🚀 Features
+
+- *(scripts)* Add opencode to software lists for arch, macos, and termux (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(scripts)* Fix bash syntax error due to missing space in condition (Gouranga Das Samrat)
+
+### 💼 Other
+
+- [**breaking**] Replace zen-browser with firefox across configs and docs (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(scripts)* Support wget2 and wget for wallpaper download (Gouranga Das Samrat)
 ## [1.0.0] - 2026-10-11
 
 ### 💼 Other
