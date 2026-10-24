@@ -1,3 +1,18 @@
+## [1.3.0] - 2026-10-24
+
+### 🚀 Features
+
+- *(docs)* Show changelog on the docs site (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(git)* Migrate git config and hooks to XDG-compliant paths (Gouranga Das Samrat)
+- *(zsh)* Move antidote to XDG data directory (Gouranga Das Samrat)
+- *(claude)* [**breaking**] Remove claude config and replace opencode with codex (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Replace TablePlus with DBeaver in installed software lists (Gouranga Das Samrat)
 ## [1.2.0] - 2026-10-23
 
 ### 🚀 Features
