@@ -23,7 +23,7 @@
 <div align="center">
 
 ```
-     zsh  ·  vscode · ghostty ·  starship  ·  helix  ·  git  ·  gh  ·  claude
+     zsh  ·  vscode · ghostty ·  starship  ·  helix  ·  git  ·  gh
 ```
 
 </div>

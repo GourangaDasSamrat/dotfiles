@@ -94,7 +94,7 @@ ARCH_TOOLS=(
   "golangci-lint"
   "gopls"
 
-  "opencode"
+  "openai-codex"
   "cloudflared"
   "pkgfile"
   "starship"
@@ -123,7 +123,7 @@ MACOS_TOOLS=(
   "gopls"
   "go-air"
 
-  "opencode"
+  "codex"
   "docker"
   "colima"
   "sccache"
@@ -181,7 +181,7 @@ TERMUX_TOOLS=(
   "eog"
   "galculator"
 
-  "opencode"
+  "codex"
   "starship"
   "helix"
   "helix-grammars"

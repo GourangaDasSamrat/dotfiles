@@ -25,13 +25,12 @@ repository has to live at `~/dotfiles`: run from there, the parent is `~`.
 | --------------------- | -------------------------------------------------------- | :-----: |
 | `zsh`                 | `~/.zshenv`, `~/.config/zsh/`, `~/.config/starship.toml` |   yes   |
 | `bash`                | `~/.bashrc`                                              |   yes   |
-| `git`                 | `~/.gitconfig`, `~/.config/git/hooks/`                          |   yes   |
+| `git`                 | `~/.gitconfig`, `~/.config/git/hooks/`                   |   yes   |
 | `gh`                  | `~/.config/gh/` (GitHub CLI aliases, queries, scripts)   |   yes   |
 | `cspell`              | `~/.config/cspell/` (shared dictionaries)                |   yes   |
 | `vscode/vscode-linux` | `~/.config/Code/User/` (settings, keybindings, snippets) |   yes   |
 | `vscode/vscode-mac`   | `~/Library/Application Support/Code/User/`               |   yes   |
 | `helix`               | `~/.config/helix/`                                       |   no    |
-| `claude`              | `~/.claude/` (settings, statusline, Dracula theme)       |   no    |
 | `ghostty`             | `~/.config/ghostty/config.ghostty`                       |   no    |
 | `rofi`                | `~/.config/rofi/config.rasi`                             |   no    |
 | `usql`                | `~/.config/usql/config.yaml`                             |   no    |
@@ -62,7 +61,7 @@ Link whichever tools you use, from the repository root:
 
 ```bash
 cd ~/dotfiles
-stow helix claude ghostty rofi usql mongosh
+stow helix ghostty rofi usql mongosh
 ```
 
 ## Everyday commands
