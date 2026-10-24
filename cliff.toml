@@ -16,7 +16,7 @@ body = """
     {% for commit in commits %}
         - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
             {% if commit.breaking %}[**breaking**] {% endif %}\
-            {{ commit.message | upper_first }}\
+            {{ commit.message | split(pat="\\n") | first | trim | upper_first }}\
             {% if commit.author.name %} ({{ commit.author.name }}){% endif %}\
     {% endfor %}
 {% endfor %}

@@ -5,7 +5,13 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "CHANGELOG.md"
       - ".github/workflows/docs.yml"
+  # CHANGELOG.md is committed by the Release workflow with GITHUB_TOKEN, which
+  # does not trigger push workflows, so redeploy once the release finishes.
+  workflow_run:
+    workflows: [Release]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -19,10 +25,13 @@ concurrency:
 
 jobs:
   build:
+    # For workflow_run, only deploy when the release itself succeeded.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main # pick up the changelog commit made by the Release workflow
           fetch-depth: 0 # needed for "last updated" timestamps
       - uses: pnpm/action-setup@v4
         with:

@@ -17,7 +17,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
-      { text: "Changelog", link: `${repo}/blob/main/CHANGELOG.md` },
+      { text: "Changelog", link: "/changelog" },
     ],
 
     sidebar: [

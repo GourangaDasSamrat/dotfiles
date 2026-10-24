@@ -143,68 +143,7 @@
 
 ### 💼 Other
 
-- Refactor whole zsh scripts (#13)
-
-* refactor(zsh): add shared status printers
-
-- Wrap repeated color symbol pattern
-- Simplify status output functions
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* feat(network): add serve and expose functions
-
-- Implement local http server with port validation
-- Add cloudflared tunnel for port exposure
-- Include port-entry loop for user input
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* feat(security): add gentoken and gensalt functions
-
-- Generate secure random tokens and salts
-- Supports hex, base64, and base64url encoding
-- Ensures /dev/urandom is available
-- Portable across BSD and GNU coreutils
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* feat(zsh): add package manager wrappers
-
-- Simplify package installation and removal
-- Support apt, brew, and dnf commands
-- Use 'i' for install and 'rm' for remove
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* refactor(zsh): remove unused utility functions
-
-- Removed server, expose, gentoken, gensalt
-- Removed internal helper functions
-- Reduced file size and complexity
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* feat(zsh): add pkg module to zshrc
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* refactor(zsh): replace print with helper functions
-
-- Use _warn, _err, and _ok for output
-- Standardize message formatting
-- Improve readability
-
-Co-authored-by: Codex <noreply@openai.com>
-
-* fix(zsh): validate random generation pipeline and output length
-
-Co-authored-by: GourangaDasSamrat <146644902+GourangaDasSamrat@users.noreply.github.com>
-
----------
-
-Co-authored-by: Codex <noreply@openai.com>
-Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.com> (Gouranga Das Samrat)
+- Refactor whole zsh scripts (#13) (Gouranga Das Samrat)
 ## [0.193.0] - 2026-09-23
 
 ### 🚀 Features
@@ -495,46 +434,8 @@ Co-authored-by: copilot-swe-agent[bot] <198982749+Copilot@users.noreply.github.c
 
 ### 💼 Other
 
-- Refactor/Delete tmux section from README (#10)
-
-Removed tmux section from README cause tmux has long been removed from this repo. (Priority Zero)
-- Chore/biome migration (#11)
-
-* refactor(vscode): migrate to biome formatter
-
-- Replaced prettier with biome as default formatter
-- Updated code actions on save for biome
-- Removed prettier-vscode and eslint extensions affinities
-- Added biome to json schema trusted domains
-- Adjusted formatting for long arrays with biome-ignore
-
-* build: add biome configuration file
-
-- Configure formatter with tab indent
-- Enable linter with recommended rules
-- Set double quotes for javascript
-- Enable organize imports action
-
-* docs: update formatter to biome
-
-- Replaced prettier and eslint with biome
-- Updated manual install instructions
-- Updated vscode extension recommendations
-
-* refactor(helix): replace ESLint and Prettier with Biome for JS/TS/CSS/JSON
-
-- Replace ESLint LSP with Biome LSP proxy for linting and code actions
-- Use Biome CLI formatter instead of Prettier for JS, TS, JSX, TSX, CSS, and JSON
-- Remove `vscode-eslint-language-server` configuration
-- Retain Prettier for unsupported file types (HTML, YAML, Markdown)
-
-* docs(helix): update JS/TS linter and formatter installation to Biome
-
-- Replace eslint and prettier with biome in global installation command
-
----------
-
-Co-authored-by: Codex <noreply@openai.com> (Gouranga Das Samrat)
+- Refactor/Delete tmux section from README (#10) (Priority Zero)
+- Chore/biome migration (#11) (Gouranga Das Samrat)
 
 ### 🚜 Refactor
 
@@ -543,23 +444,7 @@ Co-authored-by: Codex <noreply@openai.com> (Gouranga Das Samrat)
 
 ### 💼 Other
 
-- Fix/build-essential-not-found-on-arch (#9)
-
-* fix(scripts): support base-devel fallback for pacman
-
-- build-essential package doesn't exist on Arch Linux (pacman)
-- Arch's equivalent is the base-devel package group
-- changed GENERIC_LINUX_TOOLS entry to "build-essential|base-devel"
-- reuses existing pipe (pkg1|pkg2) OR-logic in _is_installed/_install_tool
-- pacman now falls back to installing base-devel when build-essential is not found in repo
-
-* fix(scripts): support Arch Linux package group detection and base-devel fallback
-
-- Updated _is_installed() pacman logic with 'pacman -Qg' to correctly check group installations
-
----------
-
-Co-authored-by: Gouranga Das Samrat <gouranga.das.khulna@gmail.com> (Sompa Rani Das)
+- Fix/build-essential-not-found-on-arch (#9) (Sompa Rani Das)
 
 ### 🚜 Refactor
 
@@ -571,26 +456,7 @@ Co-authored-by: Gouranga Das Samrat <gouranga.das.khulna@gmail.com> (Sompa Rani 
 
 ### ⚙️ Miscellaneous Tasks
 
-- Chore/fix-github-templates (#7)
-
-* docs: migrate issue and pull request templates
-
-- Converted markdown templates to YAML forms
-- Updated issue templates for bug, config, feature
-- Moved pull request template to new directory
-- Enhances maintainability of forms
-
-* docs(templates): clarify output section guidelines
-
-Replace generic placeholder prompt with an explicit request for screenshots,
-terminal logs, and a note to redact sensitive credentials.
-
-Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com>
-
----------
-
-Co-authored-by: Codex <noreply@openai.com>
-Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com> (Gouranga Das Samrat)
+- Chore/fix-github-templates (#7) (Gouranga Das Samrat)
 ## [0.174.0] - 2026-08-11
 
 ### 🚀 Features
@@ -600,23 +466,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 
 ### 💼 Other
 
-- Feature/add fedora support (#6)
-
-* feat(scripts): add dnf package manager detection
-
-* feat(scripts): add Fedora and DNF package manager support
-
-- split Linux tool lists into shared, generic, and Fedora-specific toolsets
-- add DNF check, install, and group install logic in `_is_installed` and `_install_tool`
-- handle DNF system update command in `install_packages`
-
-* Potential fix for pull request finding
-
-Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com>
-
----------
-
-Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.github.com> (Gouranga Das Samrat)
+- Feature/add fedora support (#6) (Gouranga Das Samrat)
 
 ### 🚜 Refactor
 
@@ -708,9 +558,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 
 ### ⚙️ Miscellaneous Tasks
 
-- Chore(vscode): refine user settings and keybindings
-- disable native terminal keybindings
-- disable copilot chat tips (Gouranga Das Samrat)
+- Chore(vscode): refine user settings and keybindings (Gouranga Das Samrat)
 ## [0.164.0] - 2026-07-22
 
 ### 🚀 Features
@@ -795,9 +643,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 
 ### ⚙️ Miscellaneous Tasks
 
-- Chore(vscode): adjust vs code font settings
-- add sf mono to terminal fonts
-- remove monolisa from markdown preview (Gouranga Das Samrat)
+- Chore(vscode): adjust vs code font settings (Gouranga Das Samrat)
 ## [0.155.1] - 2026-07-12
 
 ### 🐛 Bug Fixes
@@ -814,10 +660,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 
 ### 📚 Documentation
 
-- Docs(vscode): delete vscode settings guide`
-- Removed comprehensive settings guide
-- Streamlined overall documentation
-- Guide was outdated and no longer needed (Gouranga Das Samrat)
+- Docs(vscode): delete vscode settings guide` (Gouranga Das Samrat)
 - *(zsh)* Remove python dev profile references (Gouranga Das Samrat)
 
 ### ⚙️ Miscellaneous Tasks
@@ -857,9 +700,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 
 ### 🚜 Refactor
 
-- Refactor(scripts): move kitty and httpie to macOS tools
-- Mark tools as platform-specific
-- Ensure correct installation per OS (Gouranga Das Samrat)
+- Refactor(scripts): move kitty and httpie to macOS tools (Gouranga Das Samrat)
 - *(scripts)* Reformat dotfiles setup script (Gouranga Das Samrat)
 - *(go-tools)* Optimize Go binaries and lint setup (Gouranga Das Samrat)
 - *(termux)* Use $PREFIX for Termux paths (Gouranga Das Samrat)
@@ -1016,10 +857,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 ### ⚙️ Miscellaneous Tasks
 
 - *(vscode)* Remove trailing space from keybindings (Gouranga Das Samrat)
-- Chore(vscode): add TOML formatter and schema settings
-- Enable EvenBetterToml formatter
-- Configure TOML schema associations
-- Auto-align entries and reorder keys (Gouranga Das Samrat)
+- Chore(vscode): add TOML formatter and schema settings (Gouranga Das Samrat)
 ## [0.139.0] - 2026-06-01
 
 ### 🚀 Features
@@ -2222,11 +2060,7 @@ Co-authored-by: Copilot Autofix powered by AI <175728472+Copilot@users.noreply.g
 - *(dotfiles)* Update various configurations (Gouranga Das Samrat)
 - *(vscode)* Add keybinding: toggle panel (Gouranga Das Samrat)
 - *(vscode)* Update settings and add snippets (Gouranga Das Samrat)
-- Chore: Update VS Code settings
-- Changed hover and suggestion delays
-- Disabled ESLint format on save
-- Increased auto save delay
-- Switched CommitSage model (Gouranga Das Samrat)
+- Chore: Update VS Code settings (Gouranga Das Samrat)
 ## [0.8.0] - 2026-01-28
 
 ### 🚀 Features
