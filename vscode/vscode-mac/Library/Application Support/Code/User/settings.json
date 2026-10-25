@@ -110,6 +110,7 @@
   "window.enableMenuBarMnemonics": false,
 
   // workbench
+  "workbench.experimental.modernUI": false,
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#e0ffeb",
     "editorLineNumber.foreground": "#5c6370",
@@ -127,14 +128,13 @@
 
   // integrated browser
   "workbench.browser.pageZoom": "100%",
-  "workbench.browser.showInTitleBar": true,
   "workbench.browser.openLocalhostLinks": true,
   "workbench.browser.searchEngine": "google",
   "workbench.browser.maxHistoryEntries": 100,
 
   // terminal
   "terminal.external.linuxExec": "xfce4-terminal",
-  "terminal.external.osxExec": "Kitty.app",
+  "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.fontSize": 17,
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.cursorBlinking": true,
@@ -603,6 +603,7 @@
   "gitlens.telemetry.enabled": false,
   "commitSage.telemetry.enabled": false,
   "update.mode": "manual",
+  "extensions.autoUpdate": "off",
   "update.showReleaseNotes": false,
 
   // themes
