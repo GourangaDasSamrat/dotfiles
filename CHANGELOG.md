@@ -1,3 +1,13 @@
+## [1.4.0] - 2026-10-25
+
+### 🚜 Refactor
+
+- Deduplicate CI workflows, SDK tool scripts and gh jq filters (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(vscode, biome)* Bump biome schema, tweak VS Code (Gouranga Das Samrat)
+- *(scripts)* Silence shellcheck warnings in SDK setup tools (Gouranga Das Samrat)
 ## [1.3.0] - 2026-10-24
 
 ### 🚀 Features
