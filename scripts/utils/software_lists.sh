@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This file is only ever sourced (by softwares.sh and verify-software.sh); the
+# arrays below are consumed there, so ShellCheck cannot see their use here.
+# shellcheck disable=SC2034
+
 # ==============================================================================
 # Software Package Lists
 # Categorized by Operating System, Linux Distribution, and Environment

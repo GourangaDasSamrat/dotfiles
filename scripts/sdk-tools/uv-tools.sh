@@ -27,7 +27,7 @@ is_uv_installed() {
 }
 
 # Upgrades the package if uv already manages it, installs it otherwise.
-# shellcheck disable=SC2317  # invoked indirectly through sdk_process_tool
+# shellcheck disable=SC2317,SC2329  # invoked indirectly through sdk_process_tool
 _uv_install_or_upgrade() {
   local package_name=$1
   if is_uv_installed "$package_name"; then

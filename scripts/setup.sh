@@ -33,12 +33,14 @@ echo ""
 echo "================================"
 echo ""
 
+# shellcheck disable=SC2162
 read -p "Enter script numbers to run (space-separated, e.g., 1 3 4) or type 'all' to run all: " INPUT
 
 if [[ "$INPUT" =~ ^[Aa][Ll][Ll]$ ]]; then
   echo "Selected: All scripts"
   SELECTED_SCRIPTS=("${SCRIPTS[@]}")
 else
+  # shellcheck disable=SC2162
   read -a SELECTIONS <<<"$INPUT"
   SELECTED_SCRIPTS=()
   for selection in "${SELECTIONS[@]}"; do
@@ -64,11 +66,13 @@ echo ""
 echo "================================"
 echo "Selected scripts:"
 for script in "${SELECTED_SCRIPTS[@]}"; do
+  # shellcheck disable=SC2295
   echo "  - ${script#$SETUP_DIR/}"
 done
 echo "================================"
 echo ""
 
+# shellcheck disable=SC2162
 read -p "Do you want to proceed? (y/n): " confirm
 if [[ ! "$confirm" =~ ^[Yy]$ ]]; then
   echo "Setup cancelled."
@@ -85,12 +89,14 @@ FAILED_SCRIPTS=0
 SUCCESS_SCRIPTS=0
 
 for script in "${SELECTED_SCRIPTS[@]}"; do
+  # shellcheck disable=SC2295
   script_label="${script#$SETUP_DIR/}"
   echo "----------------------------------------"
   echo "Processing: $script_label"
   echo "----------------------------------------"
 
   chmod +x "$script"
+  # shellcheck disable=SC2181
   if [ $? -ne 0 ]; then
     echo "Error: Failed to set execute permission for $script_label"
     ((FAILED_SCRIPTS++))
@@ -101,6 +107,7 @@ for script in "${SELECTED_SCRIPTS[@]}"; do
   echo ""
 
   bash "$script"
+  # shellcheck disable=SC2181
   if [ $? -ne 0 ]; then
     echo ""
     echo "Error: $script_label failed"

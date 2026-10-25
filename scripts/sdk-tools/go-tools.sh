@@ -37,7 +37,7 @@ declare -A GO_TOOLS=(
 USQL_TAGS="mysql postgres sqlite3 moderncsqlite"
 
 # ─── Install/Update Logic ─────────────────────────────────────────────────────
-# shellcheck disable=SC2317  # invoked indirectly through sdk_process_tool
+# shellcheck disable=SC2317,SC2329  # invoked indirectly through sdk_process_tool
 _go_install() {
   local tool_name=$1
   local tool_package=$2
