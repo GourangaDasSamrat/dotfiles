@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# ─── Flag Parsing ────────────────────────────────────────────────────────────
-UPDATE_MODE=false
-for arg in "$@"; do
-  case $arg in
-  --update) UPDATE_MODE=true ;;
-  *)
-    echo "Unknown flag: $arg"
-    exit 1
-    ;;
-  esac
-done
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../utils/sdk-common.sh
+source "$SCRIPT_DIR/../utils/sdk-common.sh"
+
+sdk_parse_flags "$@"
 
 # ─── Go Check ────────────────────────────────────────────────────────────────
 if ! command -v go &>/dev/null; then
@@ -19,8 +13,7 @@ if ! command -v go &>/dev/null; then
   exit 1
 fi
 echo "Go is installed: $(go version)"
-$UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" ||
-  echo "Mode: INSTALL (skip already installed tools)"
+sdk_print_mode
 
 # ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A GO_TOOLS=(
@@ -42,47 +35,29 @@ declare -A GO_TOOLS=(
 )
 
 USQL_TAGS="mysql postgres sqlite3 moderncsqlite"
-FAILED_TOOLS=0
-SUCCESS_TOOLS=0
-SKIPPED_TOOLS=0
 
 # ─── Install/Update Logic ─────────────────────────────────────────────────────
-check_and_install_tool() {
+# shellcheck disable=SC2317  # invoked indirectly through sdk_process_tool
+_go_install() {
   local tool_name=$1
   local tool_package=$2
-
-  echo "----------------------------------------"
-
-  # Skip if already installed and not in update mode
-  if command -v "$tool_name" &>/dev/null && ! $UPDATE_MODE; then
-    echo "SKIP: $tool_name is already installed (use --update to reinstall)"
-    ((SKIPPED_TOOLS++))
-    return 0
-  fi
-
-  if command -v "$tool_name" &>/dev/null; then
-    echo "Updating $tool_name..."
-  else
-    echo "Installing $tool_name..."
-  fi
 
   # usql needs custom build tags
   if [ "$tool_name" == "usql" ]; then
     echo "Applying custom build tags: [$USQL_TAGS]"
-    eval "go install -tags '$USQL_TAGS' $tool_package"
+    go install -tags "$USQL_TAGS" "$tool_package"
   else
     go install "$tool_package"
   fi
+}
 
-  if [ $? -ne 0 ]; then
-    echo "Error: Failed to process $tool_name"
-    ((FAILED_TOOLS++))
-    return 1
-  else
-    echo "$tool_name processed successfully!"
-    ((SUCCESS_TOOLS++))
-    return 0
-  fi
+check_and_install_tool() {
+  local tool_name=$1
+  local tool_package=$2
+  local installed=false
+  command -v "$tool_name" &>/dev/null && installed=true
+
+  sdk_process_tool "$tool_name" "$installed" _go_install "$tool_name" "$tool_package"
 }
 
 # ─── gtrash (Linux always, macOS only if native trash unavailable) ────────────
@@ -91,13 +66,11 @@ install_gtrash() {
     check_and_install_tool "gtrash" "github.com/umlx5h/gtrash@latest"
   elif [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v trash &>/dev/null; then
-      echo "----------------------------------------"
+      echo "$SDK_SEPARATOR"
       echo "macOS: native 'trash' not found (requires macOS 15+), installing gtrash..."
       check_and_install_tool "gtrash" "github.com/umlx5h/gtrash@latest"
     else
-      echo "----------------------------------------"
-      echo "SKIP: gtrash — native 'trash' command already available on this macOS"
-      ((SKIPPED_TOOLS++))
+      sdk_skip "gtrash — native 'trash' command already available on this macOS"
     fi
   fi
 }
@@ -110,7 +83,7 @@ done
 install_gtrash
 
 # ─── Cleanup ─────────────────────────────────────────────────────────────────
-echo "----------------------------------------"
+echo "$SDK_SEPARATOR"
 echo "Cleaning Go module cache to save storage..."
 go clean -modcache
 
@@ -126,16 +99,4 @@ echo "Stripping Go binaries and adding symlink for golangci-lint..."
 strip "${STRIP_FLAGS[@]}" "$GOPATH/bin"/* && ln -s "$GOPATH/bin/golangci-lint" "$GOPATH/bin/golangci-lint-v2"
 
 # ─── Summary ─────────────────────────────────────────────────────────────────
-echo "----------------------------------------"
-echo "Summary:"
-echo "  Installed/Updated : $SUCCESS_TOOLS"
-echo "  Skipped           : $SKIPPED_TOOLS"
-echo "  Failed            : $FAILED_TOOLS"
-
-if [ $FAILED_TOOLS -eq 0 ]; then
-  echo -e "\nDone! Your GOPATH/bin is ready to use."
-  exit 0
-else
-  echo -e "\nSome tools encountered issues. Check the logs above."
-  exit 1
-fi
+sdk_finish "Done! Your GOPATH/bin is ready to use."

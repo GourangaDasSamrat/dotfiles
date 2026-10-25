@@ -1,0 +1,45 @@
+name: Write install report
+description: >
+  Turns ci-logs/install.log into report/<slug>.json (outcome, missing packages,
+  log tail) and uploads it as the `report-<slug>` artifact. Consumed by the
+  "Open / close issues" job of software-install-test.yml.
+
+inputs:
+  name:
+    description: Human-readable OS name shown in the issue (e.g. "Ubuntu")
+    required: true
+  slug:
+    description: Short id used for the report file and artifact name (e.g. "ubuntu")
+    required: true
+  outcome:
+    description: Outcome of the install step (`steps.<id>.outcome`)
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Write report
+      shell: bash
+      env:
+        OS_NAME: ${{ inputs.name }}
+        SLUG: ${{ inputs.slug }}
+        OUTCOME: ${{ inputs.outcome }}
+      run: |
+        mkdir -p report ci-logs
+        touch ci-logs/install.log
+        missing=$(grep -E '^  MISSING  ' ci-logs/install.log | sed -E 's/^  MISSING  //' || true)
+        jq -n \
+          --arg name "$OS_NAME" \
+          --arg outcome "$OUTCOME" \
+          --arg missing "$missing" \
+          --arg log "$(tail -n 60 ci-logs/install.log)" \
+          '{name: $name, outcome: $outcome, missing: ($missing | split("\n") | map(select(length > 0))), log: $log}' \
+          > "report/$SLUG.json"
+
+    - name: Upload report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: report-${{ inputs.slug }}
+        path: report/${{ inputs.slug }}.json
+        retention-days: 1

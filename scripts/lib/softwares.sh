@@ -22,63 +22,55 @@ _is_installed() {
   esac
 }
 
-_install_tool() {
-  local tool="$1"
-
-  # Handle "pkg1|pkg2" OR logic — try each name, install whichever exists in repo
-  if [[ "$tool" == *"|"* ]]; then
-    local candidates
-    IFS='|' read -ra candidates <<<"$tool"
-
-    for candidate in "${candidates[@]}"; do
-      if _is_installed "$candidate"; then
-        echo "$candidate is already installed, skipping..."
-        return
-      fi
-    done
-
-    # Try installing each candidate until one succeeds
-    for candidate in "${candidates[@]}"; do
-      echo "Trying to install $candidate..."
-      case "$PKG_MANAGER" in
-      brew) brew install "$candidate" && return ;;
-      pkg) pkg install -y "$candidate" && return ;;
-      apt) $SUDO_CMD apt install -y "$candidate" && return ;;
-      pacman) $SUDO_CMD pacman -S --noconfirm "$candidate" && return ;;
-      dnf)
-        if [[ "$candidate" == @* ]]; then
-          $SUDO_CMD dnf group install -y "${candidate#@}" && return
-        else
-          $SUDO_CMD dnf install -y "$candidate" && return
-        fi
-        ;;
-      esac
-    done
-
-    echo "Warning: Could not install any of: $tool"
-    return 1
-  fi
-
-  # Normal single-tool logic
-  if _is_installed "$tool"; then
-    echo "$tool is already installed, skipping..."
-    return
-  fi
-
-  echo "Installing $tool..."
+# Installs ONE package name with the detected package manager.
+# dnf "@group" names are installed as package groups.
+_pm_install() {
+  local pkg="$1"
   case "$PKG_MANAGER" in
-  brew) brew install "$tool" ;;
-  pkg) pkg install -y "$tool" ;;
-  apt) $SUDO_CMD apt install -y "$tool" ;;
-  pacman) $SUDO_CMD pacman -S --noconfirm "$tool" ;;
+  brew) brew install "$pkg" ;;
+  pkg) pkg install -y "$pkg" ;;
+  apt) $SUDO_CMD apt install -y "$pkg" ;;
+  pacman) $SUDO_CMD pacman -S --noconfirm "$pkg" ;;
   dnf)
-    if [[ "$tool" == @* ]]; then
-      $SUDO_CMD dnf group install -y "${tool#@}"
+    if [[ "$pkg" == @* ]]; then
+      $SUDO_CMD dnf group install -y "${pkg#@}"
     else
-      $SUDO_CMD dnf install -y "$tool"
+      $SUDO_CMD dnf install -y "$pkg"
     fi
     ;;
   esac
+}
+
+_install_tool() {
+  local tool="$1"
+
+  # "pkg1|pkg2" means OR — try each name, install whichever exists in the repo.
+  # A plain name is simply a one-element list.
+  local candidates candidate
+  IFS='|' read -ra candidates <<<"$tool"
+
+  for candidate in "${candidates[@]}"; do
+    if _is_installed "$candidate"; then
+      echo "$candidate is already installed, skipping..."
+      return 0
+    fi
+  done
+
+  # Normal single-tool logic
+  if ((${#candidates[@]} == 1)); then
+    echo "Installing $tool..."
+    _pm_install "$tool"
+    return
+  fi
+
+  # Try installing each candidate until one succeeds
+  for candidate in "${candidates[@]}"; do
+    echo "Trying to install $candidate..."
+    _pm_install "$candidate" && return 0
+  done
+
+  echo "Warning: Could not install any of: $tool"
+  return 1
 }
 
 # Fills the global TOOLS array for the detected OS and package manager.

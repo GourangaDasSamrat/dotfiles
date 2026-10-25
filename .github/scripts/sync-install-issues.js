@@ -4,6 +4,13 @@
 // Called from .github/workflows/software-install-test.yml via actions/github-script.
 // Expects the per-OS JSON reports to be downloaded into ./report.
 
+const {
+  workflowRunUrl,
+  listOpenIssues,
+  upsertIssue,
+  closeIssue,
+} = require("./issue-sync.js");
+
 module.exports = async ({ github, context, core }) => {
   const fs = require("fs");
   const path = require("path");
@@ -19,7 +26,7 @@ module.exports = async ({ github, context, core }) => {
     .map((f) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")));
 
   const { owner, repo } = context.repo;
-  const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+  const runUrl = workflowRunUrl(context);
   const LABEL = "software-install-failure";
 
   try {
@@ -38,13 +45,7 @@ module.exports = async ({ github, context, core }) => {
     }
   }
 
-  const openIssues = await github.paginate(github.rest.issues.listForRepo, {
-    owner,
-    repo,
-    state: "open",
-    labels: LABEL,
-    per_page: 100,
-  });
+  const openIssues = await listOpenIssues({ github, context, label: LABEL });
 
   for (const r of reports) {
     const title = `Software install failing on ${r.name}`;
@@ -52,18 +53,11 @@ module.exports = async ({ github, context, core }) => {
 
     if (r.outcome === "success") {
       if (!existing) continue;
-      await github.rest.issues.createComment({
-        owner,
-        repo,
-        issue_number: existing.number,
-        body: `Fixed: all packages installed on **${r.name}** in ${runUrl} (commit ${context.sha}). Closing.`,
-      });
-      await github.rest.issues.update({
-        owner,
-        repo,
-        issue_number: existing.number,
-        state: "closed",
-        state_reason: "completed",
+      await closeIssue({
+        github,
+        context,
+        issue: existing,
+        comment: `Fixed: all packages installed on **${r.name}** in ${runUrl} (commit ${context.sha}). Closing.`,
       });
       core.info(`Closed #${existing.number} (${r.name})`);
       continue;
@@ -94,24 +88,16 @@ module.exports = async ({ github, context, core }) => {
       `<details><summary>Last log lines</summary>\n\n\`\`\`\n${log}\n\`\`\`\n\n</details>\n\n` +
       "_This issue is closed automatically once the workflow passes on this OS._";
 
-    if (existing) {
-      await github.rest.issues.update({ owner, repo, issue_number: existing.number, body });
-      await github.rest.issues.createComment({
-        owner,
-        repo,
-        issue_number: existing.number,
-        body: `Still failing on **${r.name}**: ${runUrl} (commit ${context.sha}).`,
-      });
-      core.info(`Updated #${existing.number} (${r.name})`);
-    } else {
-      const created = await github.rest.issues.create({
-        owner,
-        repo,
-        title,
-        body,
-        labels: [LABEL],
-      });
-      core.info(`Opened #${created.data.number} (${r.name})`);
-    }
+    const { issue, created } = await upsertIssue({
+      github,
+      context,
+      label: LABEL,
+      title,
+      body,
+      matchTitle: true,
+      openIssues,
+      updateComment: `Still failing on **${r.name}**: ${runUrl} (commit ${context.sha}).`,
+    });
+    core.info(`${created ? "Opened" : "Updated"} #${issue.number} (${r.name})`);
   }
 };

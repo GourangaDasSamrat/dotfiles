@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# ─── Flag Parsing ────────────────────────────────────────────────────────────
-UPDATE_MODE=false
-for arg in "$@"; do
-  case $arg in
-  --update) UPDATE_MODE=true ;;
-  *)
-    echo "Unknown flag: $arg"
-    exit 1
-    ;;
-  esac
-done
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../utils/sdk-common.sh
+source "$SCRIPT_DIR/../utils/sdk-common.sh"
+
+sdk_parse_flags "$@"
 
 # ─── uv Check ────────────────────────────────────────────────────────────────
 if ! command -v uv &>/dev/null; then
@@ -19,17 +13,12 @@ if ! command -v uv &>/dev/null; then
   exit 1
 fi
 echo "uv detected: $(uv --version)"
-$UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" ||
-  echo "Mode: INSTALL (skip already installed tools)"
+sdk_print_mode
 
 # ─── Tool Definitions ────────────────────────────────────────────────────────
 declare -A PY_TOOLS=(
   ["ytm-player"]="ytm-player"
 )
-
-SUCCESS_TOOLS=0
-SKIPPED_TOOLS=0
-FAILED_TOOLS=0
 
 # ─── Helper: check if package is installed via uv tool list ──────────────────
 is_uv_installed() {
@@ -37,38 +26,29 @@ is_uv_installed() {
   uv tool list 2>/dev/null | grep -q "^$package_name "
 }
 
+# Upgrades the package if uv already manages it, installs it otherwise.
+# shellcheck disable=SC2317  # invoked indirectly through sdk_process_tool
+_uv_install_or_upgrade() {
+  local package_name=$1
+  if is_uv_installed "$package_name"; then
+    uv tool upgrade "$package_name"
+  else
+    uv tool install "$package_name"
+  fi
+}
+
 # ─── Install/Update Logic ─────────────────────────────────────────────────────
 install_via_uv() {
   local cmd_name=$1
   local package_name=$2
-  local tool_path
-  tool_path=$(command -v "$cmd_name" 2>/dev/null)
+  local installed=false
 
-  echo "----------------------------------------"
-
-  # Skip if already installed (via uv or system) and not in update mode
-  if { is_uv_installed "$package_name" || [ -n "$tool_path" ]; } && ! $UPDATE_MODE; then
-    local location=${tool_path:-"uv tools"}
-    echo "SKIP: '$cmd_name' is already installed at $location (use --update to reinstall)"
-    ((SKIPPED_TOOLS++))
-    return 0
+  # Already installed (via uv or system)?
+  if is_uv_installed "$package_name" || command -v "$cmd_name" &>/dev/null; then
+    installed=true
   fi
 
-  if is_uv_installed "$package_name"; then
-    echo ">> Updating '$package_name' via uv..."
-    uv tool upgrade "$package_name"
-  else
-    echo ">> Installing '$package_name' via uv..."
-    uv tool install "$package_name"
-  fi
-
-  if [ $? -eq 0 ]; then
-    echo "Successfully processed $package_name!"
-    ((SUCCESS_TOOLS++))
-  else
-    echo "Error: Failed to process $package_name via uv."
-    ((FAILED_TOOLS++))
-  fi
+  sdk_process_tool "$cmd_name" "$installed" _uv_install_or_upgrade "$package_name"
 }
 
 # ─── Run ─────────────────────────────────────────────────────────────────────
@@ -77,16 +57,4 @@ for cmd in "${!PY_TOOLS[@]}"; do
 done
 
 # ─── Summary ─────────────────────────────────────────────────────────────────
-echo "----------------------------------------"
-echo "Summary:"
-echo "  Installed/Updated : $SUCCESS_TOOLS"
-echo "  Skipped           : $SKIPPED_TOOLS"
-echo "  Failed            : $FAILED_TOOLS"
-
-if [ $FAILED_TOOLS -gt 0 ]; then
-  echo "Some tools failed. Check the logs above."
-  exit 1
-else
-  echo "Process completed successfully!"
-  exit 0
-fi
+sdk_finish "Process completed successfully!" "Some tools failed. Check the logs above."

@@ -26,23 +26,29 @@ _manage_python_venv() {
 }
 
 # --- Function 2: List Project Automation Tools ---
+# Prints a "<tool> detected" heading: _project_header <colour> <text>
+# Colours come from core/colors.zsh.
+_project_header() {
+	print -- "\n${1}${2}${COLOR_RESET}"
+}
+
 _list_project_tools() {
 	# 1. Justfile Support
 	if [[ -f "justfile" || -f "Justfile" ]] && command -v just &>/dev/null; then
-		echo -e "\n\033[1;34m⚡ Justfile detected:\033[0m"
+		_project_header "$COLOR_BOLD_BLUE" "⚡ Justfile detected:"
 		just --list
 
 	# 2. Makefile Support
 	elif [[ -f "Makefile" ]] && command -v make &>/dev/null; then
-		echo -e "\n\033[1;32m🛠️  Makefile detected:\033[0m"
+		_project_header "$COLOR_BOLD_GREEN" "🛠️  Makefile detected:"
 		make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /); print A[1]}'
 
 	# 3. NPM / Bun (package.json) Support
 	elif [[ -f "package.json" ]] && command -v jq &>/dev/null; then
 		if [[ -f "bun.lock" || -f "bun.lockb" ]] && command -v bun &>/dev/null; then
-			echo -e "\n\033[1;33m🥟 Bun Scripts detected:\033[0m"
+			_project_header "$COLOR_BOLD_YELLOW" "🥟 Bun Scripts detected:"
 		else
-			echo -e "\n\033[1;33m📦 NPM Scripts detected:\033[0m"
+			_project_header "$COLOR_BOLD_YELLOW" "📦 NPM Scripts detected:"
 		fi
 		jq -r '.scripts | keys[]' package.json 2>/dev/null
 	fi
@@ -50,7 +56,7 @@ _list_project_tools() {
 	# 4. Docker Compose Support
 	if [[ -f "docker-compose.yml" || -f "docker-compose.yaml" || -f "compose.yaml" ]]; then
 		if command -v docker &>/dev/null; then
-			echo -e "\n\033[1;36m🐳 Docker Compose detected:\033[0m"
+			_project_header "$COLOR_BOLD_CYAN" "🐳 Docker Compose detected:"
 			docker compose ps --services 2>/dev/null
 		fi
 	fi

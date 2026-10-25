@@ -5,6 +5,8 @@ on:
     branches: [main, develop]
     paths:
       - ".github/workflows/software-install-test.yml"
+      - ".github/actions/write-report/**"
+      - ".github/scripts/install-and-verify.sh"
       - "scripts/lib/softwares.sh"
       - "scripts/utils/software_lists.sh"
   workflow_dispatch:
@@ -70,42 +72,15 @@ jobs:
             -v "$PWD:/dotfiles" \
             -w /dotfiles \
             "$IMAGE" \
-            bash -c '
-              bash scripts/lib/softwares.sh
-              install_status=$?
+            bash .github/scripts/install-and-verify.sh 2>&1 | tee ci-logs/install.log
 
-              bash .github/scripts/verify-software.sh
-              verify_status=$?
-
-              echo "install exit code: $install_status, verify exit code: $verify_status"
-              [ "$install_status" -eq 0 ] && [ "$verify_status" -eq 0 ]
-            ' 2>&1 | tee ci-logs/install.log
-
-      - name: Write report
+      - name: Write and upload report
         if: always()
-        env:
-          OS_NAME: ${{ matrix.name }}
-          SLUG: ${{ matrix.slug }}
-          OUTCOME: ${{ steps.install.outcome }}
-        run: |
-          mkdir -p report ci-logs
-          touch ci-logs/install.log
-          missing=$(grep -E '^  MISSING  ' ci-logs/install.log | sed -E 's/^  MISSING  //' || true)
-          jq -n \
-            --arg name "$OS_NAME" \
-            --arg outcome "$OUTCOME" \
-            --arg missing "$missing" \
-            --arg log "$(tail -n 60 ci-logs/install.log)" \
-            '{name: $name, outcome: $outcome, missing: ($missing | split("\n") | map(select(length > 0))), log: $log}' \
-            > "report/$SLUG.json"
-
-      - name: Upload report
-        if: always()
-        uses: actions/upload-artifact@v4
+        uses: ./.github/actions/write-report
         with:
-          name: report-${{ matrix.slug }}
-          path: report/${{ matrix.slug }}.json
-          retention-days: 1
+          name: ${{ matrix.name }}
+          slug: ${{ matrix.slug }}
+          outcome: ${{ steps.install.outcome }}
 
   macos:
     name: macOS
@@ -124,46 +99,18 @@ jobs:
       - name: Run softwares.sh
         id: install
         run: |
-          set +e
-          # Propagate the failure of the brace group through `| tee`.
+          # Without pipefail the exit status of `... | tee` is tee's (always 0).
           set -o pipefail
           mkdir -p ci-logs
-          {
-            bash scripts/lib/softwares.sh
-            install_status=$?
+          bash .github/scripts/install-and-verify.sh 2>&1 | tee ci-logs/install.log
 
-            bash .github/scripts/verify-software.sh
-            verify_status=$?
-
-            echo "install exit code: $install_status, verify exit code: $verify_status"
-            [ "$install_status" -eq 0 ] && [ "$verify_status" -eq 0 ]
-          } 2>&1 | tee ci-logs/install.log
-
-      - name: Write report
+      - name: Write and upload report
         if: always()
-        env:
-          OS_NAME: macOS
-          SLUG: macos
-          OUTCOME: ${{ steps.install.outcome }}
-        run: |
-          mkdir -p report ci-logs
-          touch ci-logs/install.log
-          missing=$(grep -E '^  MISSING  ' ci-logs/install.log | sed -E 's/^  MISSING  //' || true)
-          jq -n \
-            --arg name "$OS_NAME" \
-            --arg outcome "$OUTCOME" \
-            --arg missing "$missing" \
-            --arg log "$(tail -n 60 ci-logs/install.log)" \
-            '{name: $name, outcome: $outcome, missing: ($missing | split("\n") | map(select(length > 0))), log: $log}' \
-            > "report/$SLUG.json"
-
-      - name: Upload report
-        if: always()
-        uses: actions/upload-artifact@v4
+        uses: ./.github/actions/write-report
         with:
-          name: report-macos
-          path: report/macos.json
-          retention-days: 1
+          name: macOS
+          slug: macos
+          outcome: ${{ steps.install.outcome }}
 
   termux:
     name: Termux
@@ -202,41 +149,16 @@ jobs:
               # prerequisite docs/termux/native-desktop.md asks for before the installer.
               pkg update -y && pkg install -y x11-repo tur-repo
 
-              bash scripts/lib/softwares.sh
-              install_status=$?
-
-              bash .github/scripts/verify-software.sh
-              verify_status=$?
-
-              echo "install exit code: $install_status, verify exit code: $verify_status"
-              [ "$install_status" -eq 0 ] && [ "$verify_status" -eq 0 ]
+              bash .github/scripts/install-and-verify.sh
             ' 2>&1 | tee ci-logs/install.log
 
-      - name: Write report
+      - name: Write and upload report
         if: always()
-        env:
-          OS_NAME: Termux
-          SLUG: termux
-          OUTCOME: ${{ steps.install.outcome }}
-        run: |
-          mkdir -p report ci-logs
-          touch ci-logs/install.log
-          missing=$(grep -E '^  MISSING  ' ci-logs/install.log | sed -E 's/^  MISSING  //' || true)
-          jq -n \
-            --arg name "$OS_NAME" \
-            --arg outcome "$OUTCOME" \
-            --arg missing "$missing" \
-            --arg log "$(tail -n 60 ci-logs/install.log)" \
-            '{name: $name, outcome: $outcome, missing: ($missing | split("\n") | map(select(length > 0))), log: $log}' \
-            > "report/$SLUG.json"
-
-      - name: Upload report
-        if: always()
-        uses: actions/upload-artifact@v4
+        uses: ./.github/actions/write-report
         with:
-          name: report-termux
-          path: report/termux.json
-          retention-days: 1
+          name: Termux
+          slug: termux
+          outcome: ${{ steps.install.outcome }}
 
   # Opens one issue per failing OS (listing the packages that failed) and
   # closes it again once that OS passes on a later run.

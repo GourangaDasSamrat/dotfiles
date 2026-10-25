@@ -15,5 +15,7 @@ case "$period" in
     ;;
 esac
 
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 gh search commits --author="@me" --committer-date="$D" --json "repository,commit" \
-  --jq 'sort_by(.commit.author.date) | .[] | "\u001b[38;5;117m[\(.commit.author.date[11:16])]\u001b[0m \u001b[38;5;141m\(.repository.fullName)\u001b[0m ➜ \u001b[38;5;84m\(.commit.message)\u001b[0m"'
+  | jq -r -f "$DIR/../graphql/filters/commits-day.jq"

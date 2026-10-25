@@ -17,10 +17,7 @@ case "$period" in
     ;;
 esac
 
-DATA=$(gh search commits --author="@me" --committer-date="$D" --json "repository" \
-  --jq 'group_by(.repository.fullName) | .[] | {repo: .[0].repository.fullName, count: length}')
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "$DATA" | jq -r '"\u001b[38;5;141m➜ \(.repo)\u001b[0m \u001b[38;5;117m➜\u001b[0m \u001b[38;5;84m\(.count) commits\u001b[0m"'
-
-TOTAL=$(echo "$DATA" | jq -s 'map(.count) | add // 0')
-echo -e "\n\u001b[38;5;141mTotal Commits ${LABEL}:\u001b[0m \u001b[38;5;84m${TOTAL}\u001b[0m"
+gh search commits --author="@me" --committer-date="$D" --json "repository" \
+  | jq -r --arg label "$LABEL" -f "$DIR/../graphql/filters/commits-day-summary.jq"

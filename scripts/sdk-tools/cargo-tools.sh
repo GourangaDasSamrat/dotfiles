@@ -1,16 +1,10 @@
 #!/bin/bash
 
-# ─── Flag Parsing ────────────────────────────────────────────────────────────
-UPDATE_MODE=false
-for arg in "$@"; do
-  case $arg in
-  --update) UPDATE_MODE=true ;;
-  *)
-    echo "Unknown flag: $arg"
-    exit 1
-    ;;
-  esac
-done
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=../utils/sdk-common.sh
+source "$SCRIPT_DIR/../utils/sdk-common.sh"
+
+sdk_parse_flags "$@"
 
 # ─── Rust & Binstall Check ───────────────────────────────────────────────────
 if ! command -v cargo &>/dev/null; then
@@ -24,8 +18,7 @@ if ! command -v cargo-binstall &>/dev/null; then
 fi
 
 echo "Rust is installed: $(rustc --version)"
-$UPDATE_MODE && echo "Mode: UPDATE (force reinstall all tools)" ||
-  echo "Mode: INSTALL (skip already installed tools)"
+sdk_print_mode
 
 # ─── Tool Definitions ────────────────────────────────────────────────────────
 # Format: ["binary_name"]="crate_name"
@@ -36,47 +29,22 @@ declare -A RUST_TOOLS=(
   ["cargo-modules"]="cargo-modules"
 )
 
-FAILED_TOOLS=0
-SUCCESS_TOOLS=0
-SKIPPED_TOOLS=0
-
 # ─── Install/Update Logic ─────────────────────────────────────────────────────
 check_and_install_tool() {
   local bin_name=$1
   local crate_name=$2
-
-  echo "----------------------------------------"
-
-  # Skip if already installed and not in update mode
-  if command -v "$bin_name" &>/dev/null && ! $UPDATE_MODE; then
-    echo "SKIP: $bin_name is already installed (use --update to reinstall)"
-    ((SKIPPED_TOOLS++))
-    return 0
-  fi
-
-  if command -v "$bin_name" &>/dev/null; then
-    echo "Updating $bin_name ($crate_name)..."
-  else
-    echo "Installing $bin_name ($crate_name)..."
-  fi
+  local installed=false
+  command -v "$bin_name" &>/dev/null && installed=true
 
   # --no-confirm skips the [y/n] prompts
   # --force ensures it overwrites if $UPDATE_MODE is true
+  local -a install_cmd=(cargo binstall --no-confirm)
   if $UPDATE_MODE; then
-    cargo binstall --no-confirm --force "$crate_name"
-  else
-    cargo binstall --no-confirm "$crate_name"
+    install_cmd+=(--force)
   fi
+  install_cmd+=("$crate_name")
 
-  if [ $? -ne 0 ]; then
-    echo "Error: Failed to process $crate_name"
-    ((FAILED_TOOLS++))
-    return 1
-  else
-    echo "$bin_name processed successfully!"
-    ((SUCCESS_TOOLS++))
-    return 0
-  fi
+  sdk_process_tool "$bin_name" "$installed" "${install_cmd[@]}"
 }
 
 # ─── Run ─────────────────────────────────────────────────────────────────────
@@ -85,16 +53,4 @@ for bin in "${!RUST_TOOLS[@]}"; do
 done
 
 # ─── Summary ─────────────────────────────────────────────────────────────────
-echo "----------------------------------------"
-echo "Summary:"
-echo "  Installed/Updated : $SUCCESS_TOOLS"
-echo "  Skipped           : $SKIPPED_TOOLS"
-echo "  Failed            : $FAILED_TOOLS"
-
-if [ $FAILED_TOOLS -eq 0 ]; then
-  echo -e "\nDone! Your cargo bin directory is ready to rock."
-  exit 0
-else
-  echo -e "\nSome tools encountered issues. Check the logs above."
-  exit 1
-fi
+sdk_finish "Done! Your cargo bin directory is ready to rock."

@@ -10,6 +10,12 @@ _init_colors() {
 	export COLOR_TEXT=$'\033[38;5;255m'    # White - Important text
 	export COLOR_BORDER=$'\033[38;5;240m'  # Dark gray - Borders
 	export COLOR_RESET=$'\033[0m'          # Reset
+
+	# Bold terminal-theme colours, used to tell project tools apart in chpwd.zsh
+	export COLOR_BOLD_BLUE=$'\033[1;34m'
+	export COLOR_BOLD_GREEN=$'\033[1;32m'
+	export COLOR_BOLD_YELLOW=$'\033[1;33m'
+	export COLOR_BOLD_CYAN=$'\033[1;36m'
 }
 
 # Initialize colors once

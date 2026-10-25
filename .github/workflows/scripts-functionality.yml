@@ -76,37 +76,20 @@ jobs:
       - name: Create issue on execution failure
         if: failure() && github.event_name == 'push'
         uses: actions/github-script@v7
+        env:
+          FAILED_SCRIPTS: ${{ steps.exec-test.outputs.FAILED_SCRIPTS }}
         with:
           script: |
-            const failedScripts = `${{ steps.exec-test.outputs.FAILED_SCRIPTS }}`;
-            const title = `[Scripts] Execution Failure`;
-            const body = `## Scripts Execution Test Failure\n\n**Failed Scripts:**\n${failedScripts}\n\nPlease fix the scripts listed above.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})`;
+            const { upsertIssue, workflowRunLink } = require('./.github/scripts/issue-sync.js');
 
-            // Check if issue already exists
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: ['scripts-execution-error']
+            await upsertIssue({
+              github,
+              context,
+              label: 'scripts-execution-error',
+              labels: ['scripts-execution-error', 'scripts-check'],
+              title: '[Scripts] Execution Failure',
+              body: `## Scripts Execution Test Failure\n\n**Failed Scripts:**\n${process.env.FAILED_SCRIPTS}\n\nPlease fix the scripts listed above.\n\n**Workflow Run:** ${workflowRunLink(context)}`,
             });
-
-            if (issues.data.length === 0) {
-              await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title: title,
-                body: body,
-                labels: ['scripts-execution-error', 'scripts-check']
-              });
-            } else {
-              // Update existing issue
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issues.data[0].number,
-                body: body
-              });
-            }
 
   close-issues:
     runs-on: ubuntu-latest
@@ -118,29 +101,21 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout issue helpers
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/scripts
+          sparse-checkout-cone-mode: false
+
       - name: Close scripts-check issues
         uses: actions/github-script@v7
         with:
           script: |
-            const issues = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: ['scripts-check']
+            const { closeIssues, workflowRunLink } = require('./.github/scripts/issue-sync.js');
+
+            await closeIssues({
+              github,
+              context,
+              label: 'scripts-check',
+              comment: `✅ All scripts passed execution test! Closing this issue.\n\n**Workflow Run:** ${workflowRunLink(context)}`,
             });
-
-            for (const issue of issues.data) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                state: 'closed'
-              });
-
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: '✅ All scripts passed execution test! Closing this issue.\n\n**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
-              });
-            }

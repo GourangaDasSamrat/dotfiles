@@ -120,7 +120,7 @@ rm() {
   local -i missing=0
   for item in "${targets[@]}"; do
     if [[ ! -e $item && ! -L $item ]]; then
-      print -- "${COLOR_WARNING}  ✗  '$item' does not exist${COLOR_RESET}"
+      _err "'$item' does not exist"
       missing=1
     fi
   done
@@ -129,7 +129,7 @@ rm() {
   local -i blocked=0
   for item in "${targets[@]}"; do
     if _is_protected "$item"; then
-      print -- "${COLOR_WARNING}  🛑  '$item' is protected${COLOR_RESET}"
+      _err "'$item' is protected"
       blocked=1
     fi
   done
