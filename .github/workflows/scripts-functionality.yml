@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Syntax, sourcing, package-list and COPR checks all live in one script so
       # they can be run locally too: bash .github/scripts/check-scripts.sh
@@ -43,7 +43,7 @@ jobs:
 
       - name: Create issue on execution failure
         if: failure() && github.event_name == 'push'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           FAILED_SCRIPTS: ${{ steps.exec-test.outputs.FAILED_SCRIPTS }}
         with:
@@ -70,13 +70,13 @@ jobs:
 
     steps:
       - name: Checkout issue helpers
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           sparse-checkout-cone-mode: false
 
       - name: Close scripts-check issues
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { closeIssues, workflowRunLink } = require('./.github/scripts/issue-sync.js');

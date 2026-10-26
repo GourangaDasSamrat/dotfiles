@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install ShellCheck
         run: sudo apt-get update && sudo apt-get install -y shellcheck
@@ -39,7 +39,7 @@ jobs:
 
       - name: Create issue on ShellCheck failure
         if: failure() && steps.shellcheck.outcome == 'failure' && github.event_name == 'push'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Check bash syntax
         id: bash-syntax
@@ -94,7 +94,7 @@ jobs:
 
       - name: Create issue on bash syntax check failure
         if: failure() && github.event_name == 'push'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           FAILED_FILES: ${{ steps.bash-syntax.outputs.FAILED_FILES }}
         with:
@@ -119,7 +119,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Zsh
         run: sudo apt-get update && sudo apt-get install -y zsh
@@ -146,7 +146,7 @@ jobs:
 
       - name: Create issue on zsh syntax check failure
         if: failure() && github.event_name == 'push'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           FAILED_FILES: ${{ steps.zsh-syntax.outputs.FAILED_FILES }}
         with:
@@ -173,13 +173,13 @@ jobs:
 
     steps:
       - name: Checkout issue helpers
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           sparse-checkout: .github/scripts
           sparse-checkout-cone-mode: false
 
       - name: Close shell-validation issues
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const { closeIssues, workflowRunLink } = require('./.github/scripts/issue-sync.js');
