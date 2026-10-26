@@ -1,3 +1,17 @@
+## [1.5.0] - 2026-10-26
+
+### 🚀 Features
+
+- *(scripts)* Add pinentry-gnome3 to linux extras (Gouranga Das Samrat)
+- *(scripts)* Enable COPR repos on Fedora before installing packages (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(software)* Document COPR step and updated package lists (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- Expand script checks and add dependabot (Gouranga Das Samrat)
 ## [1.4.0] - 2026-10-25
 
 ### 🚜 Refactor
