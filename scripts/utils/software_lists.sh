@@ -54,6 +54,7 @@ LINUX_COMMON_TOOLS=(
   "zsh"
   "rofi"
   "7zip|p7zip-full|p7zip"
+  "pinentry-gnome3|pinentry-gnome|pinentry"
 )
 
 # ------------------------------------------------------------------------------
