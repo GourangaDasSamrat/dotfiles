@@ -5,16 +5,28 @@ on:
     branches: [main, develop]
     paths:
       - "scripts/**"
+      - ".github/scripts/check-scripts.sh"
       - ".github/workflows/scripts-functionality.yml"
   pull_request:
     branches: [main, develop]
     paths:
       - "scripts/**"
+      - ".github/scripts/check-scripts.sh"
+      - ".github/workflows/scripts-functionality.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   scripts-execution-check:
     runs-on: ubuntu-latest
     name: Scripts Execution Test
+    timeout-minutes: 10
     permissions:
       issues: write
       contents: read
@@ -23,55 +35,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Test script execution
+      # Syntax, sourcing, package-list and COPR checks all live in one script so
+      # they can be run locally too: bash .github/scripts/check-scripts.sh
+      - name: Test scripts
         id: exec-test
-        run: |
-          echo "Testing script structure and dependencies..."
-          failed_scripts=""
-
-          # Test lib scripts (source them for syntax checking - skip installation scripts)
-          echo "Testing lib scripts (syntax check)..."
-          # Skip scripts that have side effects (installations)
-          skip_patterns="go_tools|python_tools|packages|plugins|wallpapers"
-          for script in $(find scripts/lib -type f -name "*.sh"); do
-            basename=$(basename "$script")
-            # Skip installation scripts
-            if echo "$basename" | grep -qE "$skip_patterns"; then
-              echo "  Skipping (installation): $script"
-              continue
-            fi
-
-            echo "  Testing: $script"
-            if ! bash -c "source $script" 2>&1; then
-              failed_scripts="$failed_scripts$script (sourcing failed)\n"
-            fi
-          done
-
-          # Test main scripts for syntax (don't execute)
-          echo "Testing main scripts (syntax check)..."
-          for script in $(find scripts -maxdepth 1 -type f -name "*.sh"); do
-            echo "  Testing: $script"
-            if ! bash -n "$script" 2>&1; then
-              failed_scripts="$failed_scripts$script (syntax error)\n"
-            fi
-          done
-
-          # Test utils scripts (source them for syntax)
-          echo "Testing utils scripts (syntax check)..."
-          for script in $(find scripts/utils -type f -name "*.sh" 2>/dev/null); do
-            echo "  Testing: $script"
-            if ! bash -c "source $script" 2>&1; then
-              failed_scripts="$failed_scripts$script (sourcing failed)\n"
-            fi
-          done
-
-          if [ -n "$failed_scripts" ]; then
-            echo "FAILED_SCRIPTS<<EOF" >> $GITHUB_OUTPUT
-            echo -e "$failed_scripts" >> $GITHUB_OUTPUT
-            echo "EOF" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-          echo "All scripts passed structure and syntax checks!"
+        run: bash .github/scripts/check-scripts.sh
 
       - name: Create issue on execution failure
         if: failure() && github.event_name == 'push'
@@ -88,7 +56,7 @@ jobs:
               label: 'scripts-execution-error',
               labels: ['scripts-execution-error', 'scripts-check'],
               title: '[Scripts] Execution Failure',
-              body: `## Scripts Execution Test Failure\n\n**Failed Scripts:**\n${process.env.FAILED_SCRIPTS}\n\nPlease fix the scripts listed above.\n\n**Workflow Run:** ${workflowRunLink(context)}`,
+              body: `## Scripts Execution Test Failure\n\n**Failed checks:**\n${process.env.FAILED_SCRIPTS}\n\nReproduce locally with \`bash .github/scripts/check-scripts.sh\`.\n\n**Workflow Run:** ${workflowRunLink(context)}`,
             });
 
   close-issues:

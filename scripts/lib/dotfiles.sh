@@ -38,7 +38,7 @@ setup_dotfiles() {
       chmod +x "$HOME/.config/git/hooks"/*
       echo "Git hooks permissions updated!"
     else
-      echo "Note: ~/.git-hooks not found. Skipping chmod."
+      echo "Note: ~/.config/hooks not found. Skipping chmod."
     fi
   else
     echo "Error: Stow failed."
