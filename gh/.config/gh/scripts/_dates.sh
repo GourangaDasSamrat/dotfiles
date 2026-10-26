@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 # Sets FROM, TO, LABEL for a given period keyword.
+# Periods: today|yesterday|month|year|last-month|last-year
 # Usage: source _dates.sh; set_range "<period>"
+# Single-day callers (today|yesterday) can get the plain date with: ${FROM%%T*}
+require_day_period() {
+  case "$1" in
+    today|yesterday) ;;
+    *)
+      echo "Unknown period: '$1' (expected: today|yesterday)" >&2
+      echo "usage: $2 <today|yesterday>" >&2
+      exit 1
+      ;;
+  esac
+}
+
 set_range() {
   local period="$1"
   case "$period" in
