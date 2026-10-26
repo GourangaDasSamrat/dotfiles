@@ -73,6 +73,38 @@ _install_tool() {
   return 1
 }
 
+# Makes sure the `dnf copr` subcommand exists. Minimal images (e.g. the Fedora
+# container used in CI) ship without it: dnf5 provides it in dnf5-plugins, the
+# older dnf4 in dnf-plugins-core.
+_ensure_copr_plugin() {
+  dnf copr --help &>/dev/null && return 0
+
+  echo "Installing the dnf copr plugin..."
+  $SUDO_CMD dnf install -y dnf5-plugins || $SUDO_CMD dnf install -y dnf-plugins-core
+  dnf copr --help &>/dev/null
+}
+
+# Enables every COPR repository listed in RHEL_COPR_REPOS (dnf only).
+# `dnf copr enable -y` is idempotent, so re-running is safe.
+_enable_copr_repos() {
+  ((${#RHEL_COPR_REPOS[@]})) || return 0
+
+  if ! _ensure_copr_plugin; then
+    echo "Warning: dnf copr plugin is unavailable, skipping COPR repositories."
+    return 1
+  fi
+
+  local repo status=0
+  for repo in "${RHEL_COPR_REPOS[@]}"; do
+    echo "Enabling COPR repository $repo..."
+    if ! $SUDO_CMD dnf copr enable -y "$repo"; then
+      echo "Warning: could not enable COPR repository $repo"
+      status=1
+    fi
+  done
+  return "$status"
+}
+
 # Fills the global TOOLS array for the detected OS and package manager.
 # Shared with .github/scripts/verify-software.sh so both always agree.
 _select_tools() {
@@ -108,6 +140,11 @@ install_packages() {
   dnf) $SUDO_CMD dnf upgrade --refresh -y ;;
   apt) $SUDO_CMD apt update && $SUDO_CMD apt upgrade -y ;;
   pacman) $SUDO_CMD pacman -Syu --noconfirm ;;
+  esac
+
+  # Extra repositories must be enabled before the packages that live in them.
+  case "$PKG_MANAGER" in
+  dnf) _enable_copr_repos ;;
   esac
 
   for tool in "${TOOLS[@]}"; do

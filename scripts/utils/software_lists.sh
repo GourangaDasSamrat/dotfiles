@@ -17,30 +17,29 @@
 CROSS_PLATFORM_TOOLS=(
   "curl"
   "wget2|wget"
-  "jq"
+  "httpie"
+  "openssl"
 
-  "fd|fd-find"
-  "ripgrep"
-  "fzf"
+  "bash-completion"
+  "starship"
   "eza"
   "bat|batcat"
   "duf"
-  "bash-completion"
+  "fd|fd-find"
+  "ripgrep"
+  "fzf"
 
+  "jq"
   "shfmt"
   "shellcheck"
   "just"
   "moreutils"
-  "stow"
 
   "gh|github-cli"
   "git-lfs"
   "git-delta"
-
+  "stow"
   "pass"
-  "httpie"
-
-  "openssl"
 )
 
 # ------------------------------------------------------------------------------
@@ -49,12 +48,13 @@ CROSS_PLATFORM_TOOLS=(
 # across all modern Linux distributions (Debian/Ubuntu, Arch, RHEL/Fedora).
 # ------------------------------------------------------------------------------
 LINUX_COMMON_TOOLS=(
-  "clang"
-  "llvm"
-  "zsh"
   "rofi"
-  "7zip|p7zip-full|p7zip"
   "pinentry-gnome3|pinentry-gnome|pinentry"
+
+  "llvm"
+  "clang"
+  "7zip|p7zip-full|p7zip"
+  "zsh"
 )
 
 # ------------------------------------------------------------------------------
@@ -65,7 +65,6 @@ LINUX_COMMON_TOOLS=(
 DEBIAN_TOOLS=(
   "build-essential"
   "command-not-found"
-  "starship"
 )
 
 # ------------------------------------------------------------------------------
@@ -78,6 +77,16 @@ RHEL_TOOLS=(
   "openssl-devel"
   "PackageKit-command-not-found"
   "helix"
+)
+
+# ------------------------------------------------------------------------------
+# RHEL / Fedora COPR Repositories
+# Enabled (via `dnf copr enable`) before the packages above are installed, so
+# tools that are not in the official Fedora repos can be listed in RHEL_TOOLS.
+# Format: "owner/project"
+# ------------------------------------------------------------------------------
+RHEL_COPR_REPOS=(
+  "atim/starship"
 )
 
 # ------------------------------------------------------------------------------
@@ -102,7 +111,6 @@ ARCH_TOOLS=(
   "openai-codex"
   "cloudflared"
   "pkgfile"
-  "starship"
   "helix"
 
   "ghostty"
@@ -132,9 +140,8 @@ MACOS_TOOLS=(
   "docker"
   "colima"
   "sccache"
-  "cloudflared"
   "xo/xo/usql"
-  "starship"
+  "cloudflared"
   "helix"
 
   "visual-studio-code"
@@ -143,14 +150,12 @@ MACOS_TOOLS=(
   "ghostty"
 
   "firefox"
-  "notion"
   "discord"
   "iina"
-
-  "pinentry-mac"
   "raycast"
   "alt-tab"
   "hiddenbar"
+  "pinentry-mac"
 
   "font-jetbrains-mono-nerd-font"
 )
@@ -161,12 +166,14 @@ MACOS_TOOLS=(
 # and many Linux packages are installed directly on Android devices.
 # ------------------------------------------------------------------------------
 TERMUX_TOOLS=(
+  "rust"
+  "cargo-binstall"
+  "rust-analyzer"
   "build-essential"
   "nodejs-lts"
   "bun"
-  "uv"
   "biome2"
-  "usql"
+  "uv"
 
   "golang"
   "gopls"
@@ -174,27 +181,22 @@ TERMUX_TOOLS=(
   "golangci-lint"
   "air"
 
-  "rust"
-  "cargo-binstall"
-  "rust-analyzer"
-
-  "firefox"
   "code-oss"
   "bruno"
   "ghostty"
+  "firefox"
   "mousepad"
-  "eog"
   "galculator"
+  "eog"
 
   "codex"
-  "starship"
+  "usql"
   "helix"
   "helix-grammars"
   "gtrash"
   "cloudflared"
-  "xdg-utils"
   "openssl-tool"
-
+  "xdg-utils"
   "mpv-x"
   "python-yt-dlp"
 )
