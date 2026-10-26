@@ -44,4 +44,5 @@ in `docs/.vitepress/config.mts`.
 | -------------------- | ------------------------------------------------------------- |
 | A config package     | See [GNU Stow](./stow#adding-a-new-package)                   |
 | A package to install | Add it to the right list in `scripts/utils/software_lists.sh` |
+| A Fedora COPR repo   | Add `owner/project` to `RHEL_COPR_REPOS` in the same file     |
 | A shell function     | See [Shell Reference](../shell/reference#customising)         |

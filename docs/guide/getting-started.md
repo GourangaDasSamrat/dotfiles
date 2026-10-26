@@ -84,6 +84,10 @@ Some tools ship under different names depending on the distro. Entries written
 as `fd|fd-find` or `bat|batcat` try each name until one installs, and anything
 already installed is skipped, so re-running the installer is safe.
 
+On Fedora, the installer also enables the COPR repositories listed in
+`RHEL_COPR_REPOS` before installing packages (see
+[Installed Software](./installed-software#fedora-copr-repositories)).
+
 ## 3. Optional language tools
 
 Run these on their own once the toolchain exists. Add `--update` to force a
