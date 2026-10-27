@@ -12,7 +12,10 @@ export default defineConfig({
   lastUpdated: true,
   appearance: "dark",
 
-  head: [["meta", { name: "theme-color", content: "#bd93f9" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.jpg" }],
+    ["meta", { name: "theme-color", content: "#bd93f9" }],
+  ],
 
   themeConfig: {
     nav: [
