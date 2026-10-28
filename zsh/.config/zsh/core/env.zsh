@@ -67,7 +67,7 @@ if (($+commands[sccache])); then
 	export RUSTC_WRAPPER=sccache
 	export CC=sccache
 	export CXX=sccache
-	export SCCACHE_CACHE_SIZE="20G"
+	export SCCACHE_CACHE_SIZE="10G"
 	export SCCACHE_DIR=$HOME/.local/share/sccache
 fi
 

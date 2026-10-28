@@ -228,7 +228,7 @@ commands starting with a space. A filter keeps credentials out of
 | `DOTFILES`         | `~/dotfiles`                                                                                                               |
 | `BAT_THEME`        | `Dracula`                                                                                                                  |
 | `PATH` additions   | LLVM (Homebrew), pnpm, bun, `~/.cargo/bin`, `~/go/bin`, `~/.local/bin`; missing folders are dropped and duplicates removed |
-| `sccache`          | When installed, used as the Rust and C/C++ compiler wrapper with a 20 GB cache in `~/.cache/sccache`                       |
+| `sccache`          | When installed, used as the Rust and C/C++ compiler wrapper with a 10 GB cache in `~/.cache/sccache`                       |
 | `BROWSER`          | `firefox`                                                                                                                  |
 | Termux             | `TZ=Asia/Dhaka`, `SSL_CERT_FILE` and `XDG_DATA_HOME` are set                                                               |
 
