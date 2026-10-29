@@ -38,6 +38,7 @@ zsh_modules=(
 	core/env
 	core/colors
 	core/history
+	core/keybindings
 	functions/utils
 	functions/archive
 	functions/chpwd

@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # --- Termux Specific Environment Variables ---
 if [[ -d $PREFIX ]]; then
 	export SSL_CERT_FILE=$PREFIX/etc/tls/cert.pem # Path to SSL certificates
