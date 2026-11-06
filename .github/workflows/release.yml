@@ -53,7 +53,7 @@ jobs:
 
       # 4. Commit and push the updated CHANGELOG.md back to the repository branch
       - name: Commit and Push CHANGELOG.md
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           branch: main
           commit_message: "docs(changelog): update CHANGELOG.md for ${{ github.ref_name }} [skip ci]"
