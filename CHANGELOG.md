@@ -1,3 +1,26 @@
+## [1.6.0] - 2026-11-24
+
+### 🚀 Features
+
+- *(zsh)* Add keybindings module and enable edit-command-line (Gouranga Das Samrat)
+- *(zsh)* Add sudo support for pkg mgrs and rm (Gouranga Das Samrat)
+
+### 🐛 Bug Fixes
+
+- *(ci)* Code scanning alert no. 5: Workflow does not contain permissions (#27) (Gouranga Das Samrat)
+
+### 🚜 Refactor
+
+- *(gh)* Centralize date range logic into _dates.sh (Gouranga Das Samrat)
+
+### 📚 Documentation
+
+- *(vitepress)* Add favicon (Gouranga Das Samrat)
+
+### ⚙️ Miscellaneous Tasks
+
+- *(shell)* Reduce sccache cache size from 20GB to 10GB (Gouranga Das Samrat)
+- Bump biome schema version to 2.6.7 (Gouranga Das Samrat)
 ## [1.5.0] - 2026-10-26
 
 ### 🚀 Features
