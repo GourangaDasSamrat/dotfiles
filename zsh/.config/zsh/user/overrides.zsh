@@ -46,12 +46,17 @@ _yn_prompt() {
   REPLY=$choice
 }
 
+# Registered with the sudo wrapper in utils.zsh; they run real commands via _exec_bin.
+_SUDO_AWARE+=(mkdir rm rm!)
+
 mkdir() {
   emulate -L zsh
 
-  (( $# == 0 )) && { command mkdir; return }
+  (( $# == 0 )) && { _exec_bin mkdir; return }
 
-  command mkdir -p -- "$@" || return 1
+  _exec_bin mkdir -p -- "$@" || return 1
+  # git init would run as the current user inside a root-owned dir, so skip it.
+  (( _sudo_active )) && return 0
   (( $# == 1 )) || return 0
 
   _yn_prompt "Initialize git repository in '$1'?"
@@ -89,7 +94,7 @@ rm() {
   done
 
   if (( $#targets == 0 )); then
-    command rm "${flags[@]}"
+    _exec_bin rm "${flags[@]}"
     return
   fi
 
@@ -144,6 +149,10 @@ rm() {
     esac
   fi
 
+  # Under sudo, root's trash is unreachable for the user: delete permanently.
+  local trash_cmd=$_RM_TRASH_CMD trash_note='no trash available'
+  (( _sudo_active )) && trash_cmd='' trash_note='trash is not used with sudo'
+
   print
   print -- "${COLOR_WARNING}  ⚠  About to delete:${COLOR_RESET}"
   print
@@ -155,20 +164,20 @@ rm() {
     fi
   done
 
-  if [[ -n $_RM_TRASH_CMD ]]; then
+  if [[ -n $trash_cmd ]]; then
     print -- "\n    ${COLOR_NORMAL}  ↳ Will move to trash${COLOR_RESET}\n"
   else
-    print -- "\n    ${COLOR_WARNING}  ↳ Will be permanently deleted (no trash available)${COLOR_RESET}\n"
+    print -- "\n    ${COLOR_WARNING}  ↳ Will be permanently deleted ($trash_note)${COLOR_RESET}\n"
   fi
 
   _yn_prompt 'Confirm deletion?'
 
   if (( REPLY == 1 )); then
-    if [[ -n $_RM_TRASH_CMD ]]; then
-      ${=_RM_TRASH_CMD} "${targets[@]}"
+    if [[ -n $trash_cmd ]]; then
+      ${=trash_cmd} "${targets[@]}"
       _ok "Moved to trash"
     else
-      command rm "${flags[@]}" "${targets[@]}"
+      _exec_bin rm "${flags[@]}" "${targets[@]}"
       _ok "Deleted permanently"
     fi
   else

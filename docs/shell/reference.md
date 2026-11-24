@@ -21,7 +21,7 @@ command and behaviour the config adds.
 | `core/env`           | Environment variables, `PATH`, `fnm`, `sccache`, browser  |
 | `core/colors`        | Colour variables and the `_ok` / `_err` / `_warn` helpers |
 | `core/history`       | History settings and the credential filter                |
-| `functions/utils`    | `backup`                                                  |
+| `functions/utils`    | `backup`, the `sudo` wrapper                              |
 | `functions/archive`  | `extract`, `compress`                                     |
 | `functions/chpwd`    | The `cd` hooks                                            |
 | `functions/pkg`      | `apt` / `brew` / `dnf` short forms                        |
@@ -63,6 +63,9 @@ plugin, `fzf-tab`, `zsh-autosuggestions` and `zsh-syntax-highlighting` (kept las
   files are moved to the trash. Otherwise the prompt warns that deletion is
   permanent.
 - Flags such as `-rf` are passed through only on the permanent-delete path.
+- `sudo rm` and `sudo mkdir` use the same functions with the real command
+  elevated. `sudo rm` never uses the trash, and `sudo mkdir` skips the `git init`
+  prompt.
 
 ### `extract` and `compress` formats
 
@@ -139,6 +142,7 @@ through to the real command:
 apt i git        # apt install git
 brew rm bat      # brew uninstall bat
 dnf i zsh        # dnf install zsh
+sudo apt i git   # sudo apt install git
 apt update       # unchanged
 ```
 
